@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	<!-- 경로 : src/main/resources 에 config.properties   file 참고  ( config.properties 내용에 있는 값을 참조하여 받아오는것 ( 사실 그닥 필요없을지도...) 이해는했음 ) -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	
+
+	<!-- 항상 annotation-driven이 붙어야 @Controller 를 사용할수 있다 -->
+	<annotation-driven />
+
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	
+
+	
+	<resources mapping="/res/**" location="/resources/" /><!-- src-main-webapp-resources로 가라는 의미 res안에 들어가는 파일 : 이미지 css 등 -->
+
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<!-- 우리가 썻던 ViewResolver라고 보면됨 views를 만약 user로 쓰고싶다 그럼 user로 바꾸면됨 그리고 기본 WEB-INF/views안에 여러주소값 적고 마지막에 .jsp를 찍어준다 -->	
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<context:component-scan base-package="com.jy.hibaby" />
+	
+	
+	<!-- BoardWeb4에서 우리가 public static getCon() 이라고 보면됨 -->
+	<!-- 우리가 getCon할때 굳이 안썻던 내용도있지만 히카리라는 아저씨가 테스트용으로 추가적으로 넣어놓은 부가적 기능  -->
+	<!-- src/main/resources 경로안에 config.properties 파일에 있는값을 참조해서 사용하였음  -->
+	<beans:bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<beans:property name="poolName" value="springHikariCP" />
+		<beans:property name="connectionTestQuery" value="SELECT 1 FROM DUAL" />
+		<beans:property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+		<beans:property name="maximumPoolSize" value="10" />
+		<beans:property name="idleTimeout" value="3000" />
+		
+		<!-- 집에서 DB url 연결할때 serverTimezone 에러시 config.properties파일 안에 값 추가해주기 : &amp;serverTimezone=UTC -->					
+		<beans:property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/HiBaby?characterEncoding=UTF-8&amp;serverTimezone=UTC "/>
+		<beans:property name="username" value="root" />
+		<beans:property name="password" value="orcl" />
+	</beans:bean>
+	
+	<!-- BoardWeb4에서 close() 각 DB연결한 Connection, PreparedStatement, ResultSet close() 해주는 것 -->
+	<beans:bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<beans:constructor-arg ref="hikariConfig" /> <!-- constructor-arg ref="" 생성자에 값 넣는 것 -->
+	</beans:bean>
+	
+	
+	<!-- mybatis 랑 spring 연동 모듈 -->
+	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource" />
+		<beans:property name="configLocation" value="WEB-INF/spring/mybatis-alias.xml" />
+	</beans:bean>
+	
+	
+	<!-- 얘는 인터페이스의 @Mapper를 찾는 애 -->
+	<mybatis-spring:scan base-package="com.jy.hibaby"/> <!--  하단 탭에Namespace import 안해서 빨간줄 뜨는것  -->
+	
+			
+	
+	
+	
+	<!-- 트랜지션 사용하기위해 등록하는 것 
+	<beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	-->
+	
+	
+	
+	
+	<!-- 
+ 					- 	인터셉터 관련	-	
+		인터셉터  즉, 로그인한사람이 굳이 또 로그인창가고 회원가입창 가는걸 사전에 막는거 
+		(병신같잖아 ? 로그인됬는데 로그인창누르면 로그인창이 열린다는게 ?)
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/**"/>			
+			<beans:bean class="com.#.#.LoginCheckInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/rest/*"/>			
+			<beans:bean class="com.#.#.RestInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
+	
+	 file Upload 하는 Beans (참고자료 : 디테일 사진 추가할때)
+		빨리치기위해 class="Commons" ctrl+spacebar 하면 자동으로 링크목록나옴
+	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="52428800" /> 
+		<beans:property name="defaultEncoding" value="utf-8" />			
+	</beans:bean>
+	 -->
+</beans:beans>
