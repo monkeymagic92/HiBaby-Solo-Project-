@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  mapper 하려면 DOCTYPE에 mapper 부분으로 입력해줘야됨 (마이바티스 xml이랑 비교해서 보기) -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> <!-- 마이바티스 사용하려면 무조건 상단에 박아둬야하는  DOCTYPE-->
+<mapper namespace="com.jy.hibaby.user.UserMapper">
+
+	<insert id="insUser" parameterType="UserVO">
+		INSERT INTO t_user
+		(user_id, user_pw, salt, nm)
+		VALUES
+		(#{user_id}, #{user_pw}, #{salt}, #{nm})	
+	</insert>
+	
+	<select id="selUser" parameterType="UserPARAM" resultType="UserDMI"> <!-- Select용은 DTO로 하기로 네이밍규칙에 정해놨음 -->
+		SELECT i_user, user_id, user_pw, salt, nm, profile_img, r_dt
+		FROM t_user
+		WHERE <if test="i_user > 0"> i_user = #{i_user}</if>
+		<if test="user_id != null and user_id != ''"> user_id = #{user_id}</if>
+	</select>
+</mapper>

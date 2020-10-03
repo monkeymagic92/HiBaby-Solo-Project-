@@ -31,11 +31,11 @@
      		<button type="submit" id="login">Login</button>
     	</form>
     </div>
-    <!-- 
-	<button type="button" class="btn btn-primary">회원가입</button>
-	<button type="button" class="btn btn-primary">비밀번호 찾기</button>
-	<button type="button" class="btn btn-primary">???</button>
-	 -->
+    
+	<button type="button" class="btn btn-primary" onclick="moveToJoin()">회원가입</button>
+	<button type="button" class="btn btn-primary" onclick="moveToFindPw()">비밀번호 찾기</button>
+	<button type="button" class="btn btn-primary" onclick="#">#</button>
+	
 </body>
 
 <script src="/res/js/login/loginJs.js"></script>

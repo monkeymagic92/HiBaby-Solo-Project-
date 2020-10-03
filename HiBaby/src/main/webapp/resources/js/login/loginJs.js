@@ -2,6 +2,18 @@
 /**
  * 
  */
+window.onload = function() {
+		frm.user_id.focus()
+	}
+
+function moveToJoin() {
+	location.href="/user/join";
+}
+
+function moveToFindPw() {
+	location.href="/user/findPw";
+}
+
 function chk() {
 	if(frm.user_id.value.length < 2) {
 		frm.user_id.focus();
