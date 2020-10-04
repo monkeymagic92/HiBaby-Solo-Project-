@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +9,6 @@
 <title>HiBaby</title>
 <link rel="stylesheet" type="text/css" href="/res/css/user/user.css">
 </head>
-<style>
-	
-</style>
 <body>
 	<nav role="navigation">
         <div id="menuToggle">         
@@ -32,8 +28,22 @@
     
     <!-- 로그인, 비밀번호찾기, 아이디찾기 등 include  -->
 	<jsp:include page="/WEB-INF/views/${view}.jsp"></jsp:include>
-	
 </body>
+
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="/res/js/user/user.js"></script>
+<script>
+
+	// 회원가입시 에러났을경우 알림창 띄우는 기능
+	if(${joinErrMsg != null}) {
+		alert('${joinErrMsg}');
+	}	
+	
+	
+	// 로그인 버튼 효과 기능
+	$('#login-button').click(function(){
+	    $('#login-button').fadeOut("slow",function(){
+	        $("#container").fadeIn();
+	    });
+	});
+</script>
 </html>

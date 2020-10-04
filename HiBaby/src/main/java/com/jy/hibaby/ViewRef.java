@@ -10,4 +10,7 @@ public class ViewRef {
 	public static final String USER_JOIN = "/user/join";  // 회원가입 jsp
 	public static final String USER_FINDPW = "/user/findPw"; // 비밀번호 찾기jsp
 	
+	// index 부분
+	public static final String INDEX_SELECT = "/index/select"; // 첫화면 선택부jsp
+	
 }

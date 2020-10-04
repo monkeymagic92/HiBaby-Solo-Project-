@@ -1,5 +1,7 @@
 package com.jy.hibaby.user;
 
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,22 +27,42 @@ public class UserController {
 	
 	@RequestMapping(value="/login", method = RequestMethod.POST)
 	public String login() {
-		return "#";
+		
+		// 로그인 성공시 index로 보내기  (if문으로 위에서 거르기)
+		return ViewRef.INDEX_SELECT;
 	}
+	
+	
+	
 	
 	
 	
 	//	회원가입
 	@RequestMapping(value="/join", method = RequestMethod.GET)
 	public String join(Model model) {
+		
+		int uNumCode = (int)(Math.random() * 88888888 + 10000000); // 고유번호 8자리 랜덤으로 지정
+		model.addAttribute("uNumCode",uNumCode);
 		model.addAttribute("view",ViewRef.USER_JOIN);
 		return ViewRef.USER_TEMP;
 	}
 	
-	@RequestMapping(value="/join", method = RequestMethod.POST)
-	public String join() {
-		return "#";
+	@RequestMapping(value="/join", method = RequestMethod.POST) 
+	public String join(Model model, UserVO param) {
+		int result = service.join(param);
+		
+		if(result == 1) {
+			model.addAttribute("view",ViewRef.USER_LOGIN);
+			return ViewRef.USER_TEMP;
+		} else {
+			model.addAttribute("joinErrMsg","Error!! 관리자에게 문의해 주십시오");
+			model.addAttribute("view",ViewRef.USER_JOIN);
+			return ViewRef.USER_TEMP;
+		}
 	}
+	
+	
+	
 	
 	
 	
@@ -56,4 +78,8 @@ public class UserController {
 	public String findPw() {
 		return "#";
 	}
+	
+	
+	
+	
 }

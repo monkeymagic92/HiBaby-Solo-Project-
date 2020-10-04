@@ -5,15 +5,17 @@
 
 	<insert id="insUser" parameterType="UserVO">
 		INSERT INTO t_user
-		(user_id, user_pw, salt, nm)
+		(user_id, user_pw, salt, nm, nick, uNum)
 		VALUES
-		(#{user_id}, #{user_pw}, #{salt}, #{nm})	
+		(#{user_id}, #{user_pw}, #{salt}, #{nm}, #{nick}, #{uNum})
 	</insert>
 	
-	<select id="selUser" parameterType="UserPARAM" resultType="UserDMI"> <!-- Select용은 DTO로 하기로 네이밍규칙에 정해놨음 -->
+	<!--  
+	<select id="selUser" parameterType="UserPARAM" resultType="UserDMI"> 
 		SELECT i_user, user_id, user_pw, salt, nm, profile_img, r_dt
 		FROM t_user
 		WHERE <if test="i_user > 0"> i_user = #{i_user}</if>
 		<if test="user_id != null and user_id != ''"> user_id = #{user_id}</if>
 	</select>
+	-->
 </mapper>
