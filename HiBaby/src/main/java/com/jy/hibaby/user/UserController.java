@@ -20,7 +20,7 @@ public class UserController {
 	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public String login(Model model) {
 		model.addAttribute("view",ViewRef.USER_LOGIN);
-		return ViewRef.MENU_TEMP;
+		return ViewRef.USER_TEMP;
 	}
 	
 	@RequestMapping(value="/login", method = RequestMethod.POST)
@@ -29,12 +29,12 @@ public class UserController {
 	}
 	
 	
+	
 	//	회원가입
 	@RequestMapping(value="/join", method = RequestMethod.GET)
-	public String join(Model model, UserVO param) {
+	public String join(Model model) {
 		model.addAttribute("view",ViewRef.USER_JOIN);
-		model.addAttribute("join", "컨트롤 - jsp 회원가입");
-		return ViewRef.MENU_TEMP;
+		return ViewRef.USER_TEMP;
 	}
 	
 	@RequestMapping(value="/join", method = RequestMethod.POST)
@@ -43,12 +43,13 @@ public class UserController {
 	}
 	
 	
+	
 	//	비밀번호 찾기
 	@RequestMapping(value="findPw", method = RequestMethod.GET)
 	public String findPw(Model model) {
 		model.addAttribute("view",ViewRef.USER_FINDPW);
 		model.addAttribute("findPw","model.addAttribute");
-		return ViewRef.MENU_TEMP;
+		return ViewRef.USER_TEMP;
 	}
 	
 	@RequestMapping(value="findPw", method = RequestMethod.POST)
