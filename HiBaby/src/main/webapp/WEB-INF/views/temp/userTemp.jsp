@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>HiBaby</title>
-<link rel="stylesheet" type="text/css" href="/res/css/user/user.css">
+<link rel="stylesheet" type="text/css" href="/res/css/user/userTemp.css">
 </head>
 <body>
 	<nav role="navigation">
@@ -38,8 +38,17 @@
 		alert('${joinErrMsg}');
 	}	
 	
+	// 회원가입시 상세등록을 바로할것인지? 아니면 로그인할것인지..
+	if(${insMyPage != null}) {
+		if(confirm('상세정보를 등록하시겠습니까 ?')) {
+			location.href="/user/myPage";
+		} else {
+			location.href="/user/login";
+		}
+	}
 	
-	// 로그인 버튼 효과 기능
+	
+	// 로그인 박스 효과 기능
 	$('#login-button').click(function(){
 	    $('#login-button').fadeOut("slow",function(){
 	        $("#container").fadeIn();

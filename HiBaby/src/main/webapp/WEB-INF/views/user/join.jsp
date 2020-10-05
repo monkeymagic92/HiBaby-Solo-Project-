@@ -6,22 +6,31 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 </head>
+<style>
+
+</style>
 <body>
 	<form id="frm" class="box" action="/user/join" method="post" onsubmit="return chk()">
 		<h1>회원가입</h1>
+		<div id="idChkResult" class="msg"></div>
 		<input type="text" name="user_id" placeholder="아이디">
-		<div><button type="button" onclick="chkId()">중복확인(ajax) / 버튼 css 입히기</button></div>
+		<button type="button" class="btn btn-3" onclick="chkId()">아이디 중복체크</button>
 		<input type="password" name="user_pw" placeholder="비밀번호">
 		<input type="password" name="user_rpw" placeholder="비밀번호 확인">
 		<input type="text" name="nm" placeholder="이름">
 		<input type="text" name="nick" placeholder="닉네임">
 		<input type="hidden" name="uNum" value="${uNumCode }">
-		<input type="submit" value="회원가입">
+		<input type="submit" value="가입">
     </form>        
 </body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
 window.onload = function() {
 	frm.user_id.focus()
+}
+
+function ajaxId() {
+	alert('아작스통신하기!!');
 }
 
 function chk() {
@@ -69,11 +78,11 @@ function chk() {
 		const korean = /[^가-힣]/;
 		
 		if(korean.test(frm.nm.value)) {
-			alert("올바른 이름을 입력해 주세요");
+			alert("올바른  이름을 입력해 주세요");
 			frm.nm.focus();
 			return false;
 		}
-	}
+	} 
 	
 	if (frm.nick.value.length == 0 || frm.nick.value.length < 2) {
 		alert("닉네임은 2글자 이상입니다");
@@ -86,6 +95,27 @@ function chk() {
 		frm.nick.focus();
 		return false;
 	}
+	
+}
+
+// 아이디 중복체크 (ajax 통신)
+function chkId() {
+	const user_id = frm.user_id.value
+	axios.post('/user/ajaxIdChk', {
+		
+			user_id  	
+			
+	}).then(function(res) {
+		console.log(res)
+		if(res.data == '2') { //아이디 사용'가능'
+			idChkResult.innerText ='사용가능한 아이디에요.';
+			frm.user_pw.focus()
+		} else if(res.data == '3') { //아이디 사용'불가능'
+			idChkResult.innerText = '이미 사용중인 아이디에요.';
+			frm.user_id.value = ''
+			frm.user_id.focus()
+		}
+	})
 }
 	
 </script>

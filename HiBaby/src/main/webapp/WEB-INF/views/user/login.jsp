@@ -17,7 +17,7 @@
         </span>
          
         
-        <form id="loginFrm" class="box" action="/user/login" method="post">
+        <form id="frm" class="box" action="/user/login" method="post">
             <h1>Login</h1>
             <input type="text" name="user_id" placeholder="아이디">
             <input type="password" name="user_pw" placeholder="비밀번호">
@@ -27,9 +27,12 @@
 </body>
 <script>
 window.onload = function() {
-	frm.user_id.focus()
+	frm.user_id.focus();
 }
-
-	// 로그인 검사 기능 코드 넣기 ************************
+	
+if(${data != null}) {
+	alert('${data}');
+	frm.user_id.focus();
+}
 </script>
 </html>
