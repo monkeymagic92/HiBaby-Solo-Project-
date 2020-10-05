@@ -11,7 +11,7 @@
 </style>
 <body>
 	<form id="frm" class="box" action="/user/join" method="post" onsubmit="return chk()">
-		<h1>회원가입</h1>
+		<h1>회원가입</h1>		
 		<div id="idChkResult" class="msg"></div>
 		<input type="text" name="user_id" placeholder="아이디">
 		<button type="button" class="btn btn-3" onclick="chkId()">아이디 중복체크</button>
@@ -107,14 +107,20 @@ function chkId() {
 			
 	}).then(function(res) {
 		console.log(res)
+		
 		if(res.data == '2') { //아이디 사용'가능'
-			idChkResult.innerText ='사용가능한 아이디에요.';
+			if(frm.user_id.value.length == 0) {
+				idChkResult.innerText = '아이디를 입력해주세요';
+			}
+		
+			idChkResult.innerText ='사용가능한 아이디에요!';
 			frm.user_pw.focus()
+			
 		} else if(res.data == '3') { //아이디 사용'불가능'
-			idChkResult.innerText = '이미 사용중인 아이디에요.';
+			idChkResult.innerText = '이미 사용중인 아이디에요!';
 			frm.user_id.value = ''
 			frm.user_id.focus()
-		}
+		} 
 	})
 }
 	

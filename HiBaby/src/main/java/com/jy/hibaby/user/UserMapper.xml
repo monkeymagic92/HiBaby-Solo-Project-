@@ -19,4 +19,12 @@
 		<if test="user_id != null and user_id != ''"> user_id = #{user_id}</if>
 	</select>
 	
+	
+	
+	<!-- 이메일테스트중 -->
+	<select id="getPw" parameterType="java.util.Map" resultType="java.lang.String">
+		SELECT user_pw FROM t_user
+		WHERE user_id=#{user_id} and email=#{email}
+	</select>
+	
 </mapper>

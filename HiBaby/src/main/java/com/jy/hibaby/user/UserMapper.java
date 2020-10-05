@@ -1,5 +1,7 @@
 package com.jy.hibaby.user;
 
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.jy.hibaby.user.model.UserDMI;
@@ -13,4 +15,6 @@ public interface UserMapper {
 	
 	UserDMI selUser(UserPARAM param);
 	
+	// 이메일 비번찾기 테스트
+	public String getPw(Map<String, Object> paramMap);
 }

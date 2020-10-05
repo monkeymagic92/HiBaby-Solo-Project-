@@ -11,7 +11,7 @@
 	<div class="overlay-navigation">
         <nav role="navigation">
               <ul class="abc">
-                <li><a class="liFont" href="#" data-content="Home">홈</a></li>
+                <li><a class="liFont" href="/user/test" data-content="Home">홈</a></li>
                 <li><a class="liFont" href="#" data-content="Game">게임</a></li>
                 <li><a class="liFont" href="#" data-content="Memo">메모</a></li>
                 <li><a class="liFont" href="#" data-content="Ligi">일기</a></li>

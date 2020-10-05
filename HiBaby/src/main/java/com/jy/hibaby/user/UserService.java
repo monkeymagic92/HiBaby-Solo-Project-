@@ -17,19 +17,19 @@ public class UserService {
 	
 	
 	
-	// SUCCESS:로그인 성공,  NO_ID:아이디 없음,  NO_PW:비번 틀림
+	// SUCCESS 1:로그인 성공,  NO_ID 2:아이디 없음,  NO_PW 3:비번 틀림
 	public int login(UserPARAM param) {
 		if(param.getUser_id().equals("")) {
-			return Const.NO_ID;
+			return Const.NO_ID; // 2
 		}
 		UserDMI dbUser = mapper.selUser(param);
 		
 		if(dbUser == null) {
-			return Const.NO_ID;
-		}
-		
+			return Const.NO_ID; 
+		} 
+						
 		String cryptPw = SecurityUtils.getEncrypt(param.getUser_pw(), dbUser.getSalt());
-		if(!cryptPw.equals(dbUser.getUser_pw())) {return Const.NO_PW;}
+		if(!cryptPw.equals(dbUser.getUser_pw())) {return Const.NO_PW;} // 3
 		
 		param.setUser_pw(null);
 		param.setNm(dbUser.getNm());

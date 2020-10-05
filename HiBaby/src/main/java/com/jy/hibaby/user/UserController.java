@@ -1,14 +1,19 @@
 package com.jy.hibaby.user;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jy.hibaby.Const;
@@ -23,6 +28,31 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
+	@Autowired
+	private EmailSender emailSender;
+	
+	
+	@Autowired
+	private Email email;
+	
+	@Autowired
+	private MainService mainService;
+
+
+	
+	
+	
+	
+	// @@@@@@@@@@@@@@@  테스트용
+	// index/select 에서 홈버튼눌렀을때 loginUser 세션값과 myPageUser 세션값이 넘어오는지 확인용
+	// myPageUser 세션값은 지우기 
+	@RequestMapping(value="/test")
+	public String userTest() {
+		return "/user/test";
+	}
+	
+	
+	
 	//	로그인
 	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public String login(Model model) {
@@ -36,7 +66,7 @@ public class UserController {
 		int result = service.login(param);
 		
 		if(result == Const.SUCCESS) {
-			hs.setAttribute(Const.LOGIN_USER, param); 
+			hs.setAttribute(Const.LOGIN_USER, param);
 			return ViewRef.INDEX_SELECT;	
 		}
 		
@@ -146,5 +176,38 @@ public class UserController {
 		int result = service.login(param);
 		return String.valueOf(result);
 	}
+	
+	
+	
+	
+	
+	///////////// 이메일 테스트중
+	@RequestMapping("/findPw")
+    public ModelAndView sendEmailAction (@RequestParam Map<String, Object> paramMap, ModelMap model) throws Exception {
+        ModelAndView mav;
+        String id=(String) paramMap.get("id");
+        String e_mail=(String) paramMap.get("email");
+        
+		String pw = mainService.getPw(paramMap);
+        System.out.println(pw);
+        if(pw!=null) {
+            email.setContent("비밀번호는 "+pw+" 입니다.");
+            email.setReceiver(e_mail);
+            email.setSubject(id+"님 비밀번호 찾기 메일입니다.");
+            emailSender.SendEmail(email);
+            mav= new ModelAndView("redirect:/login.do");
+            return mav;
+        }else {
+            mav=new ModelAndView("redirect:/logout.do");
+            return mav;
+        }
+    }
+
+
+
+	
+	
+	
+	
 	
 }
