@@ -10,8 +10,5 @@ public class EmailVO {
 	public void setCerCode(String cerCode) {
 		this.cerCode = cerCode;
 	}
-
-	
-	
 	
 }

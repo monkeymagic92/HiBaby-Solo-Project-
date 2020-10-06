@@ -52,4 +52,22 @@ public class UserService {
 		
 		return mapper.insUser(param);
 	}
+	
+	
+	
+	
+	// 비밀번호 찾기  1. 아디,이멜 검사
+	public int findPw (UserPARAM param) {
+		System.out.println("param.getUser_id() = " + param.getUser_id());
+		UserDMI dbUser = mapper.findPwChk(param);
+		
+		if(dbUser == null) { return 0; } 
+		
+		if(dbUser.getUser_id().equals(param.getUser_id())
+				&& dbUser.getEmail().equals(param.getEmail())) {
+			return 1;
+		} else {
+			return 3;
+		}
+	}
 }

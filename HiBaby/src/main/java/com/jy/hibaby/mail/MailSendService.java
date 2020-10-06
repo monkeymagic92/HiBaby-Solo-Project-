@@ -41,13 +41,12 @@ public class MailSendService {
 	public String sendAutoMail(String email) {
 		
 		String authKey = getKey(6);
-		
-		
+				
 		try {
             MailUtils sendMail = new MailUtils(mailSender);
             sendMail.setSubject("HiBaby 비밀번호 인증 코드");
-            sendMail.setText(new StringBuffer().append("<h1>[ 인증번호를 복사해주세요 ]</h1>")					
-					.append("<h2 style='width: 180px; background-color: green; color: black;'> 인증번호 : " + authKey + "</h2>")
+            sendMail.setText(new StringBuffer().append("<h1>[ 인증번호를 확인해주세요 ]</h1><hr>")					
+					.append("<h2 style='width: 170px; background-color: green; color: black;'> 인증번호 : " + authKey + "</h2>")
 					.toString());
             sendMail.setFrom("ddw0099@naver.com");
             sendMail.setTo(email);

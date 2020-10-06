@@ -20,7 +20,7 @@
             <ul id="menu">
                 <a href="/user/login"><li>로그인</li></a>
                 <a href="/user/join"><li>회원가입</li></a>
-                <a href="#"><li>아이디 찾기</li></a>
+                <a href="/user/modal"><li>모달테스트</li></a>
                 <a href="/user/findPw"><li>비밀번호 찾기</li></a>
                 <a href="https://github.com/monkeymagic92" target="_blank"><li>제작자 Github 둘러보기</li></a>
             </ul>
@@ -35,8 +35,8 @@
 <script>
 
 	// 회원가입시 에러났을경우 알림창 띄우는 기능
-	if(${joinErrMsg != null}) {
-		alert('${joinErrMsg}');
+	if(${msg != null}) {
+		alert('${msg}');
 	}	
 	
 	// 회원가입시 상세등록을 바로할것인지? 아니면 로그인할것인지..

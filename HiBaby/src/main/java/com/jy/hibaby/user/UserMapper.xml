@@ -17,32 +17,12 @@
 		FROM t_user
 		WHERE <if test="i_user > 0"> i_user = #{i_user}</if>
 		<if test="user_id != null and user_id != ''"> user_id = #{user_id}</if>
+	</select>	
+	
+	
+	<select id="findPwChk" parameterType="UserPARAM" resultType="UserDMI">
+		SELECT user_id, email FROM t_user
+		WHERE user_id = #{user_id}
 	</select>
-	
-		
-	  
-	<select id="getPw" parameterType="java.util.Map" resultType="java.lang.String">
-		SELECT user_pw FROM t_user
-		WHERE user_id = #{user_id} AND email = #{email}
-	</select>
-	 
-	 
-	
-	
-	<!--  
-	<select id="getPw" parameterType="java.util.Map" resultType="UserPARAM">
-		SELECT user_pw FROM t_user
-		WHERE user_id = #{user_id} AND email = #{email}
-	</select>
-	 -->
-	
-	
-	
-	<!-- 
-	<select id="findPw" parameterType="UserPARAM" resultType="UserPARAM">
-		SELECT user_pw FROM t_user
-		WHERE user_id = #{user_id} AND email = #{email}
-	</select>
-	 -->
 	
 </mapper>

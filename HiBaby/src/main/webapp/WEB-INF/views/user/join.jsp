@@ -72,7 +72,7 @@ function chk() {
 		return false;
 	} 
 	
-	if (frm.nm.value.length == 0 || frm.nm.value.length < 1) {
+	if (frm.nm.value.length == 0 || frm.nm.value.length < 2) {
 		alert("올바른 이름을 입력해 주세요");
 		frm.nm.focus();
 		return false;
@@ -150,6 +150,5 @@ function chkId() {
 		} 
 	})
 }
-	
 </script>
 </html>
