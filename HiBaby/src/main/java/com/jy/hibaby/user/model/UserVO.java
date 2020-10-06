@@ -7,6 +7,7 @@ public class UserVO {
 	private String salt;
 	private String nm;
 	private String nick;
+	private String email;
 	private int uNum;	// 비밀번호 변경시 고유번호 8자리
 	private String myPoint; // 누적포인트	
 	private String myCash; // 환불받은 금액
@@ -14,7 +15,6 @@ public class UserVO {
 	private String profile_img;
 	private String r_dt;
 	private String m_dt;
-	
 	
 	public int getI_user() {
 		return i_user;
@@ -51,6 +51,12 @@ public class UserVO {
 	}
 	public void setNick(String nick) {
 		this.nick = nick;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public int getuNum() {
 		return uNum;
@@ -95,4 +101,6 @@ public class UserVO {
 		this.m_dt = m_dt;
 	}
 	
+	
+		
 }

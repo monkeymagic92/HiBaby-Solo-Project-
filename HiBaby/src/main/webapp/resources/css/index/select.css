@@ -1,9 +1,10 @@
 @charset "UTF-8";
-    @import url(https://fonts.googleapis.com/css?family=Work+Sans:400,300,700|Open+Sans:400italic,300italic);
+@import url(https://fonts.googleapis.com/css?family=Work+Sans:400,300,700|Open+Sans:400italic,300italic);
 body {
   background-color: #fff
 }
 
+/*
 .home {
   width: 100%;
   height: 100vh;
@@ -12,10 +13,9 @@ body {
   background-size: cover;
   background-position: center center;
 }
+*/
 
-/* ====================================
-Navigation 
-==================================== */
+
 
 .overlay-navigation {
   position: fixed;
@@ -166,10 +166,8 @@ nav li:nth-of-type(5){background-color: #99B998}
 }
 
 
-/* ====================================
-Burger king
-==================================== */
 
+/*
 .open-overlay {
   position: absolute;
   right: 5rem;
@@ -187,7 +185,7 @@ Burger king
   cursor: pointer;
   margin-top: 8px;
 }
-
+*/
 .animate-top-bar {
   animation: animate-top-bar .6s linear 1 both
 }
@@ -213,9 +211,7 @@ Burger king
 }
 
 
-/* ====================================
-Animation keyframes
-==================================== */
+
 
 @keyframes slide-in-nav-item {
   from {

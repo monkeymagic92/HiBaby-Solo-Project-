@@ -5,6 +5,7 @@ CREATE TABLE t_user(
 	salt VARCHAR(80),
 	nm VARCHAR(8),
 	nick VARCHAR(14),
+	email VARCHAR(34),
 	uNum INT(8),
 	myPoint INT(8),
 	myCash INT(8),
@@ -18,7 +19,6 @@ CREATE TABLE t_user(
 SELECT * FROM t_user;
 
 DROP TABLE t_user;
-
 
 
 

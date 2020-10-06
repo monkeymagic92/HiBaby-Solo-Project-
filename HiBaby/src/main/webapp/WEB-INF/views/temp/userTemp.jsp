@@ -11,16 +11,17 @@
 </head>
 <body>
 	<nav role="navigation">
-        <div id="menuToggle">         
+        <div id="menuToggle">  
             <input type="checkbox" />
                 <span></span>
                 <span></span>
                 <span></span>
+                 
             <ul id="menu">
                 <a href="/user/login"><li>로그인</li></a>
                 <a href="/user/join"><li>회원가입</li></a>
                 <a href="#"><li>아이디 찾기</li></a>
-                <a href="#"><li>비밀번호 찾기</li></a>
+                <a href="/user/findPw"><li>비밀번호 찾기</li></a>
                 <a href="https://github.com/monkeymagic92" target="_blank"><li>제작자 Github 둘러보기</li></a>
             </ul>
         </div>

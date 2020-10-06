@@ -1,23 +1,22 @@
 package com.jy.hibaby.user;
 
-import java.util.Map;
-
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jy.hibaby.Const;
+import com.jy.hibaby.SecurityUtils;
 import com.jy.hibaby.ViewRef;
+import com.jy.hibaby.mail.MailSendService;
+import com.jy.hibaby.mail.model.EmailVO;
 import com.jy.hibaby.user.model.UserPARAM;
 import com.jy.hibaby.user.model.UserVO;
 
@@ -27,21 +26,16 @@ public class UserController {
 
 	@Autowired
 	private UserService service;
-	
-	@Autowired
-	private EmailSender emailSender;
-	
-	
-	@Autowired
-	private Email email;
-	
+			
 	@Autowired
 	private MainService mainService;
 
+	@Autowired
+	private UserMapper mapper;
+	
+	@Autowired
+	private MailSendService mss;
 
-	
-	
-	
 	
 	// @@@@@@@@@@@@@@@  테스트용
 	// index/select 에서 홈버튼눌렀을때 loginUser 세션값과 myPageUser 세션값이 넘어오는지 확인용
@@ -55,7 +49,35 @@ public class UserController {
 	
 	//	로그인
 	@RequestMapping(value="/login", method = RequestMethod.GET)
-	public String login(Model model) {
+	public String login(Model model, HttpServletRequest request) {
+		// 로그인이 되어있다면 로그인페이지로 갈수없게 막아놓음 
+		UserVO param = SecurityUtils.getLoginUser(request);
+		if(param != null) {
+			return ViewRef.INDEX_SELECT;
+		}
+		
+		
+		
+		///////// 이메일 관련	/////////
+		// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@		
+		// 테스트용으로 로그인시 실행되게 해놨음 (값비교 정상적으로 됨)
+		String authKey = mss.sendAutoMail("ddw0099@naver.com");
+		EmailVO vo = new EmailVO();
+		
+		vo.setCerCode(authKey);
+		System.out.println("인증코드 : " + vo.getCerCode());
+		if(vo.getCerCode().equals("1234")) {
+			System.out.println(authKey);
+		} else {
+			System.out.println("틀림@@@@@@@@");
+		}
+		///////// 이메일 관련	/////////
+		// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		
+		
+		
 		model.addAttribute("view",ViewRef.USER_LOGIN);
 		return ViewRef.USER_TEMP;
 	}
@@ -64,6 +86,7 @@ public class UserController {
 	public String login(Model model, UserPARAM param, HttpSession hs, RedirectAttributes ra) {
 		
 		int result = service.login(param);
+		
 		
 		if(result == Const.SUCCESS) {
 			hs.setAttribute(Const.LOGIN_USER, param);
@@ -76,7 +99,9 @@ public class UserController {
 		} else if (result == Const.NO_PW) {
 			msg = "비밀번호를 확인해 주세요";
 		}
+		
 		ra.addFlashAttribute("data", msg);
+		ra.addFlashAttribute("id", param.getUser_id());
 		return "redirect:/user/login";
 	}
 	
@@ -98,7 +123,7 @@ public class UserController {
 	public String join(Model model, UserPARAM param, HttpSession hs) {
 		int result = service.join(param);
 		
-		if(result == 1) {
+		if(result == 1) {			
 			model.addAttribute("view",ViewRef.USER_LOGIN);
 			model.addAttribute("insMyPage","insMyPage");
 			int myPageSession = service.login(param);
@@ -116,17 +141,21 @@ public class UserController {
 	
 	
 	
-	//	비밀번호 찾기
+	//	비밀번호 찾기  
+	// @@@@@@@@@@@@@@@@@@@@	여기서작업하기 @@@@@@@@@@@@@@@@@@@@@@@
+	// @@@@@@@@@@@@@@@@@@@@	여기서작업하기 @@@@@@@@@@@@@@@@@@@@@@@
+	// @@@@@@@@@@@@@@@@@@@@	여기서작업하기 @@@@@@@@@@@@@@@@@@@@@@@
 	@RequestMapping(value="findPw", method = RequestMethod.GET)
 	public String findPw(Model model) {
 		model.addAttribute("view",ViewRef.USER_FINDPW);
-		model.addAttribute("findPw","model.addAttribute");
+		
 		return ViewRef.USER_TEMP;
 	}
 	
 	@RequestMapping(value="findPw", method = RequestMethod.POST)
 	public String findPw() {
-		return "#";
+		
+		return "redirect:/user/changePw"; // changePw 매핑으로 가게끔   ( 실제 아디,이름,이멜 정상입력했을시 비번 바꾸는 창으로가게 )
 	}
 	
 	
@@ -158,12 +187,11 @@ public class UserController {
 		// 여기부분 확인해보기 
 		// 일단 회원가입시 박아놓은 세션값을 지워줘야됨 
 		// 마이페이지에서 post 값으로 값 넘어왔을떄 위에서 처리다해주고 마지막에 세션 지우는걸로 해보기 
-		// 현재 로그인상태에서 세션값 지우니까 에러남 
+		// 현재 로그인 컨트롤러에서 세션값 지우니까 에러남
+		// 특정 세션값만 지우는 명령어 알아내기 
 		hs.invalidate();
 		return "gg";
 	}
-	
-
 	
 
   
@@ -175,38 +203,7 @@ public class UserController {
 		System.out.println("uesr_id : " + param.getUser_id());
 		int result = service.login(param);
 		return String.valueOf(result);
-	}
-	
-	
-	
-	
-	
-	///////////// 이메일 테스트중
-	@RequestMapping("/findPw")
-    public ModelAndView sendEmailAction (@RequestParam Map<String, Object> paramMap, ModelMap model) throws Exception {
-        ModelAndView mav;
-        String id=(String) paramMap.get("id");
-        String e_mail=(String) paramMap.get("email");
-        
-		String pw = mainService.getPw(paramMap);
-        System.out.println(pw);
-        if(pw!=null) {
-            email.setContent("비밀번호는 "+pw+" 입니다.");
-            email.setReceiver(e_mail);
-            email.setSubject(id+"님 비밀번호 찾기 메일입니다.");
-            emailSender.SendEmail(email);
-            mav= new ModelAndView("redirect:/login.do");
-            return mav;
-        }else {
-            mav=new ModelAndView("redirect:/logout.do");
-            return mav;
-        }
-    }
-
-
-
-	
-	
+	}	
 	
 	
 	

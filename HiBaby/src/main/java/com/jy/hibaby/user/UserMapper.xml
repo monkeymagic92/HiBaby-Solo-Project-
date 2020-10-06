@@ -5,26 +5,44 @@
 
 	<insert id="insUser" parameterType="UserVO">
 		INSERT INTO t_user
-		(user_id, user_pw, salt, nm, nick, uNum)
+		(user_id, user_pw, salt, nm, nick, uNum, email)
 		VALUES
-		(#{user_id}, #{user_pw}, #{salt}, #{nm}, #{nick}, #{uNum})
+		(#{user_id}, #{user_pw}, #{salt}, #{nm}, #{nick}, #{uNum}, #{email})
 	</insert>
 	
 	
 	<select id="selUser" parameterType="UserPARAM" resultType="UserDMI"> 
-		SELECT i_user, user_id, user_pw, salt, nm, nick, myPoint
-		,myCash, sm, profile_img, r_dt
+		SELECT i_user, user_id, user_pw, salt, nm, nick, email, myPoint
+		,myCash, sm, profile_img, r_dt, m_dt
 		FROM t_user
 		WHERE <if test="i_user > 0"> i_user = #{i_user}</if>
 		<if test="user_id != null and user_id != ''"> user_id = #{user_id}</if>
 	</select>
 	
-	
-	
-	<!-- 이메일테스트중 -->
+		
+	  
 	<select id="getPw" parameterType="java.util.Map" resultType="java.lang.String">
 		SELECT user_pw FROM t_user
-		WHERE user_id=#{user_id} and email=#{email}
+		WHERE user_id = #{user_id} AND email = #{email}
 	</select>
+	 
+	 
+	
+	
+	<!--  
+	<select id="getPw" parameterType="java.util.Map" resultType="UserPARAM">
+		SELECT user_pw FROM t_user
+		WHERE user_id = #{user_id} AND email = #{email}
+	</select>
+	 -->
+	
+	
+	
+	<!-- 
+	<select id="findPw" parameterType="UserPARAM" resultType="UserPARAM">
+		SELECT user_pw FROM t_user
+		WHERE user_id = #{user_id} AND email = #{email}
+	</select>
+	 -->
 	
 </mapper>

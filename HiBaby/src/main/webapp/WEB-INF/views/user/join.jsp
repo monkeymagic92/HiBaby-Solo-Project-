@@ -19,6 +19,7 @@
 		<input type="password" name="user_rpw" placeholder="비밀번호 확인">
 		<input type="text" name="nm" placeholder="이름">
 		<input type="text" name="nick" placeholder="닉네임">
+		<input type="text" name="email" placeholder="이메일">
 		<input type="hidden" name="uNum" value="${uNumCode }">
 		<input type="submit" value="가입">
     </form>        
@@ -29,14 +30,8 @@ window.onload = function() {
 	frm.user_id.focus()
 }
 
-function ajaxId() {
-	alert('아작스통신하기!!');
-}
-
 function chk() {
-	// *******    ID 정규화있으면 ID 정규화 적용시키기         ************
-	
-	if (frm.user_id.value.length < 5) {
+	if (frm.user_id.value.length < 6) {
 		alert("ID는 5글자 이상 입력해주세요");		
 		frm.user_id.focus();
 		return false;
@@ -47,6 +42,16 @@ function chk() {
 		frm.user_id.focus();
 		return false;
 	}
+	
+	// 아이디 정규화 (영어, 숫자만 가능)
+	if(frm.user_id.value.length > 0) {
+		const regExpId = /^[0-9a-z]+$/;
+		if(!regExpId.test(frm.user_id.value)) {
+			alert('아이디 똑바로');
+			frm.user_id.focus();
+			return false;
+		}
+	}    
 	
 	// 비밀번호 정규식 : 숫자, 특문 각 1회 이상, 영문은 2개 이상 사용하여 8자리 이상 입력
 	if (frm.user_pw.value.length > 0 || frm.user_pw.value.length == 0) {
@@ -94,6 +99,28 @@ function chk() {
 		alert("닉네임이 너무 깁니다");
 		frm.nick.focus();
 		return false;
+	}
+	
+	if (frm.email.value.length == 0) {
+		alert("올바른 이메일을 입력해주세요");
+		frm.email.focus();
+		return false;
+	} 
+	
+	if (frm.email.value.length < 14 ) {
+		alert("올바른 이메일을 입력해주세요");
+		frm.email.focus();
+		return false;
+	}
+	
+	// 이메일 정규화 (추후 select 로 업데이트 하기)(daum, naver, google 등등)
+	if (frm.email.value.length > 0) {
+		const email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
+		if(!email.test(frm.email.value)) {
+			alert('올바른 이메일을 입력해 주세요');
+			frm.email.focus();
+			return false
+		}
 	}
 	
 }

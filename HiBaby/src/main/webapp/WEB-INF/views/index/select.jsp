@@ -19,14 +19,6 @@
               </ul>
         </nav>
     </div>
-      
-    <section class="home">
-        <div class="open-overlay">
-            <span class="bar-top"></span>
-            <span class="bar-middle"></span>
-            <span class="bar-bottom"></span>
-        </div>
-    </section>
 </body>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="/res/js/index/select.js"></script>

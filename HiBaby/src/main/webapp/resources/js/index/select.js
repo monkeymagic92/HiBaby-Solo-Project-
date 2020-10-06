@@ -2,7 +2,7 @@
  * 
  */
 
-$('.open-overlay').click(function() {
+$('.open-overlay').ready(function() {
   var overlay_navigation = $('.overlay-navigation'),
     nav_item_1 = $('nav li:nth-of-type(1)'),
     nav_item_2 = $('nav li:nth-of-type(2)'),
