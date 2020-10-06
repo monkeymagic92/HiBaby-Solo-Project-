@@ -70,8 +70,8 @@ img{
 body {
     margin: 0 auto;
     padding: 0;
-    font-family: 'Bungee', sans-serif;
-    background: pink;
+    font-family: 'Nanum Gothic', sans-serif;
+    background-image: linear-gradient(to right, #a1c4fd 0%, #edd3e8 51%, #91e0ff 100%);
 }
 
 .box {
@@ -81,14 +81,14 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    background: pink; 
+    background-image: linear-gradient(to right, #a1c4fd 0%, #8ae6d6 51%, #5bf5ad 100%); 
     text-align: center;
     border-radius: 30px;
     border: 2px solid #ffffff;
 }
 
 .box h1 {
-    color: red;
+    color: #3c4543;
     text-transform: uppercase;
     font-weight: 500;
 }
@@ -104,9 +104,9 @@ body {
     padding: 14px 10px;
     width: 200px;
     outline: none;
-    color: white;
+    color: black;
     border-radius: 24px;
-    transition: 0.25s;
+    transition: 0.4s;
 }
 
 .box input[type = "text"]:focus,.box input[type = "password"]:focus
@@ -127,7 +127,7 @@ body {
     outline: none;
     color: white;
     border-radius: 24px;
-    transition: 0.25s;
+    transition: 0.4s;
     cursor: pointer;
 }
 
@@ -256,10 +256,10 @@ body {
     position: absolute;
     width: 300px;
     margin: -100px 0 0 -50px;
-    padding: 50px;
+    padding: 40px;
     padding-top: 125px;
 
-    background: #ededed;
+    background: blue;
     list-style-type: none;
     -webkit-font-smoothing: antialiased;
 
@@ -273,7 +273,7 @@ body {
 #menu li
 {
     padding: 10px 0;
-    font-size: 22px;
+    font-size: 18px;
 }
 
 

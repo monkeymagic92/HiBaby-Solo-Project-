@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>HiBaby</title>
 <link rel="stylesheet" type="text/css" href="/res/css/user/userTemp.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" srel="stylesheet">
 </head>
 <body>
 	<nav role="navigation">
@@ -18,11 +19,11 @@
                 <span></span>
                  
             <ul id="menu">
-                <a href="/user/login"><li>로그인</li></a>
-                <a href="/user/join"><li>회원가입</li></a>
-                <a href="/user/modal"><li>모달테스트</li></a>
-                <a href="/user/findPw"><li>비밀번호 찾기</li></a>
-                <a href="https://github.com/monkeymagic92" target="_blank"><li>제작자 Github 둘러보기</li></a>
+                <li><a href="/user/login">로그인</a></li>
+                <li><a href="/user/join">회원가입</a></li>
+                <li><a href="/user/modal">모달테스트</a></li>
+                <li><a href="/user/findPw">비밀번호 찾기</a></li>               
+                <li><a href="https://github.com/monkeymagic92" target="_blank">제작자 Github 둘러보기</a></li>
             </ul>
         </div>
     </nav>
