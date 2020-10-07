@@ -17,20 +17,29 @@ import com.jy.hibaby.SecurityUtils;
 import com.jy.hibaby.ViewRef;
 import com.jy.hibaby.mail.MailSendService;
 import com.jy.hibaby.mail.model.EmailVO;
+import com.jy.hibaby.user.model.UserDMI;
 import com.jy.hibaby.user.model.UserPARAM;
 import com.jy.hibaby.user.model.UserVO;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
-
+	
+	// ★★★★★★★★★★
+	// hs.removeAttribute("key값"); 특정 세션값만 삭제하기
+	// ★★★★★★★★★★
+	
+	
+	static int cerCodeCount = 0; // 인증코드 5회실패시 로그인화면으로 가기위한 카운트  
+	
+	
 	@Autowired
 	private UserService service;	
 	
 	@Autowired
 	private MailSendService mss;  // 현재 이메일 부분 주석처리해놔서 노란줄 끄이는거임
 
-	// hs.removeAttribute("key값"); 특정 세션값만 삭제하기
+	
 	
 	
 	// @@@@@@@@@@@@@@@  테스트용
@@ -53,28 +62,6 @@ public class UserController {
 		if(param != null) {
 			return ViewRef.INDEX_SELECT;
 		}
-		
-		
-		
-		///////// 이메일 관련	/////////
-		// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-		// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@		
-		// 테스트용으로 로그인시 실행되게 해놨음 (값비교 정상적으로 됨)
-		
-//		String authKey = mss.sendAutoMail("ddw0099@naver.com");
-//		EmailVO vo = new EmailVO();
-//		
-//		vo.setCerCode(authKey);
-//		System.out.println("인증코드 : " + vo.getCerCode());
-//		if(vo.getCerCode().equals("1234")) {
-//			System.out.println(authKey);
-//		} else {
-//			System.out.println("틀림@@@@@@@@");
-//		}
-		
-		
-		
-		
 		
 		model.addAttribute("view",ViewRef.USER_LOGIN);
 		return ViewRef.USER_TEMP;
@@ -138,7 +125,6 @@ public class UserController {
 	
 	
 	
-	
 	//	비밀번호 찾기1-1 (아이디, 이메일 검사)
 	@RequestMapping(value="/findPw", method = RequestMethod.GET)
 	public String findPw(Model model, HttpServletRequest request) {
@@ -147,15 +133,21 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/findPw", method = RequestMethod.POST)
-	public String findPw(Model model, UserPARAM param) {		
-		int result = service.findPw(param);
+	public String findPw(Model model, UserPARAM param, HttpSession hs, UserDMI dmi) {		
+		int result = service.findPw(param, hs);
+		int i_user = (int)hs.getAttribute("i_user");
+		dmi.setI_user(i_user);
 		
 		if(result == 1) { // 정보가 '일치한다면'
+			String authKey = mss.sendAutoMail(param.getEmail());
 			model.addAttribute("view","/user/cerCode");
-			return ViewRef.USER_TEMP; // changePw 매핑으로 가게끔   ( 실제 아디,이름,이멜 정상입력했을시 비번 바꾸는 창으로가게 )
+			model.addAttribute("authKey",authKey);
+
+			return ViewRef.USER_TEMP; 
 			
 		} else { // 정보가 '틀렸다면'
 			model.addAttribute("user_id", param.getUser_id());
+			model.addAttribute("email",param.getEmail());
 			model.addAttribute("view","/user/findPw");
 			model.addAttribute("msg","입력하신 정보를 다시 확인해 주세요");
 			return ViewRef.USER_TEMP;
@@ -163,20 +155,72 @@ public class UserController {
 	}
 	
 	
+	// 비번찾기 1-2 (이메일 인증코드 입력)
+	@RequestMapping(value="/cerCode", method=RequestMethod.GET)
+	public String modal(Model model, UserPARAM param, EmailVO vo) {
+		
+		cerCodeCount++;
+		if(cerCodeCount == 5) {
+			model.addAttribute("view","/user/out");
+			return ViewRef.USER_TEMP;
+		}
+		model.addAttribute("cerCodeCount", cerCodeCount);
+		model.addAttribute("view","/user/cerCode");
+		return ViewRef.USER_TEMP;
+	}
+	
+
+	@RequestMapping(value="/cerCode", method=RequestMethod.POST) // post 확인
+	public String modal(Model model, EmailVO param, HttpServletRequest request) {
+		String authKey = request.getParameter("authKey");
+		
+		if(authKey.equals(param.getCerCode())) {
+			return "/user/changePw"; //성공
+			
+		} else {
+			model.addAttribute("cerCodeMsg","인증번호를 다시 확인해 주세요.");
+			model.addAttribute("view", "/user/cerCode");
+			return ViewRef.USER_TEMP;
+		}
+	}
 	
 	
 	
-	//
-	@RequestMapping(value="/cerCode", method = RequestMethod.GET)
-	public String insCerCode(Model model) {
-		model.addAttribute("view","/user/changePw");
+	// 비밀번호 변경
+	@RequestMapping(value="/changePw", method = RequestMethod.GET)
+	public String changePw(Model model, UserPARAM param) {
+		System.out.println("1 유저비번  : " + param.getUser_pw());
+		model.addAttribute("view", "/user/changePw");
 		return ViewRef.USER_TEMP; 
 	}
+	
+	@RequestMapping(value="/changePw", method = RequestMethod.POST)
+	public String changePw(Model model, UserPARAM param, HttpSession hs) {
+		int i_user = (int)hs.getAttribute("i_user");
+		param.setI_user(i_user);
+		
+		int result = service.changePw(param);
+		if(result == 1) {
+			model.addAttribute("view",ViewRef.USER_LOGIN);
+			return ViewRef.USER_TEMP;
+		} else {
+			model.addAttribute("changePwMsg", "서버문제가 발생했습니다 잠시후 다시 시도해주세요");
+			model.addAttribute("view","/user/changePw");
+			return ViewRef.USER_TEMP; // DB에러시 (다시 비번찾기 창으로 돌려서 비번만 입력하게끔 만들기)
+		}
+		
+	}
+	
+		
+	
 	
 
 	
 	
-	// 상세 프로필 등록 (로그인후 상세페이지로 이동하는 부분)
+
+	
+	
+	// 상세 프로필 등록 (로그인후 상세페이지로 이동)
 	@RequestMapping(value="/myPage", method = RequestMethod.GET)
 	public String myPage(Model model, HttpSession hs) {
 		
@@ -205,6 +249,12 @@ public class UserController {
 		return "gg";
 	}
 	
+	
+	
+	
+	
+	
+	
 
   
 	// 아이디 중복체크 (aJax기법) 
@@ -215,8 +265,7 @@ public class UserController {
 		System.out.println("uesr_id : " + param.getUser_id());
 		int result = service.login(param);
 		return String.valueOf(result);
-	}	
-	
-	
+	}
 	
 }
+

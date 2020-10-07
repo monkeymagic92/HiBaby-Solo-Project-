@@ -8,12 +8,12 @@
 <meta charset="UTF-8">
 <title>HiBaby</title>
 <link rel="stylesheet" type="text/css" href="/res/css/user/userTemp.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" srel="stylesheet">
 </head>
 <body>
 	<nav role="navigation">
         <div id="menuToggle">  
             <input type="checkbox" />
+            	<!-- 아이콘으로 변경하기 -->
                 <span></span>
                 <span></span>
                 <span></span>

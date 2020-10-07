@@ -10,7 +10,9 @@
 	<form id="frm" class="box" action="/user/findPw" method="post" onsubmit="return chk()">
 		<h1>비밀번호 찾기</h1>		
 		<input type="text" name="user_id" value="${user_id }" placeholder="아이디를 입력해 주세요">
-		<input type="text" name="email" placeholder="가입한 이메일을 입력해 주세요">
+		<input type="text" name="email" value="${email }" placeholder="가입한 이메일을 입력해 주세요">
+		<input type="hidden" name="originalEmail" value="${originalEmail }"> <!-- get에서 아예 값을 찍어서 보내주기 -->
+		<input type="hidden" name="cerCode" value="${cerCode }">
 		<input type="submit" value="확인">
     </form>  
 </body>

@@ -1,5 +1,8 @@
 package com.jy.hibaby.user;
 
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,10 +57,8 @@ public class UserService {
 	}
 	
 	
-	
-	
 	// 비밀번호 찾기  1. 아디,이멜 검사
-	public int findPw (UserPARAM param) {
+	public int findPw (UserPARAM param, HttpSession hs) {
 		System.out.println("param.getUser_id() = " + param.getUser_id());
 		UserDMI dbUser = mapper.findPwChk(param);
 		
@@ -65,9 +66,26 @@ public class UserService {
 		
 		if(dbUser.getUser_id().equals(param.getUser_id())
 				&& dbUser.getEmail().equals(param.getEmail())) {
+			
+			hs.setAttribute("i_user", dbUser.getI_user());
 			return 1;
 		} else {
 			return 3;
 		}
+	}
+	
+	
+	// 지금 구현하기 7일 16시
+	// 비밀번호 변경 
+	public int changePw(UserPARAM param) {
+		String pw = param.getUser_pw();
+		String salt = SecurityUtils.generateSalt();
+		String cryptPw = SecurityUtils.getEncrypt(pw, salt);
+		
+		param.setSalt(salt);
+		param.setUser_pw(cryptPw);
+		
+		int result = mapper.changePw(param);
+		return result; 
 	}
 }

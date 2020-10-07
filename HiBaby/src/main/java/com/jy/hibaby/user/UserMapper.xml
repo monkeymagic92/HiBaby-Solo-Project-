@@ -2,7 +2,27 @@
 <!--  mapper 하려면 DOCTYPE에 mapper 부분으로 입력해줘야됨 (마이바티스 xml이랑 비교해서 보기) -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> <!-- 마이바티스 사용하려면 무조건 상단에 박아둬야하는  DOCTYPE-->
 <mapper namespace="com.jy.hibaby.user.UserMapper">
+		
+							<!-- select -->
+								
+	<select id="selUser" parameterType="UserPARAM" resultType="UserDMI"> 
+		SELECT i_user, user_id, user_pw, salt, nm, nick, email, myPoint
+		,myCash, sm, profile_img, r_dt, m_dt
+		FROM t_user
+		WHERE <if test="i_user > 0"> i_user = #{i_user}</if>
+		<if test="user_id != null and user_id != ''"> user_id = #{user_id}</if>
+	</select>
 
+
+	<select id="findPwChk" parameterType="UserPARAM" resultType="UserDMI">
+		SELECT i_user, user_id, user_pw, salt, email FROM t_user
+		WHERE user_id = #{user_id}
+	</select>
+
+
+
+							<!-- insert -->
+	
 	<insert id="insUser" parameterType="UserVO">
 		INSERT INTO t_user
 		(user_id, user_pw, salt, nm, nick, uNum, email)
@@ -11,18 +31,26 @@
 	</insert>
 	
 	
-	<select id="selUser" parameterType="UserPARAM" resultType="UserDMI"> 
-		SELECT i_user, user_id, user_pw, salt, nm, nick, email, myPoint
-		,myCash, sm, profile_img, r_dt, m_dt
-		FROM t_user
-		WHERE <if test="i_user > 0"> i_user = #{i_user}</if>
-		<if test="user_id != null and user_id != ''"> user_id = #{user_id}</if>
-	</select>	
 	
 	
-	<select id="findPwChk" parameterType="UserPARAM" resultType="UserDMI">
-		SELECT user_id, email FROM t_user
-		WHERE user_id = #{user_id}
-	</select>
+	
+							<!-- update -->
+	<!-- 비밀번호 변경 -->							
+	<update id="changePw" parameterType="UserVO">
+		UPDATE t_user
+		SET user_pw = #{user_pw}
+		,salt = #{salt}
+		WHERE i_user = #{i_user}
+	</update>
+	
+	
+	
+	
+							<!-- delete -->
+	
+		
+	
+	
+	
 	
 </mapper>
