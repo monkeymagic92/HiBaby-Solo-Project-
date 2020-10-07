@@ -24,14 +24,7 @@ import com.jy.hibaby.user.model.UserVO;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-	
-	// ★★★★★★★★★★
-	// hs.removeAttribute("key값"); 특정 세션값만 삭제하기
-	// ★★★★★★★★★★
-	
-	
 	static int cerCodeCount = 0; // 인증코드 5회실패시 로그인화면으로 가기위한 카운트  
-	
 	
 	@Autowired
 	private UserService service;	
@@ -39,7 +32,6 @@ public class UserController {
 	@Autowired
 	private MailSendService mss;  // 현재 이메일 부분 주석처리해놔서 노란줄 끄이는거임
 
-	
 	
 	
 	// @@@@@@@@@@@@@@@  테스트용
@@ -108,7 +100,7 @@ public class UserController {
 	public String join(Model model, UserPARAM param, HttpSession hs) {
 		int result = service.join(param);
 		
-		if(result == 1) {			
+		if(result == Const.SUCCESS) {			
 			model.addAttribute("view",ViewRef.USER_LOGIN);
 			model.addAttribute("insMyPage","insMyPage");
 			int myPageSession = service.login(param);
@@ -133,19 +125,28 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/findPw", method = RequestMethod.POST)
-	public String findPw(Model model, UserPARAM param, HttpSession hs, UserDMI dmi) {		
+	public String findPw(Model model, UserPARAM param, HttpSession hs, UserDMI dmi) {
 		int result = service.findPw(param, hs);
-		int i_user = (int)hs.getAttribute("i_user");
-		dmi.setI_user(i_user);
+		int i_user = 0;  // 노란줄그여도 무시 ( 매개변수로 i_user 넣으니 제대로 파싱안됨 ) 
 		
-		if(result == 1) { // 정보가 '일치한다면'
+		try { // 만약 service에서 i_user에 세션값을 못박을경우
+			i_user = (int)hs.getAttribute("i_user");
+			
+		} catch(Exception e) {
+			result = Const.FAIL;
+		}
+		
+		if(result == Const.SUCCESS) { // 정보가 '일치한다면'
 			String authKey = mss.sendAutoMail(param.getEmail());
-			model.addAttribute("view","/user/cerCode");
+			// redirect 넣어줌 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+			model.addAttribute("view","user/cerCode");
 			model.addAttribute("authKey",authKey);
 
 			return ViewRef.USER_TEMP; 
 			
 		} else { // 정보가 '틀렸다면'
+			System.out.println("user_id : " + param.getUser_id());
+			System.out.println("email : " + param.getEmail());
 			model.addAttribute("user_id", param.getUser_id());
 			model.addAttribute("email",param.getEmail());
 			model.addAttribute("view","/user/findPw");
@@ -160,7 +161,7 @@ public class UserController {
 	public String modal(Model model, UserPARAM param, EmailVO vo) {
 		
 		cerCodeCount++;
-		if(cerCodeCount == 5) {
+		if(cerCodeCount == 3) {
 			model.addAttribute("view","/user/out");
 			return ViewRef.USER_TEMP;
 		}
@@ -200,11 +201,13 @@ public class UserController {
 		param.setI_user(i_user);
 		
 		int result = service.changePw(param);
-		if(result == 1) {
+		if(result == Const.SUCCESS) {
+			hs.removeAttribute("i_user");
 			model.addAttribute("view",ViewRef.USER_LOGIN);
 			return ViewRef.USER_TEMP;
+			
 		} else {
-			model.addAttribute("changePwMsg", "서버문제가 발생했습니다 잠시후 다시 시도해주세요");
+			model.addAttribute("changePwMsg", "서버에 문제가 발생했습니다 잠시후 다시 시도해주세요");
 			model.addAttribute("view","/user/changePw");
 			return ViewRef.USER_TEMP; // DB에러시 (다시 비번찾기 창으로 돌려서 비번만 입력하게끔 만들기)
 		}

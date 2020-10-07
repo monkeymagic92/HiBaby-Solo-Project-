@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,27 +8,26 @@
 <title>모달테스트</title>
 </head>
 <style>
-	
 	.modal {
-	    display: none; /* Hidden by default */
-	    position: fixed; /* Stay in place */
-	    z-index: 1; /* Sit on top */
+	    display: none;
+	    position: fixed;
+	    z-index: 1; 
 	    left: 0;
 	    top: 0;
-	    width: 100%; /* Full width */
-	    height: 100%; /* Full height */
-	    overflow: auto; /* Enable scroll if needed */
-	    background-color: rgb(0,0,0); /* Fallback color */
-	    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	    width: 100%; 
+	    height: 100%; 
+	    overflow: auto; 
+	    background-color: rgb(0,0,0); 
+	    background-color: rgba(0,0,0,0.4); 
 	}
 	
 	/* Modal Content/Box */
 	.modal-content {
 	    background-color: #fefefe;
-	    margin: 15% auto; /* 15% from the top and centered */
+	    margin: 15% auto; 
 	    padding: 20px;
 	    border: 1px solid #888;
-	    width: 30%; /* Could be more or less, depending on screen size */                          
+	    width: 30%;                           
 	}
 	.pop_bt {
 		cursor: pointer;
@@ -43,9 +43,17 @@
       <!-- Modal content -->
       <div class="modal-content">
             <h2>인증번호를 입력해 주세요</h2>
+                        
             <div id="cerCodeCount">
-            	${cerCodeCount } 회 실패 ! (5회 틀릴시 팅김)
-            </div>
+            	<c:choose>
+            		<c:when test="${cerCodeCount == 0}">
+            			<div>0 회 실패!</div>
+            		</c:when>
+            		<c:when test="${cerCodeCount != 0 }">
+            			<div>${cerCodeCount } 회 실패!</div>
+            		</c:when>
+            	</c:choose>				
+       		</div>
             
             <!-- Modal body -->
             <div class="modal-body">
@@ -82,17 +90,19 @@
 	
 	function chk() {
 		if(frm.cerCode.value.length == 0) {
-			alert('인증번호를 입력해 주세요');
+			alert('인증번호를 다시 확인해 주세요');
 			frm.cerCode.focus();
 			return false();
 		}
 		
 		if(frm.cerCode.value.length < 6) {
-			alert('인증번호 6자리를 입력해 주세요');
+			alert('인증번호를 다시 확인해 주세요');
 			frm.cerCode.focus();
 			return false();
 		}
 	}
+	
+	
 	
 	jQuery(document).ready(function() {
 	    $('#myModal').show();

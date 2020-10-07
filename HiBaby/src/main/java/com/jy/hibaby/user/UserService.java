@@ -59,18 +59,17 @@ public class UserService {
 	
 	// 비밀번호 찾기  1. 아디,이멜 검사
 	public int findPw (UserPARAM param, HttpSession hs) {
-		System.out.println("param.getUser_id() = " + param.getUser_id());
 		UserDMI dbUser = mapper.findPwChk(param);
 		
-		if(dbUser == null) { return 0; } 
+		if(dbUser == null) { return Const.FAIL; }
 		
 		if(dbUser.getUser_id().equals(param.getUser_id())
 				&& dbUser.getEmail().equals(param.getEmail())) {
 			
 			hs.setAttribute("i_user", dbUser.getI_user());
-			return 1;
+			return Const.SUCCESS;
 		} else {
-			return 3;
+			return Const.FAIL;
 		}
 	}
 	
