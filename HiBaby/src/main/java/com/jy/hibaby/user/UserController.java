@@ -67,7 +67,7 @@ public class UserController {
 		
 		if(result == Const.SUCCESS) {
 			hs.setAttribute(Const.LOGIN_USER, param);
-			return ViewRef.INDEX_SELECT;	
+			return "redirect:/" + ViewRef.INDEX_SELECT;
 		}
 		
 		String msg = null;
@@ -79,7 +79,7 @@ public class UserController {
 		
 		ra.addFlashAttribute("data", msg);
 		ra.addFlashAttribute("user_id", param.getUser_id());
-		return "redirect:/user/login";
+		return "redirect:/" + ViewRef.USER_LOGIN;
 	}
 	
 	
@@ -88,29 +88,31 @@ public class UserController {
 	
 	//	회원가입
 	@RequestMapping(value="/join", method = RequestMethod.GET)
-	public String join(Model model) {
+	public String join(Model model, RedirectAttributes ra) {
 		int uNumCode = (int)(Math.random() * 88888888 + 10000000); // 고유번호 8자리 랜덤으로 지정
 		model.addAttribute("uNumCode",uNumCode);
+		model.addAttribute("joinErrMsg"); // 서버에러시 띄우는 alert창
 		model.addAttribute("view",ViewRef.USER_JOIN);
 		return ViewRef.USER_TEMP;
 	}
 	
 
 	@RequestMapping(value="/join", method = RequestMethod.POST) 
-	public String join(Model model, UserPARAM param, HttpSession hs) {
+	public String join(Model model, UserPARAM param, HttpSession hs, RedirectAttributes ra) {
 		int result = service.join(param);
+		
 		
 		if(result == Const.SUCCESS) {			
 			model.addAttribute("view",ViewRef.USER_LOGIN);
 			model.addAttribute("insMyPage","insMyPage");
 			int myPageSession = service.login(param);
 			hs.setAttribute(Const.MYPAGE_USER, param); // 회원가입시 myPage로 바로 넘어갈때 세션 박아서 넘김
-			return ViewRef.USER_TEMP;
-			
+			return "redirect:/" + ViewRef.USER_LOGIN;
+
 		} else {
-			model.addAttribute("msg","Error!! 관리자에게 문의해 주십시오");
-			model.addAttribute("view",ViewRef.USER_JOIN);
-			return ViewRef.USER_TEMP;
+			ra.addFlashAttribute("joinErrMsg","Error!! 관리자에게 문의해 주십시오");
+			return "redirect:/" + ViewRef.USER_JOIN;
+
 		}
 	}
 	
@@ -120,12 +122,14 @@ public class UserController {
 	//	비밀번호 찾기1-1 (아이디, 이메일 검사)
 	@RequestMapping(value="/findPw", method = RequestMethod.GET)
 	public String findPw(Model model, HttpServletRequest request) {
-		model.addAttribute("view",ViewRef.USER_FINDPW);		
+		model.addAttribute("view",ViewRef.USER_FINDPW);
+		model.addAttribute("findPwMsg");
+		
 		return ViewRef.USER_TEMP;
 	}
 	
 	@RequestMapping(value="/findPw", method = RequestMethod.POST)
-	public String findPw(Model model, UserPARAM param, HttpSession hs, UserDMI dmi) {
+	public String findPw(Model model, UserPARAM param, HttpSession hs, UserDMI dmi, RedirectAttributes ra) {
 		int result = service.findPw(param, hs);
 		int i_user = 0;  // 노란줄그여도 무시 ( 매개변수로 i_user 넣으니 제대로 파싱안됨 ) 
 		
@@ -138,20 +142,15 @@ public class UserController {
 		
 		if(result == Const.SUCCESS) { // 정보가 '일치한다면'
 			String authKey = mss.sendAutoMail(param.getEmail());
-			// redirect 넣어줌 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-			model.addAttribute("view","user/cerCode");
-			model.addAttribute("authKey",authKey);
-
-			return ViewRef.USER_TEMP; 
+			hs.setAttribute("authKey", authKey);
+			return "redirect:/" + ViewRef.USER_CERCODE; 
 			
 		} else { // 정보가 '틀렸다면'
-			System.out.println("user_id : " + param.getUser_id());
-			System.out.println("email : " + param.getEmail());
 			model.addAttribute("user_id", param.getUser_id());
 			model.addAttribute("email",param.getEmail());
 			model.addAttribute("view","/user/findPw");
-			model.addAttribute("msg","입력하신 정보를 다시 확인해 주세요");
-			return ViewRef.USER_TEMP;
+			ra.addFlashAttribute("findPwMsg","입력하신 정보를 다시 확인해 주세요");
+			return "redirect:/" + ViewRef.USER_FINDPW;
 		}
 	}
 	
@@ -159,68 +158,61 @@ public class UserController {
 	// 비번찾기 1-2 (이메일 인증코드 입력)
 	@RequestMapping(value="/cerCode", method=RequestMethod.GET)
 	public String modal(Model model, UserPARAM param, EmailVO vo) {
-		
-		cerCodeCount++;
-		if(cerCodeCount == 3) {
-			model.addAttribute("view","/user/out");
-			return ViewRef.USER_TEMP;
-		}
-		model.addAttribute("cerCodeCount", cerCodeCount);
 		model.addAttribute("view","/user/cerCode");
+		model.addAttribute("cerCodeMsg");
 		return ViewRef.USER_TEMP;
 	}
 	
 
 	@RequestMapping(value="/cerCode", method=RequestMethod.POST) // post 확인
-	public String modal(Model model, EmailVO param, HttpServletRequest request) {
-		String authKey = request.getParameter("authKey");
+	public String modal(Model model, EmailVO param, HttpSession hs, RedirectAttributes ra) {
+		String authKey = (String)hs.getAttribute("authKey"); // %%세션박아줬음%%		
+		cerCodeCount++;
 		
-		if(authKey.equals(param.getCerCode())) {
-			return "/user/changePw"; //성공
+		model.addAttribute("cerCodeCount",cerCodeCount);
+		if(authKey.equals(param.getCerCode())) { //성공
+			return "redirect:/" + ViewRef.USER_CHANGEPW; 
 			
 		} else {
-			model.addAttribute("cerCodeMsg","인증번호를 다시 확인해 주세요.");
-			model.addAttribute("view", "/user/cerCode");
-			return ViewRef.USER_TEMP;
+			ra.addFlashAttribute("cerCodeMsg", "인증번호를 다시 확인해 주세요");
+			return "redirect:/" + ViewRef.USER_CERCODE;
 		}
 	}
+	
 	
 	
 	
 	// 비밀번호 변경
 	@RequestMapping(value="/changePw", method = RequestMethod.GET)
 	public String changePw(Model model, UserPARAM param) {
-		System.out.println("1 유저비번  : " + param.getUser_pw());
 		model.addAttribute("view", "/user/changePw");
+		model.addAttribute("changePwMsg");
 		return ViewRef.USER_TEMP; 
 	}
 	
 	@RequestMapping(value="/changePw", method = RequestMethod.POST)
-	public String changePw(Model model, UserPARAM param, HttpSession hs) {
+	public String changePw(Model model, UserPARAM param, 
+			HttpSession hs, RedirectAttributes ra) {
+		
 		int i_user = (int)hs.getAttribute("i_user");
 		param.setI_user(i_user);
 		
 		int result = service.changePw(param);
 		if(result == Const.SUCCESS) {
 			hs.removeAttribute("i_user");
-			model.addAttribute("view",ViewRef.USER_LOGIN);
-			return ViewRef.USER_TEMP;
+			hs.removeAttribute("authKey");
+			ra.addFlashAttribute("changePwMsg", "비밀번호가 변경되었습니다");
+			return "redirect:/" + ViewRef.USER_CHANGEPW;
 			
 		} else {
 			model.addAttribute("changePwMsg", "서버에 문제가 발생했습니다 잠시후 다시 시도해주세요");
 			model.addAttribute("view","/user/changePw");
 			return ViewRef.USER_TEMP; // DB에러시 (다시 비번찾기 창으로 돌려서 비번만 입력하게끔 만들기)
 		}
-		
 	}
 	
-		
 	
 	
-
-	
-	
-
 	
 	
 	// 상세 프로필 등록 (로그인후 상세페이지로 이동)

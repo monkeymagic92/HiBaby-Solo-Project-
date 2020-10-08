@@ -39,10 +39,6 @@ function chk() {
 		frm.user_rpw.focus();
 		return false;
 	}	
-	
-	if (frm.user_pw.value.length > 8) {
-		alert('비밀번호가 변경되었습니다');
-	}
 }
 
 </script>

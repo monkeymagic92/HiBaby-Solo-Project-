@@ -30,6 +30,10 @@ window.onload = function() {
 	frm.user_id.focus()
 }
 
+if (${joinErrMsg != null}) {
+	alert('${joinErrMsg}');
+}
+
 function chk() {
 	if (frm.user_id.value.length < 6) {
 		alert("ID는 5글자 이상 입력해주세요");		

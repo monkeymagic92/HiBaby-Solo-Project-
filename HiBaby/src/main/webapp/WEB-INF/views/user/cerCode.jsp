@@ -43,23 +43,11 @@
       <!-- Modal content -->
       <div class="modal-content">
             <h2>인증번호를 입력해 주세요</h2>
-                        
-            <div id="cerCodeCount">
-            	<c:choose>
-            		<c:when test="${cerCodeCount == 0}">
-            			<div>0 회 실패!</div>
-            		</c:when>
-            		<c:when test="${cerCodeCount != 0 }">
-            			<div>${cerCodeCount } 회 실패!</div>
-            		</c:when>
-            	</c:choose>				
-       		</div>
             
             <!-- Modal body -->
             <div class="modal-body">
-            	<form id="frm" action="/user/cerCode" method="post" onsubmit="return chk()">
+            	<form id="frm" action="/user/cerCode" method="post">
             		<input type="text" name="cerCode" placeholder="코드입력">
-            		<input type="hidden" name="authKey" value="${authKey }">
             		<input type="submit" value="확인">
             	</form>
             </div>
@@ -80,29 +68,13 @@
 	
 	if(${cerCodeMsg != null}) {
 		alert('${cerCodeMsg}');
-		location.href="/user/cerCode";
 	}
+	
 	
 	function moveToLogin() {
 		location.href="/user/login";
 	}
-	
-	
-	function chk() {
-		if(frm.cerCode.value.length == 0) {
-			alert('인증번호를 다시 확인해 주세요');
-			frm.cerCode.focus();
-			return false();
-		}
 		
-		if(frm.cerCode.value.length < 6) {
-			alert('인증번호를 다시 확인해 주세요');
-			frm.cerCode.focus();
-			return false();
-		}
-	}
-	
-	
 	
 	jQuery(document).ready(function() {
 	    $('#myModal').show();
@@ -110,6 +82,6 @@
 	
 	function close_pop(flag) {
 	 $('#myModal').hide();
-	};
+	}
 </script>
 </html>
