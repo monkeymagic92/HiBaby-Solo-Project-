@@ -17,8 +17,7 @@ public class UserService {
 	
 	@Autowired
 	private UserMapper mapper;
-	
-	
+
 	
 	// SUCCESS 1:로그인 성공,  NO_ID 2:아이디 없음,  NO_PW 3:비번 틀림
 	public int login(UserPARAM param) {
@@ -74,7 +73,7 @@ public class UserService {
 	}
 	
 	
-	// 지금 구현하기 7일 16시
+	
 	// 비밀번호 변경 
 	public int changePw(UserPARAM param) {
 		String pw = param.getUser_pw();
@@ -86,5 +85,19 @@ public class UserService {
 		
 		int result = mapper.changePw(param);
 		return result; 
+	}
+	
+	
+	// 아이디 찾기
+	public int findId(UserPARAM param, HttpSession hs) {
+		UserDMI dbUser = new UserDMI();
+		dbUser = mapper.findId(param);
+		
+		if(dbUser == null) {
+			return Const.FAIL;
+		} else {
+			hs.setAttribute("user_id", dbUser.getUser_id());
+			return Const.SUCCESS;
+		}		 
 	}
 }

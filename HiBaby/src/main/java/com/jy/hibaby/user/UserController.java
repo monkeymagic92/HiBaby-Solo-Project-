@@ -32,6 +32,39 @@ public class UserController {
 	@Autowired
 	private MailSendService mss;  // 현재 이메일 부분 주석처리해놔서 노란줄 끄이는거임
 
+	// @@@@@@@@@@@@@         중요            @@@@@@@@@@@@@@@@@@@
+	
+	// 이메일 인증 테스트 중 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	
+	// 회원가입(join)에서 이메일을 받은다음 
+	// 원리 :
+	// 컨트롤러 signUpConfirm() 메소드가 POST방식으로 jsp를 열어준다음 
+	// 그 jsp 에서 값 비교되게끔 (세션에 값박고 지우기)
+	// MailSendService에서 sendAutoMail() 메소드에서
+	
+	
+	// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	// 됬고 그냥 아래 메소드 주석풀고
+	// String authKey = mss.sendAutoMail("ddw0099@naver.com"); join창에서 켜봐라
+	
+	
+
+//  이메일 관련    MailSendService에서 이런식으로 값이 날라옴
+//	@RequestMapping(value="signUpConfirm", method = RequestMethod.POST)
+//	public String signUpConfirm(UserPARAM param, HttpServletRequest request) {
+//		String a = request.getParameter("email");
+//		String b = request.getParameter("authKey");
+//		
+//		System.out.println(a);
+//		System.out.println(b);
+//		return "/user/signUpConfirm";
+//	}
+	
+	
+	
+	
+	
 	
 	
 	// @@@@@@@@@@@@@@@  테스트용
@@ -51,6 +84,7 @@ public class UserController {
 		// 로그인이 되어있다면 로그인페이지로 갈수없게 막아놓음 
 		// 메소드 다시 만들기  // 또는 인터셉터에서 추후에 걸러줄것임 @@@@@@@@
 		UserVO param = SecurityUtils.getLoginUser(request);
+		
 		if(param != null) {
 			return ViewRef.INDEX_SELECT;
 		}
@@ -63,7 +97,6 @@ public class UserController {
 	public String login(Model model, UserPARAM param, HttpSession hs, RedirectAttributes ra) {
 		
 		int result = service.login(param);
-		
 		
 		if(result == Const.SUCCESS) {
 			hs.setAttribute(Const.LOGIN_USER, param);
@@ -101,22 +134,20 @@ public class UserController {
 	public String join(Model model, UserPARAM param, HttpSession hs, RedirectAttributes ra) {
 		int result = service.join(param);
 		
-		
-		if(result == Const.SUCCESS) {			
-			model.addAttribute("view",ViewRef.USER_LOGIN);
-			model.addAttribute("insMyPage","insMyPage");
+		if(result == Const.SUCCESS) {
 			int myPageSession = service.login(param);
 			hs.setAttribute(Const.MYPAGE_USER, param); // 회원가입시 myPage로 바로 넘어갈때 세션 박아서 넘김
+			//ra.addAttribute("joinMsg", "회원가입이 되었습니다");
 			return "redirect:/" + ViewRef.USER_LOGIN;
 
 		} else {
 			ra.addFlashAttribute("joinErrMsg","Error!! 관리자에게 문의해 주십시오");
 			return "redirect:/" + ViewRef.USER_JOIN;
-
 		}
 	}
 	
 	
+
 	
 	
 	//	비밀번호 찾기1-1 (아이디, 이메일 검사)
@@ -141,7 +172,7 @@ public class UserController {
 		}
 		
 		if(result == Const.SUCCESS) { // 정보가 '일치한다면'
-			String authKey = mss.sendAutoMail(param.getEmail());
+			String authKey = mss.sendAutoMailFindPw(param.getEmail());
 			hs.setAttribute("authKey", authKey);
 			return "redirect:/" + ViewRef.USER_CERCODE; 
 			
@@ -165,7 +196,9 @@ public class UserController {
 	
 
 	@RequestMapping(value="/cerCode", method=RequestMethod.POST) // post 확인
-	public String modal(Model model, EmailVO param, HttpSession hs, RedirectAttributes ra) {
+	public String modal(Model model, EmailVO param, 
+			HttpSession hs, RedirectAttributes ra) {
+		
 		String authKey = (String)hs.getAttribute("authKey"); // %%세션박아줬음%%		
 		cerCodeCount++;
 		
@@ -198,16 +231,16 @@ public class UserController {
 		param.setI_user(i_user);
 		
 		int result = service.changePw(param);
+		result = 0;
 		if(result == Const.SUCCESS) {
-			hs.removeAttribute("i_user");
+			hs.removeAttribute("i_user"); 
 			hs.removeAttribute("authKey");
 			ra.addFlashAttribute("changePwMsg", "비밀번호가 변경되었습니다");
 			return "redirect:/" + ViewRef.USER_CHANGEPW;
 			
 		} else {
-			model.addAttribute("changePwMsg", "서버에 문제가 발생했습니다 잠시후 다시 시도해주세요");
-			model.addAttribute("view","/user/changePw");
-			return ViewRef.USER_TEMP; // DB에러시 (다시 비번찾기 창으로 돌려서 비번만 입력하게끔 만들기)
+			ra.addFlashAttribute("changePwMsg", "서버 문제가 발생되었습니다 잠시후 다시 시도해주세요 ");
+			return "redirect:/" + ViewRef.USER_CHANGEPW; // DB에러시 (다시 비번찾기 창으로 돌려서 비번만 입력하게끔 만들기)
 		}
 	}
 	
@@ -215,7 +248,14 @@ public class UserController {
 	
 	
 	
+		
+	
 	// 상세 프로필 등록 (로그인후 상세페이지로 이동)
+	// @@@@@@@@@@@@@@
+	
+	//	https://codepen.io/Akiletour/pen/Eakfn 에서 코드 따와서 작업하기
+	
+	// @@@@@@@@@@@@@@	
 	@RequestMapping(value="/myPage", method = RequestMethod.GET)
 	public String myPage(Model model, HttpSession hs) {
 		
@@ -229,29 +269,52 @@ public class UserController {
 	
 	@RequestMapping(value="/myPage", method = RequestMethod.POST)
 	public String myPage (HttpSession hs) {
-		// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-		// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-		// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-		
-		
 		
 		// 여기부분 확인해보기 
 		// 일단 회원가입시 박아놓은 세션값을 지워줘야됨 
 		// 마이페이지에서 post 값으로 값 넘어왔을떄 위에서 처리다해주고 마지막에 세션 지우는걸로 해보기 
 		// 현재 로그인 컨트롤러에서 세션값 지우니까 에러남
 		// 특정 세션값만 지우는 명령어 알아내기 
-		hs.invalidate();
+		hs.removeAttribute(Const.MYPAGE_USER);
 		return "gg";
 	}
 	
 	
 	
 	
+	// 아이디 찾기
+	@RequestMapping(value="findId", method = RequestMethod.GET)
+	public String findId(Model model) {
+		model.addAttribute("view",ViewRef.USER_FINDID);
+		model.addAttribute("findIdMsg");
+		model.addAttribute("findIdSuccessMsg");
+		return ViewRef.USER_TEMP;
+	}
 	
+	@RequestMapping(value="findId", method = RequestMethod.POST)
+	public String findId(UserPARAM param, HttpSession hs, RedirectAttributes ra) {
+		UserDMI dbUser = new UserDMI();
+		
+		int result = service.findId(param, hs);
+		
+		if(result == Const.SUCCESS) {
+			dbUser.setUser_id((String)hs.getAttribute("user_id")); 
+			mss.sendAutoMailFindId(param.getEmail(), dbUser.getUser_id());
+			hs.removeAttribute("user_id");
+			ra.addFlashAttribute("findIdSuccessMsg", "가입하신 이메일로 아이디가 전송되었습니다");
+			return "redirect:/" + ViewRef.USER_FINDID;
+			
+		} else {
+			ra.addFlashAttribute("findIdMsg", "가입하신 이메일을 다시 확인해 주세요");
+			return "redirect:/" + ViewRef.USER_FINDID;
+		}
+	}
+	
+
 	
 	
 
-  
+	
 	// 아이디 중복체크 (aJax기법) 
 	@RequestMapping(value="/ajaxIdChk", method=RequestMethod.POST)
 	@ResponseBody	
@@ -261,6 +324,7 @@ public class UserController {
 		int result = service.login(param);
 		return String.valueOf(result);
 	}
+	
 	
 }
 

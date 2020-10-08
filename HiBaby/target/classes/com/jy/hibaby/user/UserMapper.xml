@@ -4,7 +4,8 @@
 <mapper namespace="com.jy.hibaby.user.UserMapper">
 		
 							<!-- select -->
-								
+							
+	<!-- n번 회원 상세정보 -->							
 	<select id="selUser" parameterType="UserPARAM" resultType="UserDMI"> 
 		SELECT i_user, user_id, user_pw, salt, nm, nick, email, myPoint
 		,myCash, sm, profile_img, r_dt, m_dt
@@ -13,12 +14,17 @@
 		<if test="user_id != null and user_id != ''"> user_id = #{user_id}</if>
 	</select>
 
-
+	<!-- 비밀번호 찾기 -->
 	<select id="findPwChk" parameterType="UserPARAM" resultType="UserDMI">
 		SELECT i_user, user_id, user_pw, salt, email FROM t_user
 		WHERE user_id = #{user_id}
 	</select>
 
+	<!-- 아이디 찾기 -->
+	<select id="findId" parameterType="UserPARAM" resultType="UserDMI">
+		SELECT user_id FROM t_user
+		WHERE email = #{email}
+	</select>
 
 
 							<!-- insert -->

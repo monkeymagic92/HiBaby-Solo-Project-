@@ -14,7 +14,7 @@
 		<h1>회원가입</h1>		
 		<div id="idChkResult" class="msg"></div>
 		<input type="text" name="user_id" placeholder="아이디">
-		<button type="button" class="btn btn-3" onclick="chkId()">아이디 중복체크</button>
+		<button type="button" class="btn btn-3" value="1" onclick="chkId()">아이디 중복체크</button>
 		<input type="password" name="user_pw" placeholder="비밀번호">
 		<input type="password" name="user_rpw" placeholder="비밀번호 확인">
 		<input type="text" name="nm" placeholder="이름">
@@ -91,7 +91,8 @@ function chk() {
 			frm.nm.focus();
 			return false;
 		}
-	} 
+	}
+	
 	
 	if (frm.nick.value.length == 0 || frm.nick.value.length < 2) {
 		alert("닉네임은 2글자 이상입니다");
@@ -127,6 +128,11 @@ function chk() {
 		}
 	}
 	
+	if (frm.nm.value.length > 2) {
+		alert('회원가입이 되었습니다');
+		location.href='/user/login';
+	}
+	
 }
 
 // 아이디 중복체크 (ajax 통신)
@@ -151,6 +157,31 @@ function chkId() {
 			idChkResult.innerText = '이미 사용중인 아이디에요!';
 			frm.user_id.value = ''
 			frm.user_id.focus()
+		} 
+	})
+}
+
+function signUpConfirm() {
+	const email = frm.email.value
+	axios.post('/user/signUpConfirm', {
+		
+			email  	
+			
+	}).then(function(res) {
+		console.log(res)
+		
+		if(res.data == '0') { //아이디 사용'가능'
+			if(frm.email.value.length == 0) {
+				idChkResult.innerText = '이메일를 입력해주세요';
+			}
+		
+			idChkResult.innerText ='사용가능한 이메일에요!';
+			frm.email.focus()
+			
+		} else if(res.data == '1') { //아이디 사용'불가능'
+			idChkResult.innerText = '이미 사용중인 이메일에요!';
+			frm.email.value = ''
+			frm.email.focus()
 		} 
 	})
 }
