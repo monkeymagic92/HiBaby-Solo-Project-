@@ -6,29 +6,32 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 </head>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <style>
-
+	#idChkResult {
+		color: red;
+	}
 </style>
 <body>
 	<form id="frm" class="box" action="/user/join" method="post" onsubmit="return chk()">
 		<h1>회원가입</h1>		
 		<div id="idChkResult" class="msg"></div>		
-		<input type="text" name="user_id" placeholder="아이디">
+		<input type="text" id="username_input" name="user_id" placeholder="아이디" required>
 		
-		<button type="button" id="idChkBtn" class="btn btn-3" onclick="chkId()">아이디 중복체크</button>
+		<button type="button" id="idChkBtn" class="btn btn-3" onclick="chkId()">아이디 중복체크</button>&nbsp;<i id="idClick" class="fas fa-check"></i>
 				
 		<input type="password" name="user_pw" placeholder="비밀번호">
 		<input type="password" name="user_rpw" placeholder="비밀번호 확인">
 		<input type="text" name="nm" placeholder="이름">
 		<input type="text" name="nick" placeholder="닉네임">
-		<input type="text" name="email" placeholder="이메일">
+		<input type="text" id="email_input" name="email" placeholder="이메일" required>
 		
-		<button type="button" id="emailChkBtn" class="btn btn-3" onclick="chkEmail()">이메일 인증하기</button>
+		<button type="button" id="emailChkBtn" class="btn btn-3" onclick="chkEmail()">이메일 인증하기</button>&nbsp;<i id="emailClick" class="fas fa-check"></i>
 			
 		<input type="hidden" name="uNum" value="${uNumCode }">
 		<input type="hidden" name="idChkclick">
 		<input type="hidden" name="emailChkclick">
-		<input type="submit" id="submitBtn" value="가입">
+		<input type="submit" id="submitBtn" disabled="disabled" value="가입">
     </form>        
 </body>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -42,30 +45,23 @@ if (${joinErrMsg != null}) {
 	alert('${joinErrMsg}');
 }
 
+$('#idClick').hide();
+$('#emailClick').hide();
+
 // 아이디, 이메일인증 버튼을 클릭해야지만 submit이 되도록
-
-$('#idChkBtn').click(function() {
-	frm.idChkclick.value = 1;
+$('#username_input').keyup(function() {
+	$('#submitBtn').attr("disabled", "disabled")
 })
 
-$('#emailChkBtn').click(function() {
-	frm.emailChkclick.value = 1;
+$('#email_input').keyup(function() {
+	$('#submitBtn').attr("disabled", "disabled")
 })
+
+
 
 
 
 function chk() {
-		
-	if(frm.idChkclick.value != 1) {
-		alert('아이디 중복체크를 확인해주세요')
-		return false;
-	}
-	
-	if(frm.emailChkclick.value != 1) {
-		alert('이메일 인증하기 버튼을 클릭해주세요')
-		return false;
-	}
-	
 			
 	if (frm.user_id.value.length < 6) {
 		alert("ID는 5글자 이상 입력해주세요");		
@@ -177,13 +173,17 @@ function chkEmail() {
 	}).then(function(res) {
 		console.log(res)
 		if(res.data == '1') {
+			$('#emailClick').show();
+			$('#submitBtn').removeAttr('disabled')
 			alert('사용가능한 이메일 입니다');
 			frm.email.focus()			
 			
 		} else if(res.data == '2') { //이메일 중복됨
 			alert('이미 등록되어있는 이메일 입니다')
+			$('#emailClick').hide();
 			frm.email.value = ''
 			frm.email.focus()
+			$('#submitBtn').attr("disabled","disabled");
 			
 		} else if(res.data == '3'){
 			alert('이메일을 입력해 주세요')
@@ -202,13 +202,18 @@ function chkId() {
 			
 	}).then(function(res) {
 		console.log(res)
-		if(res.data == '2') { //아이디 없음 
-			idChkResult.innerText = '사용할 수 있는 아이디입니다.'
-			frm.user_pw.focus()
-		} else if(res.data == '3') { //아이디 중복됨
-			idChkResult.innerText = '이미 사용중입니다.'
-			frm.user_id.value = ''
-			frm.user_id.focus()
+		if(res.data == '2') { //아이디 없음
+			$('#idClick').show();
+			$('#submitBtn').removeAttr('disabled');			
+			idChkResult.innerText = '사용할 수 있는 아이디입니다.';
+			frm.user_pw.focus();
+			
+		} else if(res.data == '3') { //아이디 중복됨	
+			$('#idClick').hide();
+			$('#submitBtn').attr("disabled","disabled");
+			idChkResult.innerText = '이미 사용중입니다.';
+			frm.user_id.value = '';
+			frm.user_id.focus();
 		}
 	})
 }
