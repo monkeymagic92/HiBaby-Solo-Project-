@@ -13,6 +13,8 @@ public interface UserMapper {
 	
 	UserDMI findId(UserPARAM param); // 아이디 찾기
 	
+	UserDMI emailChk(UserPARAM param);
+	
 	
 	// insert
 	int insUser(UserVO param); // 회원가입

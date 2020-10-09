@@ -12,14 +12,21 @@
 <body>
 	<form id="frm" class="box" action="/user/join" method="post" onsubmit="return chk()">
 		<h1>회원가입</h1>		
-		<div id="idChkResult" class="msg"></div>
+		<div id="idChkResult" class="msg"></div>		
 		<input type="text" name="user_id" placeholder="아이디">
-		<button type="button" class="btn btn-3" value="1" onclick="chkId()">아이디 중복체크</button>
+		<button type="button" class="btn btn-3" onclick="chkId()">아이디 중복체크</button>
+		
+		
+		
 		<input type="password" name="user_pw" placeholder="비밀번호">
 		<input type="password" name="user_rpw" placeholder="비밀번호 확인">
 		<input type="text" name="nm" placeholder="이름">
 		<input type="text" name="nick" placeholder="닉네임">
 		<input type="text" name="email" placeholder="이메일">
+		<button type="button" class="btn btn-3" onclick="chkEmail()">이메일 인증하기</button>
+		
+		
+		
 		<input type="hidden" name="uNum" value="${uNumCode }">
 		<input type="submit" value="가입">
     </form>        
@@ -29,6 +36,36 @@
 window.onload = function() {
 	frm.user_id.focus()
 }
+
+// 이메일 중복확인
+function chkEmail() {
+	const email = frm.email.value
+	axios.post('/user/ajaxEmailChk', {
+		
+			email
+			
+	}).then(function(res) {
+		console.log(res)
+		if(res.data == '1') {
+			alert('사용가능한 이메일 입니다');
+			frm.email.focus()			
+			
+		} else if(res.data == '2') { //이메일 중복됨
+			alert('이미 등록되어있는 이메일 입니다')
+			frm.email.value = ''
+			frm.email.focus()
+			
+		} else if(res.data == '4') {
+			alert('서버오류입니다 관리자에게 문의해주십시오')
+			location.href="/user/login";
+		} else {
+			alert('이메일을 입력해 주세요')
+			frm.email.focus()
+		}
+	})
+}
+
+
 
 if (${joinErrMsg != null}) {
 	alert('${joinErrMsg}');
@@ -135,7 +172,7 @@ function chk() {
 	
 }
 
-// 아이디 중복체크 (ajax 통신)
+// 아이디 중복확인
 function chkId() {
 	const user_id = frm.user_id.value
 	axios.post('/user/ajaxIdChk', {
@@ -144,46 +181,16 @@ function chkId() {
 			
 	}).then(function(res) {
 		console.log(res)
-		
-		if(res.data == '2') { //아이디 사용'가능'
-			if(frm.user_id.value.length == 0) {
-				idChkResult.innerText = '아이디를 입력해주세요';
-			}
-		
-			idChkResult.innerText ='사용가능한 아이디에요!';
+		if(res.data == '2') { //아이디 없음 
+			idChkResult.innerText = '사용할 수 있는 아이디입니다.'
 			frm.user_pw.focus()
-			
-		} else if(res.data == '3') { //아이디 사용'불가능'
-			idChkResult.innerText = '이미 사용중인 아이디에요!';
+		} else if(res.data == '3') { //아이디 중복됨
+			idChkResult.innerText = '이미 사용중입니다.'
 			frm.user_id.value = ''
 			frm.user_id.focus()
-		} 
+		}
 	})
 }
 
-function signUpConfirm() {
-	const email = frm.email.value
-	axios.post('/user/signUpConfirm', {
-		
-			email  	
-			
-	}).then(function(res) {
-		console.log(res)
-		
-		if(res.data == '0') { //아이디 사용'가능'
-			if(frm.email.value.length == 0) {
-				idChkResult.innerText = '이메일를 입력해주세요';
-			}
-		
-			idChkResult.innerText ='사용가능한 이메일에요!';
-			frm.email.focus()
-			
-		} else if(res.data == '1') { //아이디 사용'불가능'
-			idChkResult.innerText = '이미 사용중인 이메일에요!';
-			frm.email.value = ''
-			frm.email.focus()
-		} 
-	})
-}
 </script>
 </html>

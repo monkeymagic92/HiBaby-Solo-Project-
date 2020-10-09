@@ -25,6 +25,10 @@
 		SELECT user_id FROM t_user
 		WHERE email = #{email}
 	</select>
+	
+	<select id="emailChk" parameterType="UserPARAM" resultType="UserDMI">
+		SELECT email FROM t_user		
+	</select>
 
 
 							<!-- insert -->

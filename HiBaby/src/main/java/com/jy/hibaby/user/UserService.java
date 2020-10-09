@@ -18,6 +18,25 @@ public class UserService {
 	@Autowired
 	private UserMapper mapper;
 
+	// 이메일 체크
+	public int emailChk(UserPARAM param) {
+		if(param.getEmail().equals("")) {
+			return 3;
+		}		
+		UserDMI dbUser = mapper.emailChk(param);
+		
+		if(dbUser == null) {
+			return 4; // DB에 아무 값도 없을시
+		}
+		
+		if(dbUser.getEmail().equals(param.getEmail())) {
+			return 2; // 이메일 있음
+		} else {
+			return Const.SUCCESS;
+		}		
+	}
+	
+	
 	
 	// SUCCESS 1:로그인 성공,  NO_ID 2:아이디 없음,  NO_PW 3:비번 틀림
 	public int login(UserPARAM param) {

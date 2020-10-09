@@ -25,7 +25,7 @@ import com.jy.hibaby.user.model.UserVO;
 @RequestMapping("/user")
 public class UserController {
 	static int cerCodeCount = 0; // 인증코드 틀렸을시 카운트 
-	
+		
 	@Autowired
 	private UserService service;	
 	
@@ -49,23 +49,79 @@ public class UserController {
 	// String authKey = mss.sendAutoMail("ddw0099@naver.com"); join창에서 켜봐라
 	
 	
-
-//  이메일 관련    MailSendService에서 이런식으로 값이 날라옴
-//	@RequestMapping(value="signUpConfirm", method = RequestMethod.POST)
-//	public String signUpConfirm(UserPARAM param, HttpServletRequest request) {
-//		String a = request.getParameter("email");
-//		String b = request.getParameter("authKey");
+	// Email testing
+	//이메일 관련    MailSendService에서 이런식으로 값이 날라옴
+	@RequestMapping(value="/signUpConfirm", method = RequestMethod.POST)
+	public String signUpConfirm(UserPARAM param, HttpServletRequest request
+			, HttpSession hs) {
+		// @@@@@@@@ Email Testing..
+		
+		String authKey = mss.sendAutoMail("ddw0099@naver.com");
+						
+		// @@@@@@@@
+		
+		
+		String email = request.getParameter("email");
+		String authKey1 = request.getParameter("authKey");
+		String authKey2 = request.getParameter("authKey");
+		
+		
+		System.out.println("이메일 : " + email);
+		System.out.println("authKey1 : " + authKey1);
+		System.out.println("authKey2 : " + authKey2);
+		
+		if(authKey1.equals(authKey2)) {
+			return "/user/signUpConfirm";
+		} else {
+			return "/user/ooooooo";
+		}
+	}
+	
+	
+	
+	// 작동 잘되는 이메일 아작스 통신
+//	// 이메일중복체크 (aJax) 
+//	@RequestMapping(value="/ajaxEmailChk", method=RequestMethod.POST)
+//	@ResponseBody	
+//	public String ajaxEmailChk(@RequestBody UserPARAM param, HttpSession hs) {
 //		
-//		System.out.println(a);
-//		System.out.println(b);
-//		return "/user/signUpConfirm";
+//		
+//		System.out.println("아작스 email : " + param.getEmail());
+//		int result = service.emailChk(param);
+//		System.out.println("result값 : " + result);
+//		return String.valueOf(result);
 //	}
+
+	// 이메일 (aJax)
+	@RequestMapping(value="/ajaxEmailChk", method=RequestMethod.POST)
+	@ResponseBody	
+	public String ajaxEmailChk(@RequestBody UserPARAM param, HttpSession hs) {
+		
+		System.out.println("아작스 email : " + param.getEmail());
+		int result = service.emailChk(param);
+		if(result == 1) {
+			String authKey = mss.sendAutoMail(param.getEmail());
+		}
+		
+		System.out.println("result값 : " + result);
+		return String.valueOf(result);
+		
+	}
 	
 	
 	
 	
 	
 	
+	
+	
+	
+	
+	
+		
+	// ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ		
+	
+		
 	
 	// @@@@@@@@@@@@@@@  테스트용
 	// index/select 에서 홈버튼눌렀을때 loginUser 세션값과 myPageUser 세션값이 넘어오는지 확인용
@@ -85,6 +141,7 @@ public class UserController {
 		// 메소드 다시 만들기  // 또는 인터셉터에서 추후에 걸러줄것임 @@@@@@@@
 		UserVO param = SecurityUtils.getLoginUser(request);
 		
+				
 		if(param != null) {
 			return ViewRef.INDEX_SELECT;
 		}
@@ -123,6 +180,9 @@ public class UserController {
 	@RequestMapping(value="/join", method = RequestMethod.GET)
 	public String join(Model model, RedirectAttributes ra) {
 		int uNumCode = (int)(Math.random() * 88888888 + 10000000); // 고유번호 8자리 랜덤으로 지정
+		
+		model.addAttribute("idCount", 1);
+		model.addAttribute("emailCount", 1);
 		model.addAttribute("uNumCode",uNumCode);
 		model.addAttribute("joinErrMsg"); // 서버에러시 띄우는 alert창
 		model.addAttribute("view",ViewRef.USER_JOIN);
@@ -140,7 +200,7 @@ public class UserController {
 			//ra.addAttribute("joinMsg", "회원가입이 되었습니다");
 			return "redirect:/" + ViewRef.USER_LOGIN;
 
-		} else {
+		} else { // 서버에러 났을시
 			ra.addFlashAttribute("joinErrMsg","Error!! 관리자에게 문의해 주십시오");
 			return "redirect:/" + ViewRef.USER_JOIN;
 		}
@@ -317,9 +377,12 @@ public class UserController {
 		
 		System.out.println("uesr_id : " + param.getUser_id());
 		int result = service.login(param);
+		
 		return String.valueOf(result);
 	}
 	
 	
 }
+
+
 
