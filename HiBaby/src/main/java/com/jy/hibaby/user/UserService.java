@@ -21,19 +21,19 @@ public class UserService {
 	// 이메일 체크
 	public int emailChk(UserPARAM param) {
 		if(param.getEmail().equals("")) {
-			return 4;
+			return 3;
 		}
+		
 		UserDMI dbUser = mapper.emailChk(param);
 		
 		if(dbUser == null) {
 			return 1; 
-		} 
+		}
 		
 		if(dbUser.getEmail().equals(param.getEmail())) {
 			return 2;
-		} 
-		
-		return 3;
+		} 		
+		return 4;
 	}
 	
 	

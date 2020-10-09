@@ -104,9 +104,7 @@ public class UserController {
 		if(result == 1) {
 			String authKey = mss.sendAutoMail(param.getEmail());
 		}
-		
 		return String.valueOf(result);
-		
 	}
 	
 	
@@ -374,10 +372,12 @@ public class UserController {
 	// 아이디 중복체크 (aJax) 
 	@RequestMapping(value="/ajaxIdChk", method=RequestMethod.POST)
 	@ResponseBody	
-	public String ajaxIdChk(@RequestBody UserPARAM param) {
+	public String ajaxIdChk(@RequestBody UserPARAM param, HttpSession hs) {
 		
 		System.out.println("uesr_id : " + param.getUser_id());
+		
 		int result = service.login(param);
+	
 		
 		return String.valueOf(result);
 	}

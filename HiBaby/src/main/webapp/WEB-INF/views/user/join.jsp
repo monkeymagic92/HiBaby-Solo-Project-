@@ -28,7 +28,7 @@
 		<input type="hidden" name="uNum" value="${uNumCode }">
 		<input type="hidden" name="idChkclick">
 		<input type="hidden" name="emailChkclick">
-		<input type="submit" value="가입">
+		<input type="submit" id="submitBtn" value="가입">
     </form>        
 </body>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -43,6 +43,7 @@ if (${joinErrMsg != null}) {
 }
 
 // 아이디, 이메일인증 버튼을 클릭해야지만 submit이 되도록
+
 $('#idChkBtn').click(function() {
 	frm.idChkclick.value = 1;
 })
@@ -51,7 +52,10 @@ $('#emailChkBtn').click(function() {
 	frm.emailChkclick.value = 1;
 })
 
+
+
 function chk() {
+		
 	if(frm.idChkclick.value != 1) {
 		alert('아이디 중복체크를 확인해주세요')
 		return false;
@@ -62,6 +66,7 @@ function chk() {
 		return false;
 	}
 	
+			
 	if (frm.user_id.value.length < 6) {
 		alert("ID는 5글자 이상 입력해주세요");		
 		frm.user_id.focus();
@@ -180,10 +185,10 @@ function chkEmail() {
 			frm.email.value = ''
 			frm.email.focus()
 			
-		} else {
+		} else if(res.data == '3'){
 			alert('이메일을 입력해 주세요')
 			frm.email.focus()
-		}
+		} 
 	})
 }
 
