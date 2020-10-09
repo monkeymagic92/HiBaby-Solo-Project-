@@ -26,8 +26,10 @@
 		WHERE email = #{email}
 	</select>
 	
+	<!-- 이메일 아작스 -->
 	<select id="emailChk" parameterType="UserPARAM" resultType="UserDMI">
 		SELECT email FROM t_user		
+		WHERE email = #{email}
 	</select>
 
 

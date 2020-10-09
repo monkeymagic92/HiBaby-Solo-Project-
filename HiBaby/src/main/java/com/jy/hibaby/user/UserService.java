@@ -21,19 +21,19 @@ public class UserService {
 	// 이메일 체크
 	public int emailChk(UserPARAM param) {
 		if(param.getEmail().equals("")) {
-			return 3;
-		}		
+			return 4;
+		}
 		UserDMI dbUser = mapper.emailChk(param);
 		
 		if(dbUser == null) {
-			return 4; // DB에 아무 값도 없을시
-		}
+			return 1; 
+		} 
 		
 		if(dbUser.getEmail().equals(param.getEmail())) {
-			return 2; // 이메일 있음
-		} else {
-			return Const.SUCCESS;
-		}		
+			return 2;
+		} 
+		
+		return 3;
 	}
 	
 	

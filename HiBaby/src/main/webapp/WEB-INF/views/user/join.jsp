@@ -14,64 +14,54 @@
 		<h1>회원가입</h1>		
 		<div id="idChkResult" class="msg"></div>		
 		<input type="text" name="user_id" placeholder="아이디">
-		<button type="button" class="btn btn-3" onclick="chkId()">아이디 중복체크</button>
 		
-		
-		
+		<button type="button" id="idChkBtn" class="btn btn-3" onclick="chkId()">아이디 중복체크</button>
+				
 		<input type="password" name="user_pw" placeholder="비밀번호">
 		<input type="password" name="user_rpw" placeholder="비밀번호 확인">
 		<input type="text" name="nm" placeholder="이름">
 		<input type="text" name="nick" placeholder="닉네임">
 		<input type="text" name="email" placeholder="이메일">
-		<button type="button" class="btn btn-3" onclick="chkEmail()">이메일 인증하기</button>
 		
-		
-		
+		<button type="button" id="emailChkBtn" class="btn btn-3" onclick="chkEmail()">이메일 인증하기</button>
+			
 		<input type="hidden" name="uNum" value="${uNumCode }">
+		<input type="hidden" name="idChkclick">
+		<input type="hidden" name="emailChkclick">
 		<input type="submit" value="가입">
     </form>        
 </body>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
 window.onload = function() {
 	frm.user_id.focus()
 }
 
-// 이메일 중복확인
-function chkEmail() {
-	const email = frm.email.value
-	axios.post('/user/ajaxEmailChk', {
-		
-			email
-			
-	}).then(function(res) {
-		console.log(res)
-		if(res.data == '1') {
-			alert('사용가능한 이메일 입니다');
-			frm.email.focus()			
-			
-		} else if(res.data == '2') { //이메일 중복됨
-			alert('이미 등록되어있는 이메일 입니다')
-			frm.email.value = ''
-			frm.email.focus()
-			
-		} else if(res.data == '4') {
-			alert('서버오류입니다 관리자에게 문의해주십시오')
-			location.href="/user/login";
-		} else {
-			alert('이메일을 입력해 주세요')
-			frm.email.focus()
-		}
-	})
-}
-
-
-
 if (${joinErrMsg != null}) {
 	alert('${joinErrMsg}');
 }
 
+// 아이디, 이메일인증 버튼을 클릭해야지만 submit이 되도록
+$('#idChkBtn').click(function() {
+	frm.idChkclick.value = 1;
+})
+
+$('#emailChkBtn').click(function() {
+	frm.emailChkclick.value = 1;
+})
+
 function chk() {
+	if(frm.idChkclick.value != 1) {
+		alert('아이디 중복체크를 확인해주세요')
+		return false;
+	}
+	
+	if(frm.emailChkclick.value != 1) {
+		alert('이메일 인증하기 버튼을 클릭해주세요')
+		return false;
+	}
+	
 	if (frm.user_id.value.length < 6) {
 		alert("ID는 5글자 이상 입력해주세요");		
 		frm.user_id.focus();
@@ -171,6 +161,32 @@ function chk() {
 	}
 	
 }
+
+// 이메일 중복확인
+function chkEmail() {
+	const email = frm.email.value
+	axios.post('/user/ajaxEmailChk', {
+		
+			email
+			
+	}).then(function(res) {
+		console.log(res)
+		if(res.data == '1') {
+			alert('사용가능한 이메일 입니다');
+			frm.email.focus()			
+			
+		} else if(res.data == '2') { //이메일 중복됨
+			alert('이미 등록되어있는 이메일 입니다')
+			frm.email.value = ''
+			frm.email.focus()
+			
+		} else {
+			alert('이메일을 입력해 주세요')
+			frm.email.focus()
+		}
+	})
+}
+
 
 // 아이디 중복확인
 function chkId() {

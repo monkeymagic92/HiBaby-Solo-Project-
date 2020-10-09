@@ -96,14 +96,15 @@ public class UserController {
 	@RequestMapping(value="/ajaxEmailChk", method=RequestMethod.POST)
 	@ResponseBody	
 	public String ajaxEmailChk(@RequestBody UserPARAM param, HttpSession hs) {
-		
 		System.out.println("아작스 email : " + param.getEmail());
+		
 		int result = service.emailChk(param);
+		System.out.println("result값 : " + result);
+		
 		if(result == 1) {
 			String authKey = mss.sendAutoMail(param.getEmail());
 		}
 		
-		System.out.println("result값 : " + result);
 		return String.valueOf(result);
 		
 	}
