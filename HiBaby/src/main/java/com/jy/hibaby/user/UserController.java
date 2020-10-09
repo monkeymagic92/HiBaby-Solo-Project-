@@ -24,7 +24,7 @@ import com.jy.hibaby.user.model.UserVO;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-	static int cerCodeCount = 0; // 인증코드 5회실패시 로그인화면으로 가기위한 카운트  
+	static int cerCodeCount = 0; // 인증코드 틀렸을시 카운트 
 	
 	@Autowired
 	private UserService service;	
@@ -153,7 +153,9 @@ public class UserController {
 	//	비밀번호 찾기1-1 (아이디, 이메일 검사)
 	@RequestMapping(value="/findPw", method = RequestMethod.GET)
 	public String findPw(Model model, HttpServletRequest request) {
-		model.addAttribute("view",ViewRef.USER_FINDPW);
+		model.addAttribute("view",ViewRef.USER_FINDPW);		
+		model.addAttribute("user_id");
+		model.addAttribute("Email");		
 		model.addAttribute("findPwMsg");
 		
 		return ViewRef.USER_TEMP;
@@ -176,9 +178,9 @@ public class UserController {
 			hs.setAttribute("authKey", authKey);
 			return "redirect:/" + ViewRef.USER_CERCODE; 
 			
-		} else { // 정보가 '틀렸다면'
-			model.addAttribute("user_id", param.getUser_id());
-			model.addAttribute("email",param.getEmail());
+		} else { // 정보가 '틀렸다면'			
+			ra.addFlashAttribute("user_id", param.getUser_id());
+			ra.addFlashAttribute("Email", param.getEmail());
 			model.addAttribute("view","/user/findPw");
 			ra.addFlashAttribute("findPwMsg","입력하신 정보를 다시 확인해 주세요");
 			return "redirect:/" + ViewRef.USER_FINDPW;
@@ -189,7 +191,9 @@ public class UserController {
 	// 비번찾기 1-2 (이메일 인증코드 입력)
 	@RequestMapping(value="/cerCode", method=RequestMethod.GET)
 	public String modal(Model model, UserPARAM param, EmailVO vo) {
+		cerCodeCount += 1; 
 		model.addAttribute("view","/user/cerCode");
+		model.addAttribute("cerCodeCount"); //
 		model.addAttribute("cerCodeMsg");
 		return ViewRef.USER_TEMP;
 	}
@@ -199,14 +203,14 @@ public class UserController {
 	public String modal(Model model, EmailVO param, 
 			HttpSession hs, RedirectAttributes ra) {
 		
-		String authKey = (String)hs.getAttribute("authKey"); // %%세션박아줬음%%		
-		cerCodeCount++;
+		String authKey = (String)hs.getAttribute("authKey");
 		
-		model.addAttribute("cerCodeCount",cerCodeCount);
-		if(authKey.equals(param.getCerCode())) { //성공
+		if(authKey.equals(param.getCerCode())) { 
+			cerCodeCount = 0;
 			return "redirect:/" + ViewRef.USER_CHANGEPW; 
 			
 		} else {
+			ra.addFlashAttribute("cerCodeCount", cerCodeCount); 
 			ra.addFlashAttribute("cerCodeMsg", "인증번호를 다시 확인해 주세요");
 			return "redirect:/" + ViewRef.USER_CERCODE;
 		}
@@ -231,7 +235,7 @@ public class UserController {
 		param.setI_user(i_user);
 		
 		int result = service.changePw(param);
-		result = 0;
+		
 		if(result == Const.SUCCESS) {
 			hs.removeAttribute("i_user"); 
 			hs.removeAttribute("authKey");
@@ -251,11 +255,6 @@ public class UserController {
 		
 	
 	// 상세 프로필 등록 (로그인후 상세페이지로 이동)
-	// @@@@@@@@@@@@@@
-	
-	//	https://codepen.io/Akiletour/pen/Eakfn 에서 코드 따와서 작업하기
-	
-	// @@@@@@@@@@@@@@	
 	@RequestMapping(value="/myPage", method = RequestMethod.GET)
 	public String myPage(Model model, HttpSession hs) {
 		
@@ -274,7 +273,6 @@ public class UserController {
 		// 일단 회원가입시 박아놓은 세션값을 지워줘야됨 
 		// 마이페이지에서 post 값으로 값 넘어왔을떄 위에서 처리다해주고 마지막에 세션 지우는걸로 해보기 
 		// 현재 로그인 컨트롤러에서 세션값 지우니까 에러남
-		// 특정 세션값만 지우는 명령어 알아내기 
 		hs.removeAttribute(Const.MYPAGE_USER);
 		return "gg";
 	}
@@ -286,8 +284,8 @@ public class UserController {
 	@RequestMapping(value="findId", method = RequestMethod.GET)
 	public String findId(Model model) {
 		model.addAttribute("view",ViewRef.USER_FINDID);
-		model.addAttribute("findIdMsg");
-		model.addAttribute("findIdSuccessMsg");
+		//model.addAttribute("findIdMsg");
+		//model.addAttribute("findIdSuccessMsg");
 		return ViewRef.USER_TEMP;
 	}
 	
@@ -312,10 +310,7 @@ public class UserController {
 	
 
 	
-	
-
-	
-	// 아이디 중복체크 (aJax기법) 
+	// 아이디 중복체크 (aJax) 
 	@RequestMapping(value="/ajaxIdChk", method=RequestMethod.POST)
 	@ResponseBody	
 	public String ajaxIdChk(@RequestBody UserPARAM param) {

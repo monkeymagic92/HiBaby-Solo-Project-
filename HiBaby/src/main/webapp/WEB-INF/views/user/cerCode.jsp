@@ -30,6 +30,9 @@
 	    width: 30%;                           
 	}
 	.pop_bt {
+		margin-top: 30px;
+		width: 200px;
+		text-align: center;
 		cursor: pointer;
 	}
 	
@@ -40,26 +43,31 @@
 <body>
 	<div id="myModal" class="modal">
  
-      <!-- Modal content -->
-      <div class="modal-content">
-            <h2>인증번호를 입력해 주세요</h2>
-            
-            <!-- Modal body -->
-            <div class="modal-body">
-            	<form id="frm" action="/user/cerCode" method="post">
-            		<input type="text" name="cerCode" placeholder="코드입력">
-            		<input type="submit" value="확인">
-            	</form>
-            </div>
-            
-            <!-- Modal bottom -->
-            <!--  <div class="modal-bottom" onclick="close_pop()"> -->
-            <div class="modal-bottom" onclick="moveToLogin()">
-                <button type="button" class="pop_bt">
-             		 종료
-                </button>
-            </div>
-      </div>
+		<!-- Modal content -->
+		<div class="modal-content">
+		      <h2>인증번호를 입력해 주세요</h2>
+		      <c:if test="${cerCodeCount == null }">
+		      	<div></div>
+		      </c:if>
+		      <c:if test="${cerCodeCount > 0 }">
+		      	<div id="cerCodeCount">${cerCodeCount }회 실패</div>
+		      </c:if>
+		      
+		      <!-- Modal body -->
+		    <div class="modal-body">
+		    	<form id="frm" action="/user/cerCode" method="post">
+		    		<input type="text" name="cerCode" placeholder="코드입력">
+		    		<input type="submit" value="확인">
+		    	</form>
+		    </div>
+		    
+		    <!-- Modal bottom -->
+		    <div class="modal-bottom" onclick="moveToLogin()">
+				<button type="button" class="pop_bt">
+					종료
+				</button>
+		    </div>
+		</div>
     </div>
 </body>
 
