@@ -79,18 +79,7 @@ public class UserController {
 	
 	
 	
-	// 작동 잘되는 이메일 아작스 통신
-//	// 이메일중복체크 (aJax) 
-//	@RequestMapping(value="/ajaxEmailChk", method=RequestMethod.POST)
-//	@ResponseBody	
-//	public String ajaxEmailChk(@RequestBody UserPARAM param, HttpSession hs) {
-//		
-//		
-//		System.out.println("아작스 email : " + param.getEmail());
-//		int result = service.emailChk(param);
-//		System.out.println("result값 : " + result);
-//		return String.valueOf(result);
-//	}
+
 
 	// 이메일 (aJax)
 	@RequestMapping(value="/ajaxEmailChk", method=RequestMethod.POST)
@@ -106,6 +95,7 @@ public class UserController {
 		}
 		return String.valueOf(result);
 	}
+	
 	
 	
 	

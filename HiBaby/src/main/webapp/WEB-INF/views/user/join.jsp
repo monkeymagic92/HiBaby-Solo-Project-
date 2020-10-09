@@ -6,19 +6,24 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 </head>
+<link rel="stylesheet" type="text/css" href="/res/css/animate/animate.css">
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <style>
 	#idChkResult {
 		color: red;
 	}
+	
+	.animate__flash animate__animated fas fa-check {
+		 transition: 0.9s;
+	}
 </style>
 <body>
 	<form id="frm" class="box" action="/user/join" method="post" onsubmit="return chk()">
 		<h1>회원가입</h1>		
-		<div id="idChkResult" class="msg"></div>		
+		<div id="idChkResult" class="msg"></div>
 		<input type="text" id="username_input" name="user_id" placeholder="아이디" required>
 		
-		<button type="button" id="idChkBtn" class="btn btn-3" onclick="chkId()">아이디 중복체크</button>&nbsp;<i id="idClick" class="fas fa-check"></i>
+		<button type="button" id="idChkBtn" class="btn btn-3" onclick="chkId()">아이디 중복체크</button>&nbsp;<i id="idClick" class="animate__rubberBand animate__animated fas fa-check" ></i>
 				
 		<input type="password" name="user_pw" placeholder="비밀번호">
 		<input type="password" name="user_rpw" placeholder="비밀번호 확인">
@@ -26,7 +31,7 @@
 		<input type="text" name="nick" placeholder="닉네임">
 		<input type="text" id="email_input" name="email" placeholder="이메일" required>
 		
-		<button type="button" id="emailChkBtn" class="btn btn-3" onclick="chkEmail()">이메일 인증하기</button>&nbsp;<i id="emailClick" class="fas fa-check"></i>
+		<button type="button" id="emailChkBtn" class="btn btn-3" onclick="chkEmail()">이메일 인증하기</button>&nbsp;<i id="emailClick" class="animate__rubberBand animate__animated fas fa-check"></i>
 			
 		<input type="hidden" name="uNum" value="${uNumCode }">
 		<input type="hidden" name="idChkclick">
