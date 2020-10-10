@@ -52,7 +52,7 @@ public class UserController {
 	// Email testing
 	//이메일 관련    MailSendService에서 이런식으로 값이 날라옴
 	@RequestMapping(value="/signUpConfirm", method = RequestMethod.POST)
-	public String signUpConfirm(UserPARAM param, HttpServletRequest request
+	public String signUpConfirm(Model model, UserPARAM param, HttpServletRequest request
 			, HttpSession hs) {
 	
 		String ajaxAuthKey = (String)hs.getAttribute("ajaxAuthKey");
@@ -60,20 +60,23 @@ public class UserController {
 		String ajaxEmail = param.getEmail();
 		String email = request.getParameter("email");
 		
+		// 테스트
+		System.out.println("--------------------");
 		System.out.println("1 " + ajaxAuthKey);
 		System.out.println("2 " + authKey);
 		System.out.println("3 " + ajaxEmail);
 		System.out.println("4 " + email);
+		System.out.println("--------------------");
 		
 		
 		if(ajaxAuthKey.equals(authKey) && ajaxEmail.equals(email)) {
 			service.insEmail(param);
+			hs.setAttribute("chkEmail", "chkEmail");
 			return "/user/signUpConfirm";
 		} else {
-			return "/user/errorerrorerroreeorreoreworoewroeroeroeorero";
+			model.addAttribute("emailErr","회원가입도중 에러가 발생하였습니다");
+			return "/user/login";
 		}
-		
-		
 	}
 	
 	
@@ -86,15 +89,14 @@ public class UserController {
 	public String ajaxEmailChk(@RequestBody UserPARAM param, HttpSession hs) {
 		System.out.println("아작스 email : " + param.getEmail());
 		
-		int result = service.emailChk(param);
+		int result = service.emailChk(param, hs);
 		System.out.println("result값 : " + result);
 		
 		if(result == 1) {
 			String authKey = mss.sendAutoMail(param.getEmail());
 			hs.setAttribute("ajaxAuthKey", authKey);
-			System.out.println("이메일이메일 : " + authKey);
-			
-		}
+		} 
+		
 		return String.valueOf(result);
 	}
 	
@@ -187,8 +189,12 @@ public class UserController {
 		if(result == Const.SUCCESS) {
 			return "redirect:/" + ViewRef.USER_LOGIN;
 
-		} else { // 서버에러 났을시
-			ra.addFlashAttribute("joinErrMsg","Error!! 관리자에게 문의해 주십시오");
+		} else { // 에러 났을시
+			/*		10.10
+			 *  	db에 값이 제대로 안들어갔을시 에러뜸  
+			 *  	(현재 밑에에러 같은경우 이메일 인증안하고 바로 회원가입 누르면 승인됨, 이거막아야됨 @@@@ )
+			 */
+			ra.addFlashAttribute("joinErrMsg","서버에러! 다시 회원가입을 시도해 주세요");
 			return "redirect:/" + ViewRef.USER_JOIN;
 		}
 	}

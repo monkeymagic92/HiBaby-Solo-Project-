@@ -10,11 +10,21 @@
 	<form id="frm" class="box" action="/user/findId" method="post" onsubmit="return chk()">
 		<h1>아이디 찾기</h1>		
 		<input type="text" name="email" placeholder="이메일을 입력해 주세요">
-		<input type="submit" value="전송">
+		<input id="submitBtn" type="submit" value="전송">
     </form>
 </body>
 
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+
+$('#submitBtn').click(function() {
+	if(confirm('입력하신 이메일로 아이디가 발송되었습니다\n새창을 여시겠습니까 ?')) {
+		window.open('http://www.naver.com', '_blank');
+	} else {
+		
+		location.href="/user/login";
+	}
+})
 
 if(${findIdMsg != null}) {
 	alert("${findIdMsg}");

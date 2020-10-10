@@ -82,6 +82,12 @@ $('#mouseoverTest').mouseover(function() {
 })
 */
 function chk() {
+	if(${chkEmailCode != null}) {
+		alert('이메일을 인증해 주세요')
+		frm.email.focus()
+		return false;
+	}
+	
 			
 	if (frm.user_id.value.length < 6) {
 		alert("ID는 5글자 이상 입력해주세요");		
@@ -207,8 +213,9 @@ function chkEmail() {
 					return false
 				}
 			}
+			
 			alert('이메일로 인증코드가 발송되었습니다 메일함을 확인해 주세요');
-			var win = window.open("https://www.naver.com", "width=1300,height=800");
+			window.open('http://www.naver.com', '_blank');			
 			
 			$('#emailClick').show();
 			$('#submitBtn').removeAttr('disabled')
@@ -225,7 +232,12 @@ function chkEmail() {
 		} else if(res.data == '3'){
 			alert('이메일을 입력해 주세요')
 			frm.email.focus()
-		} 
+			
+		} else if(res.date == '4') {
+			alert('이메일을 다시 확인하여 주세요')
+			frm.email.focus()
+			return false;
+		}
 	})
 }
 
@@ -279,5 +291,7 @@ function chkId() {
 		}
 	})
 }
+
+
 </script>
 </html>

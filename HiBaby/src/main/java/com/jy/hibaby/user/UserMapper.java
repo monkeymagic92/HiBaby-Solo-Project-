@@ -15,10 +15,6 @@ public interface UserMapper {
 	
 	UserDMI emailChk(UserPARAM param);
 	
-	
-	// insert
-	int insUser(UserVO param); // 회원가입
-	
 	int insEmail(UserPARAM param);
 		
 	
@@ -26,7 +22,7 @@ public interface UserMapper {
 	// update 
 	int changePw(UserPARAM param); // 비밀번호 변경
 	
-	int joinUser(UserVO param);
+	int joinUser(UserVO param); // 회원가입
 	
 	
 	

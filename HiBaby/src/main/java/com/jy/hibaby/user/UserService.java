@@ -19,20 +19,22 @@ public class UserService {
 	private UserMapper mapper;
 
 	// 이메일 체크
-	public int emailChk(UserPARAM param) {
+	public int emailChk(UserPARAM param, HttpSession hs) {
+		String chkEmail = (String)hs.getAttribute("chkEmail");
 		if(param.getEmail().equals("")) {
 			return 3;
 		}
 		
 		UserDMI dbUser = mapper.emailChk(param);
 		
-		if(dbUser == null) {
+		if(dbUser == null || chkEmail == null) {
 			return 1; 
 		}
 		
 		if(dbUser.getEmail().equals(param.getEmail())) {
 			return 2;
 		} 		
+		
 		return 4;
 	}
 	
@@ -63,21 +65,7 @@ public class UserService {
 		return Const.SUCCESS;
 	}
 
-	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
-
-	// 원래 이메일 체크하기전 기존에 있던 회원가입 메소드@@@@@@@@@@@@@@@@
-	// 회원가입 
-//	public int join(UserVO param) {
-//		String pw = param.getUser_pw();
-//		String salt = SecurityUtils.generateSalt();
-//		String cryptPw = SecurityUtils.getEncrypt(pw, salt);
-//		
-//		param.setSalt(salt);
-//		param.setUser_pw(cryptPw);
-//		
-//		return mapper.insUser(param);
-//	}
-	
+	// 회원가입
 	public int join(UserVO param) {
 		String pw = param.getUser_pw();
 		String salt = SecurityUtils.generateSalt();
@@ -89,7 +77,7 @@ public class UserService {
 		return mapper.joinUser(param); 
 	}
 	
-	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+	
 	
 	
 	// 비밀번호 찾기  1. 아디,이멜 검사

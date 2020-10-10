@@ -33,6 +33,9 @@ window.onload = function() {
 if(${data != null}) {
 	alert('${data}');
 	frm.user_id.focus();
+	
+} else if (${emailErr != null}) {
+	alert('${emailErr}')
 }
 </script>
 </html>

@@ -73,6 +73,13 @@
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+window.onload = function() {
+	alert('입력하신 메일로 인증코드가 발송되었습니다');
+	var url = "https://www.naver.com";
+	var name = "비밀번호찾기 인증코드";
+	var option = "width = 980, height = 830, top = 100, left = 200, location = no";
+	var win = window.open(url, name, option);
+}
 	
 	if(${cerCodeMsg != null}) {
 		alert('${cerCodeMsg}');
@@ -91,5 +98,7 @@
 	function close_pop(flag) {
 	 $('#myModal').hide();
 	}
+	
+	
 </script>
 </html>

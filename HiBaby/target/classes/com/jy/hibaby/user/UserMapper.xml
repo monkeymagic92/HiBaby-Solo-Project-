@@ -35,13 +35,6 @@
 
 							<!-- insert -->
 	
-	<insert id="insUser" parameterType="UserVO">
-		INSERT INTO t_user
-		(user_id, user_pw, salt, nm, nick, uNum, email)
-		VALUES
-		(#{user_id}, #{user_pw}, #{salt}, #{nm}, #{nick}, #{uNum}, #{email})
-	</insert>
-	
 	<insert id="insEmail" parameterType="UserPARAM">
 		INSERT INTO t_user
 		(email)
@@ -66,9 +59,9 @@
 		nick = #{nick},
 		uNum = #{uNum}
 		WHERE email = #{email}
-		
 	</update>
-							
+						
+		
 	<!-- 비밀번호 변경 -->							
 	<update id="changePw" parameterType="UserVO">
 		UPDATE t_user
