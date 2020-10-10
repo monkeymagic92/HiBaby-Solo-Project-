@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Random;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -84,18 +85,17 @@ public class MailSendService {
 	
 	// 이메일 인증
 	public String sendAutoMail(String email) {
+		 
 		String authKey = getKey(6);
-		System.out.println("★★★★★★★★★★★★★★★★");
-		System.out.println("이메일 !SendAuthKey : " + authKey);
-		System.out.println("★★★★★★★★★★★★★★★★");
-		 try {
+		try {
 		    MailUtils sendMail = new MailUtils(mailSender);
 		    sendMail.setSubject("회원가입 이메일 인증");
 		    sendMail.setText(new StringBuffer().append("<h1>[이메일 인증]</h1>").append("<p>아래 버튼을 클릭하시면 이메일 인증이 완료됩니다.</p>")
 					.append("<form action='http://localhost:8089/user/signUpConfirm' method='post'>")
-					.append("<input type='text' name='email' value='").append(email).append("'>")
-					.append("<input type='text' name='authKey' value='").append(authKey).append("'>")
+					.append("<input type='hidden' name='email' value='").append(email).append("'>")
+					.append("<input type='hidden' name='authKey' value='").append(authKey).append("'>")
 					.append("<input type='submit' value='이메일 인증 확인' style='width: 200px; height: 50px; border: 0; border-radius: 10px; background: #08a600; margin-top: 30px;'>").toString());
+		    		
 		    sendMail.setFrom("ddw0099@naver.com");
 		    sendMail.setTo(email);
 		    sendMail.send();

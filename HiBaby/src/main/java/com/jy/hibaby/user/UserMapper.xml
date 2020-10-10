@@ -42,11 +42,33 @@
 		(#{user_id}, #{user_pw}, #{salt}, #{nm}, #{nick}, #{uNum}, #{email})
 	</insert>
 	
+	<insert id="insEmail" parameterType="UserPARAM">
+		INSERT INTO t_user
+		(email)
+		VALUES
+		(#{email})
+	</insert>
+	
+	
+	
 	
 	
 	
 	
 							<!-- update -->
+	<!-- 회원가입 -->							
+	<update id="joinUser" parameterType="UserVO">
+		UPDATE t_user
+		set user_id = #{user_id},
+		user_pw = #{user_pw}, 
+		salt = #{salt},
+		nm = #{nm},
+		nick = #{nick},
+		uNum = #{uNum}
+		WHERE email = #{email}
+		
+	</update>
+							
 	<!-- 비밀번호 변경 -->							
 	<update id="changePw" parameterType="UserVO">
 		UPDATE t_user

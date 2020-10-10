@@ -18,11 +18,15 @@ public interface UserMapper {
 	
 	// insert
 	int insUser(UserVO param); // 회원가입
+	
+	int insEmail(UserPARAM param);
 		
 	
 	
 	// update 
 	int changePw(UserPARAM param); // 비밀번호 변경
+	
+	int joinUser(UserVO param);
 	
 	
 	

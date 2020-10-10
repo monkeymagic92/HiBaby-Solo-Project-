@@ -36,12 +36,16 @@ public class UserService {
 		return 4;
 	}
 	
+	public void insEmail(UserPARAM param) {
+		mapper.insEmail(param);
+	}
+	
 	
 	
 	// SUCCESS 1:로그인 성공,  NO_ID 2:아이디 없음,  NO_PW 3:비번 틀림
 	public int login(UserPARAM param) {
 		if(param.getUser_id().equals("")) {
-			return Const.NO_ID; // 2
+			return Const.BLANK_ID; 
 		}
 		UserDMI dbUser = mapper.selUser(param);
 		
@@ -59,10 +63,21 @@ public class UserService {
 		return Const.SUCCESS;
 	}
 
+	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
 
-
+	// 원래 이메일 체크하기전 기존에 있던 회원가입 메소드@@@@@@@@@@@@@@@@
+	// 회원가입 
+//	public int join(UserVO param) {
+//		String pw = param.getUser_pw();
+//		String salt = SecurityUtils.generateSalt();
+//		String cryptPw = SecurityUtils.getEncrypt(pw, salt);
+//		
+//		param.setSalt(salt);
+//		param.setUser_pw(cryptPw);
+//		
+//		return mapper.insUser(param);
+//	}
 	
-	// 회원가입  (10.4 현재 정상적으로 진행됨)
 	public int join(UserVO param) {
 		String pw = param.getUser_pw();
 		String salt = SecurityUtils.generateSalt();
@@ -71,8 +86,10 @@ public class UserService {
 		param.setSalt(salt);
 		param.setUser_pw(cryptPw);
 		
-		return mapper.insUser(param);
+		return mapper.joinUser(param); 
 	}
+	
+	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
 	
 	
 	// 비밀번호 찾기  1. 아디,이멜 검사

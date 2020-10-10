@@ -22,7 +22,7 @@
                 <li><a href="/user/login">로그인</a></li>
                 <li><a href="/user/join">회원가입</a></li>
                 <li><a href="/user/findId">아이디 찾기</a></li>
-                <li><a href="/user/findPw">비밀번호 찾기</a></li>               
+                <li><a href="/user/findPw">비밀번호 찾기</a></li>
                 <li><a href="https://github.com/monkeymagic92" target="_blank">제작자 Github 둘러보기</a></li>
             </ul>
         </div>

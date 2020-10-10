@@ -54,27 +54,26 @@ public class UserController {
 	@RequestMapping(value="/signUpConfirm", method = RequestMethod.POST)
 	public String signUpConfirm(UserPARAM param, HttpServletRequest request
 			, HttpSession hs) {
-		// @@@@@@@@ Email Testing..
-		
-		String authKey = mss.sendAutoMail("ddw0099@naver.com");
-						
-		// @@@@@@@@
-		
-		
+	
+		String ajaxAuthKey = (String)hs.getAttribute("ajaxAuthKey");
+		String authKey = request.getParameter("authKey");
+		String ajaxEmail = param.getEmail();
 		String email = request.getParameter("email");
-		String authKey1 = request.getParameter("authKey");
-		String authKey2 = request.getParameter("authKey");
+		
+		System.out.println("1 " + ajaxAuthKey);
+		System.out.println("2 " + authKey);
+		System.out.println("3 " + ajaxEmail);
+		System.out.println("4 " + email);
 		
 		
-		System.out.println("이메일 : " + email);
-		System.out.println("authKey1 : " + authKey1);
-		System.out.println("authKey2 : " + authKey2);
-		
-		if(authKey1.equals(authKey2)) {
+		if(ajaxAuthKey.equals(authKey) && ajaxEmail.equals(email)) {
+			service.insEmail(param);
 			return "/user/signUpConfirm";
 		} else {
-			return "/user/ooooooo";
+			return "/user/errorerrorerroreeorreoreworoewroeroeroeorero";
 		}
+		
+		
 	}
 	
 	
@@ -92,6 +91,9 @@ public class UserController {
 		
 		if(result == 1) {
 			String authKey = mss.sendAutoMail(param.getEmail());
+			hs.setAttribute("ajaxAuthKey", authKey);
+			System.out.println("이메일이메일 : " + authKey);
+			
 		}
 		return String.valueOf(result);
 	}
@@ -169,24 +171,20 @@ public class UserController {
 	@RequestMapping(value="/join", method = RequestMethod.GET)
 	public String join(Model model, RedirectAttributes ra) {
 		int uNumCode = (int)(Math.random() * 88888888 + 10000000); // 고유번호 8자리 랜덤으로 지정
-		
-		model.addAttribute("idCount", 1);
-		model.addAttribute("emailCount", 1);
 		model.addAttribute("uNumCode",uNumCode);
 		model.addAttribute("joinErrMsg"); // 서버에러시 띄우는 alert창
 		model.addAttribute("view",ViewRef.USER_JOIN);
+		
 		return ViewRef.USER_TEMP;
 	}
 	
 
 	@RequestMapping(value="/join", method = RequestMethod.POST) 
 	public String join(Model model, UserPARAM param, HttpSession hs, RedirectAttributes ra) {
+		//int result = service.join(param);
 		int result = service.join(param);
 		
 		if(result == Const.SUCCESS) {
-			int myPageSession = service.login(param);
-			hs.setAttribute(Const.MYPAGE_USER, param); // 회원가입시 myPage로 바로 넘어갈때 세션 박아서 넘김
-			//ra.addAttribute("joinMsg", "회원가입이 되었습니다");
 			return "redirect:/" + ViewRef.USER_LOGIN;
 
 		} else { // 서버에러 났을시
@@ -301,34 +299,6 @@ public class UserController {
 	
 	
 	
-		
-	
-	// 상세 프로필 등록 (로그인후 상세페이지로 이동)
-	@RequestMapping(value="/myPage", method = RequestMethod.GET)
-	public String myPage(Model model, HttpSession hs) {
-		
-		// userTemp.jsp - confirm에서 확인눌렀을경우 회원가입한 세션값을 그대로 들고와서 상세등록 가능하게 함
-		UserVO param = (UserVO)hs.getAttribute(Const.MYPAGE_USER);
-		
-		model.addAttribute(Const.MYPAGE_USER,param);
-		model.addAttribute("view","/user/myPage");
-		return ViewRef.USER_TEMP;
-	}
-	
-	@RequestMapping(value="/myPage", method = RequestMethod.POST)
-	public String myPage (HttpSession hs) {
-		
-		// 여기부분 확인해보기 
-		// 일단 회원가입시 박아놓은 세션값을 지워줘야됨 
-		// 마이페이지에서 post 값으로 값 넘어왔을떄 위에서 처리다해주고 마지막에 세션 지우는걸로 해보기 
-		// 현재 로그인 컨트롤러에서 세션값 지우니까 에러남
-		hs.removeAttribute(Const.MYPAGE_USER);
-		return "gg";
-	}
-	
-	
-	
-	
 	// 아이디 찾기
 	@RequestMapping(value="findId", method = RequestMethod.GET)
 	public String findId(Model model) {
@@ -364,15 +334,9 @@ public class UserController {
 	@ResponseBody	
 	public String ajaxIdChk(@RequestBody UserPARAM param, HttpSession hs) {
 		
-		System.out.println("uesr_id : " + param.getUser_id());
-		
 		int result = service.login(param);
-	
-		
 		return String.valueOf(result);
 	}
-	
-	
 }
 
 
