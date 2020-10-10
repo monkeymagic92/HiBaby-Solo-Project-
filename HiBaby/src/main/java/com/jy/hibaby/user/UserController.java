@@ -32,99 +32,11 @@ public class UserController {
 	@Autowired
 	private MailSendService mss;  // 현재 이메일 부분 주석처리해놔서 노란줄 끄이는거임
 
-	// @@@@@@@@@@@@@         중요            @@@@@@@@@@@@@@@@@@@
-	
-	// 이메일 인증 테스트 중 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-	// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-	
-	// 회원가입(join)에서 이메일을 받은다음 
-	// 원리 :
-	// 컨트롤러 signUpConfirm() 메소드가 POST방식으로 jsp를 열어준다음 
-	// 그 jsp 에서 값 비교되게끔 (세션에 값박고 지우기)
-	// MailSendService에서 sendAutoMail() 메소드에서
-	
-	
-	// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-	// 됬고 그냥 아래 메소드 주석풀고
-	// String authKey = mss.sendAutoMail("ddw0099@naver.com"); join창에서 켜봐라
-	
-	
-	// Email testing
-	//이메일 관련    MailSendService에서 이런식으로 값이 날라옴
-	@RequestMapping(value="/signUpConfirm", method = RequestMethod.POST)
-	public String signUpConfirm(Model model, UserPARAM param, HttpServletRequest request
-			, HttpSession hs) {
-	
-		String ajaxAuthKey = (String)hs.getAttribute("ajaxAuthKey");
-		String authKey = request.getParameter("authKey");
-		String ajaxEmail = param.getEmail();
-		String email = request.getParameter("email");
-		
-		// 테스트
-		System.out.println("--------------------");
-		System.out.println("1 " + ajaxAuthKey);
-		System.out.println("2 " + authKey);
-		System.out.println("3 " + ajaxEmail);
-		System.out.println("4 " + email);
-		System.out.println("--------------------");
-		
-		
-		if(ajaxAuthKey.equals(authKey) && ajaxEmail.equals(email)) {
-			service.insEmail(param);
-			hs.setAttribute("chkEmail", "chkEmail");
-			return "/user/signUpConfirm";
-		} else {
-			model.addAttribute("emailErr","회원가입도중 에러가 발생하였습니다");
-			return "/user/login";
-		}
-	}
-	
-	
-	
-
-
-	// 이메일 (aJax)
-	@RequestMapping(value="/ajaxEmailChk", method=RequestMethod.POST)
-	@ResponseBody	
-	public String ajaxEmailChk(@RequestBody UserPARAM param, HttpSession hs) {
-		System.out.println("아작스 email : " + param.getEmail());
-		
-		int result = service.emailChk(param, hs);
-		System.out.println("result값 : " + result);
-		
-		if(result == 1) {
-			String authKey = mss.sendAutoMail(param.getEmail());
-			hs.setAttribute("ajaxAuthKey", authKey);
-		} 
-		
-		return String.valueOf(result);
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		
-	// ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ		
-	
-		
-	
-	// @@@@@@@@@@@@@@@  테스트용
-	// index/select 에서 홈버튼눌렀을때 loginUser 세션값과 myPageUser 세션값이 넘어오는지 확인용
 	// myPageUser 세션값은 지우기 
 	@RequestMapping(value="/test")
 	public String userTest() {
 		return "/user/test";
 	}
-	// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-	
 	
 	
 	//	로그인
@@ -182,18 +94,14 @@ public class UserController {
 	
 
 	@RequestMapping(value="/join", method = RequestMethod.POST) 
-	public String join(Model model, UserPARAM param, HttpSession hs, RedirectAttributes ra) {
+	public String join(Model model, UserVO param, HttpSession hs, RedirectAttributes ra) {
 		//int result = service.join(param);
-		int result = service.join(param);
+		int result = service.joinUser(param);
 		
 		if(result == Const.SUCCESS) {
 			return "redirect:/" + ViewRef.USER_LOGIN;
 
-		} else { // 에러 났을시
-			/*		10.10
-			 *  	db에 값이 제대로 안들어갔을시 에러뜸  
-			 *  	(현재 밑에에러 같은경우 이메일 인증안하고 바로 회원가입 누르면 승인됨, 이거막아야됨 @@@@ )
-			 */
+		} else { 
 			ra.addFlashAttribute("joinErrMsg","서버에러! 다시 회원가입을 시도해 주세요");
 			return "redirect:/" + ViewRef.USER_JOIN;
 		}
@@ -341,6 +249,16 @@ public class UserController {
 	public String ajaxIdChk(@RequestBody UserPARAM param, HttpSession hs) {
 		
 		int result = service.login(param);
+		return String.valueOf(result);
+	}
+	
+	
+	// 이메일 중복체크(aJax)
+	@RequestMapping(value="/ajaxEmailChk", method=RequestMethod.POST)
+	@ResponseBody	
+	public String ajaxEmailChk(@RequestBody UserPARAM param, HttpSession hs) {
+		
+		int result = service.emailChk(param, hs);	
 		return String.valueOf(result);
 	}
 }

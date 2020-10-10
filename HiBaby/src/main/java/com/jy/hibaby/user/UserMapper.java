@@ -1,10 +1,12 @@
 package com.jy.hibaby.user;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.jy.hibaby.user.model.UserDMI;
 import com.jy.hibaby.user.model.UserPARAM;
 import com.jy.hibaby.user.model.UserVO;
 
-
+@Mapper
 public interface UserMapper {
 	// select
 	UserDMI selUser(UserPARAM param); // 해당유저 전체 컬럼값
@@ -15,21 +17,18 @@ public interface UserMapper {
 	
 	UserDMI emailChk(UserPARAM param);
 	
-	int insEmail(UserPARAM param);
-		
+	
+	// isnert
+	int joinUser(UserVO param); // 회원가입
+	
 	
 	
 	// update 
 	int changePw(UserPARAM param); // 비밀번호 변경
-	
-	int joinUser(UserVO param); // 회원가입
 	
 	
 	
 	// delete 
 	
 	
-	
-	
-
 }

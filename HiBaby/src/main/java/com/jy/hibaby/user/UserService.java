@@ -20,28 +20,21 @@ public class UserService {
 
 	// 이메일 체크
 	public int emailChk(UserPARAM param, HttpSession hs) {
-		String chkEmail = (String)hs.getAttribute("chkEmail");
+		
 		if(param.getEmail().equals("")) {
 			return 3;
-		}
-		
+		}		
 		UserDMI dbUser = mapper.emailChk(param);
 		
-		if(dbUser == null || chkEmail == null) {
+		if(dbUser == null) {
 			return 1; 
-		}
-		
+		}		
 		if(dbUser.getEmail().equals(param.getEmail())) {
 			return 2;
-		} 		
-		
+		}		
 		return 4;
 	}
-	
-	public void insEmail(UserPARAM param) {
-		mapper.insEmail(param);
-	}
-	
+		
 	
 	
 	// SUCCESS 1:로그인 성공,  NO_ID 2:아이디 없음,  NO_PW 3:비번 틀림
@@ -65,8 +58,9 @@ public class UserService {
 		return Const.SUCCESS;
 	}
 
+	
 	// 회원가입
-	public int join(UserVO param) {
+	public int joinUser(UserVO param) {
 		String pw = param.getUser_pw();
 		String salt = SecurityUtils.generateSalt();
 		String cryptPw = SecurityUtils.getEncrypt(pw, salt);
@@ -74,7 +68,7 @@ public class UserService {
 		param.setSalt(salt);
 		param.setUser_pw(cryptPw);
 		
-		return mapper.joinUser(param); 
+		return mapper.joinUser(param);
 	}
 	
 	

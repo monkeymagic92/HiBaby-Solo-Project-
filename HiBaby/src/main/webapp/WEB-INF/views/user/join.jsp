@@ -17,19 +17,6 @@
 		 transition: 0.9s;
 	}
 </style>
-<!-- 
-	회원가입기능 문제점
-	
-	1. 모든정보를 다 입력하고 인증절차를 거쳐야만 submit 버튼을 활성화시킴
-	
-	문제점 보안 할시
-	1.	회원가입창에 들어가기전 모달창을 띄워 모든정보를 입력후 아디,이멜쳌을 해야 가입버튼이 활성화된다라는 팝업띄우기
-	
-	2.	애초에 귀찮지만 모든내용을 다 아작스 처리해서 바로바로 실시간으로 알려주기
-	
-	3.	다시 코드 수정하기
-	    
- -->
 <body>
 	<form id="frm" class="box" action="/user/join" method="post" onsubmit="return chk()">
 		<h1>회원가입</h1>		
@@ -47,8 +34,8 @@
 		<button type="button" id="emailChkBtn" class="btn btn-3" onclick="chkEmail()">이메일 인증하기</button>&nbsp;<i id="emailClick" class="animate__rubberBand animate__animated fas fa-check"></i>
 			
 		<input type="hidden" name="uNum" value="${uNumCode }">
-		<input type="hidden" name="idChkclick">
-		<input type="hidden" name="emailChkclick">
+		
+		<!-- 스크립트부분 보면 mouseoverTest 라고 쿼리문 써놨음 -->
 		<div id="mouseoverTest">
 		<input type="submit" id="submitBtn" disabled="disabled" value="가입">
 		</div>
@@ -60,6 +47,7 @@
 window.onload = function() {
 	frm.user_id.focus()
 }
+
 if (${joinErrMsg != null}) {
 	alert('${joinErrMsg}');
 }
@@ -81,6 +69,7 @@ $('#mouseoverTest').mouseover(function() {
 	alert('이메일 인증후 가입을 누르세요');
 })
 */
+
 function chk() {
 	if(${chkEmailCode != null}) {
 		alert('이메일을 인증해 주세요')
@@ -214,8 +203,6 @@ function chkEmail() {
 				}
 			}
 			
-			alert('이메일로 인증코드가 발송되었습니다 메일함을 확인해 주세요');
-			window.open('http://www.naver.com', '_blank');			
 			
 			$('#emailClick').show();
 			$('#submitBtn').removeAttr('disabled')
