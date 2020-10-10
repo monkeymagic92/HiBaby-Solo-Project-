@@ -32,10 +32,6 @@
 		WHERE email = #{email}
 	</select>
 
-
-
-
-
 						<!-- insert -->
 						 
 	<!-- 회원가입 -->
@@ -44,15 +40,9 @@
 		(user_id, user_pw, salt, nm, nick, email)
 		VALUES
 		(#{user_id}, #{user_pw}, #{salt}, #{nm}, #{nick}, #{email})
-	</insert>
-	
-	
-	
-	
-	
-	
-	
-							<!-- update -->
+	</insert>		
+						
+						<!-- update -->
 				
 		
 	<!-- 비밀번호 변경 -->							
@@ -63,10 +53,7 @@
 		WHERE i_user = #{i_user}
 	</update>
 	
-	
-	
-	
-							<!-- delete -->
+						<!-- delete -->
 	
 		
 	

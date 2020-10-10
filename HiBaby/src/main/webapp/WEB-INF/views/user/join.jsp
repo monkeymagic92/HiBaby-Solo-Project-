@@ -12,7 +12,7 @@
 	#idChkResult {
 		color: red;
 	}
-	
+		
 	.animate__flash animate__animated fas fa-check {
 		 transition: 0.9s;
 	}

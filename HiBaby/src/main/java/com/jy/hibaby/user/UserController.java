@@ -38,6 +38,25 @@ public class UserController {
 		return "/user/test";
 	}
 	
+	// 아이디 중복체크 (aJax) 
+	@RequestMapping(value="/ajaxIdChk", method=RequestMethod.POST)
+	@ResponseBody	
+	public String ajaxIdChk(@RequestBody UserPARAM param, HttpSession hs) {
+		
+		int result = service.login(param);
+		return String.valueOf(result);
+	}
+	
+	
+	// 이메일 중복체크(aJax)
+	@RequestMapping(value="/ajaxEmailChk", method=RequestMethod.POST)
+	@ResponseBody	
+	public String ajaxEmailChk(@RequestBody UserPARAM param, HttpSession hs) {
+		
+		int result = service.emailChk(param, hs);	
+		return String.valueOf(result);
+	}
+	
 	
 	//	로그인
 	@RequestMapping(value="/login", method = RequestMethod.GET)
@@ -45,7 +64,6 @@ public class UserController {
 		// 로그인이 되어있다면 로그인페이지로 갈수없게 막아놓음 
 		// 메소드 다시 만들기  // 또는 인터셉터에서 추후에 걸러줄것임 @@@@@@@@
 		UserVO param = SecurityUtils.getLoginUser(request);
-		
 				
 		if(param != null) {
 			return ViewRef.INDEX_SELECT;
@@ -77,10 +95,7 @@ public class UserController {
 		return "redirect:/" + ViewRef.USER_LOGIN;
 	}
 	
-	
-	
 		
-	
 	//	회원가입
 	@RequestMapping(value="/join", method = RequestMethod.GET)
 	public String join(Model model, RedirectAttributes ra) {
@@ -90,8 +105,7 @@ public class UserController {
 		model.addAttribute("view",ViewRef.USER_JOIN);
 		
 		return ViewRef.USER_TEMP;
-	}
-	
+	}	
 
 	@RequestMapping(value="/join", method = RequestMethod.POST) 
 	public String join(Model model, UserVO param, HttpSession hs, RedirectAttributes ra) {
@@ -106,9 +120,6 @@ public class UserController {
 			return "redirect:/" + ViewRef.USER_JOIN;
 		}
 	}
-	
-	
-
 	
 	
 	//	비밀번호 찾기1-1 (아이디, 이메일 검사)
@@ -157,8 +168,7 @@ public class UserController {
 		model.addAttribute("cerCodeCount"); //
 		model.addAttribute("cerCodeMsg");
 		return ViewRef.USER_TEMP;
-	}
-	
+	}	
 
 	@RequestMapping(value="/cerCode", method=RequestMethod.POST) // post 확인
 	public String modal(Model model, EmailVO param, 
@@ -176,8 +186,6 @@ public class UserController {
 			return "redirect:/" + ViewRef.USER_CERCODE;
 		}
 	}
-	
-	
 	
 	
 	// 비밀번호 변경
@@ -210,9 +218,6 @@ public class UserController {
 	}
 	
 	
-	
-	
-	
 	// 아이디 찾기
 	@RequestMapping(value="findId", method = RequestMethod.GET)
 	public String findId(Model model) {
@@ -241,26 +246,13 @@ public class UserController {
 		}
 	}
 	
+	
+	// myPage
+	@RequestMapping(value="/myPage", method = RequestMethod.GET)
+	public String myPage(Model model) {
+		return "/user/myPage";
+	}
 
-	
-	// 아이디 중복체크 (aJax) 
-	@RequestMapping(value="/ajaxIdChk", method=RequestMethod.POST)
-	@ResponseBody	
-	public String ajaxIdChk(@RequestBody UserPARAM param, HttpSession hs) {
-		
-		int result = service.login(param);
-		return String.valueOf(result);
-	}
-	
-	
-	// 이메일 중복체크(aJax)
-	@RequestMapping(value="/ajaxEmailChk", method=RequestMethod.POST)
-	@ResponseBody	
-	public String ajaxEmailChk(@RequestBody UserPARAM param, HttpSession hs) {
-		
-		int result = service.emailChk(param, hs);	
-		return String.valueOf(result);
-	}
 }
 
 

@@ -19,6 +19,7 @@ public class UserService {
 	private UserMapper mapper;
 
 	// 이메일 체크
+	// 코드 좀 거지같음 수정하기
 	public int emailChk(UserPARAM param, HttpSession hs) {
 		
 		if(param.getEmail().equals("")) {
@@ -35,8 +36,7 @@ public class UserService {
 		return 4;
 	}
 		
-	
-	
+		
 	// SUCCESS 1:로그인 성공,  NO_ID 2:아이디 없음,  NO_PW 3:비번 틀림
 	public int login(UserPARAM param) {
 		if(param.getUser_id().equals("")) {
@@ -51,10 +51,18 @@ public class UserService {
 		String cryptPw = SecurityUtils.getEncrypt(param.getUser_pw(), dbUser.getSalt());
 		if(!cryptPw.equals(dbUser.getUser_pw())) {return Const.NO_PW;} // 3
 		
+		param.setI_user(dbUser.getI_user());
 		param.setUser_pw(null);
 		param.setNm(dbUser.getNm());
-		param.setI_user(dbUser.getI_user());
+		param.setNick(dbUser.getNick());
+		param.setEmail(dbUser.getEmail());
 		param.setProfile_img(dbUser.getProfile_img());
+		param.setSm(dbUser.getSm());
+		param.setMyPoint(dbUser.getMyPoint());
+		param.setMyCash(dbUser.getMyCash());
+		param.setR_dt(dbUser.getR_dt());
+		param.setM_dt(dbUser.getM_dt());
+		
 		return Const.SUCCESS;
 	}
 
@@ -72,8 +80,6 @@ public class UserService {
 	}
 	
 	
-	
-	
 	// 비밀번호 찾기  1. 아디,이멜 검사
 	public int findPw (UserPARAM param, HttpSession hs) {
 		UserDMI dbUser = mapper.findPwChk(param);
@@ -89,8 +95,7 @@ public class UserService {
 			return Const.FAIL;
 		}
 	}
-	
-	
+		
 	
 	// 비밀번호 변경 
 	public int changePw(UserPARAM param) {

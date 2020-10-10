@@ -15,7 +15,7 @@
                 <li><a class="liFont" href="#" data-content="Game">게임</a></li>
                 <li><a class="liFont" href="#" data-content="Memo">메모</a></li>
                 <li><a class="liFont" href="#" data-content="Ligi">일기</a></li>
-                <li><a class="liFont" href="#" data-content="Mypage">마이페이지</a></li>
+                <li><a class="liFont" href="/user/myPage" data-content="Mypage">마이페이지</a></li>
               </ul>
         </nav>
     </div>
