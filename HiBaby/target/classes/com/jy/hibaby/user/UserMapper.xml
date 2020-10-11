@@ -37,9 +37,9 @@
 	<!-- 회원가입 -->
 	<insert id="joinUser" parameterType="UserVO">
 		INSERT INTO t_user
-		(user_id, user_pw, salt, nm, nick, email)
+		(user_id, user_pw, salt, nm, nick, uNum, email)
 		VALUES
-		(#{user_id}, #{user_pw}, #{salt}, #{nm}, #{nick}, #{email})
+		(#{user_id}, #{user_pw}, #{salt}, #{nm}, #{nick}, #{uNum}, #{email})
 	</insert>		
 						
 						<!-- update -->

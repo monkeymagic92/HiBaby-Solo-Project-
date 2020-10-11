@@ -20,21 +20,15 @@
 <body>
 	<form id="frm" class="box" action="/user/join" method="post" onsubmit="return chk()">
 		<h1>회원가입</h1>		
-		<div id="idChkResult" class="msg"></div>
-		<input type="text" id="username_input" name="user_id" placeholder="아이디" required>
-		
-		<button type="button" id="idChkBtn" class="btn btn-3" onclick="chkId()">아이디 중복체크</button>&nbsp;<i id="idClick" class="animate__rubberBand animate__animated fas fa-check" ></i>
-				
+		<input type="text" id="email_input" name="email" placeholder="이메일" required>
+		<button type="button" id="emailChkBtn" class="animate__flash animate__animated btn btn-3" onclick="chkEmail()">이메일 중복체크</button>&nbsp;<i id="emailClick" class="animate__rubberBand animate__animated fas fa-check"></i>
+		<input type="text" id="username_input" name="user_id" placeholder="아이디" required>		
+		<button type="button" id="idChkBtn" class="btn btn-3" onclick="chkId()">아이디 중복체크</button>&nbsp;<i id="idClick" class="animate__rubberBand animate__animated fas fa-check" ></i>				
 		<input type="password" name="user_pw" placeholder="비밀번호">
 		<input type="password" name="user_rpw" placeholder="비밀번호 확인">
 		<input type="text" name="nm" placeholder="이름">
-		<input type="text" name="nick" placeholder="닉네임">
-		<input type="text" id="email_input" name="email" placeholder="이메일" required>
-		
-		<button type="button" id="emailChkBtn" class="btn btn-3" onclick="chkEmail()">이메일 인증하기</button>&nbsp;<i id="emailClick" class="animate__rubberBand animate__animated fas fa-check"></i>
-			
+		<input type="text" name="nick" placeholder="닉네임">			
 		<input type="hidden" name="uNum" value="${uNumCode }">
-		
 		<!-- 스크립트부분 보면 mouseoverTest 라고 쿼리문 써놨음 -->
 		<div id="mouseoverTest">
 		<input type="submit" id="submitBtn" disabled="disabled" value="가입">
@@ -201,8 +195,7 @@ function chkEmail() {
 					frm.email.focus();
 					return false
 				}
-			}
-			
+			}			
 			
 			$('#emailClick').show();
 			$('#submitBtn').removeAttr('disabled')
@@ -210,7 +203,7 @@ function chkEmail() {
 			frm.email.focus()			
 			
 		} else if(res.data == '2') { //이메일 중복됨
-			alert('이미 등록되어있는 이메일 입니다')
+			alert('사용할수 없는 이메일 입니다')
 			$('#emailClick').hide();
 			frm.email.value = ''
 			frm.email.focus()
@@ -261,14 +254,13 @@ function chkId() {
 			}
 		
 			$('#idClick').show();
-			$('#submitBtn').removeAttr('disabled');			
-			idChkResult.innerText = '사용할 수 있는 아이디입니다.';
+			$('#submitBtn').removeAttr('disabled');
 			frm.user_pw.focus();
 			
 		} else if(res.data == '3') { //아이디 중복됨	
 			$('#idClick').hide();
 			$('#submitBtn').attr("disabled","disabled");
-			idChkResult.innerText = '이미 사용중입니다.';
+			alert('사용할수 없는 아이디 입니다.');
 			frm.user_id.value = '';
 			frm.user_id.focus();
 			
