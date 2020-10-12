@@ -30,9 +30,9 @@ public class UserController {
 	private UserService service;	
 	
 	@Autowired
-	private MailSendService mss;  // 현재 이메일 부분 주석처리해놔서 노란줄 끄이는거임
+	private MailSendService mss; 
 
-	// myPageUser 세션값은 지우기 
+	// test용 
 	@RequestMapping(value="/test")
 	public String userTest() {
 		return "/user/test";
@@ -138,7 +138,7 @@ public class UserController {
 		int result = service.findPw(param, hs);
 		int i_user = 0;  // 노란줄그여도 무시 ( 매개변수로 i_user 넣으니 제대로 파싱안됨 ) 
 		
-		try { // 만약 service에서 i_user에 세션값을 못박을경우
+		try { // service에서 i_user에 세션값을 못박을경우
 			i_user = (int)hs.getAttribute("i_user");
 			
 		} catch(Exception e) {
@@ -189,7 +189,7 @@ public class UserController {
 	}
 	
 	
-	// 비밀번호 변경
+	// 비번찾기 1-3 (비밀번호 변경)
 	@RequestMapping(value="/changePw", method = RequestMethod.GET)
 	public String changePw(Model model, UserPARAM param) {
 		model.addAttribute("view", "/user/changePw");

@@ -58,7 +58,7 @@ $('#email_input').keyup(function() {
 	$('#submitBtn').attr("disabled", "disabled")
 })
 
-/*
+/* submit버튼 근처에 마우스가가면 alert띄움
 $('#mouseoverTest').mouseover(function() {
 	alert('이메일 인증후 가입을 누르세요');
 })
@@ -79,7 +79,7 @@ function chk() {
 	} 
 	
 	if (frm.user_id.value.length > 19) {
-		alert("ID가 너무 깁니다");
+		alert("ID는 18자리 이하로 입력해주세요");
 		frm.user_id.focus();
 		return false;
 	}
@@ -141,6 +141,16 @@ function chk() {
 		alert("닉네임이 너무 깁니다");
 		frm.nick.focus();
 		return false;
+	}
+	
+	if (frm.nick.value.length > 0) {
+		const korean = /[^가-힣]/;
+		
+		if(korean.test(frm.nick.value)) {
+			alert("올바른  닉네임을 입력해 주세요");
+			frm.nick.focus();
+			return false;
+		}
 	}
 	
 	if (frm.email.value.length == 0) {
