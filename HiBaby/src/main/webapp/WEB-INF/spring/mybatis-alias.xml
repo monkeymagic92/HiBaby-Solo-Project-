@@ -2,8 +2,12 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
+		<!-- user -->
 		<typeAlias type="com.jy.hibaby.user.model.UserVO" alias="UserVO" />		
 		<typeAlias type="com.jy.hibaby.user.model.UserDMI" alias="UserDMI" />
 		<typeAlias type="com.jy.hibaby.user.model.UserPARAM" alias="UserPARAM" />
+		
+		<!-- board -->
+		<typeAlias type="com.jy.hibaby.board.model.BoardVO" alias="BoardVO" />
 	</typeAliases>	
 </configuration>

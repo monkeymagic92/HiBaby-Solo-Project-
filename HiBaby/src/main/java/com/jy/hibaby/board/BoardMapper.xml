@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jy.hibaby.board.BoardMapper">
+
+
+<!-- 값 안넘어오면 parameterType 을 list로 바꾸기 -->
+
+ 
+<select id="selBoard" resultType="BoardVO">
+	SELECT A.i_board, A.title, A.ctnt, B.nm, A.r_dt FROM t_board A
+	LEFT JOIN t_user B
+	ON A.i_user = B.i_user
+</select>
+
+	
+</mapper>

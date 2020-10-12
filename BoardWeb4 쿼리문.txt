@@ -1,0 +1,242 @@
+﻿ㅡㅡ stack overfollow 사이트 참고해보기 ㅡㅡ
+
+
+
+-- t_user 테이블 --
+
+CREATE TABLE t_user(
+    i_user NUMBER PRIMARY KEY,
+    user_id varchar2(30) not null,
+    user_pw varchar2(100) not null,
+    nm varchar(20) not null,
+    email varchar2(40),
+    profile_img varchar2(50),
+    r_dt date default sysdate,  -쓸때 현재시간
+    m_dt date default sysdate -수정시 현재시간
+);
+
+---------------------------------------------------------------
+
+CREATE SEQUENCE seq_user
+nocache;
+
+----------------------------------------------------------------
+
+select seq_user.nextval from dual;
+
+----------------------------------------------------------------
+
+
+
+ 	i_user를 join걸어서 이름을 보는 inner 조인법
+
+SELECT B.nm, A. FROM t_user_loginhistory A
+inner join t_user B
+on A.i_user = B.i_user;
+
+
+----------------------------------------------------------------
+
+
+
+-- t_board4 게시판 테이블 --
+
+CREATE TABLE t_board4(
+    i_board number primary key,
+    title nvarchar2(100) not null,
+    ctnt nvarchar2(2000) not null,
+    hits number default 0,
+    i_user number not null,
+    r_dt date default sysdate,
+    m_dt date default sysdate,
+    FOREIGN key(i_user) REFERENCES t_user(i_user)
+);
+
+
+----------------------------------------------------------------
+
+
+
+-- 로그인 기록 보는 테이블 쿼리문 --
+
+CREATE TABLE t_user_loginhistory(
+    i_history number primary key,
+    i_user number not null,
+    ip_addr varchar2(15) not null,
+    os varchar2(10) not null,
+    browser varchar2(10) not null,
+    r_dt date default sysdate
+);
+
+
+----------------------------------------------------------------
+
+
+
+-- 좋아요 기능에 관련된 테이블 --
+
+CREATE TABLE t_board4_like(
+    i_user number not null,
+    i_board number not null,
+    r_dt DATE default sysdate,
+    PRIMARY KEY(i_user, i_board),
+    FOREIGN KEY (i_user) references t_user(i_user),
+    FOREIGN KEY (i_board) references t_board4(i_board)
+);
+
+
+----------------------------------------------------------------
+
+
+
+-- 댓글 관련 테이블 
+
+CREATE TABLE t_board4_cmt(
+    i_cmt number primary key, -- 그냥 의미없는 t_board4_cmt 의 pk값 ( 추후 관리할일 있을때 사용 )
+    i_board number not null,
+    i_user number not null,
+    cmt nvarchar2(500) not null,
+    r_dt date default sysdate,
+    m_dt date default sysdate,
+    foreign key(i_board) references t_board4(i_board), 
+    foreign key(i_user) references t_user(i_user)
+    -- 포링키 안해도 join은 가능함
+    -- 포링키는 잘못된값 안들어가게 하기위해 방지하는것
+    --  t_board4_cmt(i_board)값은 t_board4(i_board)가
+    -- 있어야만 들어갈수 있음
+);
+
+
+----------------------------------------------------------------
+
+
+
+-- seq_board4_cmt 테이블의 시퀀스 테이블
+-- start 0, minvalue 0 추가할시 ↓
+-- 숫자가 1부터 증가함 (nocache만 했을경우 2부터 증가하는데...)
+
+CREATE sequence seq_board4_cmt
+start with 0
+minvalue 0
+nocache;
+
+
+-----------------------------------------------------------------
+
+
+
+-- 좋아요  댓글 같이 나오게 하는 쿼리문 
+
+SELECT A.i_board, A.title, nvl(B.cnt,0) as like_cnt, nvl(C.cmt_cmt,0) as cmt_cmt
+FROM t_board4 A 
+LEFT JOIN (
+    SELECT i_board, count(i_board) as cnt FROM t_board4_like GROUP BY i_board    
+) B
+ON A.i_board = B.i_board
+LEFT JOIN (
+    SELECT i_board, count(cmt) as cmt_cmt FROM t_board4_cmt GROUP BY i_board
+) C 
+ON A.i_board = C.i_board;
+
+
+-----------------------------------------------------------------
+
+
+
+-- 좋아요  댓글  내가좋아요 까지 나오게 하는 쿼리문 
+
+SELECT A.i_board, A.title, nvl(B.cnt,0) as like_cnt
+, nvl(C.cmt_cmt,0) as cmt_cmt
+, DECODE(D.i_board, null, 0, 1) as yn_like
+FROM t_board4 A 
+
+-- 한 글에 좋아요 받은 횟수
+LEFT JOIN (
+    SELECT i_board, count(i_board) as cnt FROM t_board4_like GROUP BY i_board    
+) B
+ON A.i_board = B.i_board
+
+-- 댓글 숫자
+LEFT JOIN (
+    SELECT i_board, count(cmt) as cmt_cmt FROM t_board4_cmt GROUP BY i_board    
+) C 
+ON A.i_board = C.i_board
+
+-- 내가 좋아요 한 게시글
+LEFT JOIN  (
+    SELECT i_board FROM t_board4_like
+    WHERE i_user = 2
+) D
+ON A.i_board = D.i_board;
+
+
+-----------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	유저관리용 테이블
+
+CREATE sequence seq_userloginhistory
+nocache;  -- nocache는 사용하든 말든 자유
+          -- 실무에서는 잘 사용 안함
+          -- 우리처럼 자주 컴터 껏다켰다하는 일반유저는 뭐 알아서 자유임.. (잘못들음사실)
+          
+
+-- 유저관리용 테이블 --
+-- 관리자계정이냐  일반계정이냐 추후 SELECT 문 사용시 나눌수도 있음
+-- 현재 우리가 지금 공부할때는 INSERT용으로만 씀 SELECT 사용 안함
+
+CREATE TABLE t_user_loginhistory(
+    i_history number primary key,
+    i_user number not null,
+    ip_addr varchar2(15) not null,
+    os varchar2(10) not null,
+    browser varchar2(10) not null,
+    r_dt date default sysdate
+);
+----------------------------------------------------------------
+
+
+라이브러리 추가방법
+1. 복사해서 파일의 lib에다가 붙여넣기 해준다
+2. tomcat라이브러리 폴더에 넣어준다  (이게 제일편함, 프로젝트만들때마다 해줄필요없음 (1,3번은 프로젝트만들때마다 해줘야함))
+3. 프로젝트 - 빌드패스 - Add library로 추가해준다
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡJSTL 라이브러리 사용예시(실무에서 많이쓴다고 하심)ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+%@ taglib uri=httpjava.sun.comjspjstlcore prefix=c % 위의 방식으로 라이브러리를 넣은후 라이브러리를 사용하겠다는 의미로 적어줘야함
+
+cforEach items=${data} var =item 
+		%-- items=${} 자리에 setAttribute의 키값을 넣어줌 --%
+		%-- var=item의 item은 변수명처럼 바꿀수있다 바꾸면 밑에도 바꿔줘야됨 --%
+		tr		
+			td${item.i_board}td
+			tda href=boardDetaili_board=${item.i_board}${item.title}atd
+			td${item.hits}td
+			td${item.i_user}td
+			td${item.r_dt}td
+		tr
+		cforEach
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
