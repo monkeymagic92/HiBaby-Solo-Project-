@@ -152,7 +152,7 @@ public class UserController {
 			
 		} else { // 정보가 '틀렸다면'			
 			ra.addFlashAttribute("user_id", param.getUser_id());
-			ra.addFlashAttribute("Email", param.getEmail());
+			ra.addFlashAttribute("email", param.getEmail());
 			model.addAttribute("view","/user/findPw");
 			ra.addFlashAttribute("findPwMsg","입력하신 정보를 다시 확인해 주세요");
 			return "redirect:/" + ViewRef.USER_FINDPW;
@@ -164,9 +164,10 @@ public class UserController {
 	@RequestMapping(value="/cerCode", method=RequestMethod.GET)
 	public String modal(Model model, UserPARAM param, EmailVO vo) {
 		cerCodeCount += 1; 
+		
 		model.addAttribute("view","/user/cerCode");
-		model.addAttribute("cerCodeCount"); //
-		model.addAttribute("cerCodeMsg");
+		model.addAttribute("cerCodeCount"); 
+		//model.addAttribute("cerCodeMsg");
 		return ViewRef.USER_TEMP;
 	}	
 
@@ -222,8 +223,6 @@ public class UserController {
 	@RequestMapping(value="findId", method = RequestMethod.GET)
 	public String findId(Model model) {
 		model.addAttribute("view",ViewRef.USER_FINDID);
-		//model.addAttribute("findIdMsg");
-		//model.addAttribute("findIdSuccessMsg");
 		return ViewRef.USER_TEMP;
 	}
 	
@@ -247,7 +246,7 @@ public class UserController {
 	}
 	
 	
-	// myPage
+	// myPage (테스트용)
 	@RequestMapping(value="/myPage", method = RequestMethod.GET)
 	public String myPage(Model model) {
 		return "/user/myPage";

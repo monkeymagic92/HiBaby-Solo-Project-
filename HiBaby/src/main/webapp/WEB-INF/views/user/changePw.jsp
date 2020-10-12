@@ -39,6 +39,7 @@ function chk() {
 		frm.user_rpw.focus();
 		return false;
 	}	
+	
 }
 
 </script>

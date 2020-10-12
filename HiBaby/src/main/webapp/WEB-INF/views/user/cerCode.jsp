@@ -55,7 +55,7 @@
 		      
 		      <!-- Modal body -->
 		    <div class="modal-body">
-		    	<form id="frm" action="/user/cerCode" method="post">
+		    	<form id="frm" action="/user/cerCode" method="post" onsubmit="return chk()">
 		    		<input type="text" name="cerCode" placeholder="코드입력">
 		    		<input type="submit" value="확인">
 		    	</form>
@@ -97,6 +97,14 @@ window.onload = function() {
 	
 	function close_pop(flag) {
 	 $('#myModal').hide();
+	}
+	
+	function chk() {
+		if(frm.cerCode.value.length > 6) {
+			alert('인증코드 6자리를 입력해주세요');
+			frm.cerCode.value = '';
+			return false;
+		}
 	}
 	
 	
