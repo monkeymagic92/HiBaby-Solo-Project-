@@ -19,21 +19,35 @@ public class UserService {
 	private UserMapper mapper;
 
 	// 이메일 체크
-	// 코드 좀 거지같음 수정하기
 	public int emailChk(UserPARAM param, HttpSession hs) {
 		
-		if(param.getEmail().equals("")) {
-			return 3;
-		}		
 		UserDMI dbUser = mapper.emailChk(param);
 		
 		if(dbUser == null) {
 			return 1; 
 		}		
+		
 		if(dbUser.getEmail().equals(param.getEmail())) {
-			return 2;
+			return 2;		
 		}		
-		return 4;
+		
+		return 0;
+	}
+	
+	// 닉네임 체크
+	public int nickChk(UserPARAM param) {
+		
+		UserDMI dbUser = mapper.nickChk(param);
+		
+		if(dbUser == null) {
+			return 1;
+		}
+		
+		if(dbUser.getNick().equals(param.getNick())) {
+			return 2;
+		}
+		
+		return 0;
 	}
 		
 		

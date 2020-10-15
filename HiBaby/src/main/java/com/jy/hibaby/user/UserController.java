@@ -57,6 +57,19 @@ public class UserController {
 		return String.valueOf(result);
 	}
 	
+	// 닉네임 중복체크(aJax)
+	@RequestMapping(value="/ajaxNickChk", method=RequestMethod.POST)
+	@ResponseBody	
+	public String ajaxNickChk(@RequestBody UserPARAM param, HttpSession hs) {
+		
+		int result = service.nickChk(param);
+		
+		if(result == 0) {
+			System.out.println("result : " + result);
+		}
+		return String.valueOf(result);
+	}
+	
 	
 	//	로그인
 	@RequestMapping(value="/login", method = RequestMethod.GET)

@@ -27,7 +27,8 @@
 		<input type="password" name="user_pw" placeholder="비밀번호">
 		<input type="password" name="user_rpw" placeholder="비밀번호 확인">
 		<input type="text" name="nm" placeholder="이름">
-		<input type="text" name="nick" placeholder="닉네임">			
+		<input type="text" name="nick" id="nick_input" placeholder="닉네임" required>
+		<button type="button" id="nickChk" class="btn btn-3" onclick="chkNick()">닉네임 중복체크</button><i id="nickClick" class="animate__rubberBand animate__animated fas fa-check" ></i>					
 		<input type="hidden" name="uNum" value="${uNumCode }">
 		<!-- 스크립트부분 보면 mouseoverTest 라고 쿼리문 써놨음 -->
 		<div id="mouseoverTest">
@@ -48,8 +49,9 @@ if (${joinErrMsg != null}) {
 
 $('#idClick').hide();
 $('#emailClick').hide();
+$('#nickClick').hide();
 
-// 아이디, 이메일인증 버튼을 클릭해야지만 submit이 되도록
+// 아이디, 이메일, 닉네임 중복체크 버튼을 클릭해야지만 submit이 되도록
 $('#username_input').keyup(function() {
 	$('#submitBtn').attr("disabled", "disabled")
 })
@@ -58,7 +60,11 @@ $('#email_input').keyup(function() {
 	$('#submitBtn').attr("disabled", "disabled")
 })
 
-/* submit버튼 근처에 마우스가가면 alert띄움
+$('#nick_input').keyup(function() {
+	$('#submitBtn').attr("disabled", "disabled")
+})
+
+/* submit버튼 근처에 마우스가가면 alert띄움 
 $('#mouseoverTest').mouseover(function() {
 	alert('이메일 인증후 가입을 누르세요');
 })
@@ -142,7 +148,7 @@ function chk() {
 		frm.nick.focus();
 		return false;
 	}
-	
+	/*
 	if (frm.nick.value.length > 0) {
 		const korean = /[^가-힣]/;
 		
@@ -152,6 +158,7 @@ function chk() {
 			return false;
 		}
 	}
+	*/
 	
 	if (frm.email.value.length == 0) {
 		alert("올바른 이메일을 입력해주세요");
@@ -181,7 +188,7 @@ function chk() {
 	}
 }
 
-// 이메일 중복확인
+//이메일 중복확인
 function chkEmail() {
 	const email = frm.email.value
 	axios.post('/user/ajaxEmailChk', {
@@ -205,11 +212,9 @@ function chkEmail() {
 					frm.email.focus();
 					return false
 				}
-			}			
+			}						
 			
-			$('#emailClick').show();
-			$('#submitBtn').removeAttr('disabled')
-			
+			$('#emailClick').show();			
 			frm.email.focus()			
 			
 		} else if(res.data == '2') { //이메일 중복됨
@@ -217,13 +222,9 @@ function chkEmail() {
 			$('#emailClick').hide();
 			frm.email.value = ''
 			frm.email.focus()
-			$('#submitBtn').attr("disabled","disabled");
+	
 			
-		} else if(res.data == '3'){
-			alert('이메일을 입력해 주세요')
-			frm.email.focus()
-			
-		} else if(res.date == '4') {
+		} else {
 			alert('이메일을 다시 확인하여 주세요')
 			frm.email.focus()
 			return false;
@@ -277,6 +278,48 @@ function chkId() {
 		} else if(res.data == '4') { // 아이디 입력안했을시
 			alert('아이디를 입력해 주세요');
 			frm.user_id.focus()
+		}
+	})
+}
+
+function chkNick() {
+	const nick = frm.nick.value
+	axios.post('/user/ajaxNickChk', {
+		
+			nick
+			
+	}).then(function(res) {
+		console.log(res)
+		if(res.data == '1') { // 닉네임 없음 (사용가능)
+										
+						
+			if (frm.nick.value.length == 0 || frm.nick.value.length < 2) {
+				alert("닉네임은 2글자 이상입니다");
+				frm.nick.focus();
+				return false;
+			} 
+			
+			if (frm.nick.value.length > 13) {
+				alert("닉네임이 너무 깁니다");
+				frm.nick.focus();
+				return false;
+			}
+			
+			$('#nickClick').show();	
+			$('#submitBtn').removeAttr('disabled');
+			
+			
+		} else if(res.data == '2') { // 닉네임 중복됨	
+			$('#nickClick').hide();
+	
+			alert('사용할수 없는 닉네임 입니다.');
+			frm.nick.value = '';
+			frm.nick.focus();
+			
+		} else {
+			alert('닉네임을 다시 확인해 주세요');
+			frm.nick.value = '';
+			frm.nick.focus();
 		}
 	})
 }
