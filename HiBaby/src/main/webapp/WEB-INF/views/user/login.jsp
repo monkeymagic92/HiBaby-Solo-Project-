@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Hibaby 로그인</title>
 <%-- 로그인 페이지 css --%>
 </head>
 <body>
@@ -14,8 +14,8 @@
     <div id="container">
         <span class="close-btn">
             <img src="https://cdn4.iconfinder.com/data/icons/miu/22/circle_close_delete_-128.png"></img>
+            
         </span>
-         
         
         <form id="frm" class="box" action="/user/login" method="post">
             <h1>Login</h1>

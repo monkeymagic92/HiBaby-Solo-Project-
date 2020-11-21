@@ -62,11 +62,12 @@
 		    </div>
 		    
 		    <!-- Modal bottom -->
-		    <div class="modal-bottom" onclick="moveToLogin()">
-				<button type="button" class="pop_bt">
-					종료
-				</button>
+		    <div class="modal-bottom">
+				
 		    </div>
+		    <button type="button" class="pop_bt" onclick="moveToLogin()">
+					종료
+			</button>
 		</div>
     </div>
 </body>
