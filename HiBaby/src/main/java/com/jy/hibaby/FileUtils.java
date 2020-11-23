@@ -10,10 +10,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FileUtils {
 	public static void makeFolder(String path) {
-		File dir = new File(path);		
-		if(!dir.exists()) { // 만약 폴더가 없다면 ? 폴더만들어라 
-			dir.mkdirs(); // mkdirs, mkdir 이있는데 그냥 무조건 midirs 만들어라(굳이 좋은거냅두고 왜 mkdir씀 ? 복수형써라 그냥)
+		File dir = new File(path);	
+		System.out.println("1파일유틸 패스 : " + path);
+		if(!dir.exists()) { // 만약 폴더가 없다면 ? 폴더만들어라
+			System.out.println("2파일유틸 패스 : " + path);
+			dir.mkdirs(); // mkdirs, mkdir 두개가 있는데 그냥 무조건 midirs 사용해라(굳이 좋은거냅두고 왜 mkdir씀 ? 복수형써라 그냥)
 		}
+		System.out.println("3파일유틸 패스 : " + path);
 	}
 	
 	public static String getExt(String fileNm) {
@@ -37,8 +40,21 @@ public class FileUtils {
 		return UUID.randomUUID() + ext;
 	}
 	
-	
+	// thumFile saveFile 이랑 같은거임 saveFile 쓰면됨
 	public static String saveFile(String path, MultipartFile mf) {
+		if(mf.getOriginalFilename() == "") { return null; }
+		String saveFileNm = getRandomUUID(mf);
+		
+		try {
+			mf.transferTo(new File(path + saveFileNm));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return saveFileNm;
+	}
+	
+	public static String thumFile(String path, MultipartFile mf) {
 		if(mf.isEmpty()) { return null; }
 		String saveFileNm = getRandomUUID(mf);
 		

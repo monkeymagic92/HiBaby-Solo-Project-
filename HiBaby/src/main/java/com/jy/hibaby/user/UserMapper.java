@@ -19,6 +19,8 @@ public interface UserMapper {
 	
 	UserDMI nickChk(UserPARAM param);	// 닉네임 중복체크
 	
+	UserPARAM selUserInfo(UserPARAM param); // n번 유저의 정보
+	
 	
 	// isnert
 	int joinUser(UserVO param);		// 회원가입

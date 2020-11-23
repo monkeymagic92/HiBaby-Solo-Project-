@@ -10,7 +10,7 @@ CREATE TABLE t_user(
 	myPoint INT(8),
 	myCash INT(8),
 	sm VARCHAR(80),
-	profile_img VARCHAR(70),
+	profile_img VARCHAR(200),
 	r_dt DATETIME DEFAULT NOW(),
 	m_dt DATETIME DEFAULT NOW(),
 	PRIMARY KEY(i_user)

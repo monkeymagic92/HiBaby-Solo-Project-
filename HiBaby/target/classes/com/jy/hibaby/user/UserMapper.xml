@@ -13,6 +13,12 @@
 		WHERE <if test="i_user > 0"> i_user = #{i_user}</if>
 		<if test="user_id != null and user_id != ''"> user_id = #{user_id}</if>
 	</select>
+	
+	<select id="selUserInfo" parameterType="UserPARAM" resultType="UserPARAM">
+		SELECT i_user, user_id, nm, nick, email, myPoint, myCash, sm, profile_img, r_dt, m_dt
+		FROM t_user
+		WHERE i_user = #{i_user}
+	</select>
 
 	<!-- 비밀번호 찾기 -->
 	<select id="findPwChk" parameterType="UserPARAM" resultType="UserDMI">

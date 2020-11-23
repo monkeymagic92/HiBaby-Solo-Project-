@@ -21,7 +21,7 @@
 	<form id="frm" class="box" action="/user/join" method="post" onsubmit="return chk()">
 		<h1>회원가입</h1>		
 		<input type="text" id="email_input" name="email" placeholder="이메일" required>
-		<button type="button" id="emailChkBtn" class="animate__flash animate__animated btn btn-3" onclick="chkEmail()">이메일 중복체크</button>&nbsp;<i id="emailClick" class="animate__rubberBand animate__animated fas fa-check"></i>
+		<button type="button" id="emailChkBtn" class="btn btn-3" onclick="chkEmail()">이메일 중복체크</button>&nbsp;<i id="emailClick" class="animate__rubberBand animate__animated fas fa-check"></i>
 		<input type="text" id="username_input" name="user_id" placeholder="아이디" required>		
 		<button type="button" id="idChkBtn" class="btn btn-3" onclick="chkId()">아이디 중복체크</button>&nbsp;<i id="idClick" class="animate__rubberBand animate__animated fas fa-check" ></i>				
 		<input type="password" name="user_pw" placeholder="비밀번호">
@@ -40,7 +40,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
 window.onload = function() {
-	frm.user_id.focus()
+	frm.email.focus()
 }
 
 if (${joinErrMsg != null}) {

@@ -37,5 +37,9 @@
   
   <!-- include 적용시키기 -->
   <jsp:include page="/WEB-INF/views/${view}.jsp"></jsp:include>
+  
+<script>
+
+</script>
 </body>
 </html>

@@ -1,6 +1,8 @@
 package com.jy.hibaby.user;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +82,9 @@ public class UserService {
 		return Const.SUCCESS;
 	}
 
+	public UserPARAM selUserInfo(UserPARAM param) {
+		return mapper.selUserInfo(param);
+	}
 	
 	// 회원가입
 	public int joinUser(UserVO param) {

@@ -266,9 +266,18 @@ public class UserController {
 	}
 	
 	
-	// myPage (테스트용)
+	// myPage
 	@RequestMapping(value="/myPage", method = RequestMethod.GET)
-	public String myPage(Model model) {
+	public String myPage(Model model, RedirectAttributes ra, UserPARAM param, HttpSession hs) {
+		try {
+			int i_user = SecurityUtils.getLoginUserPk(hs);
+			param.setI_user(i_user);
+			
+		} catch(Exception e) {
+			model.addAttribute("loginErr", "로그인을 해주세요");
+		}
+		
+		model.addAttribute("selUser", service.selUserInfo(param));
 		model.addAttribute("view", "/user/myPage");
 		return ViewRef.DEFAULT_TEMP;
 	}
