@@ -14,7 +14,10 @@ public class ViewRef {
 	public static final String USER_FINDID = "user/findId";	// 아이디 찾기
 	
 	
-	// /index 
+	// /index - 선택부
 	public static final String INDEX_SELECT = "index/select"; // 첫화면 선택부
+	
+	// /default - 기본상단바
+	public static final String DEFAULT_TEMP = "temp/defaultTemp";
 	
 }

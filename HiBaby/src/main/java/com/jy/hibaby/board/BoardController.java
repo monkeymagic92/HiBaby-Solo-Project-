@@ -24,7 +24,8 @@ public class BoardController {
 		
 		list = service.selBoard();
 		model.addAttribute("list", list);
-		return "/board/list";
+		model.addAttribute("view", "/board/list");
+		return "/temp/defaultTemp";
 	}
 	
 	

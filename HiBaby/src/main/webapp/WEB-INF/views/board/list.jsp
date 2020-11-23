@@ -7,8 +7,17 @@
 <head>
 <meta charset="UTF-8">
 <title>커뮤니티</title>
+<style>
+	.container{
+		margin: 0 auto;
+		margin-top: 20px;
+		width: 8000px;
+	}
+</style>
 </head>
 <body>
+	<div class="container">
+	
 	<c:choose>
 		<c:when test="${loginUser != null }">
 			<div>유저이름 : ${loginUser.nm }</div>
@@ -37,5 +46,6 @@
 		</tr>
 		</c:forEach>
 	</table>
+	</div>
 </body>
 </html>

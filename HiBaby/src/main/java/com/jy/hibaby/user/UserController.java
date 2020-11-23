@@ -269,7 +269,8 @@ public class UserController {
 	// myPage (테스트용)
 	@RequestMapping(value="/myPage", method = RequestMethod.GET)
 	public String myPage(Model model) {
-		return "/user/myPage";
+		model.addAttribute("view", "/user/myPage");
+		return ViewRef.DEFAULT_TEMP;
 	}
 
 }
