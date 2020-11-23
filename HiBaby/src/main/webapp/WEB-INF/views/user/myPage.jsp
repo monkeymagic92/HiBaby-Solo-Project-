@@ -15,5 +15,12 @@
 	<div>이멜 : ${loginUser.email }</div>
 	<div>포인트 : ${loginUser.myPoint }</div>
 	<div>r_dt : ${loginUser.r_dt }</div>
+	<button onclick="logOut()">로그아웃 (테스트용)</button>
 </body>
+<script>
+	// 로그아웃
+	function logOut() {
+		location.href="/user/logout"
+	}
+</script>
 </html>

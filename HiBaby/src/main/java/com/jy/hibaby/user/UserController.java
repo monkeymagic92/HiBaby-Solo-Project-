@@ -70,6 +70,13 @@ public class UserController {
 		return String.valueOf(result);
 	}
 	
+	// 로그아웃
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public String logout(Model model, HttpSession hs) {
+		hs.invalidate();
+		return "redirect:/" + ViewRef.USER_LOGIN;
+	}
+	
 	
 	//	로그인
 	@RequestMapping(value="/login", method = RequestMethod.GET)

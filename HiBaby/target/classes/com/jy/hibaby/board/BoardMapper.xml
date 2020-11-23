@@ -3,14 +3,29 @@
 <mapper namespace="com.jy.hibaby.board.BoardMapper">
 
 
-<!-- 값 안넘어오면 parameterType 을 list로 바꾸기 -->
+						<!-- select -->
+						
+	<!-- 게시글 뿌리기 -->
+	<select id="selBoard" resultType="BoardVO">
+		SELECT A.i_board, A.title, A.ctnt, B.nm, A.r_dt FROM t_board A
+		LEFT JOIN t_user B
+		ON A.i_user = B.i_user
+	</select>						
+						
+						<!-- insert -->
+						
+						
+						
+						
+						<!-- update -->
+						
+						
+						
+						
+						<!-- delete -->
 
  
-<select id="selBoard" resultType="BoardVO">
-	SELECT A.i_board, A.title, A.ctnt, B.nm, A.r_dt FROM t_board A
-	LEFT JOIN t_user B
-	ON A.i_user = B.i_user
-</select>
+
 
 	
 </mapper>

@@ -17,7 +17,7 @@
             
         </span>
         
-        <form id="frm" class="box" action="/user/login" method="post">
+        <form id="frm" class="box" action="/user/login" method="post" onsubmit="return chk()">
             <h1>Login</h1>
             <input type="text" name="user_id" value="${user_id}" placeholder="아이디">
             <input type="password" name="user_pw" placeholder="비밀번호">
@@ -36,6 +36,20 @@ if(${data != null}) {
 	
 } else if (${emailErr != null}) {
 	alert('${emailErr}')
+}
+
+function chk() {
+	if(frm.user_id.value.length == 0) {
+		alert('정보를 입력해 주세요')
+		frm.title.focus()
+		return false;
+	}
+	
+	if(frm.user_pw.value.length == 0) {
+		alert('정보를 입력해 주세요')
+		frm.title.focus()
+		return false;
+	}
 }
 </script>
 </html>
