@@ -15,12 +15,19 @@
 </head>
 <body>
 	<div class="formContainer">
-		<form>
-			<input type="text" name="nick" placeholder="닉네임 변경">
+		<form id="frm" action="/user/info" method="post" onsubmit="return chk()">
+			<h5>닉네임 변경</h5>
+			<hr>
+			<input type="text" name="nick" placeholder="닉네임 변경" value="${loginUser.nick}">
 			<br>
-			<input type="text" name="email" placeholder="이메일 변경">
+			<h5>이메일 변경</h5>
+			<hr>
+			<input type="email" name="email" placeholder="이메일 변경" value="${loginUser.email}">
 			<br>
-			<textarea name="sm" placeholder="상태메세지 변경"></textarea>
+			<h5>상태메세지 변경</h5>
+			<hr>
+			<textarea name="sm" placeholder="상태메세지 변경">${loginUser.sm}</textarea>
+			<button type="submit">회원정보 수정</button>
 		</form>		
 	</div>
 </body>
