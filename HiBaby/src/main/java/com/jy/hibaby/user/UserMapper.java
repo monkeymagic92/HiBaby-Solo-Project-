@@ -30,9 +30,14 @@ public interface UserMapper {
 	// update 
 	int changePw(UserPARAM param);	// 비밀번호 변경
 	
+	int insProfile_img(UserVO vo); 	  // 프로필사진 등록
+	
 	
 	
 	// delete 
 	
+	int delProfile_img(UserPARAM param); // 프로필 사진 삭제
+	
+	int delImg(int i_user);
 	
 }

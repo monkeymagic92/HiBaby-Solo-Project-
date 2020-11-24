@@ -12,6 +12,7 @@ public class ViewRef {
 	public static final String USER_CERCODE = "user/cerCode"; //인증번호
 	public static final String USER_CHANGEPW = "user/changePw";	// 비밀번호 변경
 	public static final String USER_FINDID = "user/findId";	// 아이디 찾기
+	public static final String USER_INFO = "user/info";	// 아이디 찾기
 	
 	
 	// /index - 선택부

@@ -1,14 +1,18 @@
 package com.jy.hibaby.user;
 
 
-import java.util.List;
+import java.io.File;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.jy.hibaby.Const;
+import com.jy.hibaby.FileUtils;
 import com.jy.hibaby.SecurityUtils;
 import com.jy.hibaby.user.model.UserDMI;
 import com.jy.hibaby.user.model.UserPARAM;
@@ -142,4 +146,67 @@ public class UserService {
 			return Const.SUCCESS;
 		}		 
 	}
+	
+	
+	// 프로필사진 등록
+	public String insUserProfileImg(MultipartHttpServletRequest mReq, UserVO vo) {
+		
+		int i_user = SecurityUtils.getLoginUserPk(mReq.getSession());
+		
+		String path = mReq.getServletContext().getRealPath("") +  "resources/img/profile_img/user/" + i_user + "/";
+		
+		File file = new File(path + vo.getProfile_img());
+		
+		System.out.println("파일경로 : " + file);
+		
+		if(file.exists()) {
+			file.delete();	
+		} 
+		
+		MultipartFile fileList = mReq.getFile("user_profile_img");
+		
+		
+		System.out.println("------------");
+		System.out.println(fileList);
+		System.out.println("------------");
+		
+		File dir = new File(path);		
+		if(!dir.exists()) {  
+			dir.mkdirs(); 
+		}
+		
+		// String oldFile = path;		
+				
+		System.out.println("사진저장주소  : " + path);
+		
+		String originFileNm = fileList.getOriginalFilename(); 
+		String ext = FileUtils.getExt(originFileNm); 
+		String saveFileNm = UUID.randomUUID() + ext; 
+				
+		//vo.setProfile_img(saveFileNm);
+		//vo.setI_user(i_user);
+				
+		try {
+			fileList.transferTo(new File(path + saveFileNm));
+			vo.setI_user(i_user);
+			vo.setProfile_img(saveFileNm);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		mapper.insProfile_img(vo);
+		
+		return saveFileNm;
+	}
+	
+	
+	// 프로필사진 삭제
+	public int delUserProfileImg(int i_user) {
+		mapper.delImg(i_user);
+		return 1;
+	}	 
+	
+	
+	
 }

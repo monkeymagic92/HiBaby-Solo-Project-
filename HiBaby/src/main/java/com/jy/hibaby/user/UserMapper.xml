@@ -65,8 +65,25 @@
 		WHERE i_user = #{i_user}
 	</update>
 	
+	<!-- 프로필 사진 수정 / 등록 -->
+	<update id="insProfile_img" parameterType="UserVO">
+		UPDATE t_user
+		SET profile_img = #{profile_img}
+		WHERE i_user = #{i_user}
+	</update>
+	
+	<update id="delImg" parameterType="int">
+		UPDATE t_user
+		SET profile_img = NULL
+		WHERE i_user = #{i_user}
+	</update>
+	
 						<!-- delete -->
 	
+	<delete id="delProfile_img" parameterType="UserPARAM">
+		DELETE FROM t_user
+		WHERE profile_img = #{profile_img}
+	</delete>
 		
 	
 	

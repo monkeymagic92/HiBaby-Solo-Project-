@@ -10,18 +10,20 @@
 <style>
 	#navDefaultTemp {
 		height: 65px;
-		border-radius: 5px;
-	}
-	.container {
-		margin: 0 auto;
 		margin-top: 15px;
-		width: 800px;		
+		border-radius: 5px;
+		width: 1050px;
+	}
+	.navContainer {
+		margin: 0 auto;
+		width: 1050px;	
+					
 	}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 <body>
-	<div class="container">
+	<div class="navContainer">
 		<nav id="navDefaultTemp">
 		    <div id="navWrapperId" class="nav-wrapper">
 		        <a href="/index/select" class="brand-logo">&nbsp&nbsp HiBaby</a>
@@ -33,11 +35,9 @@
 		        </ul>
 		    </div>
 	  	</nav>
-  </div>
-  
-  <!-- include 적용시키기 -->
-  <jsp:include page="/WEB-INF/views/${view}.jsp"></jsp:include>
-  
+	</div>
+    <jsp:include page="/WEB-INF/views/${view}.jsp"></jsp:include>
+  	
 <script>
 
 </script>

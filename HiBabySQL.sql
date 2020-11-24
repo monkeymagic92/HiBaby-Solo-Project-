@@ -7,8 +7,8 @@ CREATE TABLE t_user(
 	nick VARCHAR(14),
 	email VARCHAR(34) unique,
 	uNum INT(8),
-	myPoint INT(8),
-	myCash INT(8),
+	myPoint INT(8), -- 보유한 포인트
+	myCash INT(8),  -- 환급받은 캐시
 	sm VARCHAR(80),
 	profile_img VARCHAR(200),
 	r_dt DATETIME DEFAULT NOW(),

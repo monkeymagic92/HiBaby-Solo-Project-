@@ -1,5 +1,7 @@
 package com.jy.hibaby.user;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jy.hibaby.Const;
@@ -281,6 +284,73 @@ public class UserController {
 		model.addAttribute("view", "/user/myPage");
 		return ViewRef.DEFAULT_TEMP;
 	}
+	
+	
+	// 회원정보변경
+	@RequestMapping(value="/info", method = RequestMethod.GET)
+	public String info(Model model, RedirectAttributes ra, UserPARAM param, HttpSession hs) {
+		System.out.println("i_user값 : " + param.getI_user());
+		
+		model.addAttribute("view", ViewRef.USER_INFO);
+		return ViewRef.DEFAULT_TEMP;
+	}
+	
+	
+	// 프로필 사진 등록 / 수정  (mReq를 info.post에 넣으니 에러뜸) (코드 수정해야됨)
+	@RequestMapping(value="/imgUpload", method = RequestMethod.POST)
+	public String imgUpload(Model model, UserVO vo, UserPARAM param, HttpServletRequest request,
+			HttpSession hs, RedirectAttributes ra, MultipartHttpServletRequest mReq) {
+		
+		try {
+			int i_user = SecurityUtils.getLoginUserPk(hs);
+			param.setI_user(i_user);
+			
+			System.out.println("5");
+			System.out.println("멀티파트쳌 : " + mReq);
+			String dbUser = ((UserVO)hs.getAttribute(Const.LOGIN_USER)).getProfile_img();
+			
+			System.out.println("dbUser : " + dbUser);
+			vo.setProfile_img(dbUser);
+			
+			String fileNm = service.insUserProfileImg(mReq, vo);
+			UserPARAM param2 = ((UserPARAM)hs.getAttribute(Const.LOGIN_USER));
+			param2.setProfile_img(fileNm);
+			hs.removeAttribute(Const.LOGIN_USER);
+			hs.setAttribute(Const.LOGIN_USER, param2);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			ra.addFlashAttribute("imgErr","프로필사진을 새로 등록해 주세요");
+			return "redirect:/" +  ViewRef.USER_INFO;
+		}
+		
+		return "redirect:/" + ViewRef.USER_INFO;
+	}
+	
+	
+	@RequestMapping(value="/imgDel", method = RequestMethod.POST)
+	public String imgDel(UserPARAM param, HttpSession hs) {
+		int i_user = SecurityUtils.getLoginUserPk(hs);
+		int result = 0;
+		
+		String dbUserImg = ((UserVO)hs.getAttribute(Const.LOGIN_USER)).getProfile_img();
+		String path = hs.getServletContext().getRealPath("") +  "resources/img/profile_img/user/" + i_user + "/" + dbUserImg;
+		
+		System.out.println("사진명 : " + dbUserImg);
+		System.out.println("경로 : " + path);
+		
+		File file = new File(path);
+		if(file.exists()) {
+			result = service.delUserProfileImg(i_user);
+			file.delete();
+			UserDMI param2 = ((UserDMI)hs.getAttribute(Const.LOGIN_USER));
+			param2.setProfile_img(null);
+			hs.removeAttribute(Const.LOGIN_USER);
+			hs.setAttribute(Const.LOGIN_USER, param2);
+			return "redirect:/user/info";
+		}
+		return "redirect:/" +  ViewRef.USER_INFO;		
+	}	
 
 }
 

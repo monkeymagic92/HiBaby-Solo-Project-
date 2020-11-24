@@ -8,17 +8,11 @@
 <meta charset="UTF-8">
 <title>커뮤니티</title>
 <style>
-	.container{
-		margin: 0 auto;
-		margin-top: 20px;
-		
-	}
 	.tableContainer {
+		width: 850px;
 		margin: 0 auto;
 		margin-top: 20px;
-		width: 1100px;
 	}
-	
 </style>
 </head>
 <body>

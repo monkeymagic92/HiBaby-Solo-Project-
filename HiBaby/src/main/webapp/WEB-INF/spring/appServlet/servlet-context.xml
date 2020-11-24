@@ -67,6 +67,12 @@
 		<beans:property name="configLocation" value="WEB-INF/spring/mybatis-alias.xml" />
 	</beans:bean>
 	
+	<!-- 사진 업로드 멀티파트 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="52428800" /> <!-- 5MB -->
+		<beans:property name="defaultEncoding" value="utf-8" />			
+	</beans:bean>
+	
 	
 	<!-- 얘는 인터페이스의 @Mapper를 찾는 애 -->
 	<mybatis-spring:scan base-package="com.jy.hibaby"/> <!--  하단 탭에Namespace import 안해서 빨간줄 뜨는것  -->
