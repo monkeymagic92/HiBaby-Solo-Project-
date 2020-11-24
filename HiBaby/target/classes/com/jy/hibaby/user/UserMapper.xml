@@ -78,6 +78,15 @@
 		WHERE i_user = #{i_user}
 	</update>
 	
+	<!-- 유저 회원정보 변경 -->	
+	<update id="userInfoChange" parameterType="UserPARAM">
+		UPDATE t_user
+		SET nick = #{nick},
+		email = #{email},
+		sm = #{sm}
+		WHERE i_user = #{i_user}
+	</update>
+	
 						<!-- delete -->
 	
 	<delete id="delProfile_img" parameterType="UserPARAM">

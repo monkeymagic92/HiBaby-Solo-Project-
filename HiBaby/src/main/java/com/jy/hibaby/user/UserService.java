@@ -206,4 +206,10 @@ public class UserService {
 		mapper.delImg(i_user);
 		return 1;
 	}	 
+	
+	
+	// 유저정보 변경
+	public int userInfoChange(UserPARAM param) {
+		return mapper.userInfoChange(param);
+	}
 }

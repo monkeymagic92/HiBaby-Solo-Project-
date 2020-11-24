@@ -32,6 +32,8 @@ public interface UserMapper {
 	
 	int insProfile_img(UserVO vo); 	  // 프로필사진 등록
 	
+	int userInfoChange(UserPARAM param);	// 유저정보 변경
+	
 	
 	
 	// delete 

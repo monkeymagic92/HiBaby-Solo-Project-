@@ -290,9 +290,32 @@ public class UserController {
 	@RequestMapping(value="/info", method = RequestMethod.GET)
 	public String info(Model model, RedirectAttributes ra, UserPARAM param, HttpSession hs) {
 		System.out.println("i_user값 : " + param.getI_user());
-		
+		try {
+			int i_user = SecurityUtils.getLoginUserPk(hs);
+			param.setI_user(i_user);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			model.addAttribute("loginErr", "로그인을 해주세요");
+		}
+		System.out.println("post 3");
 		model.addAttribute("view", ViewRef.USER_INFO);
 		return ViewRef.DEFAULT_TEMP;
+	}
+	
+	@RequestMapping(value="/info", method = RequestMethod.POST)
+	public String info(Model model, RedirectAttributes ra, UserPARAM param) {
+		
+		int result = service.userInfoChange(param);
+		if(result == 1) {
+			System.out.println("post 1");
+			ra.addFlashAttribute("infoMsg", "회원정보가 수정되었습니다");
+		} else {
+			System.out.println("post 2");
+			ra.addFlashAttribute("infoMsg", "서버에러가 발생하였습니다 다시시도해 주세요");
+		}
+		System.out.println("post 4");
+		return "redirect:/" + ViewRef.USER_INFO;
 	}
 	
 	

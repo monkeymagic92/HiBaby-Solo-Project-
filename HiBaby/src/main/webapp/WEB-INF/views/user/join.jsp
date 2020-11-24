@@ -5,8 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-</head>
-<link rel="stylesheet" type="text/css" href="/res/css/animate/animate.css">
+<link rel="stylesheet" type="text/css" href="/res/css/animate.css">
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <style>
 	#idChkResult {
@@ -17,6 +16,7 @@
 		 transition: 0.9s;
 	}
 </style>
+</head>
 <body>
 	<form id="frm" class="box" action="/user/join" method="post" onsubmit="return chk()">
 		<h1>회원가입</h1>		
@@ -282,6 +282,7 @@ function chkId() {
 	})
 }
 
+// 닉네임 중복확인
 function chkNick() {
 	const nick = frm.nick.value
 	axios.post('/user/ajaxNickChk', {
