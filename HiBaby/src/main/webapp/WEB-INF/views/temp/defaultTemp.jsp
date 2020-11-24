@@ -19,6 +19,10 @@
 		width: 1050px;	
 					
 	}
+	.profileImg {
+		width: 30px;
+		border-radius: 40px;
+	}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
@@ -31,7 +35,14 @@
 		            <li><a href="#">사진</a></li>
 		            <li><a href="#">쪽지(아이콘넣기)</a></li>
 		            <li><a href="#">???</a></li>
-		            <li><a href="#"><img href="#">회원사진</a></li>
+		            <li>
+		            	<c:if test="${loginUser.profile_img != null}">
+		            		<a href="/user/myPage"><img src="/res/img/HiBaby/profile_img/user/${loginUser.i_user }/${loginUser.profile_img}" class="profileImg"></a>
+			            </c:if>
+			            <c:if test="${loginUser.profile_img == null}">
+			            	<a href="/user/myPage"><img src="/res/img/lion.jpg" class="profileImg"></a>
+			            </c:if>
+		            </li>
 		        </ul>
 		    </div>
 	  	</nav>
