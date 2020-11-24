@@ -152,8 +152,8 @@ public class UserService {
 	public String insUserProfileImg(MultipartHttpServletRequest mReq, UserVO vo) {
 		
 		int i_user = SecurityUtils.getLoginUserPk(mReq.getSession());
-		
-		String path = mReq.getServletContext().getRealPath("") +  "resources/img/profile_img/user/" + i_user + "/";
+		//String path = mReq.getServletContext().getRealPath("") +  "resources/img/profile_img/user/" + i_user + "/"; 원래 원본 (잘될때 코드) 
+		String path = mReq.getServletContext().getRealPath("") +  "resources/img/HiBaby/profile_img/user/" + i_user + "/"; // dd,hibaby 구분짓기위해
 		
 		File file = new File(path + vo.getProfile_img());
 		
@@ -206,7 +206,4 @@ public class UserService {
 		mapper.delImg(i_user);
 		return 1;
 	}	 
-	
-	
-	
 }

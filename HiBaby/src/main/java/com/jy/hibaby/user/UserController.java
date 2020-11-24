@@ -321,10 +321,10 @@ public class UserController {
 		} catch(Exception e) {
 			e.printStackTrace();
 			ra.addFlashAttribute("imgErr","프로필사진을 새로 등록해 주세요");
-			return "redirect:/" +  ViewRef.USER_INFO;
+			return "redirect:/" +  ViewRef.USER_MYPAGE;
 		}
 		
-		return "redirect:/" + ViewRef.USER_INFO;
+		return "redirect:/" + ViewRef.USER_MYPAGE;
 	}
 	
 	
@@ -334,7 +334,7 @@ public class UserController {
 		int result = 0;
 		
 		String dbUserImg = ((UserVO)hs.getAttribute(Const.LOGIN_USER)).getProfile_img();
-		String path = hs.getServletContext().getRealPath("") +  "resources/img/profile_img/user/" + i_user + "/" + dbUserImg;
+		String path = hs.getServletContext().getRealPath("") +  "resources/img/HiBaby/profile_img/user/" + i_user + "/" + dbUserImg;
 		
 		System.out.println("사진명 : " + dbUserImg);
 		System.out.println("경로 : " + path);
@@ -343,13 +343,13 @@ public class UserController {
 		if(file.exists()) {
 			result = service.delUserProfileImg(i_user);
 			file.delete();
-			UserDMI param2 = ((UserDMI)hs.getAttribute(Const.LOGIN_USER));
+			UserPARAM param2 = ((UserPARAM)hs.getAttribute(Const.LOGIN_USER));
 			param2.setProfile_img(null);
 			hs.removeAttribute(Const.LOGIN_USER);
 			hs.setAttribute(Const.LOGIN_USER, param2);
-			return "redirect:/user/info";
+			return "redirect:/" + ViewRef.USER_MYPAGE;
 		}
-		return "redirect:/" +  ViewRef.USER_INFO;		
+		return "redirect:/" +  ViewRef.USER_MYPAGE;		
 	}	
 
 }

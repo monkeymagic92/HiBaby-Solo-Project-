@@ -21,5 +21,5 @@
     </div>
 </body>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="/res/js/index/select.js"></script>
+<script src="/res/js/select.js"></script>
 </html>
