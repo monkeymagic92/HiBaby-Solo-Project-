@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>HiBaby</title>
-<link rel="stylesheet" type="text/css" href="/res/css/user/userTemp.css">
+<link rel="stylesheet" type="text/css" href="/res/css/userTemp.css">
 </head>
 <body>
 	<nav role="navigation">

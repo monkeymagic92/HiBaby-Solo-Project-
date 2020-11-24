@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>선택화면</title>
-<link rel="stylesheet" type="text/css" href="/res/css/index/select.css">
+<link rel="stylesheet" type="text/css" href="/res/css/select.css">
 </head>
 <body>
 	<div class="overlay-navigation">

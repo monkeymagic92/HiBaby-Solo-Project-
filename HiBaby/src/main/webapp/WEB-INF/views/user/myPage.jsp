@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>마이 페이지</title>
-<link rel="stylesheet" href="/res/css/user/myPage.css">
+<link rel="stylesheet" href="/res/css/myPage.css">
 <style>
 	.myPageContainer {
 		margin: 0 auto;
@@ -44,6 +44,7 @@
                 </div>
             </div>
         </section>
+        <br>
         <button onclick="moveToInfo(${loginUser.i_user})">회원정보 변경</button>
 		<button onclick="logOut()">로그아웃</button>
 	</div>
