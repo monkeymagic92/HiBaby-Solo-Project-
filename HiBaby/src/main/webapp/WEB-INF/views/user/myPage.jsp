@@ -44,8 +44,8 @@
         </section>
         <br><br>
         <div>닉네임 : ${loginUser.nick}</div>        
-        <div>포인트 : ${loginUser.myPoint}</div>
-        <div>환급캐시 : ${loginUser.myCash}</div>        
+        <div>포인트 : ${loginUser.myPoint}</div><button onclick="#">캐시백</button>
+        <div>환급받은 캐시 : ${loginUser.myCash}</div>        
         <br>
         <button onclick="moveToInfo(${loginUser.i_user})">회원정보 변경</button>
 		<button onclick="logOut()">로그아웃</button>

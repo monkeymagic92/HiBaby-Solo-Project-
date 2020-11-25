@@ -12,9 +12,9 @@
         <nav role="navigation">
               <ul class="abc">
                 <li><a class="liFont" href="/user/test" data-content="Home">홈</a></li>
-                <li><a class="liFont" href="#" data-content="Game">게임</a></li>
-                <li><a class="liFont" href="/board/list" data-content="Cm">커뮤니티</a></li>
-                <li><a class="liFont" href="/test/test" data-content="Ligi">일기</a></li>
+                <li><a class="liFont" href="#" data-content="Study">공부</a></li>
+                <li><a class="liFont" href="/board/list" data-content="Community">커뮤니티</a></li>
+                <li><a class="liFont" href="/test/test" data-content="Diary">일기</a></li>
                 <li><a class="liFont" href="/user/myPage" data-content="Mypage">마이페이지</a></li>
               </ul>
         </nav>

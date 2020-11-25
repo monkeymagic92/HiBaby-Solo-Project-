@@ -304,7 +304,6 @@ public class UserController {
 		
 		model.addAttribute("view", ViewRef.USER_INFO);
 		return ViewRef.DEFAULT_TEMP;
-		
 	}
 	
 	@RequestMapping(value="/info", method = RequestMethod.POST)
