@@ -20,7 +20,7 @@ SELECT * FROM t_user;
 UPDATE t_user
 SET myPoint = 20000,
 myCash = 1000
-WHERE i_user = 1;
+WHERE i_user = 2;
 
 
 

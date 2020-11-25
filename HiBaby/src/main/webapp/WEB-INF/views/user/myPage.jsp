@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +16,7 @@
 	<!-- 
 	
 		https://codepen.io/jlalovi/pen/bIyAr     마이페이지 커스텀마이징 할 codepen
+		
 	 -->
 	<div class="myPageContainer">
         <section class="pro_Img">
@@ -25,14 +27,14 @@
                     		<img src="/res/img/lion.jpg" onchange="setThumbnail(e)" alt="" class="img">
                     	</c:if>
                     	<c:if test="${loginUser.profile_img != null }">
-                 f           <img src="/res/img/HiBaby/profile_img/user/${loginUser.i_user }/${loginUser.profile_img}" class="img">                    	
+                            <img src="/res/img/HiBaby/profile_img/user/${loginUser.i_user }/${loginUser.profile_img}" class="img">                    	
                     	</c:if>
                     </label>
                     <br><br>
                     <div class="div-cngBtn">
                         <div class="div-subBtn">
                             <form id="imgFrm" action="/user/imgUpload" method="post" enctype="multipart/form-data" onsubmit="return imgChk()">
-                                <input type="ile" name="user_profile_img" id="file" accept="image/png, image/jpeg, image/jpg">
+                                <input type="file" name="user_profile_img" id="file" accept="image/png, image/jpeg, image/jpg">
                                 <input class="cngImg" type="submit" value="사진 저장">
                             </form>
                         </div>
@@ -48,32 +50,58 @@
         </section>
         <br><br>
         <div>닉네임 : ${loginUser.nick}</div>        
-        <div>포인트 : ${loginUser.myPoint}</div><button onclick="#">캐시백</button>
-        <div>환급받은 캐시 : ${loginUser.myCash}</div>        
+        <div>포인트 : ${loginUser.myPoint}</div>
+        <div>환급받은 캐시 : ${loginUser.myCash}</div>
+        <button id="myPoint">포인트 몰</button>        
         <br>
         <button onclick="moveToInfo(${loginUser.i_user})">회원정보 변경</button>
 		<button onclick="logOut()">로그아웃</button>
 	</div>
 	
+	
+	
+	<div id="myModal" class="modal">
+
+		<!-- Modal content -->
+		<div class="modal-content">
+		    <h4>나의포인트 : <fmt:formatNumber value="${loginUser.myPoint}" pattern="#,###" />p</h4>
+		    
+            <!-- Modal body -->
+		    <div class="modal-body">
+		    	
+		    	환급받을 포인트 입력 :
+		    	<form id="pointFrm">
+		    		<input type="number" id="myCashId" name="myCashName" placeholder="" maxlength="8" oninput="numberMaxLength(this)">	
+		    	</form> 
+		    	
+		    	<button onclick="ajaxPoint()">환급받기</button>
+		    </div>
+		    
+		    <!-- Modal bottom -->
+		    <div class="modal-bottom">
+				Modal Bottom부분		
+		    </div>
+		    <button type="button" class="pop_bt" onclick="hideModal()">종료</button>
+		</div>
+    </div>
+	
 </body>
 <script src="/res/js/myPage.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-	// 회원정보변경
-	function moveToInfo(i_user) {
-		location.href="/user/info?i_user="+i_user		
-	}
 
-	// 로그아웃
-	function logOut() {
-		if(confirm('로그아웃 하시겠습니까?')) {
-			location.href="/user/logout"	
-		}
-	}
-	
-	// 비로그인시 접근할경우
+
+
+	//비로그인시 접근할경우
 	if(${loginErr != null}) {
 		alert('${loginErr}')
 		location.href="/user/login"
+	}
+	
+	// 회원정보변경
+	function moveToInfo(i_user) {
+		location.href="/user/info?i_user="+i_user		
 	}
 	
 	//프로필 이미지 체크
@@ -84,6 +112,64 @@
 			alert('사진을 변경해주세요')
 			return false;
 		}
+	}
+	
+	// 로그아웃
+	function logOut() {
+		if(confirm('로그아웃 하시겠습니까?')) {
+			location.href="/user/logout"	
+		}
+	}
+	
+	/*
+	 * 		포인트 환급관련
+	 */
+	 
+	// 모탈창 나타내기
+	$('#myPoint').click(function() {
+		$('#myModal').show();
+	})
+
+	// 모달창 종료
+	function hideModal() {
+		myModal.style.display = 'none'
+	}
+
+	//환급포인트 길이 제한
+	function numberMaxLength(e){
+	    if(e.value.length >= e.maxLength){
+	        e.value = e.value.slice(0, e.maxLength);
+	    }
+	}
+
+	// 포인트 환급받기
+	function ajaxPoint() {
+		const myPoint = `${loginUser.myPoint}`
+		const i_user = `${loginUser.i_user}`
+		//var myCash = $('#myCashId').val();   jquery 로 id value값 가져오기
+		const myCash = document.getElementById("myCashId").value
+		
+		console.log(myPoint)
+		console.log(i_user)
+		console.log(myCash)
+		
+		axios.post('/user/ajaxMyPoint', {
+			
+				i_user,
+				myPoint,
+				myCash
+				
+		}).then(function(res) {
+			if(res.data =='1') {
+				alert('환급되었습니다')
+				pointFrm.myCashName.value = 0
+				
+			} else if(res.data == '2') {
+				alert('현재 보유한 포인트를 초과하였습니다')
+				pointFrm.myCashName.value = 0
+				
+			} 
+		})
 	}
 </script>
 </html>

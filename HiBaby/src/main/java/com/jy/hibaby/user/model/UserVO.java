@@ -9,12 +9,13 @@ public class UserVO {
 	private String nick;
 	private String email;
 	private int uNum;	// 비밀번호 변경시 고유번호 8자리
-	private String myPoint; // 누적포인트	
-	private String myCash; // 환불받은 금액
+	private int myPoint; // 누적포인트	
+	private int myCash; // 환불받은 금액
 	private String sm; // 상태메세지
 	private String profile_img;
 	private String r_dt;
 	private String m_dt;
+	
 	
 	public int getI_user() {
 		return i_user;
@@ -64,16 +65,16 @@ public class UserVO {
 	public void setuNum(int uNum) {
 		this.uNum = uNum;
 	}
-	public String getMyPoint() {
+	public int getMyPoint() {
 		return myPoint;
 	}
-	public void setMyPoint(String myPoint) {
+	public void setMyPoint(int myPoint) {
 		this.myPoint = myPoint;
 	}
-	public String getMyCash() {
+	public int getMyCash() {
 		return myCash;
 	}
-	public void setMyCash(String myCash) {
+	public void setMyCash(int myCash) {
 		this.myCash = myCash;
 	}
 	public String getSm() {
@@ -100,7 +101,4 @@ public class UserVO {
 	public void setM_dt(String m_dt) {
 		this.m_dt = m_dt;
 	}
-	
-	
-		
 }
