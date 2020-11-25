@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.jy.hibaby.board.model.BoardVO;
+import com.jy.hibaby.board.model.BoardDMI;
 
 @Mapper
 public interface BoardMapper {
-	List<BoardVO> selBoard();
+	List<BoardDMI> selBoard();
 }

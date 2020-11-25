@@ -25,12 +25,12 @@
 				<td>작성자</td>
 				<td>작성시간</td>
 			</tr>
-			<c:forEach items="${list }" var="item">
+			<c:forEach items="${list}" var="item">
 			<tr>
 				<td>${item.i_board }</td>
 				<td>${item.title }</td>
 				<td>${item.ctnt }</td>
-				<td>${item.nm }</td>
+				<td>${item.nick }</td>
 				<td>${item.r_dt }</td>
 			</tr>
 			</c:forEach>

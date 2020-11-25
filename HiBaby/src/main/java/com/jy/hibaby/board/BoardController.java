@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.jy.hibaby.board.model.BoardVO;
+import com.jy.hibaby.board.model.BoardDMI;
 
 @Controller
 @RequestMapping("/board")
@@ -20,7 +20,7 @@ public class BoardController {
 	
 	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public String boardList(Model model) {
-		List<BoardVO> list = new ArrayList<BoardVO>();
+		List<BoardDMI> list = new ArrayList<BoardDMI>();
 		
 		list = service.selBoard();
 		model.addAttribute("list", list);

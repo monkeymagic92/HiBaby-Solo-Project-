@@ -214,7 +214,5 @@ function chkEmail() {
 	})
 }
 
-
-
 </script>
 </html>

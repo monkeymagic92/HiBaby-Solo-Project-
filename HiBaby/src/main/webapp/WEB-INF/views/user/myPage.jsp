@@ -13,6 +13,12 @@
 		margin-top: 30px;
 		width: 500px;
 	}
+	
+	.img {
+		width: 180px;
+		height: 180px;
+		border-radius: 10px;
+	}
 </style>
 </head>
 <body>
@@ -32,13 +38,13 @@
                     <div class="div-cngBtn">
                         <form id="imgFrm" action="/user/imgUpload" method="post" enctype="multipart/form-data" onsubmit="return imgChk()">
                             <input type="file" name="user_profile_img" id="file" accept="image/png, image/jpeg, image/jpg">
-                            <input class="cngImg" type="submit" value="사진변경">
+                            <input class="cngImg" type="submit" value="사진 저장">
                         </form>
                     </div>
                     <br>
                     <div class="delBtn">
                         <form id="imgDelFrm" action="/user/imgDel" method="post">
-                            <input class="cngImg2" type="submit" value="사진삭제">
+                            <input class="cngImg2" type="submit" value="사진 삭제">
                         </form>
                     </div>
                 </div>
