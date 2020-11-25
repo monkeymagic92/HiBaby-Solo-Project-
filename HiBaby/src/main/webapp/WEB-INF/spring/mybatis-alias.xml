@@ -9,5 +9,7 @@
 		
 		<!-- board -->
 		<typeAlias type="com.jy.hibaby.board.model.BoardVO" alias="BoardVO" />
+		<typeAlias type="com.jy.hibaby.board.model.BoardPARAM" alias="BoardPARAM" />
+		<typeAlias type="com.jy.hibaby.board.model.BoardDMI" alias="BoardDMI" />
 	</typeAliases>	
 </configuration>

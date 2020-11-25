@@ -47,9 +47,15 @@ function chk() {
 $('#emailClick').hide(); // 이메일 중복체크 v표
 $('#nickClick').hide(); // 닉네임 중복체크 v표
 
-if(${loginErr != null}) {
-	alert('${loginErr}')
+// 로그인을 하지않고 들어왔을 경우 에러메세지
+if(${loginMsg != null}) {
+	alert('${loginMsg}')
 	location.href="/user/login"
+}
+
+// 회원정보 수정 성공 / 실패 여부에 따른 메세지
+if(${infoMsg != null}) {
+	alert('${infoMsg}')
 }
 
 // 닉네임 중복확인

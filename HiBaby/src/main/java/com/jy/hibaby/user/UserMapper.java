@@ -21,6 +21,7 @@ public interface UserMapper {
 	
 	UserPARAM selUserInfo(UserPARAM param); // n번 유저의 정보
 	
+	UserDMI selDetailUser(UserPARAM param);	// info 에서 변경시 값 불러오기
 	
 	// isnert
 	int joinUser(UserVO param);		// 회원가입

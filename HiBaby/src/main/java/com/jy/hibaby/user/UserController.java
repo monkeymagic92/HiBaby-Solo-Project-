@@ -288,33 +288,38 @@ public class UserController {
 	
 	// 회원정보변경
 	@RequestMapping(value="/info", method = RequestMethod.GET)
-	public String info(Model model, RedirectAttributes ra, UserPARAM param, HttpSession hs) {
-		System.out.println("i_user값 : " + param.getI_user());
-		try {
+	public String info(Model model, RedirectAttributes ra, 
+			UserPARAM param, HttpSession hs) {
+		
+		try {			
 			int i_user = SecurityUtils.getLoginUserPk(hs);
 			param.setI_user(i_user);
+			hs.setAttribute(Const.LOGIN_USER, service.selDetailUser(param));
 			
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-			model.addAttribute("loginErr", "로그인을 해주세요");
+			model.addAttribute("loginMsg", "로그인을 해주세요");
+			return ViewRef.USER_INFO;
 		}
-		System.out.println("post 3");
+		
 		model.addAttribute("view", ViewRef.USER_INFO);
 		return ViewRef.DEFAULT_TEMP;
+		
 	}
 	
 	@RequestMapping(value="/info", method = RequestMethod.POST)
-	public String info(Model model, RedirectAttributes ra, UserPARAM param) {
+	public String info(Model model, RedirectAttributes ra, 
+			HttpSession hs, UserPARAM param) {
 		
 		int result = service.userInfoChange(param);
 		if(result == 1) {
-			System.out.println("post 1");
 			ra.addFlashAttribute("infoMsg", "회원정보가 수정되었습니다");
+			
+			
 		} else {
-			System.out.println("post 2");
 			ra.addFlashAttribute("infoMsg", "서버에러가 발생하였습니다 다시시도해 주세요");
 		}
-		System.out.println("post 4");
+		
 		return "redirect:/" + ViewRef.USER_INFO;
 	}
 	
@@ -336,7 +341,7 @@ public class UserController {
 			vo.setProfile_img(dbUser);
 			
 			String fileNm = service.insUserProfileImg(mReq, vo);
-			UserPARAM param2 = ((UserPARAM)hs.getAttribute(Const.LOGIN_USER));
+			UserVO param2 = ((UserVO)hs.getAttribute(Const.LOGIN_USER));
 			param2.setProfile_img(fileNm);
 			hs.removeAttribute(Const.LOGIN_USER);
 			hs.setAttribute(Const.LOGIN_USER, param2);

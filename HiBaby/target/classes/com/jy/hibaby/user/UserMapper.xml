@@ -43,6 +43,13 @@
 		SELECT nick FROM t_user		
 		WHERE nick = #{nick}
 	</select>
+	
+	<select id="selDetailUser" parameterType="UserPARAM" resultType="UserDMI"> 
+		SELECT i_user, user_id, user_pw, salt, nm, nick, email, myPoint
+		,myCash, sm, profile_img, r_dt, m_dt
+		FROM t_user
+		WHERE <if test="i_user > 0"> i_user = #{i_user}</if>
+	</select>
 
 						<!-- insert -->
 						 

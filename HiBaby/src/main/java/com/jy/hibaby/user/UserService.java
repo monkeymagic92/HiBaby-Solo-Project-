@@ -2,6 +2,9 @@ package com.jy.hibaby.user;
 
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -14,6 +17,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.jy.hibaby.Const;
 import com.jy.hibaby.FileUtils;
 import com.jy.hibaby.SecurityUtils;
+import com.jy.hibaby.TimeMaximum;
 import com.jy.hibaby.user.model.UserDMI;
 import com.jy.hibaby.user.model.UserPARAM;
 import com.jy.hibaby.user.model.UserVO;
@@ -212,4 +216,33 @@ public class UserService {
 	public int userInfoChange(UserPARAM param) {
 		return mapper.userInfoChange(param);
 	}
+	
+	
+	///////////////
+	
+	public UserDMI selDetailUser(UserPARAM param) {
+		UserDMI dbUser = mapper.selDetailUser(param);
+		return transVoR_dt(dbUser);
+	}
+	
+	//등록일자 변경 메소드
+	public static UserDMI transVoR_dt(UserDMI param) {
+		String paramR_dt = param.getR_dt();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+		try {
+			date = sdf.parse(paramR_dt);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		String strR_dt = TimeMaximum.calculateTime(date);
+		param.setR_dt(strR_dt);
+		
+		return param;
+	}
+		
+	
+	
+	
 }
