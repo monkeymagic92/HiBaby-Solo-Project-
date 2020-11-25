@@ -12,6 +12,10 @@
 </style>
 </head>
 <body>
+	<!-- 
+	
+		https://codepen.io/jlalovi/pen/bIyAr     마이페이지 커스텀마이징 할 codepen
+	 -->
 	<div class="myPageContainer">
         <section class="pro_Img">
             <div class="imgBtn">
@@ -21,14 +25,14 @@
                     		<img src="/res/img/lion.jpg" onchange="setThumbnail(e)" alt="" class="img">
                     	</c:if>
                     	<c:if test="${loginUser.profile_img != null }">
-                            <img src="/res/img/HiBaby/profile_img/user/${loginUser.i_user }/${loginUser.profile_img}" class="img">                    	
+                 f           <img src="/res/img/HiBaby/profile_img/user/${loginUser.i_user }/${loginUser.profile_img}" class="img">                    	
                     	</c:if>
                     </label>
                     <br><br>
                     <div class="div-cngBtn">
                         <div class="div-subBtn">
                             <form id="imgFrm" action="/user/imgUpload" method="post" enctype="multipart/form-data" onsubmit="return imgChk()">
-                                <input type="file" name="user_profile_img" id="file" accept="image/png, image/jpeg, image/jpg">
+                                <input type="ile" name="user_profile_img" id="file" accept="image/png, image/jpeg, image/jpg">
                                 <input class="cngImg" type="submit" value="사진 저장">
                             </form>
                         </div>
