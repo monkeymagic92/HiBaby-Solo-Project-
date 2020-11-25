@@ -371,7 +371,7 @@ public class UserController {
 		if(file.exists()) {
 			result = service.delUserProfileImg(i_user);
 			file.delete();
-			UserPARAM param2 = ((UserPARAM)hs.getAttribute(Const.LOGIN_USER));
+			UserVO param2 = ((UserVO)hs.getAttribute(Const.LOGIN_USER));
 			param2.setProfile_img(null);
 			hs.removeAttribute(Const.LOGIN_USER);
 			hs.setAttribute(Const.LOGIN_USER, param2);
