@@ -8,17 +8,7 @@
 <title>마이 페이지</title>
 <link rel="stylesheet" href="/res/css/myPage.css">
 <style>
-	.myPageContainer {
-		margin: 0 auto;
-		margin-top: 30px;
-		width: 500px;
-	}
 	
-	.img {
-		width: 180px;
-		height: 180px;
-		border-radius: 10px;
-	}
 </style>
 </head>
 <body>
@@ -34,22 +24,28 @@
                             <img src="/res/img/HiBaby/profile_img/user/${loginUser.i_user }/${loginUser.profile_img}" class="img">                    	
                     	</c:if>
                     </label>
-                    <br>
+                    <br><br>
                     <div class="div-cngBtn">
-                        <form id="imgFrm" action="/user/imgUpload" method="post" enctype="multipart/form-data" onsubmit="return imgChk()">
-                            <input type="file" name="user_profile_img" id="file" accept="image/png, image/jpeg, image/jpg">
-                            <input class="cngImg" type="submit" value="사진 저장">
-                        </form>
-                    </div>
-                    <br>
-                    <div class="delBtn">
-                        <form id="imgDelFrm" action="/user/imgDel" method="post">
-                            <input class="cngImg2" type="submit" value="사진 삭제">
-                        </form>
+                        <div class="div-subBtn">
+                            <form id="imgFrm" action="/user/imgUpload" method="post" enctype="multipart/form-data" onsubmit="return imgChk()">
+                                <input type="file" name="user_profile_img" id="file" accept="image/png, image/jpeg, image/jpg">
+                                <input class="cngImg" type="submit" value="사진 저장">
+                            </form>
+                        </div>
+                        <br><br>
+                        <div class="delBtn">
+                            <form id="imgDelFrm" action="/user/imgDel" method="post">
+                                <input class="cngImg2" type="submit" value="사진 삭제">
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
+        <br><br>
+        <div>닉네임 : ${loginUser.nick}</div>        
+        <div>포인트 : ${loginUser.myPoint}</div>
+        <div>환급캐시 : ${loginUser.myCash}</div>        
         <br>
         <button onclick="moveToInfo(${loginUser.i_user})">회원정보 변경</button>
 		<button onclick="logOut()">로그아웃</button>
@@ -65,7 +61,9 @@
 
 	// 로그아웃
 	function logOut() {
-		location.href="/user/logout"
+		if(confirm('로그아웃 하시겠습니까?')) {
+			location.href="/user/logout"	
+		}
 	}
 	
 	// 비로그인시 접근할경우

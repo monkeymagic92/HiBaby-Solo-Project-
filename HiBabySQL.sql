@@ -16,7 +16,12 @@ CREATE TABLE t_user(
 	PRIMARY KEY(i_user)
 );
 SELECT * FROM t_user;
-DROP TABLE t_user;
+
+UPDATE t_user
+SET myPoint = 20000,
+myCash = 1000
+WHERE i_user = 1;
+
 
 
 CREATE TABLE t_board(
@@ -28,19 +33,12 @@ CREATE TABLE t_board(
     r_dt datetime DEFAULT NOW(),
     FOREIGN key(i_user) REFERENCES t_user(i_user)
 );
-
 SELECT * FROM t_board;
-DROP TABLE t_board;
 
 INSERT INTO t_board (title, ctnt, i_user) VALUES ('11111','1111111111',1);
 INSERT INTO t_board (title, ctnt, i_user) VALUES ('222222','22222',1);
 INSERT INTO t_board (title, ctnt, i_user) VALUES ('33333','3333333',1);
 INSERT INTO t_board (title, ctnt, i_user) VALUES ('44444','44444444',2);
-
-SELECT * FROM t_board A
-LEFT JOIN t_user B
-ON A.i_user = B.i_user
-WHERE B.i_user = 1; 
 
 
 
