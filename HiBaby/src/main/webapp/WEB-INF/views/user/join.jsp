@@ -7,6 +7,7 @@
 <title>회원가입</title>
 <link rel="stylesheet" type="text/css" href="/res/css/animate.css">
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <style>
 	#idChkResult {
 		color: red;
@@ -19,25 +20,33 @@
 </head>
 <body>
 	<form id="frm" class="box" action="/user/join" method="post" onsubmit="return chk()">
-		<h1>회원가입</h1>		
-		<input type="text" id="email_input" name="email" placeholder="이메일" required>
-		<button type="button" id="emailChkBtn" class="btn btn-3" onclick="chkEmail()">이메일 중복체크</button>&nbsp;<i id="emailClick" class="animate__rubberBand animate__animated fas fa-check"></i>
-		<input type="text" id="username_input" name="user_id" placeholder="아이디" required>		
-		<button type="button" id="idChkBtn" class="btn btn-3" onclick="chkId()">아이디 중복체크</button>&nbsp;<i id="idClick" class="animate__rubberBand animate__animated fas fa-check" ></i>				
-		<input type="password" name="user_pw" placeholder="비밀번호">
+		<h1>회원가입</h1>
+		
+		<input type="text" name="email" placeholder="이메일 입력" id="email_txt">
+        <button type="button" id="emailChk" class="btn btn-3" onclick="chkEmail()">이메일 중복체크</button>
+        <input id="emailUnChk" name="emailUnChk" type="hidden" value="unChk">
+        <i id="emailClick" class="animate__rubberBand animate__animated fas fa-check"></i>
+		
+		<input type="text" name="user_id" id="id_input" placeholder="아이디">
+        <button type="button" id="idChk" class="btn btn-3" onclick="chkId()">아이디 중복체크</button>
+        <input type="hidden" id="idUnChk" name="idUnChk" value="unChk">
+        <i id="idClick" class="animate__rubberBand animate__animated fas fa-check" ></i>
+        
+        <input type="text" name="nick" id="nick_input" placeholder="닉네임">
+        <button type="button" id="nickChk"class="btn btn-3"  onclick="chkNick()">닉네임 중복체크</button>
+        <i id="nickClick" class="animate__rubberBand animate__animated fas fa-check" ></i>
+        <input id="nickUnChk" name="nickUnChk" type="hidden" value="unChk">
+        
+        <input type="password" name="user_pw" placeholder="비밀번호">
 		<input type="password" name="user_rpw" placeholder="비밀번호 확인">
-		<input type="text" name="nm" placeholder="이름">
-		<input type="text" name="nick" id="nick_input" placeholder="닉네임" required>
-		<button type="button" id="nickChk" class="btn btn-3" onclick="chkNick()">닉네임 중복체크</button><i id="nickClick" class="animate__rubberBand animate__animated fas fa-check" ></i>					
-		<input type="hidden" name="uNum" value="${uNumCode }">
-		<!-- 스크립트부분 보면 mouseoverTest 라고 쿼리문 써놨음 -->
-		<div id="mouseoverTest">
-		<input type="submit" id="submitBtn" disabled="disabled" value="가입">
-		</div>
+		
+		<input type="submit" id="submitBtn" value="가입">
     </form>        
 </body>
+
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
 <script>
 window.onload = function() {
 	frm.email.focus()
@@ -51,32 +60,30 @@ $('#idClick').hide();
 $('#emailClick').hide();
 $('#nickClick').hide();
 
-// 아이디, 이메일, 닉네임 중복체크 버튼을 클릭해야지만 submit이 되도록
-$('#username_input').keyup(function() {
-	$('#submitBtn').attr("disabled", "disabled")
+
+$('#emailChk').click(function() {
+	frm.emailUnChk.value = 'chk'
+})
+$('#idChk').click(function() {
+	frm.idUnChk.value = 'chk'
+})
+$('#nickChk').click(function() {
+	frm.nickUnChk.value = 'chk'
+})
+$('#nick_input').keydown(function() {
+	$('#nickClick').hide();
+	frm.nickUnChk.value = 'unChk'
+})
+$('#email_txt').keydown(function() {
+	$('#emailClick').hide();
+	frm.emailUnChk.value = 'unChk'
+})
+$('#id_input').keydown(function() {
+	$('#idClick').hide();
+	frm.idUnChk.value = 'unChk'
 })
 
-$('#email_input').keyup(function() {
-	$('#submitBtn').attr("disabled", "disabled")
-})
-
-$('#nick_input').keyup(function() {
-	$('#submitBtn').attr("disabled", "disabled")
-})
-
-/* submit버튼 근처에 마우스가가면 alert띄움 
-$('#mouseoverTest').mouseover(function() {
-	alert('이메일 인증후 가입을 누르세요');
-})
-*/
-
-function chk() {
-	if(${chkEmailCode != null}) {
-		alert('이메일을 인증해 주세요')
-		frm.email.focus()
-		return false;
-	}
-	
+function chk() {	
 			
 	if (frm.user_id.value.length < 6) {
 		alert("ID는 5글자 이상 입력해주세요");		
@@ -85,7 +92,7 @@ function chk() {
 	} 
 	
 	if (frm.user_id.value.length > 19) {
-		alert("ID는 18자리 이하로 입력해주세요");
+		alert("ID가 너무 깁니다");
 		frm.user_id.focus();
 		return false;
 	}
@@ -119,23 +126,6 @@ function chk() {
 		return false;
 	} 
 	
-	if (frm.nm.value.length == 0 || frm.nm.value.length < 2) {
-		alert("올바른 이름을 입력해 주세요");
-		frm.nm.focus();
-		return false;
-	}
-	
-	// 한글 정규화			
-	if (frm.nm.value.length > 0) {
-		const korean = /[^가-힣]/;
-		
-		if(korean.test(frm.nm.value)) {
-			alert("올바른  이름을 입력해 주세요");
-			frm.nm.focus();
-			return false;
-		}
-	}
-	
 	
 	if (frm.nick.value.length == 0 || frm.nick.value.length < 2) {
 		alert("닉네임은 2글자 이상입니다");
@@ -148,17 +138,6 @@ function chk() {
 		frm.nick.focus();
 		return false;
 	}
-	/*
-	if (frm.nick.value.length > 0) {
-		const korean = /[^가-힣]/;
-		
-		if(korean.test(frm.nick.value)) {
-			alert("올바른  닉네임을 입력해 주세요");
-			frm.nick.focus();
-			return false;
-		}
-	}
-	*/
 	
 	if (frm.email.value.length == 0) {
 		alert("올바른 이메일을 입력해주세요");
@@ -172,7 +151,7 @@ function chk() {
 		return false;
 	}
 	
-	// 이메일 정규화 (추후 select 로 업데이트 하기)(daum, naver, google 등등)
+	// 이메일 정규화 
 	if (frm.email.value.length > 0) {
 		const email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
 		if(!email.test(frm.email.value)) {
@@ -182,10 +161,31 @@ function chk() {
 		}
 	}
 	
-	if (frm.nm.value.length > 2) {
+		
+	if (frm.nick.value.length > 2 
+			&& frm.idUnChk.value != 'unChk' 
+			&& frm.emailUnChk.value != 'unChk'
+			&& frm.nickUnChk.value != 'unChk'
+			) {
+		
 		alert('회원가입이 되었습니다');
 		location.href='/user/login';	
 	}
+	
+	if(frm.emailUnChk.value == 'unChk') {
+		alert('이메일 중복확인을 클릭해주세요');
+		return false;
+	}
+	
+	if(frm.idUnChk.value == 'unChk') {
+		alert('아이디 중복확인을 클릭해주세요')
+		return false;
+	}
+	
+	if(frm.nickUnChk.value == 'unChk') {
+		alert('닉네임 중복확인을 클릭해주세요')
+		return false;
+	}	
 }
 
 //이메일 중복확인
@@ -231,7 +231,6 @@ function chkEmail() {
 		}
 	})
 }
-
 // 아이디 중복확인
 function chkId() {
 	const user_id = frm.user_id.value
@@ -264,13 +263,12 @@ function chkId() {
 				}
 			}
 		
-			$('#idClick').show();
-			$('#submitBtn').removeAttr('disabled');
+			$('#idClick').show();	
 			frm.user_pw.focus();
 			
 		} else if(res.data == '3') { //아이디 중복됨	
 			$('#idClick').hide();
-			$('#submitBtn').attr("disabled","disabled");
+	
 			alert('사용할수 없는 아이디 입니다.');
 			frm.user_id.value = '';
 			frm.user_id.focus();
@@ -281,7 +279,6 @@ function chkId() {
 		}
 	})
 }
-
 // 닉네임 중복확인
 function chkNick() {
 	const nick = frm.nick.value
@@ -307,7 +304,6 @@ function chkNick() {
 			}
 			
 			$('#nickClick').show();	
-			$('#submitBtn').removeAttr('disabled');
 			
 			
 		} else if(res.data == '2') { // 닉네임 중복됨	
@@ -324,7 +320,6 @@ function chkNick() {
 		}
 	})
 }
-
 
 </script>
 </html>

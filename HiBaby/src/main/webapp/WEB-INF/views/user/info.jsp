@@ -20,11 +20,13 @@
 			<h5>닉네임 변경</h5>
 			<hr>
 			<input type="text" name="nick" placeholder="닉네임 변경" value="${loginUser.nick}">
+			<input id="nickUnChk" name="nickUnChk" type="hidden" value="unChk">
 			<button type="button" id="nickChk" class="btn btn-3" onclick="chkNick()">닉네임 중복체크</button><i id="nickClick" class="animate__rubberBand animate__animated fas fa-check" ></i>
 			<br>
 			<h5>이메일 변경</h5>
 			<hr>
 			<input type="email" name="email" placeholder="이메일 변경" value="${loginUser.email}">
+			<input id="emailUnChk" name="emailUnChk" type="hidden" value="unChk">
 			<button type="button" id="emailChkBtn" class="btn btn-3" onclick="chkEmail()">이메일 중복체크</button>&nbsp;<i id="emailClick" class="animate__rubberBand animate__animated fas fa-check"></i>
 			<br>
 			<h5>상태메세지 변경</h5>
@@ -46,6 +48,15 @@ function chk() {
 
 $('#emailClick').hide(); // 이메일 중복체크 v표
 $('#nickClick').hide(); // 닉네임 중복체크 v표
+
+$('#nick_input').keydown(function() {
+	$('#nickClick').hide();
+	frm.nickUnChk.value = 'unChk'
+})
+$('#email_txt').keydown(function() {
+	$('#emailClick').hide();
+	frm.emailUnChk.value = 'unChk'
+})
 
 // 로그인을 하지않고 들어왔을 경우 에러메세지
 if(${loginMsg != null}) {
