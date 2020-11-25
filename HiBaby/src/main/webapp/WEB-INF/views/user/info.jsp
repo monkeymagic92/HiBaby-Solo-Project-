@@ -19,16 +19,20 @@
 		<form id="frm" action="/user/info" method="post" onsubmit="return chk()">
 			<h5>닉네임 변경</h5>
 			<hr>
-			<input type="text" name="nick" placeholder="닉네임 변경" value="${loginUser.nick}">
-			<input id="nickUnChk" name="nickUnChk" type="hidden" value="unChk">
-			<button type="button" id="nickChk" class="btn btn-3" onclick="chkNick()">닉네임 중복체크</button><i id="nickClick" class="animate__rubberBand animate__animated fas fa-check" ></i>
+			<input type="text" name="nick" id="nick_input" placeholder="닉네임" value="${loginUser.nick}">
+	        <button type="button" id="nickChk"class="btn btn-3"  onclick="chkNick()">닉네임 중복체크</button>
+	        <i id="nickClick" class="animate__rubberBand animate__animated fas fa-check" ></i>
+	        <input id="nickUnChk" name="nickUnChk" type="hidden" value="chk">
 			<br>
+			
 			<h5>이메일 변경</h5>
 			<hr>
-			<input type="email" name="email" placeholder="이메일 변경" value="${loginUser.email}">
-			<input id="emailUnChk" name="emailUnChk" type="hidden" value="unChk">
-			<button type="button" id="emailChkBtn" class="btn btn-3" onclick="chkEmail()">이메일 중복체크</button>&nbsp;<i id="emailClick" class="animate__rubberBand animate__animated fas fa-check"></i>
+			<input type="text" name="email" placeholder="이메일 입력" id="email_txt" value="${loginUser.email}">
+	        <button type="button" id="emailChk" class="btn btn-3" onclick="chkEmail()">이메일 중복체크</button>
+	        <input id="emailUnChk" name="emailUnChk" type="hidden" value="chk">
+	        <i id="emailClick" class="animate__rubberBand animate__animated fas fa-check"></i>
 			<br>
+			
 			<h5>상태메세지 변경</h5>
 			<hr>
 			<textarea name="sm" placeholder="상태메세지 변경">${loginUser.sm}</textarea>
@@ -42,8 +46,60 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
 
+
+
 function chk() {
-	// 닉네임, 이메일 둘중 한개가 키보드 변경이 있었을경우에는 중복체크를 해야 넘어가게끔 조정하기
+	if (frm.nick.value.length > 2 
+			&& frm.emailUnChk.value != 'chk'
+			) {
+		
+		alert('이메일 중복확인을 해주세요');
+		return false;	
+	}
+	
+	if (frm.nick.value.length > 2 
+			&& frm.nickUnChk.value != 'chk'
+			) {
+		
+		alert('닉네임 중복확인을 해주세요');
+		return false;	
+	}
+	
+	
+	if (frm.nick.value.length == 0 || frm.nick.value.length < 2) {
+		alert("닉네임은 2글자 이상입니다");
+		frm.nick.focus();
+		return false;
+	} 
+	
+	if (frm.nick.value.length > 13) {
+		alert("닉네임이 너무 깁니다");
+		frm.nick.focus();
+		return false;
+	}
+	
+	if (frm.email.value.length == 0) {
+		alert("올바른 이메일을 입력해주세요");
+		frm.email.focus();
+		return false;
+	} 
+	
+	if (frm.email.value.length < 14 ) {
+		alert("올바른 이메일을 입력해주세요");
+		frm.email.focus();
+		return false;
+	}
+	
+	// 이메일 정규화 
+	if (frm.email.value.length > 0) {
+		const email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
+		if(!email.test(frm.email.value)) {
+			alert('올바른 이메일을 입력해 주세요');
+			frm.email.focus();
+			return false
+		}
+	}
+	
 }
 
 $('#emailClick').hide(); // 이메일 중복체크 v표
@@ -79,7 +135,7 @@ function chkNick() {
 	}).then(function(res) {
 		console.log(res)
 		if(res.data == '1') { // 닉네임 없음 (사용가능)
-										
+			frm.nickUnChk.value = 'chk'						
 						
 			if (frm.nick.value.length == 0 || frm.nick.value.length < 2) {
 				alert("닉네임은 2글자 이상입니다");
@@ -123,6 +179,7 @@ function chkEmail() {
 	}).then(function(res) {
 		console.log(res)
 		if(res.data == '1') {
+			frm.emailUnChk.value = 'chk'
 			
 			if (frm.email.value.length < 14 ) {
 				alert("올바른 이메일을 입력해주세요");
