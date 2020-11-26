@@ -385,16 +385,23 @@ public class UserController {
 	public String ajaxMyPoint(@RequestBody UserPARAM param, HttpSession hs,
 			HttpServletRequest request) {
 		
-		// 환급내역 나타낼떄 쿼리문에서 SELECT myPoint, myCash FROM t_user
-		//						WHERE i_user = n  이렇게 하면됨
-		
 		int result = 0;
 		
-		if(param.getMyCash() > param.getMyPoint()) { // 환급금액 초과
-			result = 2;
+		
+		if(param.getMyCash() <= param.getMyPoint()) { // 환급완료
+			int lastMyPoint = param.getMyPoint() - param.getMyCash();
+			System.out.println("listMyPoint : " + lastMyPoint);
 			
-		} else if(param.getMyCash() <= param.getMyPoint()) { // 환급완료
+			param.setMyPoint(lastMyPoint);
+			System.out.println("paramsetMY : " + param.getMyPoint());
+			
+			int success = service.updMyPoint(param);
+			hs.setAttribute(Const.LOGIN_USER, service.selDetailUser(param));
+			
 			result = 1;
+			
+		} else if(param.getMyCash() > param.getMyPoint()) { // 환급금액 초과
+			result = 2;
 		} 
 		
 		return String.valueOf(result);

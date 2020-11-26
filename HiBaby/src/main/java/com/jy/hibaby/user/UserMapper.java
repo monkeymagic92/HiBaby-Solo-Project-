@@ -29,11 +29,13 @@ public interface UserMapper {
 	
 	
 	// update 
-	int changePw(UserPARAM param);	// 비밀번호 변경
+	int changePw(UserPARAM param);			// 비밀번호 변경
 	
-	int insProfile_img(UserVO vo); 	  // 프로필사진 등록
+	int insProfile_img(UserVO vo); 	        // 프로필사진 등록
 	
 	int userInfoChange(UserPARAM param);	// 유저정보 변경
+	
+	int updMyPoint(UserPARAM param);		// 포인트 전환시 현재 point,cash 업뎃
 	
 	
 	

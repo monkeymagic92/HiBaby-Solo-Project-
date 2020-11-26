@@ -151,7 +151,6 @@ public class UserService {
 		}		 
 	}
 	
-	
 	// 프로필사진 등록
 	public String insUserProfileImg(MultipartHttpServletRequest mReq, UserVO vo) {
 		
@@ -204,21 +203,27 @@ public class UserService {
 		return saveFileNm;
 	}
 	
-	
 	// 프로필사진 삭제
 	public int delUserProfileImg(int i_user) {
 		mapper.delImg(i_user);
 		return 1;
 	}	 
 	
-	
 	// 유저정보 변경
 	public int userInfoChange(UserPARAM param) {
 		return mapper.userInfoChange(param);
 	}
 	
+	// t_user 포인트 변환시 업데이트 메소드
+	public int updMyPoint(UserPARAM param) {
+		return mapper.updMyPoint(param);
+	}
 	
-	///////////////
+
+	
+	
+	
+	
 	
 	public UserDMI selDetailUser(UserPARAM param) {
 		UserDMI dbUser = mapper.selDetailUser(param);

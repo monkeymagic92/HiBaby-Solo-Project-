@@ -42,4 +42,25 @@ INSERT INTO t_board (title, ctnt, i_user) VALUES ('44444','44444444',2);
 
 
 
+CREATE TABLE t_myPoint(
+	i_point INT UNSIGNED AUTO_INCREMENT,
+	i_user INT,
+	myPoint INT(8),
+	myCash INT(8),
+	r_dt DATETIME DEFAULT NOW(),
+	PRIMARY KEY(i_point, i_user),
+	FOREIGN KEY(i_user) REFERENCES t_user(i_user)
+);
+
+INSERT INTO t_myPoint
+(i_user, myPoint, myCash)
+VALUES
+(1, 1500, 300);
+
+-- 포인트 환전내역 나타낼때 사용할 쿼리문임
+SELECT A.myPoint, A.myCash, A.r_dt, A.i_point, A.i_user, B.i_user, B.nick FROM t_myPoint A
+LEFT JOIN t_user B
+ON A.i_user = B.i_user
+WHERE A.i_user = 1;
+
 

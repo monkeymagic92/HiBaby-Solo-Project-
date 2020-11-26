@@ -60,9 +60,18 @@
 		VALUES
 		(#{user_id}, #{user_pw}, #{salt}, #{nm}, #{nick}, #{uNum}, #{email})
 	</insert>		
+	
+	<!-- t_user 포인트 추가 -->
+	
+	<!-- t_myPoint 내역 추가 -->
 						
 						<!-- update -->
-				
+	<update id="updMyPoint" parameterType="UserPARAM">
+		UPDATE t_user
+		SET myPoint = #{myPoint},
+		myCash = #{myCash}
+		WHERE i_user = #{i_user}
+	</update>
 		
 	<!-- 비밀번호 변경 -->							
 	<update id="changePw" parameterType="UserVO">
