@@ -59,13 +59,20 @@
 		(user_id, user_pw, salt, nm, nick, uNum, email)
 		VALUES
 		(#{user_id}, #{user_pw}, #{salt}, #{nm}, #{nick}, #{uNum}, #{email})
+	</insert>
+	
+	<!-- 포인트 내역 저장 -->
+	<insert id="insMyPointPage" parameterType="PointVO">
+		INSERT INTO t_myPoint
+		(i_user, myPoint, myCash, myPointNow)
+		VALUES
+		(#{i_user}, #{myPoint}, #{myCash}, #{myPointNow})
 	</insert>		
 	
-	<!-- t_user 포인트 추가 -->
 	
-	<!-- t_myPoint 내역 추가 -->
-						
+	
 						<!-- update -->
+						
 	<update id="updMyPoint" parameterType="UserPARAM">
 		UPDATE t_user
 		SET myPoint = #{myPoint},
@@ -102,6 +109,7 @@
 		sm = #{sm}
 		WHERE i_user = #{i_user}
 	</update>
+	
 	
 						<!-- delete -->
 	

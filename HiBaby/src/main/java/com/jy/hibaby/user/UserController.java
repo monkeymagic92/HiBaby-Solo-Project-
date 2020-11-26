@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jy.hibaby.Const;
+import com.jy.hibaby.PointVO;
 import com.jy.hibaby.SecurityUtils;
 import com.jy.hibaby.ViewRef;
 import com.jy.hibaby.mail.MailSendService;
@@ -382,15 +383,24 @@ public class UserController {
 	
 	@RequestMapping(value="/myPoint", method=RequestMethod.POST)
 	public String ajaxMyPoint(UserPARAM param, HttpSession hs, Model model,
-			RedirectAttributes ra) {
+			RedirectAttributes ra, PointVO vo, HttpServletRequest request) {
 		
 		int result = 0;
+		int nowPoint = Integer.parseInt(request.getParameter("myPoint"));
 		
 		if(param.getMyCash() <= param.getMyPoint()) { // 환급완료
 			int lastMyPoint = param.getMyPoint() - param.getMyCash();
 			param.setMyPoint(lastMyPoint);
 			
-			int success = service.updMyPoint(param);
+			int success = service.updMyPoint(param); // t_user 포인트 / 캐시 내역
+			
+			// t_myPoint 테이블에 담길 내역 ( 포인트몰 )
+			vo.setMyCash(param.getMyCash());// 환급받은 캐시백
+			vo.setMyPoint(nowPoint);		// 현재 포인트
+			vo.setMyPointNow(lastMyPoint);	// 환급후 남은 포인트
+			vo.setI_user(param.getI_user());
+			int pointMoll = service.insMyPointPage(vo);
+			
 			hs.setAttribute(Const.LOGIN_USER, service.selDetailUser(param));
 			ra.addFlashAttribute("pointMsg", "환급 되었습니다");
 			
@@ -400,8 +410,15 @@ public class UserController {
 		
 		return "redirect:/" + ViewRef.USER_MYPAGE;
 	}
-	
 
+	
+	// 해당유저 포인트 몰 
+	@RequestMapping(value="/myPointMoll", method=RequestMethod.GET)
+	public String ajaxMyPoint(UserPARAM param, HttpSession hs, Model model) {
+		
+		return "";
+	}
+			
 }
 
 

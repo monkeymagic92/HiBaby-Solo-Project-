@@ -5,8 +5,15 @@ public class PointVO {
 	private int i_user;
 	private int myPoint;
 	private int myCash;
+	private int myPointNow;
 	private int r_dt;
 	
+	public int getMyPointNow() {
+		return myPointNow;
+	}
+	public void setMyPointNow(int myPointNow) {
+		this.myPointNow = myPointNow;
+	}
 	public int getI_point() {
 		return i_point;
 	}

@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.jy.hibaby.Const;
 import com.jy.hibaby.FileUtils;
+import com.jy.hibaby.PointVO;
 import com.jy.hibaby.SecurityUtils;
 import com.jy.hibaby.TimeMaximum;
 import com.jy.hibaby.user.model.UserDMI;
@@ -219,10 +220,13 @@ public class UserService {
 		return mapper.updMyPoint(param);
 	}
 	
-
+	// t_myPoint 에 전환 내역 담는 매소드
+	public int insMyPointPage (PointVO vo) {
+		return mapper.insMyPointPage(vo);
+	}
 	
 	
-	
+	// ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ
 	
 	
 	public UserDMI selDetailUser(UserPARAM param) {

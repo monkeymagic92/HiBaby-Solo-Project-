@@ -2,6 +2,7 @@ package com.jy.hibaby.user;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.jy.hibaby.PointVO;
 import com.jy.hibaby.user.model.UserDMI;
 import com.jy.hibaby.user.model.UserPARAM;
 import com.jy.hibaby.user.model.UserVO;
@@ -25,6 +26,8 @@ public interface UserMapper {
 	
 	// isnert
 	int joinUser(UserVO param);		// 회원가입
+	
+	int insMyPointPage (PointVO vo);	// 포인트몰 내역 
 	
 	
 	

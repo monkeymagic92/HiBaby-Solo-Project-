@@ -2,6 +2,7 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
+	
 		<!-- user -->
 		<typeAlias type="com.jy.hibaby.user.model.UserVO" alias="UserVO" />		
 		<typeAlias type="com.jy.hibaby.user.model.UserDMI" alias="UserDMI" />
@@ -11,5 +12,9 @@
 		<typeAlias type="com.jy.hibaby.board.model.BoardVO" alias="BoardVO" />
 		<typeAlias type="com.jy.hibaby.board.model.BoardPARAM" alias="BoardPARAM" />
 		<typeAlias type="com.jy.hibaby.board.model.BoardDMI" alias="BoardDMI" />
+		
+		<!-- point -->
+		<typeAlias type="com.jy.hibaby.PointVO" alias="PointVO" />
+		
 	</typeAliases>	
 </configuration>
