@@ -380,31 +380,25 @@ public class UserController {
 	}	
 	
 	
-	@RequestMapping(value="/ajaxMyPoint", method=RequestMethod.POST)
-	@ResponseBody	
-	public String ajaxMyPoint(@RequestBody UserPARAM param, HttpSession hs,
-			HttpServletRequest request) {
+	@RequestMapping(value="/myPoint", method=RequestMethod.POST)
+	public String ajaxMyPoint(UserPARAM param, HttpSession hs, Model model,
+			RedirectAttributes ra) {
 		
 		int result = 0;
 		
-		
 		if(param.getMyCash() <= param.getMyPoint()) { // 환급완료
 			int lastMyPoint = param.getMyPoint() - param.getMyCash();
-			System.out.println("listMyPoint : " + lastMyPoint);
-			
 			param.setMyPoint(lastMyPoint);
-			System.out.println("paramsetMY : " + param.getMyPoint());
 			
 			int success = service.updMyPoint(param);
 			hs.setAttribute(Const.LOGIN_USER, service.selDetailUser(param));
-			
-			result = 1;
+			ra.addFlashAttribute("pointMsg", "환급 되었습니다");
 			
 		} else if(param.getMyCash() > param.getMyPoint()) { // 환급금액 초과
-			result = 2;
+			ra.addFlashAttribute("pointMsg", "환급금액 초과되었습니다");
 		} 
 		
-		return String.valueOf(result);
+		return "redirect:/" + ViewRef.USER_MYPAGE;
 	}
 	
 

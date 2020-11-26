@@ -70,11 +70,12 @@
 		    <div class="modal-body">
 		    	
 		    	환급받을 포인트 입력 :
-		    	<form id="pointFrm">
-		    		<input type="number" id="myCashId" name="myCashName" placeholder="" maxlength="8" oninput="numberMaxLength(this)">	
+		    	<form id="pointFrm" action="/user/myPoint" method="post" onsubmit="return pointChk()">
+		    		<input type="number" name="myCash" placeholder="포인트를 입력해 주세요" maxlength="8" oninput="numberMaxLength(this)">
+		    		<input type="hidden" name="myPoint" value="${loginUser.myPoint}">
+		    		<input type="hidden" name="i_user" value="${loginUser.i_user}">
+		    		<button type="submit">환급받기</button>	
 		    	</form> 
-		    	
-		    	<button onclick="ajaxPoint()">환급받기</button>
 		    </div>
 		    
 		    <!-- Modal bottom -->
@@ -90,8 +91,6 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-
-
 
 	//비로그인시 접근할경우
 	if(${loginErr != null}) {
@@ -121,10 +120,9 @@
 		}
 	}
 	
-	/*
-	 * 		포인트 환급관련
-	 */
-	 
+	
+	/*		ㅡ		ㅡ		ㅡ		포인트관련		ㅡ		ㅡ		ㅡ*/ 
+	
 	// 모탈창 나타내기
 	$('#myPoint').click(function() {
 		$('#myModal').show();
@@ -141,7 +139,40 @@
 	        e.value = e.value.slice(0, e.maxLength);
 	    }
 	}
-
+	
+	// confirm창 띄워서 몇p를 환급할지 알림메세지
+	function pointChk() {
+		var myCashId = pointFrm.myCash.value
+		if(confirm(myCashId + 'p 를 환급 하시겠습니까?')) {
+			location.href="/user/myPoint"
+		} else {
+			pointFrm.myCash.value = 0
+			pointFrm.myCash.focus()
+			return false;
+		}
+	}
+	
+	// 환급 성공 실패 여부 메세지
+	if(${pointMsg != null}) {
+		alert('${pointMsg}')		
+	}
+	
+	/*		ㅡ		ㅡ		ㅡ		ㅡ		ㅡ		ㅡ		ㅡ		*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
+	
+					ㅡ 아작스버전 일단 보류 ㅡ
+	
 	// 포인트 환급받기
 	function ajaxPoint() {
 		const myPoint = `${loginUser.myPoint}`
@@ -149,27 +180,31 @@
 		//var myCash = $('#myCashId').val();   jquery 로 id value값 가져오기
 		const myCash = document.getElementById("myCashId").value
 		
-		console.log(myPoint)
-		console.log(i_user)
-		console.log(myCash)
-		
-		axios.post('/user/ajaxMyPoint', {
+		if(confirm(myCash + 'p 를 환급 하시겠습니까?')) {
 			
-				i_user,
-				myPoint,
-				myCash
+			console.log(myPoint)
+			console.log(i_user)
+			console.log(myCash)
+			
+			axios.post('/user/ajaxMyPoint', {
 				
-		}).then(function(res) {
-			if(res.data =='1') {
-				alert('환급되었습니다')
-				pointFrm.myCashName.value = 0
-				
-			} else if(res.data == '2') {
-				alert('현재 보유한 포인트를 초과하였습니다')
-				pointFrm.myCashName.value = 0
-				
-			} 
-		})
+					i_user,
+					myPoint,
+					myCash
+					
+			}).then(function(res) {
+				if(res.data =='1') {
+					alert('환급되었습니다')
+					pointFrm.myCashName.value = 0
+					
+				} else if(res.data == '2') {
+					alert('현재 보유한 포인트를 초과하였습니다')
+					pointFrm.myCashName.value = 0
+					
+				} 
+			})	
+		}
 	}
+	*/
 </script>
 </html>
