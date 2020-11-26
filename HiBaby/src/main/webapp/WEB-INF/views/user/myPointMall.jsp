@@ -22,7 +22,7 @@
 				<td>기존포인트</td>
 				<td>환급금액</td>
 				<td>잔여포인트</td>
-				<td>시간</td>
+				<td>전환시간</td>				
 			</tr>
 			<c:forEach items="${selPoint}" var="item">
 			<tr>

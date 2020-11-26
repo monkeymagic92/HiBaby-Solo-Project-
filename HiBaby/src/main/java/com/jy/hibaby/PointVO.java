@@ -6,7 +6,7 @@ public class PointVO {
 	private int myPoint;
 	private int myCash;
 	private int myPointNow;
-	private int r_dt;
+	private String r_dt;
 	
 	public int getMyPointNow() {
 		return myPointNow;
@@ -38,11 +38,12 @@ public class PointVO {
 	public void setMyCash(int myCash) {
 		this.myCash = myCash;
 	}
-	public int getR_dt() {
+	public String getR_dt() {
 		return r_dt;
 	}
-	public void setR_dt(int r_dt) {
+	public void setR_dt(String r_dt) {
 		this.r_dt = r_dt;
 	}
+
 	
 }
