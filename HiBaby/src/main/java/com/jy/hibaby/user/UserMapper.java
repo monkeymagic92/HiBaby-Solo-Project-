@@ -1,5 +1,7 @@
 package com.jy.hibaby.user;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.jy.hibaby.PointVO;
@@ -24,10 +26,12 @@ public interface UserMapper {
 	
 	UserDMI selDetailUser(UserPARAM param);	// info 에서 변경시 값 불러오기
 	
+	List<PointVO> selPointMall(UserPARAM param);		// 나의 pointMall 환급 조회
+	
 	// isnert
 	int joinUser(UserVO param);		// 회원가입
 	
-	int insMyPointPage (PointVO vo);	// 포인트몰 내역 
+	int insMyPointPage (PointVO vo);	// 포인트몰 내역 조회
 	
 	
 	

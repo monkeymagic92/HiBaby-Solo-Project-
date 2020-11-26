@@ -399,7 +399,7 @@ public class UserController {
 			vo.setMyPoint(nowPoint);		// 현재 포인트
 			vo.setMyPointNow(lastMyPoint);	// 환급후 남은 포인트
 			vo.setI_user(param.getI_user());
-			int pointMoll = service.insMyPointPage(vo);
+			int pointMall = service.insMyPointPage(vo);
 			
 			hs.setAttribute(Const.LOGIN_USER, service.selDetailUser(param));
 			ra.addFlashAttribute("pointMsg", "환급 되었습니다");
@@ -413,10 +413,12 @@ public class UserController {
 
 	
 	// 해당유저 포인트 몰 
-	@RequestMapping(value="/myPointMoll", method=RequestMethod.GET)
+	@RequestMapping(value="/myPointMall", method=RequestMethod.GET)
 	public String ajaxMyPoint(UserPARAM param, HttpSession hs, Model model) {
 		
-		return "";
+		model.addAttribute("selPoint", service.selPointMall(param));
+		model.addAttribute("view", "/user/myPointMall");
+		return ViewRef.DEFAULT_TEMP;
 	}
 			
 }

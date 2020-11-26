@@ -5,6 +5,7 @@ import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -225,6 +226,10 @@ public class UserService {
 		return mapper.insMyPointPage(vo);
 	}
 	
+	// pointMall 환급내역 조회
+	public List<PointVO> selPointMall(UserPARAM param) {
+		return mapper.selPointMall(param);
+	}
 	
 	// ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ
 	

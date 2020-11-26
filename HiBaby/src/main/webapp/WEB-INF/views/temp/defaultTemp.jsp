@@ -30,11 +30,10 @@
 	<div class="navContainer">
 		<nav id="navDefaultTemp">
 		    <div id="navWrapperId" class="nav-wrapper">
-		        <a href="/index/select" class="brand-logo">&nbsp&nbsp HiBaby</a>
+		        <a href="/index/select" class="brand-logo">&nbsp;&nbsp; HiBaby</a>
 		        <ul class="right hide-on-med-and-down">
-		            <li><a href="#">사진</a></li>
+   		            <li><a href="#">???</a></li>
 		            <li><a href="#">쪽지(아이콘넣기)</a></li>
-		            <li><a href="#">???</a></li>
 		            <li>
 		            	<c:if test="${loginUser.profile_img != null}">
 		            		<a href="/user/myPage"><img src="/res/img/HiBaby/profile_img/user/${loginUser.i_user }/${loginUser.profile_img}" class="profileImg"></a>

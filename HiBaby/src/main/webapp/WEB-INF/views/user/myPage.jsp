@@ -52,7 +52,8 @@
         <div>닉네임 : ${loginUser.nick}</div>        
         <div>포인트 : ${loginUser.myPoint}</div>
         <div>환급받은 캐시 : ${loginUser.myCash}</div>
-        <button id="myPoint">포인트 몰</button>        
+        <button id="myPoint">포인트 환급받기</button>    
+        <button onclick="myPointMall(${loginUser.i_user})">나의 포인트 조회</button>    
         <br>
         <button onclick="moveToInfo(${loginUser.i_user})">회원정보 변경</button>
 		<button onclick="logOut()">로그아웃</button>
@@ -157,13 +158,11 @@
 		alert('${pointMsg}')		
 	}
 	
+	// pointMall 페이지 이동
+	function myPointMall(i_user) {
+		location.href="/user/myPointMall?i_user="+i_user
+	}
 	/*		ㅡ		ㅡ		ㅡ		ㅡ		ㅡ		ㅡ		ㅡ		*/
-	
-	
-	
-	
-	
-	
 	
 	
 	

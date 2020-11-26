@@ -59,7 +59,10 @@ DROP TABLE t_myPoint;
 SELECT * FROM t_myPoint;
 
 -- 포인트 환전내역 나타낼때 사용할 쿼리문임
-SELECT A.i_point, A.myPoint, A.myCash, A.r_dt, A.i_point, A.i_user, B.i_user, B.nick FROM t_myPoint A
+SELECT A.i_point, A.myPoint, A.myCash, A.myPointNow, A.r_dt, 
+A.i_point, A.i_user, B.i_user, B.nick
+FROM t_myPoint A
+
 LEFT JOIN t_user B
 ON A.i_user = B.i_user
 WHERE A.i_user = 2;

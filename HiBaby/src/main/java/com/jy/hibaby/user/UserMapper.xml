@@ -44,12 +44,24 @@
 		WHERE nick = #{nick}
 	</select>
 	
+	
 	<select id="selDetailUser" parameterType="UserPARAM" resultType="UserDMI"> 
 		SELECT i_user, user_id, user_pw, salt, nm, nick, email, myPoint
 		,myCash, sm, profile_img, r_dt, m_dt
 		FROM t_user
 		WHERE <if test="i_user > 0"> i_user = #{i_user}</if>
 	</select>
+	
+	
+	<select id="selPointMall" parameterType="UserPARAM" resultType="PointVO">
+		SELECT A.i_point, A.myPoint, A.myCash, A.myPointNow, A.r_dt, A.i_point, A.i_user,
+        B.i_user, B.nick FROM t_myPoint A
+		LEFT JOIN t_user B
+		ON A.i_user = B.i_user
+		WHERE A.i_user = #{i_user}
+	</select>
+	
+	
 
 						<!-- insert -->
 						 
