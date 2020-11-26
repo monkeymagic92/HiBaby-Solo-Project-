@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,9 +28,9 @@
 			<c:forEach items="${selPoint}" var="item">
 			<tr>
 				<td>${item.i_point}</td>
-				<td>${item.myPoint}</td>
-				<td>${item.myCash}</td>
-				<td>${item.myPointNow}</td>
+				<td><fmt:formatNumber value="${item.myPoint}" pattern="#,###" />p</td>
+				<td><fmt:formatNumber value="${item.myCash}" pattern="#,###" />p</td>
+				<td><fmt:formatNumber value="${item.myPointNow}" pattern="#,###" />p</td>
 				<td>${item.r_dt}</td>
 			</tr>
 			</c:forEach>

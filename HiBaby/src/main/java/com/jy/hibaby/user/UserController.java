@@ -416,6 +416,7 @@ public class UserController {
 	@RequestMapping(value="/myPointMall", method=RequestMethod.GET)
 	public String ajaxMyPoint(UserPARAM param, HttpSession hs, Model model) {
 		
+		System.out.println("i_user 값 : " + param.getI_user());
 		model.addAttribute("selPoint", service.selPointMall(param));
 		model.addAttribute("view", "/user/myPointMall");
 		return ViewRef.DEFAULT_TEMP;

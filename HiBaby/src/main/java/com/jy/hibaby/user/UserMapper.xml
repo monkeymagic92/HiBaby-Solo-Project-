@@ -59,6 +59,7 @@
 		LEFT JOIN t_user B
 		ON A.i_user = B.i_user
 		WHERE A.i_user = #{i_user}
+		ORDER BY A.r_dt DESC
 	</select>
 	
 	
