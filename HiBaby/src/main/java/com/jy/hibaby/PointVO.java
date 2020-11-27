@@ -3,11 +3,18 @@ package com.jy.hibaby;
 public class PointVO {
 	private int i_point;
 	private int i_user;
+	private int totalPoint;
 	private int myPoint;
 	private int myCash;
 	private int myPointNow;
 	private String r_dt;
 	
+	public int getTotalPoint() {
+		return totalPoint;
+	}
+	public void setTotalPoint(int totalPoint) {
+		this.totalPoint = totalPoint;
+	}
 	public int getMyPointNow() {
 		return myPointNow;
 	}

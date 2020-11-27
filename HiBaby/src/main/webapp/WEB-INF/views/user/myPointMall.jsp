@@ -20,6 +20,7 @@
 		<table>
 			<tr>
 				<td>No</td>
+				<td>누적포인트</td>
 				<td>기존포인트</td>
 				<td>환급금액</td>
 				<td>잔여포인트</td>
@@ -28,6 +29,7 @@
 			<c:forEach items="${selPoint}" var="item">
 			<tr>
 				<td>${item.i_point}</td>
+				<td><fmt:formatNumber value="${item.totalPoint}" pattern="#,###" />p</td>
 				<td><fmt:formatNumber value="${item.myPoint}" pattern="#,###" />p</td>
 				<td><fmt:formatNumber value="${item.myCash}" pattern="#,###" />p</td>
 				<td><fmt:formatNumber value="${item.myPointNow}" pattern="#,###" />p</td>

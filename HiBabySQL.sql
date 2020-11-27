@@ -34,6 +34,7 @@ SELECT * FROM t_board;
 CREATE TABLE t_myPoint(
 	i_point INT UNSIGNED AUTO_INCREMENT,
 	i_user INT,
+	totalPoint INT(8),
 	myPoint INT(8),
 	myCash INT(8),
 	myPointNow INT(8),
@@ -41,5 +42,7 @@ CREATE TABLE t_myPoint(
 	PRIMARY KEY(i_point, i_user),
 	FOREIGN KEY(i_user) REFERENCES t_user(i_user)
 );
+
+DROP TABLE t_mypoint;
 
 

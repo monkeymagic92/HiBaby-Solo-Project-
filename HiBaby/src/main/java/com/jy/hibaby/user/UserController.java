@@ -332,7 +332,6 @@ public class UserController {
 			ra.addFlashAttribute("pwErrMsg", "비밀번호를 다시 확인해 주세요");
 			return "redirect:/" + ViewRef.USER_INFO;
 		}
-		
 	}
 	
 	// 위 infoChangePw 에서 맞을경우 이쪽으로 넘어옴 (비밀번호 변경) 
@@ -427,6 +426,7 @@ public class UserController {
 			vo.setMyPoint(nowPoint);		// 현재 포인트
 			vo.setMyPointNow(lastMyPoint);	// 환급후 남은 포인트
 			vo.setI_user(param.getI_user());
+			
 			int pointMall = service.insMyPointPage(vo);
 			
 			hs.setAttribute(Const.LOGIN_USER, service.selDetailUser(param));
