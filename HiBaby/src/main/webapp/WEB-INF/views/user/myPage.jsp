@@ -49,6 +49,8 @@
             </div>
         </section>
         <br><br>
+                 계급 : <img src="/res/img/ion.png" class="ClassesImg">
+        <br>
         <div>닉네임 : ${loginUser.nick}</div>        
         <div>포인트 : ${loginUser.myPoint}</div>
         <div>환급받은 캐시 : ${loginUser.myCash}</div>

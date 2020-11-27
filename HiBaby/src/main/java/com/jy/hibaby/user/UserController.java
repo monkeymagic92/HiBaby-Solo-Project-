@@ -326,7 +326,6 @@ public class UserController {
 		
 		if(result == 1) {
 			ra.addFlashAttribute("pwCode", "Pw Success!!");
-			
 			return "redirect:/" + ViewRef.USER_INFO;
 			
 		} else {
@@ -338,9 +337,17 @@ public class UserController {
 	
 	// 위 infoChangePw 에서 맞을경우 이쪽으로 넘어옴 (비밀번호 변경) 
 	@RequestMapping(value="/pwChange", method = RequestMethod.POST)
-	public String pwChange(Model model, UserPARAM param) {
-		System.out.println("pwChangne 컨트로럴");
-		return "success";
+	public String pwChange(Model model, UserPARAM param, RedirectAttributes ra) {
+		int result = service.changePw(param);
+		
+		if(result == 1) {
+			ra.addFlashAttribute("pwChangeMsg", "비밀번호가 변경되었습니다");
+			return "redirect:/" + ViewRef.USER_INFO;
+			
+		} else {
+			ra.addFlashAttribute("pwChangeMsg", "서버에러가 발생하였습니다/n 다시시도해주세요");
+			return "redirect:/" + ViewRef.USER_INFO;
+		}
 	}
 	
 	

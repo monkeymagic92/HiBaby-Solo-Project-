@@ -25,7 +25,7 @@
 	        <button type="button" id="nickChk"class="btn btn-3"  onclick="chkNick()">닉네임 중복체크</button>
 	        <i id="nickClick" class="animate__rubberBand animate__animated fas fa-check" ></i>
 	        <input id="nickUnChk" name="nickUnChk" type="hidden" value="chk">
-			<br>
+			<br><br>
 			
 			<h5>이메일 변경</h5>
 			<hr>
@@ -33,7 +33,7 @@
 	        <button type="button" id="emailChk" class="btn btn-3" onclick="chkEmail()">이메일 중복체크</button>
 	        <input id="emailUnChk" name="emailUnChk" type="hidden" value="chk">
 	        <i id="emailClick" class="animate__rubberBand animate__animated fas fa-check"></i>
-			<br>
+			<br><br>
 			
 			<h5>상태메세지 변경</h5>
 			<hr>
@@ -42,7 +42,7 @@
 			<input type="submit" value="회원정보 수정">
 		</form>
 		
-		 
+		<br><br> 
 		<form id="pwFrm" action="/user/infoChangePw" method="post">
 			<h5>비밀번호 변경</h5>
 			<hr>
@@ -63,6 +63,7 @@
 		    	<form id="changePwFrm" action="/user/pwChange" method="post" onsubmit="return pwChk()">
 		    		<input type="password" name="user_pw" placeholder="비밀번호 입력">
 		    		<input type="password" name="user_rpw" placeholder="비밀번호 입력">
+		    		<input type="hidden" name="i_user" value="${loginUser.i_user}">
 		    		<button type="submit">비밀번호 변경</button>
 		    	</form>
 		    </div>
@@ -85,7 +86,11 @@ if(${pwErrMsg != null}) {
 	location.href="/user/info"
 }
 
+if(${pwChangeMsg != null}) {
+	alert('${pwChangeMsg}')
+}
 
+// 첫번째 form태그 유효검사
 function chk() {
 		
 	if (frm.nick.value.length > 2 

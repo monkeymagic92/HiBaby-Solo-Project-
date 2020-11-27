@@ -1,5 +1,5 @@
 @charset "UTF-8";
-    
+   
 .pImgbox input[type="file"]{
     width: 0;
     height: 0;
@@ -29,6 +29,13 @@
 	width: 180px;
 	height: 180px;
 	border-radius: 10px;
+}
+
+.ClassesImg {
+	width: 75px;
+	height: 75px;
+	border-radius: 20px;
+	
 }
 
 .modal {
