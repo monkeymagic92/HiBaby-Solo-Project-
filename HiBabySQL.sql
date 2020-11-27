@@ -18,9 +18,13 @@ CREATE TABLE t_user(
 SELECT * FROM t_user;
 
 
-
 CREATE TABLE t_board(
     i_board int primary KEY AUTO_INCREMENT,
+    image_1 VARCHAR(200),
+    image_2 VARCHAR(200),
+    image_3 VARCHAR(200),
+    image_4 VARCHAR(200),
+    image_5 VARCHAR(200),
     title varchar(100) not null,
     ctnt varchar(2000) not null,
     hits int default 0,
@@ -28,8 +32,11 @@ CREATE TABLE t_board(
     r_dt datetime DEFAULT NOW(),
     FOREIGN key(i_user) REFERENCES t_user(i_user)
 );
+DROP TABLE t_board;
+
 SELECT * FROM t_board;
 
+SELECT * FROM t_mypoint;
 
 CREATE TABLE t_myPoint(
 	i_point INT UNSIGNED AUTO_INCREMENT,
