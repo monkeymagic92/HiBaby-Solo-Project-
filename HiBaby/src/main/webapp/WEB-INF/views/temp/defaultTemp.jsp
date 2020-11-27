@@ -23,6 +23,11 @@
 		width: 30px;
 		border-radius: 40px;
 	}
+	.includeContainer {
+		width: 850px;
+		margin: 0 auto;
+		margin-top: 20px;
+	}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
@@ -46,8 +51,10 @@
 		    </div>
 	  	</nav>
 	</div>
-    <jsp:include page="/WEB-INF/views/${view}.jsp"></jsp:include>
-  	
+	
+	<div class="includeContainer">
+    	<jsp:include page="/WEB-INF/views/${view}.jsp"></jsp:include>
+  	</div>
 <script>
 
 </script>

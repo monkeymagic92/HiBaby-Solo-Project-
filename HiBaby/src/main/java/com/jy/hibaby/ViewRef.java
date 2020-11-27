@@ -22,4 +22,10 @@ public class ViewRef {
 	// /default - 기본상단바
 	public static final String DEFAULT_TEMP = "temp/defaultTemp";
 	
+	// /board - 게시글 목록
+	public static final String BOARD_LIST = "board/list";			// 게시글 전체목록
+	public static final String BOARD_INSBOARD = "board/insBoard";	// 게시글 작성
+	public static final String BOARD_DETAIL = "board/detail";		// 게시글 상세페이지
+	
+	
 }

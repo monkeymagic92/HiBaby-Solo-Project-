@@ -13,55 +13,55 @@
 </style>
 </head>
 <body>
-	<!-- 
+<!-- 
+
+	https://codepen.io/jlalovi/pen/bIyAr     마이페이지 커스텀마이징 할 codepen
 	
-		https://codepen.io/jlalovi/pen/bIyAr     마이페이지 커스텀마이징 할 codepen
-		
-	 -->
-	<div class="myPageContainer">
-        <section class="pro_Img">
-            <div class="imgBtn">
-                <div class="pImgbox">
-                    <label for="file">
-                    	<c:if test="${loginUser.profile_img == null }">
-                    		<img src="/res/img/lion.jpg" onchange="setThumbnail(e)" alt="" class="img">
-                    	</c:if>
-                    	<c:if test="${loginUser.profile_img != null }">
-                            <img src="/res/img/HiBaby/profile_img/user/${loginUser.i_user }/${loginUser.profile_img}" class="img">                    	
-                    	</c:if>
-                    </label>
-                    <br><br>
-                    <div class="div-cngBtn">
-                        <div class="div-subBtn">
-                            <form id="imgFrm" action="/user/imgUpload" method="post" enctype="multipart/form-data" onsubmit="return imgChk()">
-                                <input type="file" name="user_profile_img" id="file" accept="image/png, image/jpeg, image/jpg">
-                                <input class="cngImg" type="submit" value="사진 저장">
-                            </form>
-                        </div>
-                        <br><br>
-                        <div class="delBtn">
-                            <form id="imgDelFrm" action="/user/imgDel" method="post">
-                                <input class="cngImg2" type="submit" value="사진 삭제">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <br><br>
-                 계급 : <img src="/res/img/chall.png" class="ClassesImg">
-        <br>
-        <div>닉네임 : ${loginUser.nick}</div>        
-        <div>포인트 : ${loginUser.myPoint}</div>
-        <div>환급받은 캐시 : ${loginUser.myCash}</div>
-        <br>
-        <button id="myPoint">포인트 환급받기</button>            
-        <button onclick="myPointMall(${loginUser.i_user})">나의 포인트 조회</button>    
-        <br><br>
-        <button onclick="moveToInfo(${loginUser.i_user})">회원정보 변경</button>
-        <br>
-		<button onclick="logOut()">로그아웃</button>
-	</div>
+ -->
+
+       <section class="pro_Img">
+           <div class="imgBtn">
+               <div class="pImgbox">
+                   <label for="file">
+                   	<c:if test="${loginUser.profile_img == null }">
+                   		<img src="/res/img/lion.jpg" onchange="setThumbnail(e)" alt="" class="img">
+                   	</c:if>
+                   	<c:if test="${loginUser.profile_img != null }">
+                           <img src="/res/img/HiBaby/profile_img/user/${loginUser.i_user }/${loginUser.profile_img}" class="img">                    	
+                   	</c:if>
+                   </label>
+                   <br><br>
+                   <div class="div-cngBtn">
+                       <div class="div-subBtn">
+                           <form id="imgFrm" action="/user/imgUpload" method="post" enctype="multipart/form-data" onsubmit="return imgChk()">
+                               <input type="file" name="user_profile_img" id="file" accept="image/png, image/jpeg, image/jpg">
+                               <input class="cngImg" type="submit" value="사진 저장">
+                           </form>
+                       </div>
+                       <br><br>
+                       <div class="delBtn">
+                           <form id="imgDelFrm" action="/user/imgDel" method="post">
+                               <input class="cngImg2" type="submit" value="사진 삭제">
+                           </form>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </section>
+       <br><br>
+                계급 : <img src="/res/img/chall.png" class="ClassesImg">
+       <br>
+       <div>닉네임 : ${loginUser.nick}</div>        
+       <div>포인트 : ${loginUser.myPoint}</div>
+       <div>환급받은 캐시 : ${loginUser.myCash}</div>
+       <br>
+       <button id="myPoint">포인트 환급받기</button>            
+       <button onclick="myPointMall(${loginUser.i_user})">나의 포인트 조회</button>    
+       <br><br>
+       <button onclick="moveToInfo(${loginUser.i_user})">회원정보 변경</button>
+       <br>
+	<button onclick="logOut()">로그아웃</button>
+
 	
 	
 	
