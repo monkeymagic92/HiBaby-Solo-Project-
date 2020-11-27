@@ -4,6 +4,11 @@
 
 
 						<!-- select -->
+	<!-- 판매글 등록할경우 주소값 지정을위해 이다음 i_board 값의 최대값을 받아옴 -->
+	<select id="maxI_board" resultType="Integer">
+		SELECT MAX(i_board) + 1 FROM t_board
+	</select>
+	
 						
 	<!-- 게시글 뿌리기 -->
 	<select id="selBoard" resultType="BoardDMI">
