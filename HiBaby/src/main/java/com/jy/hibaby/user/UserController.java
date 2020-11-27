@@ -36,12 +36,6 @@ public class UserController {
 	@Autowired
 	private MailSendService mss; 
 
-	// test용 
-	@RequestMapping(value="/test")
-	public String userTest() {
-		return "/user/test";
-	}
-	
 	// 아이디 중복체크 (aJax) 
 	@RequestMapping(value="/ajaxIdChk", method=RequestMethod.POST)
 	@ResponseBody	
@@ -323,6 +317,32 @@ public class UserController {
 		return "redirect:/" + ViewRef.USER_INFO;
 	}
 	
+	// info에서 본인 현재 비밀번호 확인 Post
+	@RequestMapping(value="/infoChangePw", method = RequestMethod.POST)
+	public String infoChangePw(Model model, UserPARAM param, RedirectAttributes ra,
+			HttpServletRequest request) {
+		
+		int result = service.infoChangepw(param);
+		
+		if(result == 1) {
+			ra.addFlashAttribute("pwCode", "Pw Success!!");
+			
+			return "redirect:/" + ViewRef.USER_INFO;
+			
+		} else {
+			ra.addFlashAttribute("pwErrMsg", "비밀번호를 다시 확인해 주세요");
+			return "redirect:/" + ViewRef.USER_INFO;
+		}
+		
+	}
+	
+	// 위 infoChangePw 에서 맞을경우 이쪽으로 넘어옴 (비밀번호 변경) 
+	@RequestMapping(value="/pwChange", method = RequestMethod.POST)
+	public String pwChange(Model model, UserPARAM param) {
+		System.out.println("pwChangne 컨트로럴");
+		return "success";
+	}
+	
 	
 	// 프로필 사진 등록 / 수정  (mReq를 info.post에 넣으니 에러뜸) (코드 수정해야됨)
 	@RequestMapping(value="/imgUpload", method = RequestMethod.POST)
@@ -381,6 +401,7 @@ public class UserController {
 	}	
 	
 	
+	// 포인트 환급 관련
 	@RequestMapping(value="/myPoint", method=RequestMethod.POST)
 	public String ajaxMyPoint(UserPARAM param, HttpSession hs, Model model,
 			RedirectAttributes ra, PointVO vo, HttpServletRequest request) {
@@ -412,7 +433,7 @@ public class UserController {
 	}
 
 	
-	// 해당유저 포인트 몰 
+	// 해당유저 포인트 몰 (환급 내역조회)
 	@RequestMapping(value="/myPointMall", method=RequestMethod.GET)
 	public String ajaxMyPoint(UserPARAM param, HttpSession hs, Model model) {
 		

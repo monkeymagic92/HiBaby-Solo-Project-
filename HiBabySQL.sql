@@ -42,10 +42,4 @@ CREATE TABLE t_myPoint(
 	FOREIGN KEY(i_user) REFERENCES t_user(i_user)
 );
 
-SELECT A.i_point, A.myPoint, A.myCash, A.myPointNow, A.i_point, A.i_user,
-        B.i_user, B.nick, A.r_dt FROM t_myPoint A
-		LEFT JOIN t_user B
-		ON A.i_user = B.i_user
-		WHERE A.i_user = 1
-		ORDER BY A.r_dt DESC;
 

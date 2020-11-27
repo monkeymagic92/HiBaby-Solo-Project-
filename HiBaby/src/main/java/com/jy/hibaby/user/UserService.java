@@ -126,7 +126,7 @@ public class UserService {
 	}
 		
 	
-	// 비밀번호 변경 
+	// 비밀번호 변경 (이메일 인증코드 받을시)
 	public int changePw(UserPARAM param) {
 		String pw = param.getUser_pw();
 		String salt = SecurityUtils.generateSalt();
@@ -137,6 +137,21 @@ public class UserService {
 		
 		int result = mapper.changePw(param);
 		return result; 
+	}
+	
+	// info페이지에서 비밀번호 변경
+	public int infoChangepw(UserPARAM param) {
+		int result = 0;
+		
+		UserDMI dbUser = mapper.selDetailUser(param);
+		String cryptPw = SecurityUtils.getEncrypt(param.getUser_pw(), dbUser.getSalt());
+		
+		if(dbUser.getUser_pw().equals(cryptPw)) {
+			result = 1;
+			return result;
+		} else {
+			return result;
+		}
 	}
 	
 	

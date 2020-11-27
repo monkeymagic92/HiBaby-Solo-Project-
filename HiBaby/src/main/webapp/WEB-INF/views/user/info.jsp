@@ -4,14 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이 페이지</title>
+<title>회원정보 변경</title>
 <link rel="stylesheet" type="text/css" href="/res/css/animate.css">
+<link rel="stylesheet" href="/res/css/info.css">
 <style>
 	.formContainer {
 		margin: 0 auto;
 		margin-top: 30px;
 		width: 500px;
 	}
+	
 </style>
 </head>
 <body>
@@ -37,18 +39,55 @@
 			<hr>
 			<textarea name="sm" placeholder="상태메세지 변경">${loginUser.sm}</textarea>
 			<input type="hidden" name="i_user" value="${loginUser.i_user}">
-			<button type="submit">회원정보 수정</button>
-		</form>		
+			<input type="submit" value="회원정보 수정">
+		</form>
+		
+		 
+		<form id="pwFrm" action="/user/infoChangePw" method="post">
+			<h5>비밀번호 변경</h5>
+			<hr>
+			<input type="password" name="user_pw" placeholder="현재 비밀번호 입력">
+			<input type="hidden" name="i_user" value="${loginUser.i_user}">
+			<input type="submit" value="비밀번호 변경">
+		</form>
+				
 	</div>
+	
+	<div id="pwModal" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+			<h4>비밀번호 변경</h4>
+		    
+            <!-- Modal body -->
+		    <div class="modal-body">
+		    	<form id="changePwFrm" action="/user/pwChange" method="post" onsubmit="return pwChk()">
+		    		<input type="password" name="user_pw" placeholder="비밀번호 입력">
+		    		<input type="password" name="user_rpw" placeholder="비밀번호 입력">
+		    		<button type="submit">비밀번호 변경</button>
+		    	</form>
+		    </div>
+		    
+		    <!-- Modal bottom -->
+		    <div class="modal-bottom">
+				Modal Bottom부분		
+		    </div>
+		    <button type="button" class="pop_bt" onclick="hideModal()">종료</button>
+		</div>
+    </div>
 </body>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
 
+if(${pwErrMsg != null}) {
+	alert('${pwErrMsg}')
+	location.href="/user/info"
+}
 
 
 function chk() {
+		
 	if (frm.nick.value.length > 2 
 			&& frm.emailUnChk.value != 'chk'
 			) {
@@ -105,11 +144,11 @@ function chk() {
 $('#emailClick').hide(); // 이메일 중복체크 v표
 $('#nickClick').hide(); // 닉네임 중복체크 v표
 
-$('#nick_input').keydown(function() {
+$('#nick_input').keydown(function() {	// 닉네임항목에 키보드를 누르면 중복체크해야지만 submit 되게끔
 	$('#nickClick').hide();
 	frm.nickUnChk.value = 'unChk'
 })
-$('#email_txt').keydown(function() {
+$('#email_txt').keydown(function() {	// ""       ""
 	$('#emailClick').hide();
 	frm.emailUnChk.value = 'unChk'
 })
@@ -213,6 +252,42 @@ function chkEmail() {
 		}
 	})
 }
+
+/* ㅡ	ㅡ	ㅡ	비밀번호 변경	ㅡ	ㅡ	ㅡ  */
+
+if(${pwCode != null}) {
+	$('#pwModal').show();
+}
+
+//모달창 종료
+function hideModal() {
+	pwModal.style.display = 'none'
+}
+
+function pwChk() {
+	//비밀번호 정규식 : 숫자, 특문 각 1회 이상, 영문은 2개 이상 사용하여 8자리 이상 입력
+	if (changePwFrm.user_pw.value.length > 0 || changePwFrm.user_pw.value.length == 0) {
+		const pass = /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/
+		
+		if(!pass.test(changePwFrm.user_pw.value)) {
+			alert("비밀번호는 숫자,특수문자,영문을 포함한 8자리 이상 입력해주세요");
+			changePwFrm.user_pw.value = "";
+			changePwFrm.user_pw.focus();
+			return false;
+		}
+	}			
+
+	if (changePwFrm.user_pw.value != changePwFrm.user_rpw.value) {
+		alert("두 비밀번호를 확인해주세요");
+		changePwFrm.user_rpw.value = "";
+		changePwFrm.user_rpw.focus();
+		return false;
+	}	
+}
+ 
+
+
+/*	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	*/
 
 </script>
 </html>
