@@ -4,11 +4,18 @@ public class PointVO {
 	private int i_point;
 	private int i_user;
 	private int totalPoint;
+	private int totalCash;
 	private int myPoint;
 	private int myCash;
 	private int myPointNow;
 	private String r_dt;
 	
+	public int getTotalCash() {
+		return totalCash;
+	}
+	public void setTotalCash(int totalCash) {
+		this.totalCash = totalCash;
+	}
 	public int getTotalPoint() {
 		return totalPoint;
 	}

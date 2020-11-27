@@ -35,6 +35,7 @@ CREATE TABLE t_myPoint(
 	i_point INT UNSIGNED AUTO_INCREMENT,
 	i_user INT,
 	totalPoint INT(8),
+	totalCash INT(8),
 	myPoint INT(8),
 	myCash INT(8),
 	myPointNow INT(8),

@@ -54,10 +54,12 @@
         <div>닉네임 : ${loginUser.nick}</div>        
         <div>포인트 : ${loginUser.myPoint}</div>
         <div>환급받은 캐시 : ${loginUser.myCash}</div>
-        <button id="myPoint">포인트 환급받기</button>    
-        <button onclick="myPointMall(${loginUser.i_user})">나의 포인트 조회</button>    
         <br>
+        <button id="myPoint">포인트 환급받기</button>            
+        <button onclick="myPointMall(${loginUser.i_user})">나의 포인트 조회</button>    
+        <br><br>
         <button onclick="moveToInfo(${loginUser.i_user})">회원정보 변경</button>
+        <br>
 		<button onclick="logOut()">로그아웃</button>
 	</div>
 	
