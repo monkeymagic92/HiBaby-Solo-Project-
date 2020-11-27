@@ -146,13 +146,21 @@
 	// confirm창 띄워서 몇p를 환급할지 알림메세지
 	function pointChk() {
 		var myCashId = pointFrm.myCash.value
+		if(pointFrm.myCash.value.length == 0) {
+			alert('환급할 포인트를 입력해주세요')
+			return false;
+		}
+		
 		if(confirm(myCashId + 'p 를 환급 하시겠습니까?')) {
 			location.href="/user/myPoint"
+			
 		} else {
 			pointFrm.myCash.value = 0
 			pointFrm.myCash.focus()
 			return false;
 		}
+		
+		
 	}
 	
 	// 환급 성공 실패 여부 메세지
