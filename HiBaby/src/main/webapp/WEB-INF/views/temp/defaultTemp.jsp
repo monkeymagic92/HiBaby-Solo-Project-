@@ -13,6 +13,7 @@
 </style>
 </head>
 <style>
+
 ul {
 	list-style-type: none;
 	margin: 0;
@@ -210,9 +211,19 @@ h1, h2, p, a, span{
 }
 
 .dropdown-menu {
-	margin-top: 20px;
+	margin-top: 32px;
 	margin-left: 16px;
 }
+
+#logOutA{
+	cursor: pointer;
+}
+
+.spanli {
+    color: white;
+}
+
+
 </style>
 <body>
 	<div class="main-container">
@@ -220,20 +231,20 @@ h1, h2, p, a, span{
         <header class="block">
             <ul class="header-menu horizontal-list">
                 <li>
-                    <a class="header-menu-tab" href="#1"><span class="icon entypo-cog scnd-font-color"></span><span id="HiBabyLogo">HiBaby</span></a>
+                    <a class="header-menu-tab" href="/index/select"><span class="icon entypo-cog scnd-font-color"></span><span id="HiBabyLogo">HiBaby</span></a>
                 </li>
                 <li>
-                    <a id="aa" class="header-menu-tab" href="#1"><span class="icon entypo-cog scnd-font-color"></span>이동하기</a>
+                    <a id="aa" class="header-menu-tab" href="#1"><span class="icon entypo-cog scnd-font-color"></span><span class="spanli">이동하기</span></a>
+                </li>
+                <li class="asc">
+                    <a class="header-menu-tab" href="#2"><span class="icon fontawesome-user scnd-font-color"></span><span class="spanli">????</span></a>
                 </li>
                 <li>
-                    <a class="header-menu-tab" href="#2"><span class="icon fontawesome-user scnd-font-color"></span>????</a>
-                </li>
-                <li>
-                    <a class="header-menu-tab" href="#3"><span class="icon fontawesome-envelope scnd-font-color"></span>쪽지함</a>
+                    <a class="header-menu-tab" href="#3"><span class="icon fontawesome-envelope scnd-font-color"></span><span class="spanli">쪽지함</span></a>
                     <a class="header-menu-number">5</a>
                 </li>
                 <li>
-                    <a class="header-menu-tab" href="#5"><span class="icon fontawesome-star-empty scnd-font-color"></span>마이페이지</a>
+                    <a class="header-menu-tab" href="#5"><span class="icon fontawesome-star-empty scnd-font-color"></span><span class="spanli">마이페이지</span></a>
                 </li>
             </ul>
             <div class="profile-menu">
@@ -243,13 +254,15 @@ h1, h2, p, a, span{
 	            		<img class="pimg" src="/res/img/HiBaby/profile_img/user/${loginUser.i_user }/${loginUser.profile_img}" class="profileImg">
 		            </c:if>
 		            <c:if test="${loginUser.profile_img == null}">
-		            	<img class="pimg" src="/res/img/lion.jpg" class="profileImg">
+		            	<img class="pimg" src="/res/img/HiBaby.jpg" class="profileImg">
 		            </c:if>           
 				</a>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<a class="dropdown-item" href="#">포인트몰</a>
+					<a class="dropdown-item" href="#">포인트 샵</a>
 					<a class="dropdown-item" href="#">Another action</a>
 					<a class="dropdown-item" href="#">Something else here</a>
+					<hr>
+					<a id="logOutA" class="dropdown-item" onclick="logOut()">로그아웃</a>
 				</div>
 			</div>			
         </header>
@@ -291,7 +304,12 @@ h1, h2, p, a, span{
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <script>
-
+	//로그아웃
+	function logOut() {
+		if(confirm('로그아웃 하시겠습니까?')) {
+			location.href="/user/logout"	
+		}
+	}
 </script>
 </body>
 </html>
