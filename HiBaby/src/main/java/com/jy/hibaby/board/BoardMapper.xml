@@ -19,40 +19,15 @@
 						
 						<!-- insert -->
 						
-	<!-- 판매글 등록하기 -->
-	<insert id="insBoard">
-		insert into t_board
-		(i_user, title, ctnt, image_1, image_2, image_3, image_4, image_5)
-		VALUES
-		(${i_user}, '${title}', '${ctnt}', 
-		<foreach collection="imageFileList" item="item" separator=",">
-			'${item.imageFile}'
-		</foreach>
-		)
-	</insert>					
+					
 						
 						
 						<!-- update -->
 						
-	<!-- 게시글 사진 수정 -->
-	<update id="updImage">
-		UPDATE t_board
-		SET
-		<choose>
-			<when test='imageFile != null'>
-				image_#{seq} = #{imageFile}
-			</when>
-		</choose>
-		WHERE i_board = #{i_board}
-	</update>			
-	
-	
-	<update id="updBoard">
-		UPDATE t_board
-		SET title = #{title},
-		ctnt = #{ctnt}
-		WHERE i_board = #{i_board}
-	</update>				
+
+
+
+
 						
 						<!-- delete -->
 

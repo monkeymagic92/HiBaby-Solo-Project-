@@ -17,12 +17,10 @@ public interface BoardMapper {
 	
 	
 	// insert
-	int insBoard(BoardVO param);	 // 판매글 등록
+	
 	
 	// update
-	int updImage(BoardVO param); // 사진 등록
 	
-	int updBoard(BoardVO param); // 판매글 수정
 	
 	// delete
 	int delBoard(BoardPARAM param); // 게시글 삭제
