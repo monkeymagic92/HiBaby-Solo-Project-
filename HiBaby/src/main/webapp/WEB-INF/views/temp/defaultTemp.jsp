@@ -224,6 +224,110 @@ h1, h2, p, a, span{
 }
 
 
+a, a:visited {
+	text-decoration:none;
+	outline:none;
+	color:#54a6de;
+}
+
+a:hover{
+	text-decoration:underline;
+}
+
+section, footer, nav{
+	display: block;
+}
+
+
+
+#colorNav > ul{
+	width: 450px; /* Increase when adding more menu items */
+	margin:0 auto;
+}
+
+#colorNav > ul > li{ /* will style only the top level li */
+	list-style: none;
+	box-shadow: 0 0 10px rgba(100, 100, 100, 0.2) inset,1px 1px 1px #CCC;
+	display: inline-block;
+	line-height: 1;
+	margin: 1px;
+	border-radius: 3px;
+	position:relative;
+}
+
+#colorNav > ul > li > a{
+	color:inherit;
+	text-decoration:none !important;
+	font-size:24px;
+	padding: 25px;
+}
+
+#colorNav li ul{
+	position:absolute;
+	list-style:none;
+	text-align:center;
+	width:180px;
+	left:50%;
+	margin-left:-90px;
+	top:70px;
+	font:bold 12px 'Open Sans Condensed', sans-serif;
+	
+	/* This is important for the show/hide CSS animation */
+	max-height:0px;
+	overflow:hidden;
+	
+	-webkit-transition:max-height 0.4s linear;
+	-moz-transition:max-height 0.4s linear;
+	transition:max-height 0.8s linear;
+}
+
+#colorNav li ul li{
+	background-color:#313131;
+}
+
+#colorNav li ul li a{
+	padding:12px;
+	color:#fff !important;
+	text-decoration:none !important;
+	display:block;
+}
+
+#colorNav li ul li:nth-child(odd){ /* zebra stripes */
+	background-color:#363636;
+}
+
+#colorNav li ul li:hover{
+	background-color:#444;
+}
+
+#colorNav li ul li:first-child{
+	border-radius:3px 3px 0 0;
+	margin-top:25px;
+	position:relative;
+}
+
+#colorNav li ul li:first-child:before{ /* the pointer tip */
+	content:'';
+	position:absolute;
+	width:1px;
+	height:1px;
+	border:5px solid transparent;
+	border-bottom-color:#313131;
+	left:50%;
+	top:-10px;
+	margin-left:-5px;
+}
+
+#colorNav li ul li:last-child{
+	border-bottom-left-radius:3px;
+	border-bottom-right-radius:3px;
+}
+
+#colorNav li:hover ul{
+	max-height:200px; /* Increase when adding more dropdown items */
+}
+
+
 </style>
 <body>
 	<div class="main-container">
@@ -244,26 +348,31 @@ h1, h2, p, a, span{
                     <a class="header-menu-number">5</a>
                 </li>
                 <li>
-                    <a class="header-menu-tab" href="#5"><span class="icon fontawesome-star-empty scnd-font-color"></span><span class="spanli">마이페이지</span></a>
+                    <a class="header-menu-tab" href="/user/myPage?i_user=${loginUser.i_user}"><span class="icon fontawesome-star-empty scnd-font-color"></span><span class="spanli">마이페이지</span></a>
                 </li>
             </ul>
+         
+            
             <div class="profile-menu">
                 <p><a href="fsdfsda"><span class="entypo-down-open scnd-font-color"></span></a></p>
-				<a id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<c:if test="${loginUser.profile_img != null}">
-	            		<img class="pimg" src="/res/img/HiBaby/profile_img/user/${loginUser.i_user }/${loginUser.profile_img}" class="profileImg">
-		            </c:if>
-		            <c:if test="${loginUser.profile_img == null}">
-		            	<img class="pimg" src="/res/img/HiBaby.jpg" class="profileImg">
-		            </c:if>           
-				</a>
-				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<a class="dropdown-item" href="#">포인트 샵</a>
-					<a class="dropdown-item" href="#">Another action</a>
-					<a class="dropdown-item" href="#">Something else here</a>
-					<hr>
-					<a id="logOutA" class="dropdown-item" onclick="logOut()">로그아웃</a>
-				</div>
+				<nav id="colorNav">
+			        <ul>
+			            <li class="yellow">
+				            <c:if test="${loginUser.profile_img != null}">
+			            		<img class="pimg" src="/res/img/HiBaby/profile_img/user/${loginUser.i_user }/${loginUser.profile_img}" class="profileImg">
+				            </c:if>
+				            <c:if test="${loginUser.profile_img == null}">
+				            	<img class="pimg" src="/res/img/HiBaby.jpg" class="profileImg">
+				            </c:if>	
+							<ul>
+			                    <li><a href="#">Dropdown item 1</a></li>
+			                    <li><a href="#">Dropdown item 2</a></li>
+			                    <li><a href="#">Dropdown item 2</a></li>
+			                    <li><a href="#">Dropdown item 2</a></li>
+			                </ul>
+			            </li>
+			        </ul>
+			    </nav>
 			</div>			
         </header>
         
