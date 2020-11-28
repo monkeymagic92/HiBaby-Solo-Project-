@@ -12,6 +12,10 @@
 </style>
 </head>
 <style>
+body {
+	color: grey;
+}
+
 ul {
 	list-style-type: none;
 	margin: 0;
@@ -70,7 +74,7 @@ h1, h2, p, a, span{
 /** MAIN CONTAINER **/
 .main-container {
 	font-family: 'Ubuntu', sans-serif;
-	width: 950px;
+	width: 1080px;
 	height: 850px;
 	margin: 2em auto;
 }	
@@ -166,6 +170,7 @@ h1, h2, p, a, span{
 		width: 300px;
 	}
 	.block {
+		
 		margin-bottom: 25px;
 		background: pink;
 		border-radius: 5px;
@@ -197,8 +202,9 @@ h1, h2, p, a, span{
 }
 
 #marginLefta {
-	margin-left: 400px;
+	margin-left: 550px;
 }
+
 
 </style>
 <body>
@@ -214,7 +220,7 @@ h1, h2, p, a, span{
                 </li>
                 
                 <li>
-                    <a class="header-menu-tab" href="#3"><span class="icon fontawesome-envelope scnd-font-color"></span><span class="spanli">쪽지함</span></a>
+                    <a id="marginRighta" class="header-menu-tab" href="#3"><span class="icon fontawesome-envelope scnd-font-color"></span><span class="spanli">쪽지함</span></a>
                     <a class="header-menu-number">5</a>
                 </li>
                 

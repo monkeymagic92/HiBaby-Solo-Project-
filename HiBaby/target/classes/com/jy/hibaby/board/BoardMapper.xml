@@ -15,6 +15,7 @@
 		SELECT A.i_board, A.title, A.ctnt, B.nick, A.r_dt FROM t_board A
 		LEFT JOIN t_user B
 		ON A.i_user = B.i_user
+		ORDER BY A.r_dt ASC
 	</select>						
 						
 						<!-- insert -->
