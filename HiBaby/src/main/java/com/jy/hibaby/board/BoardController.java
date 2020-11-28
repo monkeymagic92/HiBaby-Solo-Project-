@@ -30,8 +30,17 @@ public class BoardController {
 	public String boardList(Model model, BoardPARAM param) {
 		List<BoardDMI> list = new ArrayList<BoardDMI>();
 		
-		list = service.selBoard();
-		model.addAttribute("list", list);
+		model.addAttribute("list", service.selBoard());
+		model.addAttribute("view", ViewRef.BOARD_LIST);
+		return ViewRef.DEFAULT_TEMP;
+	}
+	
+	
+	// 검색기능(제목, 작성자별로   // 추후 페이징 기능 추가시 페이징 하기) 
+	@RequestMapping(value="/search", method = RequestMethod.POST)
+	public String boardSearch(Model model, BoardDMI dmi) {
+		
+		model.addAttribute("list", service.searchBoard(dmi));
 		model.addAttribute("view", ViewRef.BOARD_LIST);
 		return ViewRef.DEFAULT_TEMP;
 	}

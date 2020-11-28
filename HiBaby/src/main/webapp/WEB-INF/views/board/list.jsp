@@ -13,15 +13,42 @@
 	margin-top:15px;
 }
 
-#writeBtn {
-	margin-left: 1000px;
+.writeBtn {
+	margin-left: 220px;
+	justify-content: flex-end;
 }
 
+.searchDiv {
+	display: flex;
+}
+
+.searchForm {
+	width: 400px;
+	margin-left: 380px;
+}
+
+#listBtn {
+	justify-content: flex-start;
+}
 </style>
 </head>
 <body>
-	
-	<button id="writeBtn" type="button" class="btn btn-outline-primary" onclick="moveToWrite(${loginUser.i_user})">글쓰기</button>
+	<div class="searchDiv">
+		<div class="searchForm">
+			<form id="searchFrm" action="/board/search" method="post" onsubmit="return chk()" class="form-inline active-cyan-4">
+				<!-- 
+					select option 으로 제목, 작성자 값 보내기
+				 -->
+				<button id="listBtn" class="btn btn-outline-primary" type="button" onclick="moveToBoardList()">전체글</button>
+		        <input class="form-control form-control-sm mr-3 w-75" type="text" name="search" placeholder="Search" aria-label="Search">
+		        <i class="fas fa-search" aria-hidden="true"></i>
+	    	</form>
+    	</div>
+		
+		<div class="writeBtn">
+			<button  type="button" class="btn btn-outline-primary" onclick="moveToWrite(${loginUser.i_user})">글쓰기</button>
+		</div>
+	</div>
 	<table id="boardTable" class="table table-striped">
 		<thead>
 			<tr>
@@ -49,17 +76,8 @@
 		location.href="/board/insBoard?i_user="+i_user
 	}
 	
-	function searchToggle(obj, evt){
-	    var container = $(obj).closest('.search-wrapper');
-	        if(!container.hasClass('active')){
-	            container.addClass('active');
-	            evt.preventDefault();
-	        }
-	        else if(container.hasClass('active') && $(obj).closest('.input-holder').length == 0){
-	            container.removeClass('active');
-	            // clear input
-	            container.find('.search-input').val('');
-	        }
+	function moveToBoardList() {
+		location.href="/board/list";
 	}
 </script>
 </body>

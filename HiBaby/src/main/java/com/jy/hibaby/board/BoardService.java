@@ -26,5 +26,9 @@ public class BoardService {
 		return mapper.selBoard();
 	}
 	
+	// 검색
+	public List<BoardDMI> searchBoard(BoardDMI dmi) {
+		return mapper.searchBoard(dmi);
+	}
 
 }

@@ -205,6 +205,10 @@ h1, h2, p, a, span{
 	margin-left: 550px;
 }
 
+#dropdownBar {
+	margin-top: 32px;
+    background-color: #f8f9fa;;
+}
 
 </style>
 <body>
@@ -235,7 +239,7 @@ h1, h2, p, a, span{
 		            	<img class="pimg" src="/res/img/HiBaby.jpg" class="profileImg">
 		            </c:if>           
 				</a>
-				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				<div id="dropdownBar" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					<a class="dropdown-item" href="/user/myPage?i_user=${loginUser.i_user}">마이페이지</a>
 					<a class="dropdown-item" href="#">Another action</a>
 					<a class="dropdown-item" href="#">Something else here</a>

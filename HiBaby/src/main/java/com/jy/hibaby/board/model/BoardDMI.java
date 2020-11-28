@@ -4,10 +4,20 @@ import java.util.List;
 
 public class BoardDMI extends BoardVO{
 	private String nick;
+	private String search;
 	private int seq;	// 사진 포문돌릴 seq
 	private String imageFile;	 
 	private List<BoardVO> imageFileList; 
 	
+	
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
 	public int getSeq() {
 		return seq;
 	}

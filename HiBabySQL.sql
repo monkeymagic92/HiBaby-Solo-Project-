@@ -36,6 +36,11 @@ DROP TABLE t_board;
 
 SELECT * FROM t_board;
 
+SELECT A.i_board, A.title, A.r_dt, B.nick FROM t_board A
+LEFT JOIN t_user B
+ON A.i_user = B.i_user
+WHERE title LIKE CONCAT('%fd%');
+
 SELECT * FROM t_mypoint;
 
 CREATE TABLE t_myPoint(
