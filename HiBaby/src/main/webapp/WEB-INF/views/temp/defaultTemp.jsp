@@ -13,7 +13,7 @@
 </head>
 <style>
 body {
-	color: grey;
+	background-color: #fff7ed;
 }
 
 ul {
