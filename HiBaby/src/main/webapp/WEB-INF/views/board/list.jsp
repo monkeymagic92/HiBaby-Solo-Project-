@@ -7,6 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>커뮤니티</title>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+
 <style>
 
 #boardTable {
@@ -35,20 +40,22 @@
 <body>
 	<div class="searchDiv">
 		<div class="searchForm">
-			<form id="searchFrm" action="/board/search" method="post" onsubmit="return chk()" class="form-inline active-cyan-4">
+			<form id="searchFrm" action="/board/list" method="get" onsubmit="return chk()" class="form-inline active-cyan-4">
 				<!-- 
 					select option 으로 제목, 작성자 값 보내기
 				 -->
 				<button id="listBtn" class="btn btn-outline-primary" type="button" onclick="moveToBoardList()">전체글</button>
 		        <input class="form-control form-control-sm mr-3 w-75" type="text" name="search" placeholder="Search" aria-label="Search">
-		        <i class="fas fa-search" aria-hidden="true"></i>
+		        <input type="hidden" name="searchResult" value="1">
+		        <button type="submit"><i class="fas fa-search" aria-hidden="true"></i></button>
 	    	</form>
     	</div>
 		
 		<div class="writeBtn">
 			<button  type="button" class="btn btn-outline-primary" onclick="moveToWrite(${loginUser.i_user})">글쓰기</button>
-		</div>
+		</div>		
 	</div>
+	<div>게시글 : ${totalCount}</div>
 	<table id="boardTable" class="table table-striped">
 		<thead>
 			<tr>
@@ -78,6 +85,14 @@
 	
 	function moveToBoardList() {
 		location.href="/board/list";
+	}
+	
+	function chk() {
+		if(searchFrm.search.value.length > 11) {
+			alert('검색 내용이 너무 깁니다')
+			searchFrm.search.focus()
+			return false
+		}
 	}
 </script>
 </body>

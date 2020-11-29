@@ -11,11 +11,15 @@ import com.jy.hibaby.board.model.BoardVO;
 @Mapper
 public interface BoardMapper {
 	// select
-	List<BoardDMI> selBoard();
+	List<BoardDMI> selBoard();	// 게시글 전체 목록
 	
-	int maxI_board(); 					  // 게시글 등록시 최대 i_board값 추가하기 (실제 로컬에서 주소지정할때 사용)
+	int maxI_board();		// 게시글 등록시 최대 i_board값 추가하기 (실제 로컬에서 주소지정할때 사용)
 	
-	List<BoardDMI> searchBoard(BoardDMI dmi);
+	int totalBoardCount();	// 게시글 총 개수
+	
+	List<BoardDMI> searchBoard(BoardDMI dmi);	// 게시글 검색
+	
+	int totalSearchCount(BoardDMI dmi);	// 검색시 게시글 개수
 	// insert
 	
 	

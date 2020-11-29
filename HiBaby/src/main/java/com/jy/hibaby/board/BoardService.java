@@ -1,18 +1,11 @@
 package com.jy.hibaby.board;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.jy.hibaby.FileUtils;
 import com.jy.hibaby.board.model.BoardDMI;
-import com.jy.hibaby.board.model.BoardVO;
 
 @Service
 public class BoardService {
@@ -26,9 +19,21 @@ public class BoardService {
 		return mapper.selBoard();
 	}
 	
+	// 게시글 총 개수
+	public int totalBoardCount() {
+		return mapper.totalBoardCount();
+	}
+	
 	// 검색
 	public List<BoardDMI> searchBoard(BoardDMI dmi) {
 		return mapper.searchBoard(dmi);
 	}
+	
+	// 검색시 총 개수
+	public int totalSearchCount(BoardDMI dmi) {
+		return mapper.totalSearchCount(dmi);
+	}
+	
+	
 
 }

@@ -252,6 +252,12 @@ h1, h2, p, a, span{
         <div class="includeContainer">
 	    	<jsp:include page="/WEB-INF/views/${view}.jsp"></jsp:include>
   		</div>
+  		
+  		
+  		
+  		
+  		<!-- FOOTER -->
+  		
 	</div>
 	
 	

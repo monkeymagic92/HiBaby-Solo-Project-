@@ -4,12 +4,21 @@ import java.util.List;
 
 public class BoardDMI extends BoardVO{
 	private String nick;
-	private String search;
+	private String search;		 // 검색 값
+	private String searchResult; // 컨트롤러에서 검색 판별 기준 값
 	private int seq;	// 사진 포문돌릴 seq
 	private String imageFile;	 
 	private List<BoardVO> imageFileList; 
 	
 	
+	public String getSearchResult() {
+		return searchResult;
+	}
+
+	public void setSearchResult(String searchResult) {
+		this.searchResult = searchResult;
+	}
+
 	public String getSearch() {
 		return search;
 	}
