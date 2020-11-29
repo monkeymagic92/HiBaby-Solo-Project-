@@ -8,7 +8,6 @@
 	<select id="maxI_board" resultType="Integer">
 		SELECT MAX(i_board) + 1 FROM t_board
 	</select>
-	
 						
 	<!-- 게시글 뿌리기 -->
 	<select id="selBoard" resultType="BoardDMI">
@@ -31,7 +30,7 @@
 		WHERE title LIKE CONCAT('%', #{search}, '%')
 	</select>		
 	
-	<!--  -->
+	<!-- 게시글 검색 수 -->
 	<select id="totalSearchCount" resultType="Integer" parameterType="BoardDMI">
 		SELECT COUNT(i_board) FROM t_board
 		WHERE title LIKE CONCAT('%', #{search}, '%') 
