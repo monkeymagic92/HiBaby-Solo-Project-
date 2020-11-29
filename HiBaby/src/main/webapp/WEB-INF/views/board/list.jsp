@@ -47,7 +47,8 @@
 				<button id="listBtn" class="btn btn-outline-primary" type="button" onclick="moveToBoardList()">전체글</button>
 		        <input class="form-control form-control-sm mr-3 w-75" type="text" name="search" placeholder="Search" aria-label="Search">
 		        <input type="hidden" name="searchResult" value="1">
-		        <button type="submit"><i class="fas fa-search" aria-hidden="true"></i></button>
+		        <input type="submit" value="">
+		        <!-- <i class="fas fa-search" aria-hidden="true"></i> -->
 	    	</form>
     	</div>
 		

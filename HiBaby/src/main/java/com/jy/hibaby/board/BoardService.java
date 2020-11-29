@@ -33,7 +33,5 @@ public class BoardService {
 	public int totalSearchCount(BoardDMI dmi) {
 		return mapper.totalSearchCount(dmi);
 	}
-	
-	
 
 }

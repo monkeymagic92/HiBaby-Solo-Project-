@@ -20,8 +20,6 @@ public class BoardController {
 	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public String boardList(Model model, BoardDMI dmi) {
 		
-		System.out.println("result 값 : " + dmi.getSearchResult());
-		
 		if(dmi.getSearchResult() == null) { 	// 전체 리스트
 			model.addAttribute("totalCount", service.totalBoardCount());
 			model.addAttribute("list", service.selBoard());

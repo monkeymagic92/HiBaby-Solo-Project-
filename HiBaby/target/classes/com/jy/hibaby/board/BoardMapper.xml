@@ -25,12 +25,13 @@
 	
 	<!-- 게시글 검색 -->
 	<select id="searchBoard" resultType="BoardDMI" parameterType="BoardDMI">
-		SELECT COUNT(A.i_board), A.i_board, A.title, A.r_dt, B.nick FROM t_board A
+		SELECT A.i_board, A.title, A.r_dt, B.nick FROM t_board A
 		LEFT JOIN t_user B
 		ON A.i_user = B.i_user
 		WHERE title LIKE CONCAT('%', #{search}, '%')
 	</select>		
 	
+	<!--  -->
 	<select id="totalSearchCount" resultType="Integer" parameterType="BoardDMI">
 		SELECT COUNT(i_board) FROM t_board
 		WHERE title LIKE CONCAT('%', #{search}, '%') 
