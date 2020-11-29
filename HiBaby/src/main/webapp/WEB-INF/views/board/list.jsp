@@ -89,7 +89,7 @@
 	}
 	
 	function chk() {
-		if(searchFrm.search.value.length > 11) {
+		if(searchFrm.search.value.length > 20) {
 			alert('검색 내용이 너무 깁니다')
 			searchFrm.search.focus()
 			return false
