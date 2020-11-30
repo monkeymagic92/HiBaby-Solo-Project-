@@ -26,8 +26,8 @@ public class BoardService {
 	}
 	
 	// 검색
-	public List<BoardDMI> searchBoard(BoardDMI dmi) {
-		return mapper.searchBoard(dmi);
+	public List<BoardDMI> searchBoard(Pagination p) {
+		return mapper.searchBoard(p);
 	}
 	
 	// 검색시 총 개수

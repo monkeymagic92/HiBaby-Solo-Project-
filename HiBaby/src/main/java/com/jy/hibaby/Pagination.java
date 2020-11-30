@@ -36,6 +36,18 @@ public class Pagination {
     
     /** 다음 페이지 **/
     private int nextPage;
+    
+    private String search;
+    
+    
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
 
 	public int getPageSize() {
 		return pageSize;
@@ -133,6 +145,8 @@ public class Pagination {
 		this.nextPage = nextPage;
 	}
 	
+
+public Pagination() {};
 	
 public Pagination(int listCnt, int curPage){
         

@@ -51,9 +51,7 @@
 				 -->
 				<button id="listBtn" class="btn btn-outline-primary" type="button" onclick="moveToBoardList()">전체글</button>
 		        <input class="form-control form-control-sm mr-3 w-75" type="text" name="search" placeholder="Search" aria-label="Search">
-		        <input type="hidden" name="searchResult" value="1">
-		        <input type="submit" value="">
-		        <!-- <i class="fas fa-search" aria-hidden="true"></i> -->
+		        <input type="hidden" name="searchResult" value="1"><i class="fas fa-search" aria-hidden="true"></i>
 	    	</form>
     	</div>
 		
@@ -127,8 +125,8 @@
 	}
 	
 	function fn_paging(curPage) {
-		location.href = "/board/list?curPage=" + curPage;
-		}
+		location.href = "/board/list?curPage=" + curPage + "?curResult="+1;
+	}
 </script>
 </body>
 </html>

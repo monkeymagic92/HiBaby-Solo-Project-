@@ -24,11 +24,12 @@
 	</select>			
 	
 	<!-- 게시글 검색 -->
-	<select id="searchBoard" resultType="BoardDMI" parameterType="BoardDMI">
+	<select id="searchBoard" resultType="BoardDMI" parameterType="Pagination">
 		SELECT A.i_board, A.title, A.r_dt, B.nick FROM t_board A
 		LEFT JOIN t_user B
 		ON A.i_user = B.i_user
 		WHERE title LIKE CONCAT('%', #{search}, '%')
+		limit #{startIndex}, #{pageSize}
 	</select>		
 	
 	<!-- 게시글 검색 수 -->

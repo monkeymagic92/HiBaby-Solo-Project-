@@ -17,7 +17,7 @@ public interface BoardMapper {
 	
 	int totalBoardCount();	// 게시글 총 개수
 	
-	List<BoardDMI> searchBoard(BoardDMI dmi);	// 게시글 검색
+	List<BoardDMI> searchBoard(Pagination p);	// 게시글 검색
 	
 	int totalSearchCount(BoardDMI dmi);	// 검색시 게시글 개수
 	// insert

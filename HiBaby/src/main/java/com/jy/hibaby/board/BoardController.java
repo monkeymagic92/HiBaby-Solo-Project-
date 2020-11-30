@@ -26,7 +26,14 @@ public class BoardController {
 	public String boardList(@ModelAttribute("boardVO") BoardDMI dmi,
 			 @RequestParam(defaultValue="1") int curPage,
 			 HttpServletRequest request,
-			 Model model) {
+			 Model model, Pagination p) {
+		
+		/*
+		 * 	 ★ 중요 현재 페이징 부분 값들 다 위로빼서 공통 멤버필드에 놔두기
+		 * 			검색 / 전체글 페이징 잘되는데 검색에서 페이징 풀림
+		 * 			(list.jsp 에서 자바스크립트 fn_paging() 을 검색 함수로다시만들기)
+		 * 
+		 */
 		
 		if(dmi.getSearchResult() == null) { 	// 전체 리스트 (list에서 name="searchResult" 값 보내줌)
 			
@@ -45,8 +52,18 @@ public class BoardController {
 			
 			
 		} else {	// 검색 리스트
+			
+			int listCnt = service.totalSearchCount(dmi);
+			Pagination pagination = new Pagination(listCnt, curPage);
+			
+			System.out.println("search 값 : " + p.getSearch());
+	        dmi.setStartIndex(pagination.getStartIndex());
+	        dmi.setCntPerPage(pagination.getPageSize());
+			model.addAttribute("listCnt", listCnt);
+			model.addAttribute("pagination", pagination);
+			
 			model.addAttribute("totalCount", service.totalSearchCount(dmi));
-			model.addAttribute("list", service.searchBoard(dmi));
+			model.addAttribute("list", service.searchBoard(p));
 			model.addAttribute("view", ViewRef.BOARD_LIST);
 			
 		}
