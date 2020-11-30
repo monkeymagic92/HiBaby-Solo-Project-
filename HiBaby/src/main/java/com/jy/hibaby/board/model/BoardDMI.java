@@ -58,6 +58,16 @@ public class BoardDMI extends BoardVO{
 	public void setNick(String nick) {
 		this.nick = nick;
 	}
+
+	public void setCntPerPage(int pageSize) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setStartIndex(int startIndex) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

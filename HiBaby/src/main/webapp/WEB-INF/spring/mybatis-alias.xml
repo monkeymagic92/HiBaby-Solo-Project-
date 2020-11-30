@@ -16,5 +16,7 @@
 		<!-- point -->
 		<typeAlias type="com.jy.hibaby.PointVO" alias="PointVO" />
 		
+		<typeAlias type="com.jy.hibaby.Pagination" alias="Pagination" />
+		
 	</typeAliases>	
 </configuration>

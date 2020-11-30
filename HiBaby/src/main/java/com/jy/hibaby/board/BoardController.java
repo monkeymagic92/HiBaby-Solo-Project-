@@ -1,11 +1,16 @@
 package com.jy.hibaby.board;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.jy.hibaby.Pagination;
 import com.jy.hibaby.ViewRef;
 import com.jy.hibaby.board.model.BoardDMI;
 
@@ -18,11 +23,24 @@ public class BoardController {
 	
 	// 게시글 전체 목록
 	@RequestMapping(value="/list", method = RequestMethod.GET)
-	public String boardList(Model model, BoardDMI dmi) {
+	public String boardList(@ModelAttribute("boardVO") BoardDMI dmi,
+			 @RequestParam(defaultValue="1") int curPage,
+			 HttpServletRequest request,
+			 Model model) {
 		
 		if(dmi.getSearchResult() == null) { 	// 전체 리스트 (list에서 name="searchResult" 값 보내줌)
+			
+			// 전체리스트 개수
+	        int listCnt = service.totalBoardCount();
+	        Pagination pagination = new Pagination(listCnt, curPage);
+	        dmi.setStartIndex(pagination.getStartIndex());
+	        dmi.setCntPerPage(pagination.getPageSize());
+	        //
+	        
 			model.addAttribute("totalCount", service.totalBoardCount());
-			model.addAttribute("list", service.selBoard());
+			model.addAttribute("list", service.selBoard(pagination));
+			model.addAttribute("listCnt", listCnt);
+			model.addAttribute("pagination", pagination);
 			model.addAttribute("view", ViewRef.BOARD_LIST);
 			
 			
