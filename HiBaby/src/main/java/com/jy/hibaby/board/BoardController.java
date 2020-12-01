@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.jy.hibaby.Pagination;
 import com.jy.hibaby.ViewRef;
 import com.jy.hibaby.board.model.BoardDMI;
+import com.jy.hibaby.user.model.UserPARAM;
 
 @Controller
 @RequestMapping("/board")
@@ -67,6 +68,14 @@ public class BoardController {
 			model.addAttribute("view", ViewRef.BOARD_LIST);
 			
 		}
+		return ViewRef.DEFAULT_TEMP;
+	}
+	
+	
+	// 글쓰기 / 수정 Reg
+	@RequestMapping(value="/boardReg", method = RequestMethod.GET)
+	public String boardReg(Model model, UserPARAM param) {
+		model.addAttribute("view", ViewRef.BOARD_REG);
 		return ViewRef.DEFAULT_TEMP;
 	}
 	

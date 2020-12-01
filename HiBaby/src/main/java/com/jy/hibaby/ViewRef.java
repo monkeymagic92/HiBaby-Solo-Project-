@@ -24,8 +24,8 @@ public class ViewRef {
 	
 	// /board - 게시글 목록
 	public static final String BOARD_LIST = "board/list";			// 게시글 전체목록
-	public static final String BOARD_INSBOARD = "board/insBoard";	// 게시글 작성
 	public static final String BOARD_DETAIL = "board/detail";		// 게시글 상세페이지
+	public static final String BOARD_REG = "board/boardReg";		// 게시글 등록 / 수정
 	
 	
 }

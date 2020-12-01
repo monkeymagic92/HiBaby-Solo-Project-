@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>HiBaby</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<!--  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">-->
 <style>
 </style>
 </head>
@@ -188,7 +188,10 @@ h1, h2, p, a, span{
 }
 .pimg {
 	width:50px;
+    height: 50px;
+    margin-top: 20px;
 	border-radius: 140px;
+    cursor:pointer;
 }
 .dropdown-menu {
 	margin-top: 32px;
@@ -205,10 +208,59 @@ h1, h2, p, a, span{
 	margin-left: 550px;
 }
 
-#dropdownBar {
-	margin-top: 32px;
-    background-color: #f8f9fa;;
+
+
+.nav .button-dropdown {
+    position: relative;
 }
+
+.nav li a {
+    display: block;
+    color: #333;
+    
+   
+    
+}
+
+.nav li a span {
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 10px;
+    color: #999;
+}
+
+.nav li a:hover, .nav li a.dropdown-toggle.active {
+    
+    color: #fff;
+}
+
+.nav li a:hover span, .nav li a.dropdown-toggle.active span {
+    color: red;
+}
+
+.nav li .dropdown-menu {
+    display: none;
+    position: absolute;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    margin-top: 3px;
+    text-align: left;
+}
+
+.nav li .dropdown-menu.active {
+    display: block
+    
+}
+
+.nav li .dropdown-menu a {
+    margin-top: 30px;
+    margin-right: 30px;
+    background-color:  #fff7ed;
+    width: 150px;
+    text-align: center;
+}
+
 
 </style>
 <body>
@@ -230,22 +282,41 @@ h1, h2, p, a, span{
                 
             </ul>
             <div class="profile-menu">
-                <p><a href="fsdfsda"><span class="entypo-down-open scnd-font-color"></span></a></p>
-				<a id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<c:if test="${loginUser.profile_img != null}">
-	            		<img class="pimg" src="/res/img/HiBaby/profile_img/user/${loginUser.i_user }/${loginUser.profile_img}" class="profileImg">
-		            </c:if>
-		            <c:if test="${loginUser.profile_img == null}">
-		            	<img class="pimg" src="/res/img/HiBaby.jpg" class="profileImg">
-		            </c:if>           
-				</a>
-				<div id="dropdownBar" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<a class="dropdown-item" href="/user/myPage?i_user=${loginUser.i_user}">마이페이지</a>
-					<a class="dropdown-item" href="#">Another action</a>
-					<a class="dropdown-item" href="#">Something else here</a>
-					<hr>
-					<a id="logOutA" class="dropdown-item" onclick="logOut()">로그아웃</a>
-				</div>
+            	<ul class="nav">
+                    <li class="button-dropdown">
+                        <a href="javascript:void(0)" class="dropdown-toggle">
+                        	<c:if test="${loginUser.profile_img != null}">
+                        		<img class="pimg" src="/res/img/HiBaby/profile_img/user/${loginUser.i_user }/${loginUser.profile_img}" class="profileImg">
+                        	</c:if>
+                        	<c:if test="${loginUser.profile_img == null}">
+                        		<img class="pimg" src="/res/img/HiBaby.jpg" class="profileImg">
+                        	</c:if>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                              <a href="#">
+                                Drop Item 1
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#">
+                                Drop Item 2
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#">
+                                Drop Item 3
+                              </a>
+                            </li>
+                            <li>
+                            <hr>
+                              <a href="#" onclick="logOut()">
+                                                                로그아웃
+                              </a>
+                            </li>
+                          </ul>
+                    </li>
+                </ul>
 			</div>			
         </header>
         
@@ -255,11 +326,9 @@ h1, h2, p, a, span{
   		
   		
   		
-  		
   		<!-- FOOTER -->
   		
 	</div>
-	
 	
   	
   	
@@ -286,11 +355,8 @@ h1, h2, p, a, span{
 	</div>
 	 -->
 	
-  	
-  	
-  	
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	//로그아웃
 	function logOut() {
@@ -298,6 +364,35 @@ h1, h2, p, a, span{
 			location.href="/user/logout"	
 		}
 	}
+	
+	
+	
+	
+	// dropdown 
+	jQuery(document).ready(function (e) {
+	    function t(t) {
+	        e(t).bind("click", function (t) {
+	            t.preventDefault();
+	            e(this).parent().fadeOut()
+	        })
+	    }
+	    e(".dropdown-toggle").click(function () {
+	        var t = e(this).parents(".button-dropdown").children(".dropdown-menu").is(":hidden");
+	        e(".button-dropdown .dropdown-menu").hide();
+	        e(".button-dropdown .dropdown-toggle").removeClass("active");
+	        if (t) {
+	            e(this).parents(".button-dropdown").children(".dropdown-menu").toggle().parents(".button-dropdown").children(".dropdown-toggle").addClass("active")
+	        }
+	    });
+	    e(document).bind("click", function (t) {
+	        var n = e(t.target);
+	        if (!n.parents().hasClass("button-dropdown")) e(".button-dropdown .dropdown-menu").hide();
+	    });
+	    e(document).bind("click", function (t) {
+	        var n = e(t.target);
+	        if (!n.parents().hasClass("button-dropdown")) e(".button-dropdown .dropdown-toggle").removeClass("active");
+	    })
+	});
 </script>
 </body>
 </html>

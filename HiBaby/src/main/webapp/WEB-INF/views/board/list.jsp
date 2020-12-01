@@ -109,7 +109,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
 	function moveToWrite(i_user) {
-		location.href="/board/insBoard?i_user="+i_user
+		location.href="/board/boardReg?i_user="+i_user
 	}
 	
 	function moveToBoardList() {
