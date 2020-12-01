@@ -7,11 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>HiBaby</title>
+<link rel="stylesheet" type="text/css" href="/res/css/animate.css">
 <link rel="stylesheet" type="text/css" href="/res/css/userTemp.css">
 </head>
 <body>
 	<nav role="navigation">
-        <div id="menuToggle">  
+        <div id="menuToggle" class="animate__flash animate__animated fas fa-check">  
             <input type="checkbox" />
             	<!-- 아이콘으로 변경하기 -->
                 <span></span>
@@ -24,6 +25,8 @@
                 <li><a href="/user/join">회원가입</a></li>
                 <li><a href="/user/findId">아이디 찾기</a></li>
                 <li><a href="/user/findPw">비밀번호 찾기</a></li>
+                <li><hr></li>
+                <li><a href="#" target="_blank">HiBaby 프로젝트 소개</a></li>
                 <li><a href="https://github.com/monkeymagic92" target="_blank">제작자 Github 둘러보기</a></li>
                 <li><a href="https://blog.naver.com/ddw0099" target="_blank">제작자 blog 둘러보기</a></li>
                 <li><a href="http://ddmarket.ga:8080/index/main" target="_blank">TeamProject 단디마켓</a></li>

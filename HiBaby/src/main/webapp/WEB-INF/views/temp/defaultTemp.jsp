@@ -294,8 +294,8 @@ h1, h2, p, a, span{
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                              <a href="#">
-                                Drop Item 1
+                              <a href="/user/myPage">
+                                                                마이페이지
                               </a>
                             </li>
                             <li>
