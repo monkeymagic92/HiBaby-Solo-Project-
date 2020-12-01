@@ -14,7 +14,6 @@
     <div id="container">
         <span class="close-btn">
             <img src="https://cdn4.iconfinder.com/data/icons/miu/22/circle_close_delete_-128.png"></img>
-            
         </span>
         
         <form id="frm" class="box" action="/user/login" method="post" onsubmit="return chk()">

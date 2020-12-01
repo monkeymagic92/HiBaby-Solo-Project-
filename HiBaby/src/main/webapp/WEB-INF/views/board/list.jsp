@@ -125,7 +125,7 @@
 	}
 	
 	function fn_paging(curPage) {
-		location.href = "/board/list?curPage=" + curPage + "?curResult="+1;
+		location.href = "/board/list?curPage="+curPage
 	}
 </script>
 </body>
