@@ -115,20 +115,24 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+	
+
 	// 글쓰기
 	function moveToWrite(i_user) {
 		location.href="/board/boardReg?i_user="+i_user
 	}
 	
-	// 상세페이지 이동
+	// 전체글 이동
 	function moveToBoardList() {
 		location.href="/board/list";
 	}
 	
+	// 상세페이지 이동
 	function moveToDetail(i_board) {
 		location.href="/board/detail?i_board="+i_board
 	}
 	
+	// onsubmit 유효검사
 	function chk() {
 		if(searchFrm.search.value.length > 20) {
 			alert('검색 내용이 너무 깁니다')
@@ -137,6 +141,7 @@
 		}
 	}
 	
+	// 페이징 값 보내기
 	function fn_paging(curPage) {
 		location.href = "/board/list?curPage="+curPage
 	}

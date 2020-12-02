@@ -32,5 +32,5 @@ public interface BoardMapper {
 	
 	
 	// delete
-	int delBoard(BoardPARAM param); // 게시글 삭제
+	int boardDelete(BoardPARAM param); // 게시글 삭제
 }

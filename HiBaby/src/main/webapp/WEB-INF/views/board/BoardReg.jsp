@@ -13,7 +13,7 @@
 }
 
 .selProductFile {
-   width: 150px;
+    width: 150px;
     height: 150px;
     margin: 0px 5px 10px 10px;
     object-fit: cover;

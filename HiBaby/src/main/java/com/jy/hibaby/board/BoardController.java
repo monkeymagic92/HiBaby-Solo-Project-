@@ -1,5 +1,7 @@
 package com.jy.hibaby.board;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -134,6 +136,54 @@ public class BoardController {
 		
 		model.addAttribute("data", service.detailBoard(bp));
 		model.addAttribute("view", ViewRef.BOARD_DETAIL);
+		return ViewRef.DEFAULT_TEMP;
+	}
+	
+	
+	
+	// 게시글 삭제
+	@RequestMapping(value="/delete", method = RequestMethod.GET)
+	public String boardDelete(BoardPARAM param, HttpServletRequest request,
+			Model model, RedirectAttributes ra) {
+	
+		int i_board = Integer.parseInt(request.getParameter("i_board"));
+		param.setI_board(i_board);
+		System.out.println("삭제 i_board값 : " + i_board);
+		
+		int result = service.boardDelete(param);
+		System.out.println("글삭제 result:" + result);
+		//result = 0;  에러테스트용
+		
+		if(result == 1) {
+			String path = "/resources/img/board/" + i_board;
+			String realPath =  request.getServletContext().getRealPath(path);
+			System.out.println("파일 경로realPath:" + realPath);
+			File file = new File(realPath);
+			
+			if(file.exists()) {
+				if(file.isDirectory()) {
+					File[] files = file.listFiles();
+					for(int i=0;  i<files.length;  i++) {
+						if(files[i].delete()) {
+							System.out.println(files[i].getName()+"폴더 안의 파일 삭제 성공");
+						} else {
+							System.out.println(files[i].getName()+"폴더 안의 파일 삭제 실패");
+						}
+					}
+				}
+			
+				if(file.delete()) {
+					System.out.println("파일 삭제 성공");
+					model.addAttribute("view", ViewRef.BOARD_LIST);
+					return ViewRef.DEFAULT_TEMP;
+					
+				} else {
+					System.out.println("파일 삭제 실패");
+				}	
+			}
+		}
+		model.addAttribute("view", ViewRef.BOARD_LIST);
+		ra.addFlashAttribute("deleteErr", "서버 에러가 발생하였습니다/n 잠시후 다시 시도해 주세요");
 		return ViewRef.DEFAULT_TEMP;
 	}
 }

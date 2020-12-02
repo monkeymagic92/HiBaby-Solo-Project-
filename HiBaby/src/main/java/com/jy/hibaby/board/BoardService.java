@@ -129,5 +129,12 @@ public class BoardService {
 	}
 	
 	
+	// 판매글 삭제
+	public int boardDelete(BoardPARAM param) {
+		
+		return mapper.boardDelete(param);
+	}
+	
+	
 
 }

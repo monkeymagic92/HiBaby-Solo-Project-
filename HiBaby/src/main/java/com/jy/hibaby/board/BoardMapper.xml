@@ -41,7 +41,7 @@
 	
 	<!-- 보드detail 상세화면 -->
 	<select id="detailBoard" resultType="BoardPARAM" parameterType="BoardPARAM">
-		SELECT A.i_board, A.title, A.ctnt, A.image_1, A.image_2,
+		SELECT A.i_board, A.i_user, A.title, A.ctnt, A.image_1, A.image_2,
 		A.image_3, A.image_4, B.nick, B.i_user, B.profile_img
 		FROM t_board A
 		LEFT JOIN t_user B
@@ -75,7 +75,7 @@
 						<!-- delete -->
 
  	<!-- 게시글 삭제 -->
-	<delete id="delBoard" parameterType="BoardPARAM">
+	<delete id="boardDelete" parameterType="BoardPARAM">
 		DELETE FROM t_board
 		WHERE i_board = #{i_board}
 	</delete>
