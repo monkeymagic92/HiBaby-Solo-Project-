@@ -27,6 +27,7 @@
 
 	
 	<resources mapping="/res/**" location="/resources/" /><!-- src-main-webapp-resources로 가라는 의미 res안에 들어가는 파일 : 이미지 css 등 -->
+	<resources mapping="/favicon.ico" location="/favicon.ico" />	<!-- favicon 을 찾아주는 매핑 -->
 
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->

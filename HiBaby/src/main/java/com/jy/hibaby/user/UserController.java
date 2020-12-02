@@ -36,6 +36,12 @@ public class UserController {
 	@Autowired
 	private MailSendService mss; 
 
+	@RequestMapping(value="/intro", method=RequestMethod.GET)
+	public String intro(Model model) {
+		model.addAttribute("view","/user/intro");
+		return ViewRef.USER_TEMP;
+	}
+	
 	// 아이디 중복체크 (aJax) 
 	@RequestMapping(value="/ajaxIdChk", method=RequestMethod.POST)
 	@ResponseBody	
