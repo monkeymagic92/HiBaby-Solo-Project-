@@ -89,8 +89,6 @@ public class BoardController {
 			return ViewRef.BOARD_REG;
 		}
 		
-		
-		
 		model.addAttribute("view", ViewRef.BOARD_REG);
 		return ViewRef.DEFAULT_TEMP;
 	}
@@ -138,6 +136,4 @@ public class BoardController {
 		model.addAttribute("view", ViewRef.BOARD_DETAIL);
 		return ViewRef.DEFAULT_TEMP;
 	}
-		
-	
 }
