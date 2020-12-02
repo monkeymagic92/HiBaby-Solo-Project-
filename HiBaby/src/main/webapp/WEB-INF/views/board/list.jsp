@@ -72,7 +72,7 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${list}" var="item">
-				<tr>
+				<tr onclick="moveToDetail(${item.i_board})">
 					<th scope="row">${item.i_board }</th>
 					<td>${item.title }</td>
 					<td>${item.nick }</td>
@@ -110,12 +110,18 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+	// 글쓰기
 	function moveToWrite(i_user) {
 		location.href="/board/boardReg?i_user="+i_user
 	}
 	
+	// 상세페이지 이동
 	function moveToBoardList() {
 		location.href="/board/list";
+	}
+	
+	function moveToDetail(i_board) {
+		location.href="/board/detail?i_board="+i_board
 	}
 	
 	function chk() {
@@ -129,6 +135,7 @@
 	function fn_paging(curPage) {
 		location.href = "/board/list?curPage="+curPage
 	}
+	
 </script>
 </body>
 </html>

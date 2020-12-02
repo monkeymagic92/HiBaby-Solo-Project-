@@ -24,7 +24,6 @@ CREATE TABLE t_board(
     image_2 VARCHAR(200),
     image_3 VARCHAR(200),
     image_4 VARCHAR(200),
-    image_5 VARCHAR(200),
     title varchar(100) not null,
     ctnt varchar(2000) not null,
     hits int default 0,

@@ -1,5 +1,7 @@
 package com.jy.hibaby.board.model;
 
+import java.util.List;
+
 public class BoardVO {
 	private int i_board;
 	private String title;
@@ -13,7 +15,31 @@ public class BoardVO {
 	private int i_user;
 	private String nm;
 	
+	private int seq;	// 사진 포문돌릴 seq
+	private String imageFile;	 
+	private List<BoardVO> imageFileList; 
 	
+	
+	
+	
+	public int getSeq() {
+		return seq;
+	}
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
+	public String getImageFile() {
+		return imageFile;
+	}
+	public void setImageFile(String imageFile) {
+		this.imageFile = imageFile;
+	}
+	public List<BoardVO> getImageFileList() {
+		return imageFileList;
+	}
+	public void setImageFileList(List<BoardVO> imageFileList) {
+		this.imageFileList = imageFileList;
+	}
 	public String getImage_1() {
 		return image_1;
 	}

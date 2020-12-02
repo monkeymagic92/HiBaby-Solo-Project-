@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.jy.hibaby.Pagination;
 import com.jy.hibaby.board.model.BoardDMI;
 import com.jy.hibaby.board.model.BoardPARAM;
+import com.jy.hibaby.board.model.BoardVO;
 
 @Mapper
 public interface BoardMapper {
@@ -20,8 +21,12 @@ public interface BoardMapper {
 	List<BoardDMI> searchBoard(Pagination p);	// 게시글 검색
 	
 	int totalSearchCount(BoardDMI dmi);	// 검색시 게시글 개수
+	
+	BoardPARAM detailBoard(BoardPARAM vo);	// 글 상세 (detail)
+	
 	// insert
 	
+	int insBoard(BoardVO param);	 // 글 등록
 	
 	// update
 	

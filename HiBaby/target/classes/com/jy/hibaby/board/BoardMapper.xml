@@ -14,7 +14,7 @@
 		SELECT A.i_board, A.title, A.ctnt, B.nick, A.r_dt FROM t_board A
 		LEFT JOIN t_user B
 		ON A.i_user = B.i_user
-		ORDER BY A.r_dt ASC
+		ORDER BY A.r_dt DESC
 		limit #{startIndex}, #{pageSize}
 	</select>
 	
@@ -38,10 +38,30 @@
 		WHERE title LIKE CONCAT('%', #{search}, '%') 
 	</select>
 	
+	
+	<!-- 보드detail 상세화면 -->
+	<select id="detailBoard" resultType="BoardPARAM" parameterType="BoardPARAM">
+		SELECT A.i_board, A.title, A.ctnt, A.image_1, A.image_2,
+		A.image_3, A.image_4, B.nick, B.i_user, B.profile_img
+		FROM t_board A
+		LEFT JOIN t_user B
+		ON A.i_user = B.i_user
+		WHERE i_board = #{i_board}
+	</select>
+	
 		
 						
 						<!-- insert -->
-						
+	<!-- 판매글 등록하기 -->
+	<insert id="insBoard">
+		insert into t_board(i_user, title, ctnt, image_1, image_2, image_3, image_4)
+		VALUES
+		(${i_user}, '${title}', '${ctnt}',
+		<foreach collection="imageFileList" item="item" separator=",">
+			'${item.imageFile}'
+		</foreach>
+		)
+	</insert>	
 					
 						
 						

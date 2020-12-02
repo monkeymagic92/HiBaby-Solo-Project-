@@ -1,6 +1,7 @@
 package com.jy.hibaby.board;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,10 +10,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jy.hibaby.Pagination;
+import com.jy.hibaby.SecurityUtils;
 import com.jy.hibaby.ViewRef;
 import com.jy.hibaby.board.model.BoardDMI;
+import com.jy.hibaby.board.model.BoardPARAM;
 import com.jy.hibaby.user.model.UserPARAM;
 
 @Controller
@@ -74,9 +79,63 @@ public class BoardController {
 	
 	// 글쓰기 / 수정 Reg
 	@RequestMapping(value="/boardReg", method = RequestMethod.GET)
-	public String boardReg(Model model, UserPARAM param) {
+	public String boardReg(Model model, UserPARAM param, HttpSession hs) {
+		try { // 비로그인 상태로 접근시 로그인페이지로		
+			int i_user = SecurityUtils.getLoginUserPk(hs);
+			param.setI_user(i_user);
+			
+		} catch (Exception e) {
+			model.addAttribute("loginMsg", "로그인을 해주세요");
+			return ViewRef.BOARD_REG;
+		}
+		
+		
+		
 		model.addAttribute("view", ViewRef.BOARD_REG);
 		return ViewRef.DEFAULT_TEMP;
 	}
+	
+	@RequestMapping(value="/boardReg", method = RequestMethod.POST)
+	public String boardReg(Model model, BoardDMI param, 
+			UserPARAM userParam, HttpSession hs, MultipartHttpServletRequest mReq,
+			RedirectAttributes ra) {
+			
+		try {
+			int result = 0;
+			result = service.insBoard(param, mReq, hs);
+			System.out.println("result :" + result );
+		
+			if(result == 1) {
+				// DETAIL.GET 에서 index/main, mypage, SalaReg 모두다 request.getParameter()로 받게하기위해
+				int i_board = (int)hs.getAttribute("i_board");
+				ra.addAttribute("i_board",i_board);
+				return "redirect:/" + ViewRef.BOARD_DETAIL;
+				
+			} else if(result == 2){
+				ra.addFlashAttribute("ImageFail","입력되지 않은 항목 이 있습니다");
+				return "redirect:/" + ViewRef.BOARD_REG;
+				
+			} else {
+				ra.addFlashAttribute("ImageFail","서버에러 다시 다시 시도해주세요");
+				return "redirect:/" + ViewRef.BOARD_REG;
+			}
+			
+		} catch(Exception e) {
+			ra.addFlashAttribute("serverErr","서버에러 다시 시도해주세요");
+			return "redirect:/" + ViewRef.BOARD_REG;
+		}
+		
+	}
+	
+	@RequestMapping(value="/detail", method = RequestMethod.GET)
+	public String detailBoard(Model model, UserPARAM param, 
+			BoardPARAM bp) {
+		System.out.println("i_board 값 : " + bp.getI_board());
+		
+		model.addAttribute("data", service.detailBoard(bp));
+		model.addAttribute("view", ViewRef.BOARD_DETAIL);
+		return ViewRef.DEFAULT_TEMP;
+	}
+		
 	
 }
