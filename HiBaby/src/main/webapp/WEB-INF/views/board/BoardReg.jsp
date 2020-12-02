@@ -81,7 +81,7 @@ if(${loginMsg != null}) {
 	location.href="/user/login"
 }
 
-
+// 이미지 에러시
 if(${ImageFail != null}) {
 	alert('${ImageFail}')
 }
