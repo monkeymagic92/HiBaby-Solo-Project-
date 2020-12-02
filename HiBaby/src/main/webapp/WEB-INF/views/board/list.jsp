@@ -41,6 +41,11 @@
 	color: black;
 	background-color: black;
 }
+
+.trClass:hover {
+	background-color: grey;
+	cursor:pointer;
+}
 </style>
 </head>
 <body>
@@ -72,7 +77,7 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${list}" var="item">
-				<tr onclick="moveToDetail(${item.i_board})">
+				<tr class="trClass" onclick="moveToDetail(${item.i_board})">
 					<th scope="row">${item.i_board }</th>
 					<td>${item.title }</td>
 					<td>${item.nick }</td>

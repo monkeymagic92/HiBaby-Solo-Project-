@@ -127,6 +127,8 @@ public class BoardController {
 		
 	}
 	
+	
+	// 게시글 상세페이지
 	@RequestMapping(value="/detail", method = RequestMethod.GET)
 	public String detailBoard(Model model, UserPARAM param, 
 			BoardPARAM bp) {
