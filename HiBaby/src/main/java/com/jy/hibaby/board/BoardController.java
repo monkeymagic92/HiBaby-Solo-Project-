@@ -44,7 +44,7 @@ public class BoardController {
 		 */
 		
 		if(dmi.getSearchResult() == null) { 	// 전체 리스트 (list에서 name="searchResult" 값 보내줌)
-			
+
 			// 전체리스트 개수
 	        int listCnt = service.totalBoardCount();
 	        Pagination pagination = new Pagination(listCnt, curPage);
@@ -60,7 +60,7 @@ public class BoardController {
 			
 			
 		} else {	// 검색 리스트
-			
+
 			int listCnt = service.totalSearchCount(dmi);
 			Pagination pagination = new Pagination(listCnt, curPage);
 			
@@ -140,7 +140,6 @@ public class BoardController {
 	}
 	
 	
-	
 	// 게시글 삭제
 	@RequestMapping(value="/delete", method = RequestMethod.GET)
 	public String boardDelete(BoardPARAM param, HttpServletRequest request,
@@ -174,16 +173,13 @@ public class BoardController {
 			
 				if(file.delete()) {
 					System.out.println("파일 삭제 성공");
-					model.addAttribute("view", ViewRef.BOARD_LIST);
-					return ViewRef.DEFAULT_TEMP;
+					return "redirect:/" + ViewRef.BOARD_LIST;
 					
 				} else {
 					System.out.println("파일 삭제 실패");
 				}	
 			}
 		}
-		model.addAttribute("view", ViewRef.BOARD_LIST);
-		ra.addFlashAttribute("deleteErr", "서버 에러가 발생하였습니다/n 잠시후 다시 시도해 주세요");
-		return ViewRef.DEFAULT_TEMP;
+		return "redirect:/" + ViewRef.BOARD_LIST;
 	}
 }
