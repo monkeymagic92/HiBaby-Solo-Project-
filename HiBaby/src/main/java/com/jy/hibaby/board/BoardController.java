@@ -151,7 +151,6 @@ public class BoardController {
 			
 		}
 		
-		
 		return "redirect:/" + ViewRef.BOARD_LIST;
 	}
 	

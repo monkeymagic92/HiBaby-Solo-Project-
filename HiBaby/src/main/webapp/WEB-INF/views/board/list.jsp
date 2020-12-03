@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>커뮤니티</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<!--  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">-->
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 <!-- Google Fonts -->
@@ -17,6 +17,8 @@
 
 #boardTable {
 	margin-top:15px;
+	border: 1px solid pink;
+	width: 100%;
 }
 
 .writeBtn {
@@ -50,6 +52,19 @@
 .pageNum {
 	text-align: center;
 }
+
+td {
+	text-align: center;
+}
+
+table {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+table tr {
+	border: 1px solid black;
+}
 </style>
 </head>
 <body>
@@ -72,7 +87,7 @@
 	<div>게시글 : ${totalCount}</div>
 	<table id="boardTable" class="table table-striped">
 		<thead>
-			<tr>
+			<tr class="trClass">
 				<th scope="col">#</th>
 				<th scope="col">제목</th>
 				<th scope="col">작성자</th>
@@ -98,7 +113,6 @@
         <div class="pageNum">
         <c:forEach var="pageNum" begin="${pagination.startPage }" end="${pagination.endPage }">
             <c:choose>
-            	
                 <c:when test="${pageNum eq  pagination.curPage}">
                     <span style="font-weight: bold;"><a href="#" onClick="fn_paging('${pageNum }')">${pageNum }</a></span>
                 </c:when>
