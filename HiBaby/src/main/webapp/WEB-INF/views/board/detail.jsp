@@ -68,8 +68,14 @@
 	</div>
 	
 <script>
+	// 글 삭제시 에러떳을경우
 	if(${deleteErr != null}) {
 		alert('${deleteErr}')
+	}
+	
+	// 글수정 성공시
+	if(${updMsg != null}) {
+		alert('${updMsg}')
 	}
 	
 	// 글수정
@@ -83,6 +89,8 @@
 			location.href="/board/delete?i_board="+i_board	
 		}
 	}
+	
+	
 </script>
 </body>
 </html>

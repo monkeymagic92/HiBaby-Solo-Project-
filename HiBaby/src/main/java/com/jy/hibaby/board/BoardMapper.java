@@ -29,7 +29,9 @@ public interface BoardMapper {
 	int insBoard(BoardVO param);	 // 글 등록
 	
 	// update
+	int updImage(BoardVO param); // 사진 등록
 	
+	int updBoard(BoardVO param); // 게시글 수정
 	
 	// delete
 	int boardDelete(BoardPARAM param); // 게시글 삭제

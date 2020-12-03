@@ -66,9 +66,23 @@
 						
 						
 						<!-- update -->
-						
+	<!-- 게시글 수정하기 -->
+	<update id="updBoard" parameterType="BoardVO">
+		UPDATE t_board
+		SET title = #{title},
+		ctnt = #{ctnt}
+		WHERE i_board = #{i_board}
+	</update>						
 
-
+	<!-- 판매글 사진 수정 -->
+	<update id="updImage" parameterType="BoardVO">
+		UPDATE t_board
+		SET
+			<if test='imageFile != null'>
+				image_#{seq} = #{imageFile}
+			</if>
+		WHERE i_board = #{i_board}
+	</update>
 
 
 						

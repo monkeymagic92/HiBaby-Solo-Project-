@@ -75,7 +75,6 @@ public class BoardService {
 		String path = mReq.getServletContext().getRealPath("") + "/resources/img/board/" + i_board + "/";
 		
 		System.out.println("경로 : " + path);
-		
 				
 		// 다중파일
 		List<MultipartFile> fileList = mReq.getFiles("images");
@@ -87,9 +86,7 @@ public class BoardService {
 				
 				BoardVO vo = new BoardVO();
 				MultipartFile mf = fileList.get(i);
-
 				String saveFileNm = FileUtils.saveFile(path, mf);
-				
 				System.out.println("saveFileNm: " + saveFileNm);
 				vo.setImageFile(saveFileNm);
 				list.add(vo);
@@ -119,9 +116,70 @@ public class BoardService {
 	
 	
 	// 게시글 수정
-	public int updBoard(BoardDMI param, MultipartHttpServletRequest mReq) {
+	public int updBoard(BoardVO param, MultipartHttpServletRequest mReq,
+			HttpSession hs) {
+		// 다중파일
+		List<MultipartFile> fileList = mReq.getFiles("images");
+		System.out.println("파일리스트 사이즈 : " + fileList.size());
 		
-		return 0;
+		String fileChk = null;
+		if(fileList.size() == 0) {
+			int result = mapper.updBoard(param);
+			System.out.println("file사이즈 : " + fileList.size());
+			return result;
+		}
+					
+		System.out.println("이거뜨면 밑에실행된거@@@@@@@@@@@@@@");
+
+		int result = mapper.updBoard(param);
+		int i_board = (int)hs.getAttribute("updI_board");
+		if(param.getTitle().equals("") || param.getCtnt().equals("")) {
+			
+			return result = 2;
+		}		
+		
+		List<BoardVO> list = new ArrayList();
+		
+		String path = mReq.getServletContext().getRealPath("") + "/resources/img/board/" + i_board + "/";
+		
+		try { // 실제 사진 DB에 값 넣기
+			for (int i = 0; i < fileList.size(); i++) {
+				
+				BoardVO vo = new BoardVO();
+				MultipartFile mf = fileList.get(i);
+				System.out.println("mf값 :" + mf);
+				
+				String saveFileNm = FileUtils.saveFile(path, mf);
+				fileChk = saveFileNm;
+				System.out.println("saveFileNm: " + saveFileNm);
+				
+				vo.setSeq(i+1);
+				vo.setImageFile(saveFileNm);
+				list.add(vo);
+			}
+			
+			if(fileChk != null) {
+				if(list.size()<5) { // 총 사진 갯수 
+					for(int i=list.size(); i<4; i++) {
+						BoardVO vo = new BoardVO();
+						vo.setImageFile("");
+						vo.setSeq(i+1);
+						list.add(vo);
+					}
+				}
+			}
+			
+			for(BoardVO vo : list) {
+				vo.setI_board(i_board);
+				result = mapper.updImage(vo);
+			}
+			
+		} catch(Exception e) {
+			result = 1;
+		}	
+		
+		hs.removeAttribute("updI_board");
+		return result;
 	}
 	
 	

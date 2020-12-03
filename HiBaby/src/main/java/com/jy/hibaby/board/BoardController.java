@@ -136,6 +136,18 @@ public class BoardController {
 		} else { // 수정
 			System.out.println("ㅡ ㅡ ㅡ 글수정 ㅡ ㅡ ㅡ");
 			System.out.println("param.getI_board 수정값 : " + param.getI_board());
+			int i_board = Integer.parseInt(mReq.getParameter("i_board"));
+			param.setI_board(i_board);
+			hs.setAttribute("updI_board", i_board);
+			
+			int result = service.updBoard(param,mReq,hs);
+			if(result == 1) {
+				ra.addFlashAttribute("updMsg", "게시글이 수정되었습니다");
+				return "redirect:/board/detail?i_board="+i_board;
+				
+			} else {
+				return "redirect:/board/detail?i_board="+i_board;
+			}
 			
 		}
 		
