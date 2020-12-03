@@ -261,100 +261,196 @@ h1, h2, p, a, span{
 	Author: https://github.com/pablorgarcia
  */
 
- @charset "UTF-8";
+ 
  @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
  
- body {
-   font-family: 'Open Sans', sans-serif;
-   font-weight: 300;
-   line-height: 1.42em;
-   color:#A7A1AE;
-   background-color:#1F2739;
+
+ .container th h1 {
+	font-weight: bold;
+	font-size: 1em;
+	
+	color: #185875;
+	text-align: center;
  }
- 
 
  
- h2 a {
-   font-weight: 700;
-   text-transform: uppercase;
-   color: #FB667A;
-   text-decoration: none;
- }
- 
- .blue { color: #185875; }
- .yellow { color: #FFF842; }
- 
- .container th h1 {
-	   font-weight: bold;
-	   font-size: 1em;
-   text-align: left;
-   color: #185875;
- }
- 
- .container td {
-	   font-weight: normal;
-	   font-size: 1em;
-   -webkit-box-shadow: 0 2px 2px -2px #0E1119;
-		-moz-box-shadow: 0 2px 2px -2px #0E1119;
-			 box-shadow: 0 2px 2px -2px #0E1119;
- }
- 
  .container {
-	   text-align: left;
-	   overflow: hidden;
-	   width: 80%;
-	   margin: 0 auto;
-   display: table;
-   padding: 0 0 8em 0;
+		
+	overflow: hidden;
+	width: 100%;
+	margin: 0 auto;
+	
+	display: table;
+	padding: 0 0 8em 0;
+	border-radius: 13px;
+   
  }
  
  .container td, .container th {
-	   padding-bottom: 2%;
-	   padding-top: 2%;
-   padding-left:2%;  
+	padding-bottom: 1%;
+	padding-top: 1%;
  }
  
  /* Background-color of the odd rows */
  .container tr:nth-child(odd) {
-	   background-color: #323C50;
+	background-color:#f7e9f5;
+	text-align: center;
+	color: #2b0000;
  }
  
  /* Background-color of the even rows */
  .container tr:nth-child(even) {
-	   background-color: #2C3446;
+	background-color: #e3ffff;
+	text-align: center;
+	color: #2b0000;
  }
  
  .container th {
-	   background-color: #1F2739;
+	border-radius: 7px;
+	background-color: #fff7ed;
  }
  
- .container td:first-child { color: #FB667A; }
+ .container td {
+	border-radius: 6px;
+ }
+
+ .container td:first-child { 
+	color: #FB667A;
+ }
+
  
  .container tr:hover {
-	background-color: #464A52;
- -webkit-box-shadow: 0 6px 6px -6px #0E1119;
-		-moz-box-shadow: 0 6px 6px -6px #0E1119;
-			 box-shadow: 0 6px 6px -6px #0E1119;
+	cursor:pointer;
+	background-color: #d9d7d7;
+	color: black;
+
+	/* 박스 올라오는 부분*/
+	transform: translate3d(12px, -8px, 0);	
+	
+	transition-delay: 0s;
+	transition-duration: 0.4s;
+	transition-property: all;
+	transition-timing-function: line;
  }
  
- .container td:hover {
-   background-color: #FFF842;
-   color: #403E10;
-   font-weight: bold;
-   
-   box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
-   transform: translate3d(6px, -6px, 0);
-   
-   transition-delay: 0s;
-	   transition-duration: 0.4s;
-	   transition-property: all;
-   transition-timing-function: line;
- }
  
  @media (max-width: 800px) {
  .container td:nth-child(4),
  .container th:nth-child(4) { display: none; }
+ 
  }
 
-/* includeContainer 작성부분 시작 (여기서 작성하면 됨)*/
+				/* list.jsp 제일 상단부*/
+
+/* serach 부분 */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+
+.search {
+  margin-left: 10px;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 220px;
+  border: 3px solid #00B4CC;
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #00B4CC;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid #00B4CC;
+  background: #00B4CC;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 30px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+
+
+/*	ㅡ	ㅡ	ㅡ	ㅡ	*/
+
+
+/* 전체글 Btn - start -*/
+.selBtn {
+	width: 80px;
+	height: 38px;
+	
+	border: 1px solid #75acff;
+	border-radius: 10px;
+	background-color: #fff7ed;
+	font-size: 1em;
+
+}
+
+.selBtn:hover {
+	cursor: pointer;
+	background-image: linear-gradient(to right, #a1c4fd 10%, #8ae6d6 51%, #5bf5ad 100%);
+	box-shadow: 0 7px 14px -5px grey;
+}
+/* 전체글 Btn - end -*/
+
+
+/* 글쓰기 Btn - start -*/
+.writeBtn {
+	width: 80px;
+	height: 38px;
+	margin-left: 300px;
+	border: 1px solid #75acff;
+	border-radius: 10px;
+	background-color: #fff7ed;
+	font-size: 1em;
+}
+
+.writeBtn:hover {
+	cursor: pointer;
+	background-image: linear-gradient(to right, #a1c4fd 10%, #8ae6d6 51%, #5bf5ad 100%);
+	box-shadow: 0 7px 14px -5px grey;
+}
+/* 글쓰기 Btn - end- */
+
+.append {
+	width: 80px;
+	height: 38px;
+	margin-right: 300px;
+	border: 1px solid #75acff;
+	border-radius: 10px;
+	background-color: #fff7ed;
+	font-size: 1em;
+}
+
+.append:hover {
+	cursor: pointer;
+	background-image: linear-gradient(to right, #a1c4fd 10%, #8ae6d6 51%, #5bf5ad 100%);
+	box-shadow: 0 7px 14px -5px grey;
+}
+
+/* list top메뉴들로부터 header랑 table 간격 띄우기용 */
+.listTop {
+	display: flex;
+	margin-top: 35px;
+	margin-bottom: 20px;
+}
+
+
 
