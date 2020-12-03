@@ -31,9 +31,7 @@ a {
 	a:hover {
 		text-decoration: underline;
 	}
-h1, h2, p, a, span{
-	color: #fff;
-}
+
 	.scnd-font-color {
 		color: #9099b7;
 	}
@@ -261,6 +259,9 @@ h1, h2, p, a, span{
     text-align: center;
 }
 
+#HiBabyLogo {
+	color: white;
+}
 
 </style>
 <body>

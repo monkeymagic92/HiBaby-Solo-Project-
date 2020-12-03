@@ -7,73 +7,95 @@
 <head>
 <meta charset="UTF-8">
 <title>커뮤니티</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<!--  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">-->
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 <!-- Google Fonts -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-
+<link rel="stylesheet" href="/res/css/list.css"> 
 <style>
 
-#boardTable {
-	margin-top:15px;
-	border: 1px solid pink;
-	width: 100%;
-}
 
-.writeBtn {
-	margin-left: 220px;
-	justify-content: flex-end;
-}
-
-.searchDiv {
-	display: flex;
-}
-
-.searchForm {
-	width: 400px;
-	margin-left: 380px;
-}
-
-#listBtn {
-	justify-content: flex-start;
-}
-
-.a {
-	color: black;
-	background-color: black;
-}
-
-.trClass:hover {
-	background-color: grey;
-	cursor:pointer;
-}
-
-.pageNum {
-	text-align: center;
-}
-
-td {
-	text-align: center;
-}
-
-table {
-	border: 1px solid black;
-	border-collapse: collapse;
-}
-
-table tr {
-	border: 1px solid black;
-}
 </style>
 </head>
 <body>
+
+	<div class="includeContainer">
+        <div class="listTop">
+            <button class="append">#</button>
+            <button type="button" class="selBtn" onclick="moveToBoardList()">전체글</button>
+            <form id="searchFrm" action="/board/list" method="get" class="search" >
+                <input type="text" name="search" class="searchTerm" placeholder="Search">
+                <input type="hidden" name="searchResult" value="1">
+                <button type="submit" class="searchButton"><i class="fa fa-search"></i></button>
+            </form>                
+            <button type="button" class="writeBtn" onclick="moveToWrite(${loginUser.i_user})">글쓰기</button>
+        </div>
+                 게시글 : ${totalCount}          
+        <table class="container">
+				              
+            <thead>
+                <tr>
+                    <th>
+                        <h1>#</h1>
+                    </th>
+                    <th>
+                        <h1>제목</h1>
+                    </th>
+                    <th>
+                        <h1>작성자</h1>
+                    </th>
+                    <th>
+                        <h1>등록시간</h1>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>     
+            	<c:forEach items="${list}" var="item">                    
+                <tr onclick="moveToDetail(${item.i_board})">
+                    <td>${item.i_board }</td>
+					<td>${item.title }</td>
+					<td>${item.nick }</td>
+					<td>${item.r_dt }</td>
+                </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+        
+        <div class="pageNum">	       
+        <c:if test="${pagination.curRange ne 1 }">
+            <a href="#" onClick="fn_paging(1)">[처음]</a> 
+        </c:if>
+        <div class="pageNum">
+        <c:forEach var="pageNum" begin="${pagination.startPage }" end="${pagination.endPage }">
+            <c:choose>
+                <c:when test="${pageNum eq  pagination.curPage}">
+                	<div class="pageColor">
+                    	<span style="font-weight: bold; color: black;"><a href="#" onClick="fn_paging('${pageNum }')">${pageNum }</a></span>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <a href="#" onClick="fn_paging('${pageNum }')">${pageNum }</a> 
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
+        </div>
+        <c:if test="${pagination.curRange ne pagination.rangeCnt && pagination.rangeCnt > 0}">
+            <a href="#" onClick="fn_paging('${pagination.pageCnt }')">[끝]</a> 
+        </c:if>
+    </div>
+
+    </div>
+
+
+<!-- ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	 -->
+	<!-- 
 	<div class="searchDiv">
 		<div class="searchForm">
 			<form id="searchFrm" action="/board/list" method="get" onsubmit="return chk()" class="form-inline active-cyan-4">
-				<!-- 
+		 
 					select option 으로 제목, 작성자 값 보내기
-				 -->
+		
 				<button id="listBtn" class="btn btn-outline-primary" type="button" onclick="moveToBoardList()">전체글</button>
 		        <input class="form-control form-control-sm mr-3 w-75" type="text" name="search" placeholder="Search" aria-label="Search">
 		        <input type="hidden" name="searchResult" value="1"><i class="fas fa-search" aria-hidden="true"></i>
@@ -105,28 +127,8 @@ table tr {
 			</c:forEach>
 		</tbody>
 	</table>
+	 -->	
 	
-	<div class="a">
-        <c:if test="${pagination.curRange ne 1 }">
-            <a href="#" onClick="fn_paging(1)">[처음]</a> 
-        </c:if>
-        <div class="pageNum">
-        <c:forEach var="pageNum" begin="${pagination.startPage }" end="${pagination.endPage }">
-            <c:choose>
-                <c:when test="${pageNum eq  pagination.curPage}">
-                    <span style="font-weight: bold;"><a href="#" onClick="fn_paging('${pageNum }')">${pageNum }</a></span>
-                </c:when>
-                <c:otherwise>
-                    <a href="#" onClick="fn_paging('${pageNum }')">${pageNum }</a> 
-                </c:otherwise>
-                
-            </c:choose>
-        </c:forEach>
-        </div>
-        <c:if test="${pagination.curRange ne pagination.rangeCnt && pagination.rangeCnt > 0}">
-            <a href="#" onClick="fn_paging('${pagination.pageCnt }')">[끝]</a> 
-        </c:if>
-    </div>
     
     <!-- 
     <div>
