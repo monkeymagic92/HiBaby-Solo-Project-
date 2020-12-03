@@ -366,8 +366,6 @@ h1, h2, p, a, span{
 	}
 	
 	
-	
-	
 	// dropdown 
 	jQuery(document).ready(function (e) {
 	    function t(t) {

@@ -1,6 +1,7 @@
 package com.jy.hibaby.board;
 
 import java.io.File;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -81,7 +83,9 @@ public class BoardController {
 	
 	// 글쓰기 / 수정 Reg
 	@RequestMapping(value="/boardReg", method = RequestMethod.GET)
-	public String boardReg(Model model, UserPARAM param, HttpSession hs) {
+	public String boardReg(Model model, BoardPARAM boardPARAM, 
+			UserPARAM param, HttpSession hs,
+			HttpServletRequest request) {
 		try { // 비로그인 상태로 접근시 로그인페이지로		
 			int i_user = SecurityUtils.getLoginUserPk(hs);
 			param.setI_user(i_user);
@@ -90,41 +94,53 @@ public class BoardController {
 			model.addAttribute("loginMsg", "로그인을 해주세요");
 			return ViewRef.BOARD_REG;
 		}
-		
-		model.addAttribute("view", ViewRef.BOARD_REG);
-		return ViewRef.DEFAULT_TEMP;
+		try { // 디테일에서 수정버튼 눌렀을때 뜨는 부분 detail.jsp 에서 쿼리스트링으로 i_board값 보냄
+			int i_board = Integer.parseInt(request.getParameter("i_board"));
+			boardPARAM.setI_board(i_board);
+			model.addAttribute("data", service.detailBoard(boardPARAM));
+			model.addAttribute("view", ViewRef.BOARD_REG);
+			return ViewRef.DEFAULT_TEMP;
+			
+		} catch(Exception e) { // 글쓰기 눌렀을때 뜨는 부분 (받는값 없이 그냥 글쓰기 페이지 띄움)
+			model.addAttribute("view", ViewRef.BOARD_REG);
+			return ViewRef.DEFAULT_TEMP;
+		}
 	}
 	
 	@RequestMapping(value="/boardReg", method = RequestMethod.POST)
 	public String boardReg(Model model, BoardDMI param, 
 			UserPARAM userParam, HttpSession hs, MultipartHttpServletRequest mReq,
-			RedirectAttributes ra) {
-			
-		try {
-			int result = 0;
-			result = service.insBoard(param, mReq, hs);
-			System.out.println("result :" + result );
+			RedirectAttributes ra, HttpServletRequest request) {
 		
+		int regResult = Integer.parseInt(request.getParameter("regResult"));
+		System.out.println("regResult 값 ; " + regResult);
+		
+		if(regResult == 1) { // 등록
+			int result = service.insBoard(param, mReq, hs);
+			System.out.println("ㅡ ㅡ ㅡ 글등록 ㅡ ㅡ ㅡ");
 			if(result == 1) {
-				// DETAIL.GET 에서 index/main, mypage, SalaReg 모두다 request.getParameter()로 받게하기위해
 				int i_board = (int)hs.getAttribute("i_board");
-				ra.addAttribute("i_board",i_board);
+				ra.addAttribute("i_board", i_board);
+				hs.removeAttribute("i_board");
 				return "redirect:/" + ViewRef.BOARD_DETAIL;
 				
-			} else if(result == 2){
-				ra.addFlashAttribute("ImageFail","입력되지 않은 항목 이 있습니다");
+			} else if(result == 2) {
+				ra.addFlashAttribute("insErr", "입력되지 않은 항목이 있습니다");
 				return "redirect:/" + ViewRef.BOARD_REG;
 				
-			} else {
-				ra.addFlashAttribute("ImageFail","서버에러 다시 다시 시도해주세요");
+			} else if(result == 3) {
+				ra.addFlashAttribute("imgErr", "사진업로드 에러! 잠시후 다시 시도해주세요");
 				return "redirect:/" + ViewRef.BOARD_REG;
 			}
 			
-		} catch(Exception e) {
-			ra.addFlashAttribute("serverErr","서버에러 다시 시도해주세요");
-			return "redirect:/" + ViewRef.BOARD_REG;
+		} else { // 수정
+			System.out.println("ㅡ ㅡ ㅡ 글수정 ㅡ ㅡ ㅡ");
+			System.out.println("param.getI_board 수정값 : " + param.getI_board());
+			
 		}
 		
+		
+		return "redirect:/" + ViewRef.BOARD_LIST;
 	}
 	
 	

@@ -49,8 +49,8 @@ public class BoardService {
 	}
 	
 	
-	// 판매글 등록
-	public int insBoard(BoardVO param, MultipartHttpServletRequest mReq,
+	// 게시글 등록
+	public int insBoard(BoardDMI param, MultipartHttpServletRequest mReq,
 			HttpSession hs) {
 		
 		int i_board = 1;
@@ -88,7 +88,7 @@ public class BoardService {
 				BoardVO vo = new BoardVO();
 				MultipartFile mf = fileList.get(i);
 
-				String saveFileNm = FileUtils.thumFile(path, mf);
+				String saveFileNm = FileUtils.saveFile(path, mf);
 				
 				System.out.println("saveFileNm: " + saveFileNm);
 				vo.setImageFile(saveFileNm);
@@ -118,8 +118,11 @@ public class BoardService {
 	}
 	
 	
-	
-	//
+	// 게시글 수정
+	public int updBoard(BoardDMI param, MultipartHttpServletRequest mReq) {
+		
+		return 0;
+	}
 	
 	
 	

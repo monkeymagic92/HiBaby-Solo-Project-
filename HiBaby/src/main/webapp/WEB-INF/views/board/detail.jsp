@@ -62,7 +62,7 @@
              <img src="/res/img/HiBaby/profile_img/user/${loginUser.i_user }/${loginUser.profile_img}" class="profileImg">                    	
      	</c:if>
      	<c:if test="${loginUser.i_user == data.i_user}">
-     		<button>수정</button>
+     		<button onclick="updBoard(${data.i_board})">수정</button>
      		<button onclick="boardDelete(${data.i_board})">삭제</button>
      	</c:if>
 	</div>
@@ -71,9 +71,17 @@
 	if(${deleteErr != null}) {
 		alert('${deleteErr}')
 	}
-	d
+	
+	// 글수정
+	function updBoard(i_board) {
+		location.href="/board/boardReg?i_board="+i_board
+	}
+	
+	// 글삭제
 	function boardDelete(i_board) {
-		location.href="/board/delete?i_board="+i_board
+		if(confirm('게시글을 삭제하시겠습니까 ?')) {
+			location.href="/board/delete?i_board="+i_board	
+		}
 	}
 </script>
 </body>

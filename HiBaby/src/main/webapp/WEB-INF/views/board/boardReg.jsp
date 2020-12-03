@@ -29,7 +29,6 @@
 </style>
 </head>
 <body>
-
 	<div class="boardRegContainer">
 		<form id="frm" action="/board/boardReg" method="post" enctype="multipart/form-data" onsubmit="return chk()">
 			<div class="pics2">
@@ -50,18 +49,22 @@
 					<c:if test="${data.image_4 != '' }">
 						<img src="/res/img/board/${data.i_board }/${data.image_4}" class="selProductFile">
 					</c:if>
-					<c:if test="${data.image_5 != '' }">
-						<img src="/res/img/board/${data.i_board }/${data.image_5}" class="selProductFile">
-					</c:if>
 				</c:if>
             </div>
             <br>
             <div>
-            	<input type="text" name="title" placeholder="제목 입력"><br>
+            	<input type="text" name="title" placeholder="제목 입력" value="${data.title}"><br>
             </div>
             <div>
-            	<textarea rows="10" cols="40" placeholder="내용 입력" name="ctnt"></textarea><br>
+            	<textarea rows="10" cols="40" placeholder="내용 입력" name="ctnt">${data.ctnt}</textarea><br>
             </div>
+             <c:if test="${data.i_board == null }">
+               	<input type="hidden" name="regResult" value="1">
+             </c:if>
+             <c:if test="${data.i_board != null }">
+             	<input type="hidden" name="regResult" value="2">
+             	<input type="hidden" name="i_board" value="${data.i_board }"> 
+             </c:if>
             <input type="hidden" name="i_user" value="${loginUser.i_user }">
             <button type="submit">${data.i_board == null ? '글등록' : '글수정'}</button>
 		</form>
@@ -76,13 +79,18 @@ if(${loginMsg != null}) {
 	alert('${loginMsg}')
 	location.href="/user/login"
 }
-// 이미지 에러시
-if(${ImageFail != null}) {
-	alert('${ImageFail}')
+
+// 글 등록시 입력되지 않은 항목 있을경우
+if(${insErr != null}) {
+	alert('${insErr}')
 }
-if(${serverErr != null}) {
-	alert('${serverErr}')
+
+// 이미지 에러 발생하였을 경우
+if(${imgErr != null}) {
+	alert('${imgErr}')
 }
+
+
 //--------@multiple image preview-----------//
 var sel_files = [];
  $(document).ready(function() {
