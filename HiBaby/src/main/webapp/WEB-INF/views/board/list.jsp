@@ -46,6 +46,10 @@
 	background-color: grey;
 	cursor:pointer;
 }
+
+.pageNum {
+	text-align: center;
+}
 </style>
 </head>
 <body>
@@ -91,16 +95,20 @@
         <c:if test="${pagination.curRange ne 1 }">
             <a href="#" onClick="fn_paging(1)">[처음]</a> 
         </c:if>
+        <div class="pageNum">
         <c:forEach var="pageNum" begin="${pagination.startPage }" end="${pagination.endPage }">
             <c:choose>
+            	
                 <c:when test="${pageNum eq  pagination.curPage}">
-                    <span style="font-weight: bold;"><a href="#" onClick="fn_paging('${pageNum }')">${pageNum }</a></span> 
+                    <span style="font-weight: bold;"><a href="#" onClick="fn_paging('${pageNum }')">${pageNum }</a></span>
                 </c:when>
                 <c:otherwise>
                     <a href="#" onClick="fn_paging('${pageNum }')">${pageNum }</a> 
                 </c:otherwise>
+                
             </c:choose>
         </c:forEach>
+        </div>
         <c:if test="${pagination.curRange ne pagination.rangeCnt && pagination.rangeCnt > 0}">
             <a href="#" onClick="fn_paging('${pagination.pageCnt }')">[끝]</a> 
         </c:if>
