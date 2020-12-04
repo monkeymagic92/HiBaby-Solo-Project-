@@ -6,29 +6,69 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/res/css/boardReg.css">
 <style>
-.boardRegContainer {
-	width: 850px;
-	margin: 0 auto;
-}
-.selProductFile {
-    width: 150px;
-    height: 150px;
-    margin: 0px 5px 10px 10px;
-    object-fit: cover;
-}
-.pics2 input[type="file"]{
-    width: 0;
-    height: 0;
-    padding: 0;
-    border: 0;
-    z-index: -1;
-    overflow: hidden; 
-}
+
       
 </style>
 </head>
 <body>
+
+	<div class="boardRegContainer">
+            <form class="frmContainer" id="frm" action="/board/boardReg" method="post" enctype="multipart/form-data" onsubmit="return chk()">
+                <div class="pics2">
+                    <label for="mfile">
+                        <img src="/res/img/이미지등록.jpg"  alt="" class="img2"  id="imgId">
+                    </label>
+                    <input type="file" name="images"  id="mfile" multiple accept="image/png, image/jpeg, image/jpg">
+                        <c:if test="${data.i_board != null}">
+							<c:if test="${data.image_1 != '' }">
+								<img src="/res/img/board/${data.i_board }/${data.image_1}" class="selProductFile">
+							</c:if>
+							<c:if test="${data.image_2 != '' }">
+								<img src="/res/img/board/${data.i_board }/${data.image_2}" class="selProductFile">
+							</c:if>					
+							<c:if test="${data.image_3 != '' }">
+								<img src="/res/img/board/${data.i_board }/${data.image_3}" class="selProductFile">
+							</c:if>
+							<c:if test="${data.image_4 != '' }">
+								<img src="/res/img/board/${data.i_board }/${data.image_4}" class="selProductFile">
+							</c:if>
+						</c:if>
+                        
+                </div>
+                <!-- ㅡ내용ㅡ-->
+                
+                <div class="frmContainer">
+                    <input class="titleIn" type="text" name="title" placeholder="제목을 입력해주세요" value="${data.title}">
+                    <br>
+                    <textarea class="ctntIn" name="ctnt" placeholder="내용을 입력해주세요">${data.ctnt}</textarea>
+                    <br>
+                    <c:if test="${data.i_board == null }">
+		               	<input type="hidden" name="regResult" value="1">
+		            </c:if>
+		            <c:if test="${data.i_board != null }">
+		                <input type="hidden" name="regResult" value="2">
+		            	<input type="hidden" name="i_board" value="${data.i_board }"> 
+		            </c:if>
+		            <input type="hidden" name="i_user" value="${loginUser.i_user }">
+                    <button class="submitBtn" type="submit">${data.i_board == null ? '글등록' : '글수정'}</button>
+                </div>
+            </form>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
 	<div class="boardRegContainer">
 		<form id="frm" action="/board/boardReg" method="post" enctype="multipart/form-data" onsubmit="return chk()">
 			<div class="pics2">
@@ -69,8 +109,8 @@
             <button type="submit">${data.i_board == null ? '글등록' : '글수정'}</button>
 		</form>
 	</div>
-	
-<script src="/res/js/boardReg.js"></script>
+	 -->
+
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>

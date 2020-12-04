@@ -14,6 +14,7 @@
 <style>
 body {
 	background-color: #fff7ed;
+	font-family: 'Nerko One', cursive;
 }
 
 ul {

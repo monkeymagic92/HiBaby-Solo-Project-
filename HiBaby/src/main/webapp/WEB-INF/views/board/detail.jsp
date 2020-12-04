@@ -29,7 +29,6 @@
 	}
 			
 	
-	
 </style>
 <body>
 	<div class="detailContainer">

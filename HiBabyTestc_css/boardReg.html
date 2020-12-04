@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/boardReg.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- HEADER -->
+        <header class="block">
+            <ul class="header-menu horizontal-list">
+                <li>
+                    <a class="header-menu-tab" href="/index/select"><span
+                            class="icon entypo-cog scnd-font-color"></span><span id="HiBabyLogo">HiBaby</span></a>
+                </li>
+                <li>
+                    <a id="marginLefta" class="header-menu-tab" href="#1"><span
+                            class="icon entypo-cog scnd-font-color"></span><span class="spanli">이동하기</span></a>
+                </li>
+
+                <li>
+                    <a id="marginRighta" class="header-menu-tab" href="#3"><span
+                            class="icon fontawesome-envelope scnd-font-color"></span><span class="spanli">쪽지함</span></a>
+                    <a class="header-menu-number">5</a>
+                </li>
+
+            </ul>
+            <div class="profile-menu">
+                <ul class="nav">
+                    <li class="button-dropdown">
+                        <a href="javascript:void(0)" class="dropdown-toggle">
+                            <img class="pimg" src="C:\Users\이재용\OneDrive\바탕 화면\img\HiBaby.jpg" class="profileImg">
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/user/myPage">
+                                    마이페이지
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Drop Item 2
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Drop Item 3
+                                </a>
+                            </li>
+                            <li>
+                                <hr>
+                                <a href="#" onclick="logOut()">
+                                    로그아웃
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+        </header>
+
+
+
+        <!-- 여기서부터 -->
+        <div class="boardRegContainer">
+            <form class="frmContainer" id="frm" action="/board/boardReg" method="post" enctype="multipart/form-data" onsubmit="return chk()">
+                <div class="pics2">
+                    <label for="mfile">
+                        <img src="C:\Users\이재용\OneDrive\바탕 화면\img\이미지등록.jpg"  alt="" class="img2"  id="imgId">
+                    </label>
+                    <input type="file" name="images"  id="mfile" multiple accept="image/png, image/jpeg, image/jpg">
+                        <img src="C:\Users\이재용\OneDrive\바탕 화면\img\HiBaby.jpg" class="selProductFile">                
+                        <img src="C:\Users\이재용\OneDrive\바탕 화면\img\HiBaby.jpg" class="selProductFile">
+                        <img src="C:\Users\이재용\OneDrive\바탕 화면\img\HiBaby.jpg" class="selProductFile">
+                        <img src="C:\Users\이재용\OneDrive\바탕 화면\img\HiBaby.jpg" class="selProductFile">
+                        
+                </div>
+                <!-- ㅡ내용ㅡ-->
+                
+                <div class="frmContainer">
+                    <input class="titleIn" type="text" name="title" placeholder="제목을 입력해주세요">
+                    <br>
+                    <textarea class="ctntIn" placeholder="내용을 입력해주세요"></textarea>
+                    <br>
+                    <button class="submitBtn" type="submit">글등록</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script>
+//--------@multiple image preview-----------//
+var sel_files = [];
+ $(document).ready(function() {
+     $("#mfile").on("change", handleImgFileSelect);
+ }); 
+ 
+ function handleImgFileSelect(e) {
+     $(".selProductFile").remove();
+     sel_files = [];
+   
+     //파일 길이
+     var files = e.target.files;
+     
+     if(files.length > 4) {
+         alert('이미지는 4장만 업로드 가능합니다.');
+         document.getElementById("mfile").value = "";
+         return false;
+     }
+     
+     //파일 길이를 배열로 바꿔줌
+     var filesArr = Array.prototype.slice.call(files);
+ 
+     var index = 0;
+     filesArr.forEach(function(f) {
+         
+         if(!f.type.match("image.*")) {
+             alert("이미지만 업로드 가능합니다.");
+             return;
+         } 
+         sel_files.push(f)
+        
+         var reader = new FileReader();
+         reader.onload = function(e) {
+             var html = "<img src=\"" + e.target.result + "\"class='selProductFile'>";
+             $(".pics2").append(html);
+            
+         }
+         reader.readAsDataURL(f);
+     });
+ }
+//--------@multiple image preview-----------//
+</script>
+</body>
+</html>

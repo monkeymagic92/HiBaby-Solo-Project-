@@ -1,0 +1,87 @@
+@charset "UTF-8";
+.boardRegContainer {
+	width: 100%;
+	margin: 0 auto;
+}
+.selProductFile {
+    width: 150px;
+    height: 150px;
+    margin: 0px 5px 10px 10px;
+    object-fit: cover;
+}
+
+#mfile{
+    width: 0;
+    height: 0;
+    padding: 0;
+    border: 0;
+    z-index: -1;
+    overflow: hidden; 
+}
+
+.frmContainer {
+    text-align: center;
+}
+
+.titleIn {
+    margin-top: 20px;
+    width: 700px;
+    height: 50px;
+    border-radius: 20px;
+    font-size: 1.3em;
+    border: 2px solid #81aefc;
+    outline: none;
+    background-color: #fff7ed;
+    transition-duration: 0.5s;
+}
+
+.titleIn:hover {
+    border: 2px solid#2675ff;
+    padding-right: 27px;
+    padding-left: 27px;
+    transition-duration: 0.5s;
+}
+
+
+.ctntIn {
+    margin-top: 20px;
+    width: 700px;
+    height: 430px;
+    font-size: 1.3em;
+    border: 2px solid #81aefc;
+    border-radius: 15px;
+    outline: none;
+    background-color: #fff7ed;
+    transition-duration: 0.5s;
+    
+}
+
+.ctntIn:hover {
+    border: 2px solid #2675ff;
+    padding-right: 27px;
+    padding-left: 27px;
+    transition-duration: 0.5s;
+}
+
+.submitBtn {    
+    width: 120px;
+    font-size: 1em;
+    margin-top: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 16px;
+    outline: none;
+    border: 2px solid#94bbff;
+    transition-duration: 0.3s;
+}
+
+.submitBtn:hover {
+    cursor: pointer;
+    /*background-image: linear-gradient(to right,#94e4f2 5%,#a7f9fc 5%, #94e4f2 4%);*/
+    border-radius: 20px;
+    border: 2px solid#a6bfff;
+    font-size: 1.1em;
+    width: 130px;
+    transition-duration: 0.2s;
+    box-shadow: 0 6px 12px -3px grey;
+}
