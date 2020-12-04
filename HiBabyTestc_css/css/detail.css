@@ -277,6 +277,13 @@ h1, h2, p, a, span{
 	height: 200px;
 	margin-left: 8px;
 	margin-top: 20px;
+	transition: 0.4s;
+}
+
+.selProductFile:hover {
+	cursor: pointer;
+	width: 220px;
+	transition: 0.4s;
 }
 
 .profileImg {

@@ -39,11 +39,11 @@
                 </div>
                 <div class="boardData">조회수(#) ${data.r_dt}</div>
                 <div class="data">
-                    <c:if test="${loginUser.profile_img == null }">
-			     		<img src="/res/img/HiBaby.jpg" onchange="setThumbnail(e)" alt="" class="detailImg">
+                    <c:if test="${data.profile_img == null }">
+			     		<img src="/res/img/HiBaby.jpg" onchange="setThumbnail(e)" alt="" class="detailImg" onclick="moveToMyPage(${data.i_user})">
 			     	</c:if>
-			     	<c:if test="${loginUser.profile_img != null }">
-			             <img src="/res/img/HiBaby/profile_img/user/${loginUser.i_user }/${loginUser.profile_img}" class="detailImg">                    	
+			     	<c:if test="${data.profile_img != null }">
+			             <img src="/res/img/HiBaby/profile_img/user/${data.i_user}/${data.profile_img}" class="detailImg" onclick="moveToMyPage(${data.i_user})">                    	
 			     	</c:if>
                     <div class="userNick">${data.nick}</div>
                 </div>
@@ -53,19 +53,19 @@
             <div class="imgDiv">
                 <c:if test="${data.i_board != null}">
                 	<c:if test="${data.image_1 == ''}">
-                		<h1>사진이 없어요 ㅜㅜ</h1>
+                		<h1>사진이 없어요 ㅠㅠ</h1>
                 	</c:if>
 					<c:if test="${data.image_1 != '' }">
-						<img src="/res/img/board/${data.i_board }/${data.image_1}" class="selProductFile">
+						<img src="/res/img/board/${data.i_board }/${data.image_1}" class="selProductFile" onclick="popup(this.src)">
 					</c:if>
 					<c:if test="${data.image_2 != '' }">
-						<img src="/res/img/board/${data.i_board }/${data.image_2}" class="selProductFile">
+						<img src="/res/img/board/${data.i_board }/${data.image_2}" class="selProductFile" onclick="popup(this.src)">
 					</c:if>					
 					<c:if test="${data.image_3 != '' }">
-						<img src="/res/img/board/${data.i_board }/${data.image_3}" class="selProductFile">
+						<img src="/res/img/board/${data.i_board }/${data.image_3}" class="selProductFile" onclick="popup(this.src)">
 					</c:if>
 					<c:if test="${data.image_4 != '' }">
-						<img src="/res/img/board/${data.i_board }/${data.image_4}" class="selProductFile">
+						<img src="/res/img/board/${data.i_board }/${data.image_4}" class="selProductFile" onclick="popup(this.src)">
 					</c:if>
 				</c:if>
             </div>
@@ -163,6 +163,14 @@
 		alert('${updMsg}')
 	}
 	
+	// 이미지 클릭시 팝업창
+	function popup(src){
+        var url = "popup.html";
+        var name = "popup test";
+        var option = "width = 850, height = 750, top = 100, left = 100, location = no"
+        window.open(src, url, option);
+    }
+	
 	// 글수정
 	function updBoard(i_board) {
 		location.href="/board/boardReg?i_board="+i_board
@@ -173,6 +181,10 @@
 		if(confirm('게시글을 삭제하시겠습니까 ?')) {
 			location.href="/board/delete?i_board="+i_board	
 		}
+	}
+	
+	function moveToMyPage(i_user) {
+		location.href="/user/myPage?i_user="+i_user
 	}
 	
 	

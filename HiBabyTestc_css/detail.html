@@ -6,7 +6,7 @@
     <title>detail</title>
     <link rel="stylesheet" href="css/detail.css">
 </head>
-<body>
+<body id="img_body">
     <div class="main-container">
         <!-- HEADER -->
         <header class="block">
@@ -74,10 +74,10 @@
                 
             </div>
             <div class="imgDiv">
-                <img src="C:\Users\이재용\OneDrive\바탕 화면\img\HiBaby.jpg" class="selProductFile">
-                <img src="C:\Users\이재용\OneDrive\바탕 화면\img\HiBaby.jpg" class="selProductFile">
-                <img src="C:\Users\이재용\OneDrive\바탕 화면\img\HiBaby.jpg" class="selProductFile">
-                <img src="/res/img/board/${data.i_board }/${data.image_4}" class="selProductFile">
+                <img src="C:\Users\이재용\OneDrive\바탕 화면\img\HiBaby.jpg" class="selProductFile" onclick="popup(this.src)">
+                <img src="C:\Users\이재용\OneDrive\바탕 화면\img\imagex.jpg" class="selProductFile" onclick="popup(this.src)">
+                <img src="C:\Users\이재용\OneDrive\바탕 화면\img\HiBaby.jpg" class="selProductFile" onclick="popup(this.src)">
+                <img src="/res/img/board/${data.i_board }/${data.image_4}" class="selProductFile" onclick="popup(this.src)">
             </div>
             <hr>
 
@@ -124,7 +124,16 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script>
- 
+    function popup(src){
+        var url = "popup.html";
+        var name = "popup test";
+        var option = "width = 850, height = 750, top = 100, left = 100, location = no"
+        window.open(src, url, option);
+    }
+    
+
+
+
        
 </script>
 </body>
