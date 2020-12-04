@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 상세페이지</title>
+<link rel="stylesheet" href="/res/css/detail.css">
 </head>
 <style>
 	.detailContainer {
@@ -31,6 +32,91 @@
 	
 </style>
 <body>
+<div class="detailContainer">
+            <div class="titleDiv">
+                <div class="title">
+                    ${data.title}
+                </div>
+                <div class="boardData">조회수(#) ${data.r_dt}</div>
+                <div class="data">
+                    <c:if test="${loginUser.profile_img == null }">
+			     		<img src="/res/img/HiBaby.jpg" onchange="setThumbnail(e)" alt="" class="detailImg">
+			     	</c:if>
+			     	<c:if test="${loginUser.profile_img != null }">
+			             <img src="/res/img/HiBaby/profile_img/user/${loginUser.i_user }/${loginUser.profile_img}" class="detailImg">                    	
+			     	</c:if>
+                    <div class="userNick">${data.nick}</div>
+                </div>
+                <hr>
+                
+            </div>
+            <div class="imgDiv">
+                <c:if test="${data.i_board != null}">
+                	<c:if test="${data.image_1 == ''}">
+                		<h1>사진이 없어요 ㅜㅜ</h1>
+                	</c:if>
+					<c:if test="${data.image_1 != '' }">
+						<img src="/res/img/board/${data.i_board }/${data.image_1}" class="selProductFile">
+					</c:if>
+					<c:if test="${data.image_2 != '' }">
+						<img src="/res/img/board/${data.i_board }/${data.image_2}" class="selProductFile">
+					</c:if>					
+					<c:if test="${data.image_3 != '' }">
+						<img src="/res/img/board/${data.i_board }/${data.image_3}" class="selProductFile">
+					</c:if>
+					<c:if test="${data.image_4 != '' }">
+						<img src="/res/img/board/${data.i_board }/${data.image_4}" class="selProductFile">
+					</c:if>
+				</c:if>
+            </div>
+            <hr>
+
+            <!-- ㅡ ㅡ  ㅡ   자바스크립 function aa.hover() 써서 사진 마우스올리면 확대되게-->
+            <section class="sectionP">
+                <p class="ctntP">${data.ctnt}</p>
+            </section>
+            <hr>
+            <!-- 댓글 -->
+            <h3 id="cmtCount">댓글수(#)</h3>
+            <div class="cmtTable">
+                <form id="frm">
+                    <textarea id="cmtIn" type="text" name="cmt" placeholder="댓글을 입력해주세요"></textarea>
+                    <button id="cmtInsBtn" onclick="#">등록</button>
+                    <button id="cmtCancleBtn" onclick="#">취소</button>
+                </form>
+            </div>
+            <!-- 댓글 목록 -->
+            <div id="cmtListBox">
+                <div class="cmtList">
+                    <img src="/res/img/HiBaby/profile_img/user/${loginUser.i_user }/${loginUser.profile_img}" class="cmtImg">                    	
+                    <div class="cmtInfo">
+                        <span class="cmtNick">재용아이디임()</span>
+                        <div class="cmtData">2020.10.10 12:45</div>
+                        <div class="cmtCmt">안녕하세요 첫 댓글 입니다.안녕하세요 첫 댓글 입니다.안녕하세요 첫 댓글 입니다안녕하세요 첫 댓글 입니다.안녕하세요 첫 댓글 입니다.안녕하세요 첫 댓글 입니다.</div>
+                        <button id="cmtDel" onclick="cmtDel()">삭제</button>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <!-- 더보기 -->
+            <div id="divSelMoreCtn"></div> 
+        </div>
+        
+    
+
+
+
+
+
+
+
+
+
+
+	<!-- ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡㅡ		ㅡㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ -->
+
+
+	<!-- 
 	<div class="detailContainer">
 		<div class="imgDiv">
 			<c:if test="${data.i_board != null}">
@@ -65,7 +151,7 @@
      		<button onclick="boardDelete(${data.i_board})">삭제</button>
      	</c:if>
 	</div>
-	
+	 -->
 <script>
 	// 글 삭제시 에러떳을경우
 	if(${deleteErr != null}) {

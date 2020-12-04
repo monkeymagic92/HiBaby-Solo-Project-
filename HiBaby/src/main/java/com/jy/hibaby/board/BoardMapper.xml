@@ -42,7 +42,7 @@
 	<!-- 보드detail 상세화면 -->
 	<select id="detailBoard" resultType="BoardPARAM" parameterType="BoardPARAM">
 		SELECT A.i_board, A.i_user, A.title, A.ctnt, A.image_1, A.image_2,
-		A.image_3, A.image_4, B.nick, B.i_user, B.profile_img
+		A.image_3, A.image_4, A.r_dt, B.nick, B.i_user, B.profile_img
 		FROM t_board A
 		LEFT JOIN t_user B
 		ON A.i_user = B.i_user

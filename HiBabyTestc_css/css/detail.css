@@ -255,7 +255,8 @@ h1, h2, p, a, span{
 /*  ㅡ  ㅡ  ㅡ   detail ㅡ  ㅡ  ㅡ  */
 
 .detailContainer {
-    width: 100%;
+	width: 100%;
+	height: 1300px;
 }
 
 .detailContainer {
@@ -265,9 +266,9 @@ h1, h2, p, a, span{
 
 .imgDiv {
 	display: flex;
-	margin-top: 30px;
+	margin-top: 40px;
 	margin-left: 10px;
-	margin-bottom: 50px;
+	margin-bottom: 80px;
 	
 }
 
@@ -326,11 +327,6 @@ h1, h2, p, a, span{
 	margin:0 auto;
 }
 
-.cmtTable {
-	margin-top: 40px;
-	border-radius: 10px;
-	border: 2px solid black;
-}
 .sectionP {
 	margin-top: 20px;
 	padding: 0 25px;
@@ -339,9 +335,100 @@ h1, h2, p, a, span{
 .ctntP {
 	font-size: 1.2em;
 	color: black;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.cmtDiv {
+	width: 100%;
+	border-radius: 10px;
+	border: 2px solid black;
+}
+
+.cmtDiv {
+	width: 100%;
+	height: 40px;
 }
 
 #cmtIn {
-	width: 410px;
+	width: 100%;
 	height: 40px;
+	border: none;
+    outline-style: none;
+	resize: none;
+	border: 1px solid black;
+	padding-top: 6px;
+	padding-bottom: 5px;
+	border-radius: 3px;
 }
+
+
+#cmtCount {
+	margin-top: 62px;
+	margin-bottom: 12px;	
+}
+
+#cmtInsBtn {
+	margin-left: 728px;
+	margin-top: 10px;
+}
+
+#cmtInsBtn {
+	cursor: pointer;
+	border: 1px solid black;
+	border-radius: 4px;
+	width: 55px;
+	height: 30px;
+	margin-right: 5px;
+}
+
+#cmtCancleBtn {
+	cursor: pointer;
+	border: 1px solid black;
+	border-radius: 4px;
+	width: 55px;
+	height: 30px;
+}
+
+.cmtList {
+	display: flex;
+	margin-top: 20px;
+}
+
+.cmtImg {
+	width: 60px;
+	height: 60px;
+	border-radius: 100px;
+}
+
+.cmtInfo {
+	margin-left: 11px;
+	margin-top: 2px;
+}
+
+.cmtData {
+	margin-left: 630px;
+	margin-bottom: 6px;
+}
+
+.cmtNick {
+	color: grey;
+}
+
+#cmtDel {
+	width: 50px;
+	margin-top: 7px;
+	margin-left: -3px;
+	border-radius: 5px;
+	outline-style:none;
+	
+}
+
+#cmtDel:hover {
+	cursor:pointer;
+	outline-style:none;
+}
+
+
+
+

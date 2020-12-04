@@ -1,0 +1,176 @@
+@charset "UTF-8";
+
+.detailContainer {
+	width: 100%;
+	height: 1700px;
+}
+
+.detailContainer {
+	width: 850px;
+	margin: 0 auto;
+}
+
+.imgDiv {
+	display: flex;
+	margin-top: 40px;
+	margin-left: 10px;
+	margin-bottom: 80px;
+	
+}
+
+.selProductFile {
+	width: 200px;
+	height: 200px;
+	margin-left: 8px;
+	margin-top: 20px;
+}
+
+.profileImg {
+	width: 150px;
+	height: 150px;
+}
+
+
+.titleDiv {
+	margin-left: 10px;
+	margin-top: 50px;
+}
+
+.title {	
+	padding-top: 10px;
+	font-size: 1.7em;
+	text-align: center;
+}
+
+.data {
+	display: flex;
+	margin-top: 18px;
+	font-size: 1em;
+	padding: 10px;
+	
+}
+
+.detailImg {
+	width: 55px;
+	height: 55px;
+	border-radius: 100px;
+}
+
+.userNick {
+	margin-top: 14px;
+	margin-left: 9px;
+	font-size: 1.1em;
+}
+
+.boardData {
+	margin-top: 29px;
+	margin-left: 590px;
+}
+
+.info {
+	font-size: 1.2em;
+	width: 100%;
+	margin:0 auto;
+}
+
+.sectionP {
+	margin-top: 20px;
+	padding: 0 25px;
+	
+}
+.ctntP {
+	font-size: 1.2em;
+	color: black;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.cmtDiv {
+	width: 100%;
+	border-radius: 10px;
+	border: 2px solid black;
+}
+
+.cmtDiv {
+	width: 100%;
+	height: 40px;
+}
+
+#cmtIn {
+	width: 100%;
+	height: 40px;
+	border: none;
+    outline-style: none;
+	resize: none;
+	border: 1px solid black;
+	padding-top: 6px;
+	padding-bottom: 5px;
+	border-radius: 3px;
+}
+
+
+#cmtCount {
+	margin-top: 62px;
+	margin-bottom: 12px;	
+}
+
+#cmtInsBtn {
+	margin-left: 728px;
+	margin-top: 10px;
+}
+
+#cmtInsBtn {
+	cursor: pointer;
+	border: 1px solid black;
+	border-radius: 4px;
+	width: 55px;
+	height: 30px;
+	margin-right: 5px;
+}
+
+#cmtCancleBtn {
+	cursor: pointer;
+	border: 1px solid black;
+	border-radius: 4px;
+	width: 55px;
+	height: 30px;
+}
+
+.cmtList {
+	display: flex;
+	margin-top: 20px;
+}
+
+.cmtImg {
+	width: 60px;
+	height: 60px;
+	border-radius: 100px;
+}
+
+.cmtInfo {
+	margin-left: 11px;
+	margin-top: 2px;
+}
+
+.cmtData {
+	margin-left: 630px;
+	margin-bottom: 6px;
+}
+
+.cmtNick {
+	color: grey;
+}
+
+#cmtDel {
+	width: 50px;
+	margin-top: 7px;
+	margin-left: -3px;
+	border-radius: 5px;
+	outline-style:none;
+	
+}
+
+#cmtDel:hover {
+	cursor:pointer;
+	outline-style:none;
+}

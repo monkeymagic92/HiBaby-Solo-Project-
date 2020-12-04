@@ -65,9 +65,9 @@
                 <div class="title">
                     첫글입니다!! 이쁙봐주이소 알게씁니까 >?
                 </div>
-                <div class="boardData">조회수 : 823 2020-10-20 12:45am</div>
+                <div class="boardData">조회수(#) 2020-10-20 12:45am</div>
                 <div class="data">
-                    <img src="C:\Users\이재용\OneDrive\바탕 화면\img\dog.jpg" class="detailImg">
+                    <img src="C:\Users\이재용\OneDrive\바탕 화면\img\HiBaby.jpg" class="detailImg">
                     <div class="userNick">루루루루루루</div>
                 </div>
                 <hr>
@@ -92,23 +92,40 @@
                     하하ㄹㄹ
                 </p>
             </section>
-        
+            <hr>
             <!-- 댓글 -->
+            <h3 id="cmtCount">댓글수(#)</h3>
             <div class="cmtTable">
-                <div>
-                    <form>
-                        <textarea id="cmtIn" type="text" name="cmt" placeholder="댓글을 입력해주세요"></textarea>
-                        <button>등록</button>
-                    </form>
-                </div>
+                <form id="frm">
+                    <textarea id="cmtIn" type="text" name="cmt" placeholder="댓글을 입력해주세요"></textarea>
+                    <button id="cmtInsBtn" onclick="#">등록</button>
+                    <button id="cmtCancleBtn" onclick="#">취소</button>
+                </form>
             </div>
+            <!-- 댓글 목록 -->
+            <div id="cmtListBox">
+                <div class="cmtList">
+                    <img class="cmtImg" src="C:\Users\이재용\OneDrive\바탕 화면\img\HiBaby.jpg">
+                    <div class="cmtInfo">
+                        <span class="cmtNick">재용아이디임</span>
+                        <div class="cmtData">2020.10.10 12:45</div>
+                        <div class="cmtCmt">안녕하세요 첫 댓글 입니다.안녕하세요 첫 댓글 입니다.안녕하세요 첫 댓글 입니다안녕하세요 첫 댓글 입니다.안녕하세요 첫 댓글 입니다.안녕하세요 첫 댓글 입니다.</div>
+                        <button id="cmtDel" onclick="cmtDel()">삭제</button>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <!-- 더보기 -->
+            <div id="divSelMoreCtn"></div> 
         </div>
+        
     </div>
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script>
-
+ 
+       
 </script>
 </body>
 </html>
