@@ -265,6 +265,7 @@ h1, h2, p, a, span{
 
 .imgDiv {
 	display: flex;
+	margin-top: 20px;
 	
 }
 
@@ -279,4 +280,48 @@ h1, h2, p, a, span{
 	width: 150px;
 	height: 150px;
 }
+
+.info {
+	margin:0 auto;
+	text-align:center;
+}
+
+.titleDiv {
+	margin-left: 10px;
+	margin-top: 50px;
+}
+
+.title {	
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 1.7em;
+	text-align: center;
+}
+
+.data {
+	display: flex;
+	margin-top: 18px;
+	font-size: 1em;
+	padding: 10px;
+	background-color: white;
+}
+
+.detailImg {
+	width: 55px;
+	height: 55px;
+	border-radius: 100px;
+	
+}
+
+.userNick {
+	margin-top: 14px;
+	margin-left: 9px;
+	font-size: 1.1em;
+}
+
+.boardData {
+	margin-top: 29px;
+	margin-left: 550px;
+}
+
 
