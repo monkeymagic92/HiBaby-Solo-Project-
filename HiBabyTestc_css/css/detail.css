@@ -265,7 +265,9 @@ h1, h2, p, a, span{
 
 .imgDiv {
 	display: flex;
-	margin-top: 20px;
+	margin-top: 30px;
+	margin-left: 10px;
+	margin-bottom: 50px;
 	
 }
 
@@ -281,10 +283,6 @@ h1, h2, p, a, span{
 	height: 150px;
 }
 
-.info {
-	margin:0 auto;
-	text-align:center;
-}
 
 .titleDiv {
 	margin-left: 10px;
@@ -293,7 +291,6 @@ h1, h2, p, a, span{
 
 .title {	
 	padding-top: 10px;
-	padding-bottom: 10px;
 	font-size: 1.7em;
 	text-align: center;
 }
@@ -303,14 +300,13 @@ h1, h2, p, a, span{
 	margin-top: 18px;
 	font-size: 1em;
 	padding: 10px;
-	background-color: white;
+	
 }
 
 .detailImg {
 	width: 55px;
 	height: 55px;
 	border-radius: 100px;
-	
 }
 
 .userNick {
@@ -321,7 +317,31 @@ h1, h2, p, a, span{
 
 .boardData {
 	margin-top: 29px;
-	margin-left: 550px;
+	margin-left: 590px;
 }
 
+.info {
+	font-size: 1.2em;
+	width: 100%;
+	margin:0 auto;
+}
 
+.cmtTable {
+	margin-top: 40px;
+	border-radius: 10px;
+	border: 2px solid black;
+}
+.sectionP {
+	margin-top: 20px;
+	padding: 0 25px;
+	
+}
+.ctntP {
+	font-size: 1.2em;
+	color: black;
+}
+
+#cmtIn {
+	width: 410px;
+	height: 40px;
+}
