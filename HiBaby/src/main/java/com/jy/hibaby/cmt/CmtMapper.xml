@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jy.hibaby.cmt.CmtMapper">
+	<!-- 댓글 나타내기 -->
+	<select id="selCmt" resultType="CmtDMI" parameterType="BoardPARAM">
+		SELECT A.i_board, A.i_cmt, B.i_user ,B.profile_img, B.nick, A.ctnt, A.r_dt FROM t_cmt A
+				
+		LEFT JOIN t_user B
+		ON A.i_user = B.i_user
+		
+		WHERE A.i_board = #{i_board}
+		ORDER BY A.r_dt DESC
+		LIMIT #{cmt_pageStart}, #{cmt_perPageNum}
+	</select>	
+	
+	
+	<!-- 댓글 갯수 -->
+	<select id="cmtCount" resultType="Integer" parameterType="BoardPARAM">
+		SELECT COUNT(ctnt) FROM t_cmt
+		WHERE i_board = ${i_board}
+	</select>
+	
+	
+						<!-- insert -->
+	<!-- 댓글 등록 -->
+	<insert id="insCmt" parameterType="CmtVO">
+		INSERT INTO t_cmt
+		(i_user, i_board, ctnt) 
+		VALUES
+		(#{i_user}, #{i_board}, #{ctnt})
+	</insert>
+	
+	
+						<!-- update -->
+	
+						
+	<!-- 댓글 수정 -->
+	<update id="updCmt" parameterType="CmtVo">
+		UPDATE t_cmt
+		SET ctnt = #{ctnt}
+		WHERE i_cmt = #{i_cmt}
+	</update>
+
+	
+						<!-- delete -->
+
+	<!-- 댓글 삭제 -->
+	<delete id="delCmt" parameterType="CmtVO">
+		DELETE FROM t_cmt
+		WHERE i_cmt = #{i_cmt}
+	</delete>
+</mapper>

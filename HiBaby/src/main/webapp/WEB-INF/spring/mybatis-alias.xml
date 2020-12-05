@@ -16,7 +16,14 @@
 		<!-- point -->
 		<typeAlias type="com.jy.hibaby.PointVO" alias="PointVO" />
 		
+		<!-- page -->
 		<typeAlias type="com.jy.hibaby.Pagination" alias="Pagination" />
+		
+		
+		<!-- cmt -->
+		<typeAlias type="com.jy.hibaby.cmt.model.CmtVO" alias="CmtVO" />
+		<typeAlias type="com.jy.hibaby.cmt.model.CmtPARAM" alias="CmtPARAM" />
+		<typeAlias type="com.jy.hibaby.cmt.model.CmtDMI" alias="CmtDMI" />
 		
 	</typeAliases>	
 </configuration>
