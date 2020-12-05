@@ -2,11 +2,15 @@ body {
 	background-color: #fff7ed;
 }
 
+
 ul {
 	list-style-type: none;
 	margin: 0;
 	padding-left: 0;
+	
 }
+
+
 p {
 	font-size: 15px;
 }
@@ -171,6 +175,9 @@ h1, h2, p, a, span{
 }
 #dropdownMenuButton{
 	cursor: pointer;
+	
+	
+	
 }
 .pimg {
 	width:50px;
@@ -203,9 +210,7 @@ h1, h2, p, a, span{
 .nav li a {
     display: block;
     color: #333;
-    
-   
-    
+        
 }
 
 .nav li a span {
@@ -225,6 +230,7 @@ h1, h2, p, a, span{
 }
 
 .nav li .dropdown-menu {
+	
     display: none;
     position: absolute;
     left: 0;
@@ -235,7 +241,8 @@ h1, h2, p, a, span{
 }
 
 .nav li .dropdown-menu.active {
-    display: block
+	display: block
+	
     
 }
 
