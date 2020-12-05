@@ -83,6 +83,10 @@
                 <p class="ctntP">${data.ctnt}</p>
             </section>
             <hr>
+            <div class="utilBtn">
+                <button id="utilBtnUpd" onclick="updBoard(${data.i_board})">수정하기</button>
+                <button id="utilBtnDel" onclick="boardDelete(${data.i_board})">삭제하기</button>
+            </div>
             <!-- 댓글 -->
             <h2 id="cmtCount"></h2>
             <div class="cmtTable">

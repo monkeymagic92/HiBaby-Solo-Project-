@@ -214,7 +214,7 @@
 }
 
 .updBtnSpan {
-	margin-left: 565px;
+	margin-left: 580px;
 }
 
 .updBtnSpan:hover {
@@ -229,6 +229,40 @@
 	cursor:pointer;
 }
 
+.utilBtn {
+	display: flex;
+}
+
+#utilBtnUpd {
+	width: 75px;
+	height: 35px;
+	border: 1px solid black;
+	border-radius: 4px;
+	margin-top: 10px;
+	margin-left: 685px;
+	outline-style: none;
+
+}
+
+#utilBtnUpd:hover {
+	cursor:pointer;
+	background-color: grey;
+}
+
+#utilBtnDel {
+	width: 75px;
+	height: 35px;
+	border: 1px solid black;
+	border-radius: 4px;
+	margin-top: 10px;
+	margin-left: 10px;
+	outline-style: none;
+}
+
+#utilBtnDel:hover {
+	cursor:pointer;
+	background-color: grey;
+}
 
 
 .iconify:hover {
