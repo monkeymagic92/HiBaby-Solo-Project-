@@ -68,7 +68,9 @@
 						<img src="/res/img/board/${data.i_board }/${data.image_4}" class="selProductFile" onclick="popup(this.src)">
 					</c:if>
 				</c:if>
+				
             </div>
+            <h3>이미지를 클릭하면 크게 볼수 있습니다.</h3>
             <hr>
             
             <!-- ㅡ	ㅡ	ㅡ	ㅡ	 ( 수정 / 삭제 버튼만들기 ) 기능은 다되어있음			 -->
@@ -105,7 +107,8 @@
                         <span class="cmtNick">재용아이디임()</span>
                         <div class="cmtData">2020.10.10 12:45</div>
                         <div class="cmtCmt">안녕하세요 첫 댓글 입니다.안녕하세요 첫 댓글 입니다.안녕하세요 첫 댓글 입니다안녕하세요 첫 댓글 입니다.안녕하세요 첫 댓글 입니다.안녕하세요 첫 댓글 입니다.</div>
-                        <button id="cmtDel" onclick="cmtDel()">삭제</button>
+                        <button id="cmtDel" onclick="기존껄로하기">삭제</button>
+                        <button id="cmtDel" onclick="밑에껄로하기">수정</button>
                     </div>
                 </div>
                 <hr>
@@ -115,12 +118,54 @@
             <div id="cmtListBox"></div>
             <div id="divSelMoreCtn"></div> 
             <!-- 작업공간 -->
+            
+            <div class="detailFooter"></div>
         </div>	
+        
 <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
 
+	
+	// 글 삭제시 에러떳을경우
+	if(${deleteErr != null}) {
+		alert('${deleteErr}')
+	}
+	
+	// 글수정 성공시
+	if(${updMsg != null}) {
+		alert('${updMsg}')
+	}
+	
+	// 이미지 클릭시 팝업창
+	function popup(src){
+        var url = "popup.html";
+        var name = "popup test";
+        var option = "width = 850, height = 750, top = 100, left = 100, location = no"
+        window.open(src, url, option);
+    }
+	
+	// 글수정
+	function updBoard(i_board) {
+		location.href="/board/boardReg?i_board="+i_board
+	}
+	
+	// 글삭제
+	function boardDelete(i_board) {
+		if(confirm('게시글을 삭제하시겠습니까 ?')) {
+			location.href="/board/delete?i_board="+i_board	
+		}
+	}
+	
+	function moveToMyPage(i_user) {
+		location.href="/user/myPage?i_user="+i_user
+	}
+	
+	
+	
+	
+	// 댓글기능 시작
 	//ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ
 	// 업데이트 메소드 만들기 (아작스로)
 	function updCmt(ctnt, i_cmt) {
@@ -224,6 +269,7 @@
    var limitCnt = 0;
    var limit = 0;
    
+   // 더보기 기능 페이징
    function ajaxSelMore() {
       axios.get('/cmt/selCmt', {
           params: {
@@ -255,9 +301,7 @@
 	      for (let i = 0; i<arr.length; i++) {
 	         makeCmtList(arr[i])
 	      }
-	      
-	      
-	      
+	      	      
 	      /////////더보기 버튼
 	      if(cmtCnt > 5) { 
 	         var divSelMoreCtn = document.querySelector("#divSelMoreCtn")
@@ -267,127 +311,112 @@
 	         var divSelMore =  document.createElement('div')
 	         divSelMore.setAttribute('id', 'ajaxSelMore')
 	         divSelMore.innerText = '더보기 ▼'
-	           divSelMore.onclick = function() {
-	            ajaxSelMore();
-	         }
+	            divSelMore.onclick = function() {
+	                ajaxSelMore();
+	         	}
 	         
 	         divSelMoreCtn.append(divSelMore)
 	      }
-	      
-	   }
-	   
-	   
+	}
+   
+   
+   
+   	   // 댓글 뿌리는 만드는 공간 ( 12.5 12:10 현재 진행중 )
 	   function makeCmtList(arr) {
-	      
-	      var divCommentWrap = document.createElement('div')
-	      divCommentWrap.setAttribute('id', 'commentWrap')
-	   
-	      var divCommentProfileImg = document.createElement('div')
-	      divCommentProfileImg.setAttribute('class', 'comment-profile-img')
-	      
-	      var profileImg = document.createElement('img')
-	      profileImg.setAttribute('class', 'profileImg')
-	      
-	      if(arr.profile_img != null) {
-		      profileImg.setAttribute('src',`/res/img/HiBaby/profile_img/user/\${arr.i_user}/\${arr.profile_img}`)
+   		   
+		   var cmtList = document.createElement('div')
+		   cmtList.setAttribute('class', 'cmtList')
+		   cmtListBox.append(cmtList)
+		   
+		   var cmtImg = document.createElement('img')
+		   cmtImg.setAttribute('class', 'cmtImg')
+		   if(arr.profile_img != null) {
+		       cmtImg.setAttribute('src',`/res/img/HiBaby/profile_img/user/\${arr.i_user}/\${arr.profile_img}`)
 	    	  
-	      } else {
-	         profileImg.setAttribute('src','/res/img/lion.jpg')
-	      }
-	      
-	      
-	      divCommentProfileImg.append(profileImg)
-	      divCommentWrap.append(divCommentProfileImg)
-	      
-	      
-	      var divCommentProfileDesc = document.createElement('div')
-	      divCommentProfileDesc.setAttribute('class','comment-profile-desc')
-	      
-	      var divNick = document.createElement('div')
-	      divNick.setAttribute('class','nick')
-	      divNick.append(arr.nick)
-	      var spanDate = document.createElement('span')
-	      spanDate.setAttribute('class', 'date')
-	      spanDate.append(arr.r_dt)
-	      divNick.append(spanDate)
-	      
-	      divCommentProfileDesc.append(divNick)
-	      
-	      var divComment = document.createElement('div')
-	      divComment.setAttribute('class', 'comment')
-	      divComment.append(arr.ctnt)
-	      
-	      divCommentProfileDesc.append(divComment)
-	      
-	      var divEtc = document.createElement('div')
-	      divEtc.setAttribute('class', 'etc')
-	      
-	      var updBtn = document.createElement('a')
-	      updBtn.onclick = function(){
-	         //////// 수정창으로 올라가게 하기
-	        window.scrollTo({top:10, left:5, behavior:'smooth'});
-	         updCmt(arr.ctnt, arr.i_cmt);
-	      }
-	      
-	      if(arr.i_user == `${loginUser.i_user}`) {
-	         console.log('내가 댓글 쓴 갯수');
-	      var updBtnSpan = document.createElement('span')
-	      updBtnSpan.setAttribute('class', 'updBtnSpan')
-	      
-	      var updBtnSpanText = document.createElement('span')
-	      updBtnSpanText.innerText = '수정하기'
-	      
-	      var updBtnSpanIconfy = document.createElement('span')
-	      updBtnSpanIconfy.setAttribute('class', 'iconify')
-	      updBtnSpanIconfy.setAttribute('data-inline', 'false')
-	      updBtnSpanIconfy.setAttribute('data-icon', 'si-glyph:arrow-change')
-	      updBtnSpanIconfy.setAttribute('style', 'color: #a5a2a2, font-size: 12px')
-	            
-	      updBtnSpan.append(updBtnSpanIconfy)
-	      updBtnSpan.append(updBtnSpanText)
-	      updBtn.append(updBtnSpan)
-	      
-	      divEtc.append(updBtn)
-	      
-	      var delBtn = document.createElement('a')
-	      
-	      delBtn.onclick = function(){
-	        var chkDelCmt = confirm('삭제하시겠습니까?');
-	        if(chkDelCmt) {
-	         delCmt(arr.i_cmt);           
-	        } else {
-	          return false;          
-	        }
-	      }
-	      
-	      var delBtnSpan = document.createElement('span')
-	      delBtnSpan.setAttribute('class', 'delBtnSpan')
-	      
-	      var delBtnSpanText = document.createElement('span')
-	      delBtnSpanText.innerText = '삭제하기'
-	      
-	      var delBtnSpanIconfy = document.createElement('span')
-	      delBtnSpanIconfy.setAttribute('class', 'iconify icon-del')
-	      delBtnSpanIconfy.setAttribute('data-inline', 'false')
-	      delBtnSpanIconfy.setAttribute('data-icon', 'ant-design:delete-outlined')
-	      delBtnSpanIconfy.setAttribute('style', 'color: #a5a2a2, font-size: 16px')
-	      
-	      delBtnSpan.append(delBtnSpanIconfy)
-	       delBtnSpan.append(delBtnSpanText)
-	      delBtn.append(delBtnSpan)
-	      divEtc.append(delBtn)
-	      
-	      divCommentProfileDesc.append(divEtc)
-	      }
-	      
-	      divCommentWrap.append(divCommentProfileDesc)
-	      
-	      var cmtListBox = document.querySelector('#cmtListBox')
-	      cmtListBox.append(divCommentWrap)
-	     
-	      
+	       } else {
+	          cmtImg.setAttribute('src','/res/img/HiBaby.jpg')
+	       }		   
+		   cmtList.append(cmtImg)
+		   
+		   var cmtInfo = document.createElement('div')
+		   cmtInfo.setAttribute('class', 'cmtInfo')
+		   cmtList.append(cmtInfo)
+		   
+		   var cmtNick = document.createElement('span')
+		   cmtNick.setAttribute('class', 'cmtNick')
+		   cmtNick.append(arr.nick)
+		   cmtInfo.append(cmtNick)
+		   
+		   var cmtData = document.createElement('div')
+		   cmtData.setAttribute('class', 'cmtData')
+		   cmtData.append(arr.r_dt)
+		   cmtInfo.append(cmtData)
+		   
+		   var cmtCmt = document.createElement('div')
+		   cmtCmt.setAttribute('class' ,'cmtCmt')
+		   cmtCmt.append(arr.ctnt)
+		   cmtInfo.append(cmtCmt)
+		   
+		   // 수정 삭제 hr 만들기 그럼끝
+		   var updBtn = document.createElement('a')
+		   updBtn.onclick = function(){
+	          //////// 수정창으로 올라가게 하기
+	          window.scrollTo({top:10, left:5, behavior:'smooth'});
+	          updCmt(arr.ctnt, arr.i_cmt);
+	       }
+		   
+		   if(arr.i_user == `${loginUser.i_user}`) {
+			   var updBtnSpan = document.createElement('span')
+			   updBtnSpan.setAttribute('class', 'updBtnSpan')
+			   
+			   var updBtnSpanText = document.createElement('span')
+			   updBtnSpanText.innerText = '수정하기'
+			   
+			   var updBtnSpanIconfy = document.createElement('span')
+		       updBtnSpanIconfy.setAttribute('class', 'iconify')
+		       updBtnSpanIconfy.setAttribute('data-inline', 'false')
+		       updBtnSpanIconfy.setAttribute('data-icon', 'si-glyph:arrow-change')
+		       updBtnSpanIconfy.setAttribute('style', 'color: #a5a2a2, font-size: 12px, margin-left: 300px, margin-top: 10px')
+		      
+		       updBtnSpan.append(updBtnSpanIconfy)
+		       updBtnSpan.append(updBtnSpanText)
+		       updBtn.append(updBtnSpan)
+		       
+		       cmtInfo.append(updBtn)
+			   
+		       
+		       var delBtn = document.createElement('a')
+		       
+		       delBtn.onclick = function(){
+		         var chkDelCmt = confirm('삭제하시겠습니까?');
+		         if(chkDelCmt) {
+		          delCmt(arr.i_cmt);           
+		         } else {
+		           return false;          
+		         }
+		       }
+		       
+		       var delBtnSpan = document.createElement('span')
+		       delBtnSpan.setAttribute('class', 'delBtnSpan')
+		       
+		       var delBtnSpanText = document.createElement('span')
+		       delBtnSpanText.innerText = '삭제하기'
+		       
+		       var delBtnSpanIconfy = document.createElement('span')
+		       delBtnSpanIconfy.setAttribute('class', 'iconify icon-del')
+		       delBtnSpanIconfy.setAttribute('data-inline', 'false')
+		       delBtnSpanIconfy.setAttribute('data-icon', 'ant-design:delete-outlined')
+		       delBtnSpanIconfy.setAttribute('style', 'color: #a5a2a2, font-size: 16px')
+		       
+		       delBtnSpan.append(delBtnSpanIconfy)
+		       delBtnSpan.append(delBtnSpanText)
+		       delBtn.append(delBtnSpan)
+		       
+		       cmtInfo.append(delBtn)
+		   }
 	   }
-	   
+   	   
+   	   
    // 댓글 뿌리기
    ajaxSelCmt();
 
@@ -416,51 +445,8 @@
          } 
       })
    }
-	
-	
-	
-	
-	
-	
-	//	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	
-
-
-
-	// 글 삭제시 에러떳을경우
-	if(${deleteErr != null}) {
-		alert('${deleteErr}')
-	}
-	
-	// 글수정 성공시
-	if(${updMsg != null}) {
-		alert('${updMsg}')
-	}
-	
-	// 이미지 클릭시 팝업창
-	function popup(src){
-        var url = "popup.html";
-        var name = "popup test";
-        var option = "width = 850, height = 750, top = 100, left = 100, location = no"
-        window.open(src, url, option);
-    }
-	
-	// 글수정
-	function updBoard(i_board) {
-		location.href="/board/boardReg?i_board="+i_board
-	}
-	
-	// 글삭제
-	function boardDelete(i_board) {
-		if(confirm('게시글을 삭제하시겠습니까 ?')) {
-			location.href="/board/delete?i_board="+i_board	
-		}
-	}
-	
-	function moveToMyPage(i_user) {
-		location.href="/user/myPage?i_user="+i_user
-	}
-	
-	
+		
+	//	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ
 </script>
 </body>
 </html>

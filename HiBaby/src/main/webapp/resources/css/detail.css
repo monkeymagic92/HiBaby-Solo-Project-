@@ -120,7 +120,7 @@
 
 
 #cmtCount {
-	margin-top: 62px;
+	margin-top: 150px;
 	margin-bottom: 12px;	
 }
 
@@ -138,12 +138,36 @@
 	margin-right: 5px;
 }
 
+#cmtSubmit {
+	margin-left: 728px;
+	margin-top: 10px;
+	cursor: pointer;
+	border: 1px solid black;
+	border-radius: 4px;
+	width: 55px;
+	height: 30px;
+	margin-right: 5px;
+	outline-style: none;
+}
+
+#cmtSubmit:hover {
+	cursor:pointer;
+	outline-style: none;
+	
+}
+
 #cmtCancleBtn {
 	cursor: pointer;
 	border: 1px solid black;
 	border-radius: 4px;
 	width: 55px;
 	height: 30px;
+	outline-style: none;
+}
+
+#divSelMoreCtn{
+   margin-top: 50px; 
+   margin-bottom: 100px;
 }
 
 .cmtList {
@@ -163,7 +187,7 @@
 }
 
 .cmtData {
-	margin-left: 630px;
+	margin-left: 580px;
 	margin-bottom: 6px;
 }
 
@@ -184,3 +208,40 @@
 	cursor:pointer;
 	outline-style:none;
 }
+
+.detailFooter {
+	height: 120px;
+}
+
+.updBtnSpan {
+	margin-left: 565px;
+}
+
+.updBtnSpan:hover {
+	cursor:pointer;
+}
+
+.delBtnSpan {
+
+}
+
+.delBtnSpan:hover {
+	cursor:pointer;
+}
+
+
+
+.iconify:hover {
+	cursor:pointer;
+}
+
+#ajaxSelMore {
+	text-align: center;
+	background-color: grey;
+	
+}
+
+#ajaxSelMore:hover {
+	cursor:pointer;
+}
+
