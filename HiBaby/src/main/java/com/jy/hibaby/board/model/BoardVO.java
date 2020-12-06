@@ -11,6 +11,7 @@ public class BoardVO {
 	private String image_3;
 	private String image_4;
 	private String image_5;
+	private int hits;
 	private String r_dt;
 	private int i_user;
 	private String nm;
@@ -22,6 +23,12 @@ public class BoardVO {
 	
 	
 	
+	public int getHits() {
+		return hits;
+	}
+	public void setHits(int hits) {
+		this.hits = hits;
+	}
 	public int getSeq() {
 		return seq;
 	}

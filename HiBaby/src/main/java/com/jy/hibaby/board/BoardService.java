@@ -3,6 +3,8 @@ package com.jy.hibaby.board;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.jy.hibaby.FileUtils;
 import com.jy.hibaby.Pagination;
+import com.jy.hibaby.SecurityUtils;
 import com.jy.hibaby.board.model.BoardDMI;
 import com.jy.hibaby.board.model.BoardPARAM;
 import com.jy.hibaby.board.model.BoardVO;
@@ -194,6 +197,21 @@ public class BoardService {
 	public int boardDelete(BoardPARAM param) {
 		
 		return mapper.boardDelete(param);
+	}
+	
+	
+	// 조회수 증가
+	public void addHit(BoardPARAM param, HttpServletRequest req) {
+		String myIp = req.getRemoteAddr();
+		ServletContext ctx = req.getServletContext();
+		
+		int i_user = SecurityUtils.getLoginUserPk(req);
+		String currentReadIp = (String)ctx.getAttribute("current_board_read_ip" + param.getI_board());
+		if(currentReadIp == null || !currentReadIp.equals(myIp)) {
+			param.setI_user(i_user);
+			mapper.updAddHit(param);
+			ctx.setAttribute("current_board_read_ip" + param.getI_board(), myIp);
+		}
 	}
 	
 	

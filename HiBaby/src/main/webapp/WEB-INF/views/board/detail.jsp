@@ -37,7 +37,7 @@
                 <div class="title">
                     ${data.title}
                 </div>
-                <div class="boardData">조회수(#) ${data.r_dt}</div>
+                <div class="boardData">조회수(${data.hits}) ${data.r_dt}</div>
                 <div class="data">
                     <c:if test="${data.profile_img == null }">
 			     		<img src="/res/img/HiBaby.jpg" onchange="setThumbnail(e)" alt="" class="detailImg" onclick="moveToMyPage(${data.i_user})">

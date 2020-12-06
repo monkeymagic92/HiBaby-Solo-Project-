@@ -158,8 +158,12 @@ public class BoardController {
 	// 게시글 상세페이지
 	@RequestMapping(value="/detail", method = RequestMethod.GET)
 	public String detailBoard(Model model, UserPARAM param, 
-			BoardPARAM bp) {
+			BoardPARAM bp, HttpServletRequest request) {
 		System.out.println("i_board 값 : " + bp.getI_board());
+		
+		if(!SecurityUtils.isLogout(request)) {
+			service.addHit(bp, request);			
+		}
 		
 		model.addAttribute("data", service.detailBoard(bp));
 		model.addAttribute("view", ViewRef.BOARD_DETAIL);

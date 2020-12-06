@@ -28,6 +28,8 @@ public interface BoardMapper {
 	
 	int insBoard(BoardVO param);	 // 글 등록
 	
+	int updAddHit(BoardPARAM param); // 조회수 증가
+	
 	// update
 	int updImage(BoardVO param); // 사진 등록
 	
