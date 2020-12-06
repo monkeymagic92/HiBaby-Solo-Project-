@@ -279,3 +279,13 @@
 	cursor:pointer;
 }
 
+#hits {
+	margin-left: -20px;
+	color: grey;
+}
+
+#hitsRs {
+	color: grey;
+	margin-bottom: 5px;
+	margin-left: 4px;
+}

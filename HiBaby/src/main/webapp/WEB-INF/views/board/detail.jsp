@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>게시글 상세페이지</title>
 <link rel="stylesheet" href="/res/css/detail.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <style>
 	.detailContainer {
@@ -37,7 +38,7 @@
                 <div class="title">
                     ${data.title}
                 </div>
-                <div class="boardData">조회수(${data.hits}) ${data.r_dt}</div>
+                <div class="boardData"><span id="hits" class="material-icons">visibility</span><span id="hitsRs">${data.hits}</span> &nbsp;&nbsp;&nbsp;&nbsp; ${data.r_dt}</div>
                 <div class="data">
                     <c:if test="${data.profile_img == null }">
 			     		<img src="/res/img/HiBaby.jpg" onchange="setThumbnail(e)" alt="" class="detailImg" onclick="moveToMyPage(${data.i_user})">
