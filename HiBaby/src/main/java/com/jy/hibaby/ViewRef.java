@@ -27,5 +27,8 @@ public class ViewRef {
 	public static final String BOARD_DETAIL = "board/detail";		// 게시글 상세페이지
 	public static final String BOARD_REG = "board/boardReg";		// 게시글 등록 / 수정
 	
+	// /study - 공부
+	public static final String STUDY_MAIN = "study/main";			// 스터디 메인부분
+	
 	
 }

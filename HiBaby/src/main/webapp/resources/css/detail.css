@@ -127,43 +127,58 @@
 #cmtInsBtn {
 	margin-left: 728px;
 	margin-top: 10px;
-}
-
-#cmtInsBtn {
 	cursor: pointer;
-	border: 1px solid black;
-	border-radius: 4px;
+	border-radius: 6px;
 	width: 55px;
 	height: 30px;
 	margin-right: 5px;
+	border: 3px solid #defeff;
+	font-weight: bold;
+	background-color: #b3f5ed;
+}
+
+#cmtInsBtn:hover {
+	box-shadow: 0 7px 14px -5px grey;
+	background-color: #d2faf8;
+}
+
+#cmtCancleBtn {
+	cursor: pointer;
+	border-radius: 6px;
+	width: 55px;
+	height: 30px;
+	font-weight: bold;
+	border: 3px solid #defeff;
+	background-color: #b3f5ed;
+
+}
+
+#cmtCancleBtn:hover {
+	background-color: #d2faf8;
+	box-shadow: 0 7px 14px -5px grey;
 }
 
 #cmtSubmit {
 	margin-left: 728px;
 	margin-top: 10px;
 	cursor: pointer;
-	border: 1px solid black;
-	border-radius: 4px;
+	border-radius: 6px;
 	width: 55px;
 	height: 30px;
 	margin-right: 5px;
-	outline-style: none;
+	border: 3px solid #defeff;
+	font-weight: bold;
+	background-color: #b3f5ed;
 }
 
 #cmtSubmit:hover {
+	box-shadow: 0 7px 14px -5px grey;
+	background-color: #d2faf8;
 	cursor:pointer;
 	outline-style: none;
 	
 }
 
-#cmtCancleBtn {
-	cursor: pointer;
-	border: 1px solid black;
-	border-radius: 4px;
-	width: 55px;
-	height: 30px;
-	outline-style: none;
-}
 
 #divSelMoreCtn{
    margin-top: 50px; 
@@ -234,34 +249,43 @@
 }
 
 #utilBtnUpd {
-	width: 75px;
+	width: 80px;
 	height: 35px;
-	border: 1px solid black;
-	border-radius: 4px;
+	border: 3px solid #defeff;
+	border-radius: 8px;
 	margin-top: 10px;
 	margin-left: 685px;
+	background-color: #a4f2f5;
 	outline-style: none;
+	font-weight: bold;
+	
 
 }
 
 #utilBtnUpd:hover {
+	outline-style: none;
 	cursor:pointer;
-	background-color: grey;
+	background-color: #defeff;
+	box-shadow: 0 7px 14px -5px grey;
 }
 
 #utilBtnDel {
-	width: 75px;
+	width: 80px;
 	height: 35px;
-	border: 1px solid black;
-	border-radius: 4px;
+	border: 3px solid #defeff;
+	border-radius: 8px;
 	margin-top: 10px;
 	margin-left: 10px;
 	outline-style: none;
+	background-color: #a4f2f5;
+	font-weight: bold;
 }
 
 #utilBtnDel:hover {
+	outline-style: none;
 	cursor:pointer;
-	background-color: grey;
+	background-color: #defeff;
+	box-shadow: 0 7px 14px -5px grey;
 }
 
 
