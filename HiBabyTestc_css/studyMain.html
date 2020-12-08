@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/studyMain.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- HEADER -->
+        <header class="block">
+            <ul class="header-menu horizontal-list">
+                <li>
+                    <a class="header-menu-tab" href="/index/select"><span
+                            class="icon entypo-cog scnd-font-color"></span><span id="HiBabyLogo">HiBaby</span></a>
+                </li>
+                <li>
+                    <a id="marginLefta" class="header-menu-tab" href="#1"><span
+                            class="icon entypo-cog scnd-font-color"></span><span class="spanli">이동하기</span></a>
+                </li>
+
+                <li>
+                    <a id="marginRighta" class="header-menu-tab" href="#3"><span
+                            class="icon fontawesome-envelope scnd-font-color"></span><span class="spanli">쪽지함</span></a>
+                    <a class="header-menu-number">5</a>
+                </li>
+
+            </ul>
+            <div class="profile-menu">
+                <ul class="nav">
+                    <li class="button-dropdown">
+                        <a href="javascript:void(0)" class="dropdown-toggle">
+                            <img class="pimg" src="C:\Users\이재용\OneDrive\바탕 화면\img\HiBaby.jpg" class="profileImg">
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/user/myPage">
+                                    마이페이지
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Drop Item 2
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Drop Item 3
+                                </a>
+                            </li>
+                            <li>
+                                <hr>
+                                <a href="#" onclick="logOut()">
+                                    로그아웃
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+        </header>
+        <!-- Header -->
+
+        <!-- studyMain -->
+        
+        <div class="container">
+            <div class="btnContainer">
+                <button id="mathBtn">수학공부</button>
+                <button id="engBtn">영어공부</button>
+            </div>
+        </div>
+
+        <div id="pwModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <h4>비밀번호 변경</h4>
+                
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form id="changePwFrm" action="/user/pwChange" method="post" onsubmit="return pwChk()">
+                        <input id="pw" type="password" name="user_pw" placeholder="비밀번호 입력"><br>
+                        <input id="rpw" type="password" name="user_rpw" placeholder="비밀번호 재입력"><br>
+                        <input type="hidden" name="i_user" value="${loginUser.i_user}">
+                        <button id="submitBtn" type="submit">비밀번호 변경</button>
+                    </form>
+                </div>
+                
+                <!-- Modal bottom -->
+                <button id="exitBtn" type="button" class="pop_bt" onclick="hideModal()">종료</button>
+            </div>
+        </div>
+    </div>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+
+</script>
+</body>
+</html>

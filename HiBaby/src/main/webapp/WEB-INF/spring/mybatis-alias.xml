@@ -25,5 +25,8 @@
 		<typeAlias type="com.jy.hibaby.cmt.model.CmtPARAM" alias="CmtPARAM" />
 		<typeAlias type="com.jy.hibaby.cmt.model.CmtDMI" alias="CmtDMI" />
 		
+		<!-- study -->
+		<typeAlias type="com.jy.hibaby.study.model.StudyPARAM" alias="StudyPARAM" />
+		
 	</typeAliases>	
 </configuration>

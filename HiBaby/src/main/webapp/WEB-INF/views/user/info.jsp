@@ -54,26 +54,23 @@
 	</div>
 	
 	<div id="pwModal" class="modal">
-		<!-- Modal content -->
-		<div class="modal-content">
-			<h4>비밀번호 변경</h4>
-		    
+        <!-- Modal content -->
+        <div class="modal-content">
+            <h4>비밀번호 변경</h4>
+            
             <!-- Modal body -->
-		    <div class="modal-body">
-		    	<form id="changePwFrm" action="/user/pwChange" method="post" onsubmit="return pwChk()">
-		    		<input type="password" name="user_pw" placeholder="비밀번호 입력">
-		    		<input type="password" name="user_rpw" placeholder="비밀번호 입력">
-		    		<input type="hidden" name="i_user" value="${loginUser.i_user}">
-		    		<button type="submit">비밀번호 변경</button>
-		    	</form>
-		    </div>
-		    
-		    <!-- Modal bottom -->
-		    <div class="modal-bottom">
-				Modal Bottom부분		
-		    </div>
-		    <button type="button" class="pop_bt" onclick="hideModal()">종료</button>
-		</div>
+            <div class="modal-body">
+                <form id="changePwFrm" action="/user/pwChange" method="post" onsubmit="return pwChk()">
+                    <input id="pw" type="password" name="user_pw" placeholder="비밀번호 입력"><br>
+                    <input id="rpw" type="password" name="user_rpw" placeholder="비밀번호 재입력"><br>
+                    <input type="hidden" name="i_user" value="${loginUser.i_user}">
+                    <button id="submitBtn" type="submit">비밀번호 변경</button>
+                </form>
+            </div>
+            
+            <!-- Modal bottom -->
+            <button id="exitBtn" type="button" class="pop_bt" onclick="hideModal()">종료</button>
+        </div>
     </div>
 </body>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
