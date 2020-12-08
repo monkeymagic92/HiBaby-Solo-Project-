@@ -131,9 +131,7 @@
         </div>
         <!---->
         
-        <div id="test">
-
-        </div>
+        <div id="gugudan"></div>
         
 
     </div>
@@ -141,25 +139,6 @@
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-function make() {
-    var result = 0
-    var stringText = document.createElement('div')
-    var br = document.createElement('br')
-    br.setAttribute('class', 'br')
-    var text;
-    
-    for(var i=1; i<=15; i++) {
-        result = 2 * i
-        
-        text = '2 x ' + i + ' = ' + result
-        stringText.append(text)
-        
-        test.append(stringText)
-        
-    }
-}
-make()
-
 
 function openMath() {
     mathModal.style.display = 'flex'
@@ -176,6 +155,25 @@ function mathHide() {
 
 function engHide() {
     engModal.style.display = 'none'
+}
+
+// 구구단 표 만들기 메소드
+function make() {
+    var result = 0
+    var stringText = document.createElement('div')
+    var br = document.createElement('br')
+    br.setAttribute('class', 'br')
+    var text;
+    
+    for(var i=1; i<=15; i++) {
+        result = 2 * i
+        
+        text = '2 x ' + i + ' = ' + result
+        stringText.append(text)
+        
+        gugudan.append(stringText)
+        
+    }
 }
 </script>
 </body>

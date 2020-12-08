@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/studyMath.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- HEADER -->
+        <header class="block">
+            <ul class="header-menu horizontal-list">
+                <li>
+                    <a class="header-menu-tab" href="/index/select"><span
+                            class="icon entypo-cog scnd-font-color"></span><span id="HiBabyLogo">HiBaby</span></a>
+                </li>
+                <li>
+                    <a id="marginLefta" class="header-menu-tab" href="#1"><span
+                            class="icon entypo-cog scnd-font-color"></span><span class="spanli">이동하기</span></a>
+                </li>
+
+                <li>
+                    <a id="marginRighta" class="header-menu-tab" href="#3"><span
+                            class="icon fontawesome-envelope scnd-font-color"></span><span class="spanli">쪽지함</span></a>
+                    <a class="header-menu-number">5</a>
+                </li>
+
+            </ul>
+            <div class="profile-menu">
+                <ul class="nav">
+                    <li class="button-dropdown">
+                        <a href="javascript:void(0)" class="dropdown-toggle">
+                            <img class="pimg" src="C:\Users\이재용\OneDrive\바탕 화면\img\HiBaby.jpg" class="profileImg">
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/user/myPage">
+                                    마이페이지
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Drop Item 2
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Drop Item 3
+                                </a>
+                            </li>
+                            <li>
+                                <hr>
+                                <a href="#" onclick="logOut()">
+                                    로그아웃
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+        </header>
+        <!--Header end-->
+        <div class="container">
+            <div class="mainContainer">
+                <!-- 테스트용으로 4개만 해놓고 잘되면 10개 다 만들기 -->
+                <form id="frm" action="#" method="post" onsubmit="return chk()">
+                    <div class="formContainer">
+                        ${data.q1} + ${data.q1_1} = <input class="input" type="number" name="a1">
+                        <span class="an">${an_a1}</span>
+                        
+                        ${data.q2} + ${data.q2_2} = <input class="input" type="number" name="a2">
+                        <span class="an">${an_a2}</span>
+
+                        ${data.q3} + ${data.q3_3} = <input class="input" type="number" name="a3">
+                        <span class="an">${an_a3}</span>
+                        
+                        ${data.q4} + ${data.q4_4} = <input class="input" type="number" name="a4">
+                        <span class="an">${an_a4}</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+<script>
+    /*
+    var a1 = `${data.q1 + data.q1_1}`
+    var a2 = `${data.q2 + data.q2_2}`
+    .
+    .
+    . 이런식으로 자바스크립트로 막아도됨
+    function chk() {
+        
+    }
+    */
+</script>
+</body>
+</html>
