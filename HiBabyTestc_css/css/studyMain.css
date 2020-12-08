@@ -307,6 +307,7 @@ h1, h2, p, a, span{
 }
 
 .modal {
+	display: none;
     position: fixed;
     z-index: 1; 
     left: 0;
@@ -321,7 +322,8 @@ h1, h2, p, a, span{
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; 
+	margin: 15% auto; 
+	height: 220px;
     padding: 20px;
 	border: 3px solid #fff7ed;
 	border-radius: 20px;
@@ -331,10 +333,28 @@ h1, h2, p, a, span{
 	
 }
 .pop_bt {
-	margin-top: 30px;
+	margin-top: 45px;
 	width: 200px;
 	text-align: center;
 	cursor: pointer;
+}
+
+#submitBtn {
+	width: 140px;
+	height: 35px;
+	margin-top: 25px;
+	outline-style:none;
+	border: 3px solid #42a1ff;
+	border-radius: 8px;
+    background-color: #8cc6ff;
+    transition: 0.4s;
+    font-weight: bold;
+}
+
+#submitBtn:hover {
+	cursor:pointer;
+	width: 153px;
+	box-shadow: 0 7px 14px -5px grey;
 }
 
 #exitBtn {

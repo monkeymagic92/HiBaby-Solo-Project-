@@ -65,16 +65,16 @@
         
         <div class="container">
             <div class="btnContainer">
-                <button id="mathBtn">수학공부</button>
-                <button id="engBtn">영어공부</button>
+                <button id="mathBtn" onclick="openMath()">수학공부</button>
+                <button id="engBtn" onclick="openEng()">영어공부</button>
             </div>
         </div>
 
         <!-- 난이도 선택 모달창 -->
-        <div id="studyModal" class="modal">
+        <div id="mathModal" class="modal">
             <!-- Modal content -->
             <div class="modal-content">
-                <h4>난이도 선택</h4>
+                <h4>수학 난이도 선택</h4>
                 
                 <!-- Modal body -->
                 <div class="modal-body">
@@ -88,11 +88,43 @@
                         <label>
                             하<input id="eazy" type="radio" name="level" value="1">&nbsp;
                         </label>
+                        <br>
+                        <input type="hidden" name="studyCode" value="1">
+                        <button id="submitBtn" type="submit">수학 공부시작</button>
                     </form>
                 </div>
                 
                 <!-- Modal bottom -->
-                <button id="exitBtn" type="button" class="pop_bt" onclick="hideModal()">종료</button>
+                <button id="exitBtn" type="button" class="pop_bt" onclick="mathHide()">종료</button>
+            </div>
+        </div>
+
+
+        <div id="engModal"" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <h4>영어 난이도 선택</h4>
+                
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form id="frm" action="#" method="post" onsubmit="return chk()">
+                        <label>
+                            상<input id="hard" type="radio" name="level" value="3">&nbsp;                        
+                        </label>
+                        <label>
+                            중<input id="normal" type="radio" name="level" value="2">&nbsp;
+                        </label>
+                        <label>
+                            하<input id="eazy" type="radio" name="level" value="1">&nbsp;
+                        </label>
+                        <br>
+                        <input type="hidden" name="studyCode" value="2">
+                        <button id="submitBtn" type="submit">영어 공부시작</button>
+                    </form>
+                </div>
+                
+                <!-- Modal bottom -->
+                <button id="exitBtn" type="button" class="pop_bt" onclick="engHide()">종료</button>
             </div>
         </div>
         <!---->
@@ -102,9 +134,21 @@
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+function openMath() {
+    mathModal.style.display = 'flex'
+}
+
+function openEng() {
+    engModal.style.display = 'flex'
+}
+
 //모달창 종료
-function hideModal() {
-	studyModal.style.display = 'none'
+function mathHide() {
+	mathModal.style.display = 'none'
+}
+
+function engHide() {
+    engModal.style.display = 'none'
 }
 </script>
 </body>

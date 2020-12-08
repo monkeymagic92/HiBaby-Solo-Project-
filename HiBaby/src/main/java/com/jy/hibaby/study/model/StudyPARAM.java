@@ -39,9 +39,17 @@ public class StudyPARAM {
 	// 난이도 선택
 	private int level;
 	
+	// 수학 / 영어 구분자
+	private int studyCode;
 	
 	
 	
+	public int getStudyCode() {
+		return studyCode;
+	}
+	public void setStudyCode(int studyCode) {
+		this.studyCode = studyCode;
+	}
 	public int getLevel() {
 		return level;
 	}
