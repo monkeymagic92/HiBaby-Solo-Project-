@@ -77,7 +77,7 @@
             <hr>
 
             <section class="sectionP">
-                <p class="ctntP">${data.ctnt}</p>
+                <pre class="ctntP">${data.ctnt}</pre>
             </section>
             <hr>
             <div class="utilBtn">
@@ -127,7 +127,6 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-
 	
 	// 글 삭제시 에러떳을경우
 	if(${deleteErr != null}) {
