@@ -70,18 +70,24 @@
             </div>
         </div>
 
-        <div id="pwModal" class="modal">
+        <!-- 난이도 선택 모달창 -->
+        <div id="studyModal" class="modal">
             <!-- Modal content -->
             <div class="modal-content">
-                <h4>비밀번호 변경</h4>
+                <h4>난이도 선택</h4>
                 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form id="changePwFrm" action="/user/pwChange" method="post" onsubmit="return pwChk()">
-                        <input id="pw" type="password" name="user_pw" placeholder="비밀번호 입력"><br>
-                        <input id="rpw" type="password" name="user_rpw" placeholder="비밀번호 재입력"><br>
-                        <input type="hidden" name="i_user" value="${loginUser.i_user}">
-                        <button id="submitBtn" type="submit">비밀번호 변경</button>
+                    <form id="frm" action="#" method="post" onsubmit="return chk()">
+                        <label>
+                            상<input id="hard" type="radio" name="level" value="3">&nbsp;                        
+                        </label>
+                        <label>
+                            중<input id="normal" type="radio" name="level" value="2">&nbsp;
+                        </label>
+                        <label>
+                            하<input id="eazy" type="radio" name="level" value="1">&nbsp;
+                        </label>
                     </form>
                 </div>
                 
@@ -89,12 +95,17 @@
                 <button id="exitBtn" type="button" class="pop_bt" onclick="hideModal()">종료</button>
             </div>
         </div>
+        <!---->
+
     </div>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-
+//모달창 종료
+function hideModal() {
+	studyModal.style.display = 'none'
+}
 </script>
 </body>
 </html>

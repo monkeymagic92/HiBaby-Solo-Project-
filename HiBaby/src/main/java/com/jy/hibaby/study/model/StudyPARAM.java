@@ -36,8 +36,18 @@ public class StudyPARAM {
 	private int a9;
 	private int a10;
 	
+	// 난이도 선택
+	private int level;
 	
 	
+	
+	
+	public int getLevel() {
+		return level;
+	}
+	public void setLevel(int level) {
+		this.level = level;
+	}
 	public int getA1() {
 		return a1;
 	}
