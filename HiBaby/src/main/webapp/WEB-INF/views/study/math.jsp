@@ -90,7 +90,9 @@
 		                
 		                10)&nbsp; ${data.q10} X ${data.q10_10} = <input id="ma10" class="input" type="number" name="a10" readonly>
 		                <span id="an10" class="an"></span><br>
-		                                정답갯수 : <div id="goodCnt"></div>
+		                <div class="goodCntDiv">
+		                    <div id="goodCnt">정답갯수 : </div>
+		                </div>
 		                <input type="hidden" name="level" value="${data.level}">
 		                <button id="submitBtn" type="submit" class="pop_bt" onclick="mathHide()">문제 제출</button>
 	                </form>

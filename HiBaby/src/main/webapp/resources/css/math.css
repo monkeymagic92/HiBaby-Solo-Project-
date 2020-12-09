@@ -50,6 +50,14 @@
 	
 }
 
+.goodCntDiv {
+	margin-top: 20px;
+}
+
+#goodCnt {
+	display: flex;
+}
+
 /* modal */
 
 .modal {
