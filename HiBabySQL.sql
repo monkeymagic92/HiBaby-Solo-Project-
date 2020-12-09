@@ -29,18 +29,10 @@ CREATE TABLE t_board(
     hits int default 0,
     i_user int not null,
     r_dt datetime DEFAULT NOW(),
-    FOREIGN key(i_user) REFERENCES t_user(i_user)
+    FOREIGN key(i_user) REFERENCES t_user(i_user) ON DELETE CASCADE
 );
 SELECT * FROM t_board;
 DROP TABLE t_board;
-
-
-
-SELECT A.i_board, A.title, A.r_dt, B.nick FROM t_board A
-LEFT JOIN t_user B
-ON A.i_user = B.i_user
-WHERE title LIKE CONCAT('%fd%');
-
 
 
 CREATE TABLE t_myPoint(
@@ -53,10 +45,26 @@ CREATE TABLE t_myPoint(
 	myPointNow INT(8),	-- 환급후 포인트
 	r_dt DATETIME DEFAULT NOW(),
 	PRIMARY KEY(i_point, i_user),
-	FOREIGN KEY(i_user) REFERENCES t_user(i_user)
+	FOREIGN KEY(i_user) REFERENCES t_user(i_user) ON DELETE CASCADE
 );
-SELECT * FROM t_mypoint;
-DROP TABLE t_mypoint;
+SELECT * FROM t_myPoint;
+DROP TABLE t_myPoint;
+
+
+CREATE TABLE t_cmt(
+	i_cmt INT UNSIGNED AUTO_INCREMENT,
+	i_user INT,
+	i_board INT,
+	ctnt VARCHAR(300) NOT null,
+	r_dt DATETIME DEFAULT NOW(),	
+	m_dt DATETIME DEFAULT NOW(),
+  	PRIMARY KEY (i_cmt, i_user, i_board),
+	FOREIGN KEY (i_user) REFERENCES t_user(i_user)  ON DELETE CASCADE,
+	FOREIGN KEY (i_board) REFERENCES t_board(i_board) ON DELETE CASCADE
+);
+DROP TABLE t_cmt;
+SELECT * FROM t_cmt;
+
 
 
 

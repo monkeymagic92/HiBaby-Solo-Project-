@@ -178,12 +178,14 @@ public class StudyUtils {
 			if(param.getA1() == a1) {
 				point += 10;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 			} 
 			
 			if(param.getA2() == a2) {
 				point += 10;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 				
 			}
@@ -191,6 +193,7 @@ public class StudyUtils {
 			if(param.getA3() == a3) {
 				point += 10;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 				
 			}
@@ -198,18 +201,21 @@ public class StudyUtils {
 			if(param.getA4() == a4) {
 				point += 10;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 			}
 			
 			if(param.getA5() == a5) {
 				point += 10;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 			}
 			
 			if(param.getA6() == a6) {
 				point += 10;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 			}
 			
@@ -217,24 +223,28 @@ public class StudyUtils {
 			if(param.getA7() == a7) {
 				point += 10;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 			}
 			
 			if(param.getA8() == a8) {
 				point += 10;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 			}
 			
 			if(param.getA9() == a9) {
 				point += 10;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 			}
 			
 			if(param.getA10() == a10) {
 				point += 10;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 			}
 			
@@ -245,12 +255,14 @@ public class StudyUtils {
 			if(param.getA1() == a1) {
 				point += 15;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 			}
 			
 			if(param.getA2() == a2) {
 				point += 15;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 				
 			}
@@ -258,6 +270,7 @@ public class StudyUtils {
 			if(param.getA3() == a3) {
 				point += 15;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 				
 			}
@@ -265,18 +278,21 @@ public class StudyUtils {
 			if(param.getA4() == a4) {
 				point += 15;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 			}
 			
 			if(param.getA5() == a5) {
 				point += 15;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 			}
 			
 			if(param.getA6() == a6) {
 				point += 15;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 			}
 			
@@ -289,18 +305,21 @@ public class StudyUtils {
 			if(param.getA8() == a8) {
 				point += 15;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 			}
 			
 			if(param.getA9() == a9) {
 				point += 15;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 			}
 			
 			if(param.getA10() == a10) {
 				point += 15;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 			}
 			
@@ -309,12 +328,14 @@ public class StudyUtils {
 			if(param.getA1() == a1) {
 				point += 20;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 			}
 			
 			if(param.getA2() == a2) {
 				point += 20;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 				
 			}
@@ -322,6 +343,7 @@ public class StudyUtils {
 			if(param.getA3() == a3) {
 				point += 20;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 				
 			}
@@ -329,42 +351,49 @@ public class StudyUtils {
 			if(param.getA4() == a4) {
 				point += 20;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 			}
 			
 			if(param.getA5() == a5) {
 				point += 20;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 			}
 			
 			if(param.getA6() == a6) {
 				point += 20;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 			}
 			
 			if(param.getA7() == a7) {
 				point += 20;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 			}
 			
 			if(param.getA8() == a8) {
 				point += 20;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 			}
 			
 			if(param.getA9() == a9) {
 				point += 20;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 			}
 			
 			if(param.getA10() == a10) {
 				point += 20;
 				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
 				vo.setI_user(userParam.getI_user());
 			}
 		}
@@ -373,6 +402,8 @@ public class StudyUtils {
 		return param;
 	}
 	
+	
+	// 아직안쓰는중(없어도 문제는 없어보임)
 	public static void removeSession(HttpSession hs) {
 		hs.removeAttribute("a1");
 		hs.removeAttribute("a2");

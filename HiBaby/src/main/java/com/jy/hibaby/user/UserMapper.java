@@ -28,10 +28,14 @@ public interface UserMapper {
 	
 	List<PointVO> selPointMall(UserPARAM param);		// 나의 pointMall 환급 조회
 	
+	int maxI_user();
+	
 	// isnert
 	int joinUser(UserVO param);		// 회원가입
 	
 	int insMyPointPage (PointVO vo);	// 포인트몰 내역 조회
+	
+	int joinPoint(PointVO vo);	// 회원가입시 기본포인트 100제공
 	
 	
 	

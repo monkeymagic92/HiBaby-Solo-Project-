@@ -51,14 +51,14 @@
        <br><br>
                 계급 : <img src="/res/img/chall.png" class="ClassesImg">
        <br>
-       <div>닉네임 : ${loginUser.nick}</div>        
-       <div>포인트 : ${loginUser.myPoint}</div>
-       <div>환급받은 캐시 : ${loginUser.myCash}</div>
+       <div>닉네임 : ${selUser.nick}</div>        
+       <div>포인트 : ${selUser.myPoint}</div>
+       <div>환급받은 캐시 : ${selUser.myCash}</div>
        <br>
        <button id="myPoint">포인트 환급받기</button>            
-       <button onclick="myPointMall(${loginUser.i_user})">나의 포인트 조회</button>    
+       <button onclick="myPointMall(${selUser.i_user})">나의 포인트 조회</button>    
        <br><br>
-       <button onclick="moveToInfo(${loginUser.i_user})">회원정보 변경</button>
+       <button onclick="moveToInfo(${selUser.i_user})">회원정보 변경</button>
        <br>
 	<button onclick="logOut()">로그아웃</button>
 
@@ -69,7 +69,7 @@
 
 		<!-- Modal content -->
 		<div class="modal-content">
-		    <h4>나의포인트 : <fmt:formatNumber value="${loginUser.myPoint}" pattern="#,###" />p</h4>
+		    <h4>나의포인트 : <fmt:formatNumber value="${selUser.myPoint}" pattern="#,###" />p</h4>
 		    
             <!-- Modal body -->
 		    <div class="modal-body">
@@ -77,8 +77,8 @@
 		    	환급받을 포인트 입력 :
 		    	<form id="pointFrm" action="/user/myPoint" method="post" onsubmit="return pointChk()">
 		    		<input type="number" name="myCash" placeholder="포인트를 입력해 주세요" maxlength="8" oninput="numberMaxLength(this)">
-		    		<input type="hidden" name="myPoint" value="${loginUser.myPoint}">
-		    		<input type="hidden" name="i_user" value="${loginUser.i_user}">
+		    		<input type="hidden" name="myPoint" value="${selUser.myPoint}">
+		    		<input type="hidden" name="i_user" value="${selUser.i_user}">
 		    		<button type="submit">환급받기</button>	
 		    	</form> 
 		    </div>

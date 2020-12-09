@@ -98,6 +98,8 @@ public class UserService {
 	
 	// 회원가입
 	public int joinUser(UserVO param) {
+		int result = 0;
+		
 		String pw = param.getUser_pw();
 		String salt = SecurityUtils.generateSalt();
 		String cryptPw = SecurityUtils.getEncrypt(pw, salt);
@@ -105,7 +107,34 @@ public class UserService {
 		param.setSalt(salt);
 		param.setUser_pw(cryptPw);
 		
-		return mapper.joinUser(param);
+		// 회원가입시 공짜 100포인트 제공
+		int i_user = 0;
+		int maxI_user = 1;
+		try {
+			i_user = mapper.maxI_user();
+			System.out.println("i_user 값 " + i_user);
+			
+		} catch(Exception e) {
+			maxI_user = i_user + 1;
+			System.out.println("Maxi_user 값 : "  + maxI_user);
+			
+		} 
+		maxI_user = i_user + 1;
+		System.out.println("finally Maxi_user 값 : "  + maxI_user);
+	
+		
+		
+		
+		
+		PointVO vo = new PointVO();
+		vo.setI_user(maxI_user);
+		vo.setTotalPoint(100);
+		vo.setMyPoint(100);
+		result = mapper.joinUser(param);
+		mapper.joinPoint(vo);
+		
+		return result;
+		//
 	}
 	
 	

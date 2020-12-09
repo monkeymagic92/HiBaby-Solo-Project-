@@ -132,7 +132,7 @@ public class UserController {
 	}	
 
 	@RequestMapping(value="/join", method = RequestMethod.POST) 
-	public String join(Model model, UserVO param, HttpSession hs, RedirectAttributes ra) {
+	public String join(Model model, UserVO param, HttpSession hs, RedirectAttributes ra, PointVO vo) {
 		//int result = service.join(param);
 		int result = service.joinUser(param);
 		

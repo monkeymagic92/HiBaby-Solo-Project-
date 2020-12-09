@@ -15,9 +15,14 @@
 	</select>
 	
 	<select id="selUserInfo" parameterType="UserPARAM" resultType="UserPARAM">
-		SELECT i_user, user_id, nm, nick, email, myPoint, myCash, sm, profile_img, r_dt, m_dt
-		FROM t_user
-		WHERE i_user = #{i_user}
+		SELECT A.i_user, A.user_id, A.nm, A.nick, A.email, A.sm, A.profile_img, A.r_dt, A.m_dt,
+		B.myPoint, B.totalPoint, B.myCash, B.totalCash
+		FROM t_user A
+		
+		LEFT JOIN t_myPoint B
+		ON A.i_user = B.i_user
+		
+		WHERE A.i_user = #{i_user}
 	</select>
 
 	<!-- 비밀번호 찾기 -->
@@ -44,22 +49,33 @@
 		WHERE nick = #{nick}
 	</select>
 	
-	
+	<!-- 해당유저 상세 프로필 -->
 	<select id="selDetailUser" parameterType="UserPARAM" resultType="UserDMI"> 
-		SELECT i_user, user_id, user_pw, salt, nm, nick, email, myPoint
-		,myCash, sm, profile_img, r_dt, m_dt
-		FROM t_user
-		WHERE <if test="i_user > 0"> i_user = #{i_user}</if>
+		SELECT A.i_user, A.user_id, A.user_pw, A.salt, A.nm, A.nick, A.email, B.myPoint
+		,B.myCash, A.sm, A.profile_img, A.r_dt, A.m_dt, B.totalPoint, B.totalCash
+		FROM t_user A
+		
+		LEFT JOIN t_myPoint B
+		ON A.i_user = B.i_user
+		
+		WHERE <if test="i_user > 0"> A.i_user = #{i_user}</if>
 	</select>
 	
-	
+	<!-- 포인트샵에서 n번 유저 포인트 정보 뿌리기 -->
 	<select id="selPointMall" parameterType="UserPARAM" resultType="PointVO">
 		SELECT A.i_point, A.totalPoint, A.totalCash, A.myPoint, A.myCash, A.myPointNow, A.i_point, A.i_user,
-        B.i_user, B.nick, A.r_dt FROM t_myPoint A
+        B.i_user, B.nick, A.r_dt 
+        FROM t_myPoint A
+        
 		LEFT JOIN t_user B
 		ON A.i_user = B.i_user
+		
 		WHERE A.i_user = #{i_user}
 		ORDER BY A.r_dt DESC
+	</select>
+	
+	<select id="maxI_user" resultType="Integer">
+		SELECT MAX(i_user) FROM t_user
 	</select>
 
 	
@@ -80,14 +96,26 @@
 		(i_user, myPoint, myCash, myPointNow)
 		VALUES
 		(#{i_user}, #{myPoint}, #{myCash}, #{myPointNow})
-	</insert>		
+	</insert>	
+	
+	
+	<!-- 회원가입시 100포인트 공짜로 주기 -->
+	<insert id="joinPoint" parameterType="PointVO">
+		INSERT INTO t_myPoint
+		(i_user, totalPoint, myPoint)
+		VALUES
+		(#{i_user}, #{totalPoint}, #{myPoint})
+	</insert>	
 	
 	
 	
 						<!-- update -->
+						
+	<!-- 수학 문제 맞췄을시 총합포인트  -->
 	<update id="updPoint" parameterType="PointVO">
 		UPDATE t_myPoint
-		SET totalPoint = totalPoint + ${totalPoint}
+		SET totalPoint = totalPoint + ${totalPoint},
+		myPoint = myPoint + ${myPoint}
 		WHERE i_user = #{i_user}
 	</update>					
 						
