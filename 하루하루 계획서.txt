@@ -1,0 +1,24 @@
+
+					ㅡ* HiBaby 일지 *ㅡ
+12/7
+- AboutMe DNS 연결
+- main 창 안에 주소록 만들기(link)
+- Hibaby board/detail 화면 css
+- 공부하기 기능 생각해보기
+- Hibaby 마이페이지 정리
+- HiBaby index/select부분 '개발자 사이트' AboutMe 주소 연결
+
+
+12/8
+- 공부하기 전체 구조 css 잡기
+- 난이도 선택(모달창) 실제 문제풀이 HTML 구조잡기
+- board/detail 버튼 수정
+
+
+
+12/9
+- 공부하기 기능 끝내기
+- 공부하기 로딩바 만들기 
+- Header 드랍다운 수정 ('userTemp'꺼로)
+- board/list 페이징 css
+ 

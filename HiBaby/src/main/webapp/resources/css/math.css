@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.mainContainer {
+    text-align: center;
+}
+
+.formContainer {
+    margin: 0 auto;
+    margin-top: 30px;
+    width: 50%;
+    border-radius: 8px;
+    border: 1px solid #e64c65;
+}
+
+#frm {
+ font-size: 1.5em;
+}
+
+.input {
+    width: 50px;
+    height: 30px;
+    outline-style: none;
+    border-radius: 6px;
+    margin-top: 20px;
+}
+
+.an{
+    color: red;
+}

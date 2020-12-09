@@ -231,6 +231,11 @@ public class UserService {
 		return mapper.userInfoChange(param);
 	}
 	
+	// Study에서 문제 맞췄을경우 포인트 적립
+	public int updPoint(PointVO vo) {
+		return mapper.updPoint(vo);
+	}
+	
 	// t_user 포인트 변환시 업데이트 메소드
 	public int updMyPoint(UserPARAM param) {
 		return mapper.updMyPoint(param);

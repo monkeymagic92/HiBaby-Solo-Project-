@@ -44,6 +44,8 @@ public interface UserMapper {
 	
 	int updMyPoint(UserPARAM param);		// 포인트 전환시 현재 point,cash 업뎃
 	
+	int updPoint(PointVO vo);
+	
 	
 	
 	// delete 

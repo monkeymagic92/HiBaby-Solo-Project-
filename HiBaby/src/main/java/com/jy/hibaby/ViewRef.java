@@ -20,15 +20,17 @@ public class ViewRef {
 	public static final String INDEX_SELECT = "index/select"; // 첫화면 선택부
 	
 	// /default - 기본상단바
-	public static final String DEFAULT_TEMP = "temp/defaultTemp";
+	public static final String DEFAULT_TEMP = "temp/defaultTemp"; // Header
 	
 	// /board - 게시글 목록
-	public static final String BOARD_LIST = "board/list";			// 게시글 전체목록
-	public static final String BOARD_DETAIL = "board/detail";		// 게시글 상세페이지
-	public static final String BOARD_REG = "board/boardReg";		// 게시글 등록 / 수정
+	public static final String BOARD_LIST = "board/list";		// 게시글 전체목록
+	public static final String BOARD_DETAIL = "board/detail";	// 게시글 상세페이지
+	public static final String BOARD_REG = "board/boardReg";	// 게시글 등록 / 수정
 	
 	// /study - 공부
-	public static final String STUDY_MAIN = "study/main";			// 스터디 메인부분
+	public static final String STUDY_MAIN = "study/main";		// 스터디 메인부분
+	public static final String STUDY_MATH = "study/math";		// 수학공부
+	public static final String STUDY_ENG = "study/eng";			// 영어공부
 	
 	
 }

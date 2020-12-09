@@ -16,7 +16,7 @@ CREATE TABLE t_user(
 	PRIMARY KEY(i_user)
 );
 SELECT * FROM t_user;
-
+DROP TABLE t_user;
 
 CREATE TABLE t_board(
     i_board int primary KEY AUTO_INCREMENT,
@@ -31,16 +31,17 @@ CREATE TABLE t_board(
     r_dt datetime DEFAULT NOW(),
     FOREIGN key(i_user) REFERENCES t_user(i_user)
 );
+SELECT * FROM t_board;
 DROP TABLE t_board;
 
-SELECT * FROM t_board;
+
 
 SELECT A.i_board, A.title, A.r_dt, B.nick FROM t_board A
 LEFT JOIN t_user B
 ON A.i_user = B.i_user
 WHERE title LIKE CONCAT('%fd%');
 
-SELECT * FROM t_mypoint;
+
 
 CREATE TABLE t_myPoint(
 	i_point INT UNSIGNED AUTO_INCREMENT,
@@ -54,7 +55,7 @@ CREATE TABLE t_myPoint(
 	PRIMARY KEY(i_point, i_user),
 	FOREIGN KEY(i_user) REFERENCES t_user(i_user)
 );
-
+SELECT * FROM t_mypoint;
 DROP TABLE t_mypoint;
 
 

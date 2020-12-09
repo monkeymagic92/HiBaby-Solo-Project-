@@ -41,8 +41,7 @@ public class StudyPARAM {
 	
 	// 수학 / 영어 구분자
 	private int studyCode;
-	
-	
+
 	
 	public int getStudyCode() {
 		return studyCode;

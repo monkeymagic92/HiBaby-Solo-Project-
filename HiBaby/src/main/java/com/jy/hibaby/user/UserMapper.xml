@@ -85,7 +85,13 @@
 	
 	
 						<!-- update -->
+	<update id="updPoint" parameterType="PointVO">
+		UPDATE t_myPoint
+		SET totalPoint = totalPoint + ${totalPoint}
+		WHERE i_user = #{i_user}
+	</update>					
 						
+	
 	<update id="updMyPoint" parameterType="UserPARAM">
 		UPDATE t_user
 		SET myPoint = #{myPoint},
