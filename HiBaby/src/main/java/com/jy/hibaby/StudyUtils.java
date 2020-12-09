@@ -161,6 +161,7 @@ public class StudyUtils {
 		int point = 0;
 		System.out.println("param.getLevel = " + param.getLevel());
 		
+		
 		int a1 = (int)hs.getAttribute("a1");
 		int a2 = (int)hs.getAttribute("a2");
 		int a3 = (int)hs.getAttribute("a3");
@@ -212,6 +213,7 @@ public class StudyUtils {
 				vo.setI_user(userParam.getI_user());
 			}
 			
+			
 			if(param.getA7() == a7) {
 				point += 10;
 				vo.setTotalPoint(point);
@@ -236,7 +238,10 @@ public class StudyUtils {
 				vo.setI_user(userParam.getI_user());
 			}
 			
-		} else if(param.getLevel() == 2) { //난이도 중 정답
+		}
+		
+		else if(param.getLevel() == 2) { //난이도 중 정답
+			
 			if(param.getA1() == a1) {
 				point += 15;
 				vo.setTotalPoint(point);
@@ -299,7 +304,8 @@ public class StudyUtils {
 				vo.setI_user(userParam.getI_user());
 			}
 			
-		} else { // 난이도 상 정답
+		} else {
+			// 난이도 상 정답
 			if(param.getA1() == a1) {
 				point += 20;
 				vo.setTotalPoint(point);
@@ -362,6 +368,7 @@ public class StudyUtils {
 				vo.setI_user(userParam.getI_user());
 			}
 		}
+		
 				
 		return param;
 	}
