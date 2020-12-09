@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jy.hibaby.PointVO;
+import com.jy.hibaby.SecurityUtils;
 import com.jy.hibaby.StudyUtils;
 import com.jy.hibaby.ViewRef;
 import com.jy.hibaby.study.model.StudyPARAM;
@@ -28,7 +29,16 @@ public class StudyController {
 	
 	// 공부메인화면
 	@RequestMapping(value="/main", method = RequestMethod.GET)
-	public String main(Model model, RedirectAttributes ra, StudyPARAM param) {
+	public String main(Model model, RedirectAttributes ra, StudyPARAM param,
+			UserPARAM userParam, HttpSession hs) {
+		try { // 비로그인 상태로 접근시 로그인페이지로		
+			int i_user = SecurityUtils.getLoginUserPk(hs);
+			userParam.setI_user(i_user);
+			
+		} catch (Exception e) {
+			model.addAttribute("loginMsg", "로그인을 해주세요");
+			return ViewRef.STUDY_MAIN;
+		}
 		
 		model.addAttribute("view", ViewRef.STUDY_MAIN);
 		return ViewRef.DEFAULT_TEMP;
@@ -61,26 +71,5 @@ public class StudyController {
 		
 		return "redirect:/" + ViewRef.STUDY_MAIN;
 	}
-	
-	
-	
-	// 수학 오답 판별
-	@RequestMapping(value="/mathResult", method = RequestMethod.GET)
-	public String mathResult(Model model, RedirectAttributes ra, StudyPARAM param,
-			HttpSession hs, UserPARAM userParam, PointVO vo) {
-		
-		
-		return "";
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

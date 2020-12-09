@@ -88,6 +88,11 @@
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+if(${loginMsg != null}) {
+	alert('${loginMsg}')
+	location.href="/user/login"
+}
+
 function openMath() {
     mathModal.style.display = 'flex'
 }
