@@ -47,7 +47,7 @@
 	                
 	                <input type="hidden" name="i_user" value="${loginUser.i_user}">	<%-- 포인트 적립용 --%>
 	                <input type="hidden" name="level" value="${data.level}">
-	            	<button type="button" onclick="mathResult()">문제 제출</button>
+	            	<button class="mathResult" type="button" onclick="mathResult()">문제 제출</button>
 	            </div>
 			</form>        
 	    </div>
@@ -56,40 +56,41 @@
 	    <div id="mathModal" class="modal">
 	        <!-- Modal content -->
 	        <div class="modal-content">
-	            <h4>정답</h4>
+	            <h2>정답확인</h2>
 	            
 	            <!-- Modal body -->
 	            <div class="modal-body">
 	            	<form id="modalFrm" action="/study/math" method="post">
-		            	 ${data.q1} + ${data.q1_1} = <input id="ma1" class="input" type="number" name="a1" readonly>
+		            	1)&nbsp; ${data.q1} + ${data.q1_1} = <input id="ma1" class="input" type="number" name="a1" readonly>
 		                <span id="an1" class="an"></span><br>
 		                
-		                ${data.q2} + ${data.q2_2} = <input id="ma2" class="input" type="number" name="a2" readonly>
+		                2)&nbsp; ${data.q2} + ${data.q2_2} = <input id="ma2" class="input" type="number" name="a2" readonly>
 		                <span id="an2" class="an"></span><br>
 		
-		                ${data.q3} + ${data.q3_3} = <input id="ma3" class="input" type="number" name="a3" readonly>
+		                3)&nbsp; ${data.q3} + ${data.q3_3} = <input id="ma3" class="input" type="number" name="a3" readonly>
 		                <span id="an3" class="an"></span><br>
 		                
-		                ${data.q4} + ${data.q4_4} = <input id="ma4" class="input" type="number" name="a4" readonly>
+		                4)&nbsp; ${data.q4} + ${data.q4_4} = <input id="ma4" class="input" type="number" name="a4" readonly>
 		                <span id="an4" class="an"></span><br>
 		                
-		                ${data.q5} - ${data.q5_5} = <input id="ma5" class="input" type="number" name="a5" readonly>
+		                5)&nbsp; ${data.q5} - ${data.q5_5} = <input id="ma5" class="input" type="number" name="a5" readonly>
 		                <span id="an5" class="an"></span><br>
 		                
-		                ${data.q6} - ${data.q6_6} = <input id="ma6" class="input" type="number" name="a6" readonly>
+		                6)&nbsp; ${data.q6} - ${data.q6_6} = <input id="ma6" class="input" type="number" name="a6" readonly>
 		                <span id="an6" class="an"></span><br>
 		                
-		                ${data.q7} - ${data.q7_7} = <input id="ma7" class="input" type="number" name="a7" readonly>
+		                7)&nbsp; ${data.q7} - ${data.q7_7} = <input id="ma7" class="input" type="number" name="a7" readonly>
 		                <span id="an7" class="an"></span><br>
 		                
-		                ${data.q8} - ${data.q8_8} = <input id="ma8" class="input" type="number" name="a8" readonly>
+		                8)&nbsp; ${data.q8} - ${data.q8_8} = <input id="ma8" class="input" type="number" name="a8" readonly>
 		                <span id="an8" class="an"></span><br>
 		                
-		                ${data.q9} X ${data.q9_9} = <input id="ma9" class="input" type="number" name="a9" readonly>
+		                9)&nbsp; ${data.q9} X ${data.q9_9} = <input id="ma9" class="input" type="number" name="a9" readonly>
 		                <span id="an9" class="an"></span><br>
 		                
-		                ${data.q10} X ${data.q10_10} = <input id="ma10" class="input" type="number" name="a10" readonly>
+		                10)&nbsp; ${data.q10} X ${data.q10_10} = <input id="ma10" class="input" type="number" name="a10" readonly>
 		                <span id="an10" class="an"></span><br>
+		                                정답갯수 : <div id="goodCnt"></div>
 		                <input type="hidden" name="level" value="${data.level}">
 		                <button id="submitBtn" type="submit" class="pop_bt" onclick="mathHide()">문제 제출</button>
 	                </form>
@@ -109,6 +110,8 @@
 <script>
 
 	function mathResult() {
+		var goodCount = 10
+		
 		if(frm.aa1.value.length == 0) {
 			alert('첫번째 문제 정답을 입력해 주세요')
 			return false;
@@ -213,43 +216,55 @@
 		
 		if(ra1 != mya1) {
 			an1.append(ra1)
+			goodCount -= 1
 		}
 		
 		if(ra2 != mya2) {
 			an2.append(ra2)
+			goodCount -= 1
 		}
 		
 		if(ra3 != mya3) {
 			an3.append(ra3)
+			goodCount -= 1
 		}
 		
 		if(ra4 != mya4) {
 			an4.append(ra4)
+			goodCount -= 1
 		}
 		
 		if(ra5 != mya5) {
 			an5.append(ra5)
+			goodCount -= 1
 		}
 		
 		if(ra6 != mya6) {
 			an6.append(ra6)
+			goodCount -= 1
 		}
 		
 		if(ra7 != mya7) {
 			an7.append(ra7)
+			goodCount -= 1
 		}
 		
 		if(ra8 != mya8) {
 			an8.append(ra8)
+			goodCount -= 1
 		}
 		
 		if(ra9 != mya9) {
 			an9.append(ra9)
+			goodCount -= 1
 		}
 		
 		if(ra10 != mya10) {
 			an10.append(ra10)
+			goodCount -= 1
 		}
+	
+		goodCnt.append(goodCount)
 		
 	}
 	 

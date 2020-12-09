@@ -63,36 +63,108 @@
         <div class="container">
             <div class="mainContainer">
                 <!-- 테스트용으로 4개만 해놓고 잘되면 10개 다 만들기 -->
-                <form id="frm" action="#" method="post" onsubmit="return chk()">
+                <form id="frm" onsubmit="return chk()">
                     <div class="formContainer">
-                        ${data.q1} + ${data.q1_1} = <input class="input" type="number" name="a1">
-                        <span class="an">${an_a1}</span>
+                        ${data.q1} + ${data.q1_1} = <input class="input" type="number" name="aa1">
+                        <span class="an"></span><br>
                         
-                        ${data.q2} + ${data.q2_2} = <input class="input" type="number" name="a2">
-                        <span class="an">${an_a2}</span>
-
-                        ${data.q3} + ${data.q3_3} = <input class="input" type="number" name="a3">
-                        <span class="an">${an_a3}</span>
+                        ${data.q2} + ${data.q2_2} = <input class="input" type="number" name="aa2">
+                        <span class="an"></span><br>
+        
+                        ${data.q3} + ${data.q3_3} = <input class="input" type="number" name="aa3">
+                        <span class="an"></span><br>
                         
-                        ${data.q4} + ${data.q4_4} = <input class="input" type="number" name="a4">
-                        <span class="an">${an_a4}</span>
+                        ${data.q4} + ${data.q4_4} = <input class="input" type="number" name="aa4">
+                        <span class="an"></span><br>
+                        
+                        ${data.q5} - ${data.q5_5} = <input class="input" type="number" name="aa5">
+                        <span class="an"></span><br>
+                        
+                        ${data.q6} - ${data.q6_6} = <input class="input" type="number" name="aa6">
+                        <span class="an"></span><br>
+                        
+                        ${data.q7} - ${data.q7_7} = <input class="input" type="number" name="aa7">
+                        <span class="an"></span><br>
+                        
+                        ${data.q8} - ${data.q8_8} = <input class="input" type="number" name="aa8">
+                        <span class="an"></span><br>
+                        
+                        ${data.q9} X ${data.q9_9} = <input class="input" type="number" name="aa9">
+                        <span class="an"></span><br>
+                        
+                        ${data.q10} X ${data.q10_10} = <input class="input" type="number" name="aa10">
+                        <span class="an"></span><br>
+                        
+                        <input type="hidden" name="i_user" value="${loginUser.i_user}">
+                        <input type="hidden" name="level" value="${data.level}">
+                        <button class="mathResult" type="button" onclick="mathResult()">문제 제출</button>
                     </div>
-                </form>
+                </form>        
             </div>
+            
+            <!-- 난이도 선택 모달창 -->
+            <div id="mathModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <h2>정답확인</h2>
+                    
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form id="modalFrm" action="/study/math" method="post">
+                             ${data.q1} + ${data.q1_1} = <input id="ma1" class="input" type="number" name="a1" readonly>
+                            <span id="an1" class="an"></span><br>
+                            
+                            ${data.q2} + ${data.q2_2} = <input id="ma2" class="input" type="number" name="a2" readonly>
+                            <span id="an2" class="an"></span><br>
+            
+                            ${data.q3} + ${data.q3_3} = <input id="ma3" class="input" type="number" name="a3" readonly>
+                            <span id="an3" class="an"></span><br>
+                            
+                            ${data.q4} + ${data.q4_4} = <input id="ma4" class="input" type="number" name="a4" readonly>
+                            <span id="an4" class="an"></span><br>
+                            
+                            ${data.q5} - ${data.q5_5} = <input id="ma5" class="input" type="number" name="a5" readonly>
+                            <span id="an5" class="an"></span><br>
+                            
+                            ${data.q6} - ${data.q6_6} = <input id="ma6" class="input" type="number" name="a6" readonly>
+                            <span id="an6" class="an"></span><br>
+                            
+                            ${data.q7} - ${data.q7_7} = <input id="ma7" class="input" type="number" name="a7" readonly>
+                            <span id="an7" class="an"></span><br>
+                            
+                            ${data.q8} - ${data.q8_8} = <input id="ma8" class="input" type="number" name="a8" readonly>
+                            <span id="an8" class="an"></span><br>
+                            
+                            ${data.q9} X ${data.q9_9} = <input id="ma9" class="input" type="number" name="a9" readonly>
+                            <span id="an9" class="an"></span><br>
+                            
+                            ${data.q10} X ${data.q10_10} = <input id="ma10" class="input" type="number" name="a10" readonly>
+                            <span id="an10" class="an"></span><br>
+                            <input type="hidden" name="level" value="${data.level}">
+                            <button id="submitBtn" type="submit" class="pop_bt" onclick="mathHide()">문제 제출</button>
+                        </form>
+                    </div>
+                    
+                    <!-- Modal bottom -->
+                    
+                </div>
+            </div>
+            
         </div>
 
     </div>
 <script>
-    /*
-    var a1 = `${data.q1 + data.q1_1}`
-    var a2 = `${data.q2 + data.q2_2}`
-    .
-    .
-    . 이런식으로 자바스크립트로 막아도됨
-    function chk() {
-        
+    function mathResult() {
+        mathModal.style.display = 'flex'
     }
-    */
+
+   function mathHide() {
+		mathModal.style.display = 'none'
+	}
+
+	function engHide() {
+	    engModal.style.display = 'none'
+	}
 </script>
 </body>
 </html>

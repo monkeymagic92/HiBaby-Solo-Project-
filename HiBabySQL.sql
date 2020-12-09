@@ -46,16 +46,17 @@ WHERE title LIKE CONCAT('%fd%');
 CREATE TABLE t_myPoint(
 	i_point INT UNSIGNED AUTO_INCREMENT,
 	i_user INT,
-	totalPoint INT(8),
-	totalCash INT(8),
-	myPoint INT(8),
-	myCash INT(8),
-	myPointNow INT(8),
+	totalPoint INT(8),	-- 총 누적 포인트
+	totalCash INT(8),		-- 총 환급받은 캐시
+	myPoint INT(8),		-- 현재 포인트
+	myCash INT(8),			-- 환급할 캐시입력
+	myPointNow INT(8),	-- 환급후 포인트
 	r_dt DATETIME DEFAULT NOW(),
 	PRIMARY KEY(i_point, i_user),
 	FOREIGN KEY(i_user) REFERENCES t_user(i_user)
 );
 SELECT * FROM t_mypoint;
 DROP TABLE t_mypoint;
+
 
 

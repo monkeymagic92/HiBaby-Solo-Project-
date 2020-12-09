@@ -67,6 +67,7 @@ public class StudyController {
 		userParam = (UserPARAM)hs.getAttribute("loginUser");
 		StudyUtils.ansMath(hs, param, vo, userParam);	// 수학 정답
 		
+		ra.addFlashAttribute("getPoint", vo.getTotalPoint());
 		int result = userService.updPoint(vo);	// 정답 개수만큼 포인트 증가
 		
 		return "redirect:/" + ViewRef.STUDY_MAIN;
