@@ -24,9 +24,26 @@
 	                ${data.q3} + ${data.q3_3} = <input class="input" type="number" name="a3">
 	                <span class="an">${an_a3}</span><br>
 	                
-	                ${data.q4} - ${data.q4_4} = <input class="input" type="number" name="a4">
+	                ${data.q4} + ${data.q4_4} = <input class="input" type="number" name="a4">
 	                <span class="an">${an_a4}</span><br>
 	                
+	                ${data.q5} - ${data.q5_5} = <input class="input" type="number" name="a5">
+	                <span class="an">${an_a5}</span><br>
+	                
+	                ${data.q6} - ${data.q6_6} = <input class="input" type="number" name="a6">
+	                <span class="an">${an_a6}</span><br>
+	                
+	                ${data.q7} - ${data.q7_7} = <input class="input" type="number" name="a7">
+	                <span class="an">${an_a7}</span><br>
+	                
+	                ${data.q8} - ${data.q8_8} = <input class="input" type="number" name="a8">
+	                <span class="an">${an_a8}</span><br>
+	                
+	                ${data.q9} X ${data.q9_9} = <input class="input" type="number" name="a9">
+	                <span class="an">${an_a9}</span><br>
+	                
+	                ${data.q10} X ${data.q10_10} = <input class="input" type="number" name="a10">
+	                <span class="an">${an_a10}</span><br>
 	                
 	                <input type="hidden" name="i_user" value="${loginUser.i_user}">	<%-- 포인트 적립용 --%>
 	            	<button>전송</button>

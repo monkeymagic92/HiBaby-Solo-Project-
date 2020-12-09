@@ -38,7 +38,7 @@ public class StudyController {
 	public String math(Model model, RedirectAttributes ra, StudyPARAM param, 
 			UserPARAM up, HttpSession hs) {
 		
-		param = StudyUtils.studyMath(param, hs);
+		param = StudyUtils.studyMath(param, hs);	// 수학 문제
 		System.out.println("레벨 : " + param.getLevel());
 		
 		model.addAttribute("data", param);
@@ -52,13 +52,8 @@ public class StudyController {
 			HttpSession hs, UserPARAM userParam, PointVO vo) {
 		
 		userParam = (UserPARAM)hs.getAttribute("loginUser");
+		StudyUtils.ansMath(hs, param, vo, userParam);	// 수학 정답
 		
-		StudyUtils.ansMath(hs, param, vo, userParam);
-		
-		System.out.println("-0----------");
-		System.out.println(param.getA1());
-		System.out.println(vo.getI_user());
-		System.out.println(vo.getTotalPoint());
 		int result = userService.updPoint(vo);
 		
 		return "redirect:/" + ViewRef.STUDY_MAIN;

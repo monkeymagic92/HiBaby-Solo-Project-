@@ -19,6 +19,19 @@ public class StudyUtils {
 			int q3_3 = (int)(Math.random() * 9) + 1;
 			int q4 = (int)(Math.random() * 9) + 1;
 			int q4_4 = (int)(Math.random() * 9) + 1;
+			int q5 = (int)(Math.random() * 9) + 1;
+			int q5_5 = (int)(Math.random() * 9) + 1;
+			int q6 = (int)(Math.random() * 9) + 1;
+			int q6_6 = (int)(Math.random() * 9) + 1;
+			int q7 = (int)(Math.random() * 9) + 1;
+			int q7_7 = (int)(Math.random() * 9) + 1;
+			int q8 = (int)(Math.random() * 9) + 1;
+			int q8_8 = (int)(Math.random() * 9) + 1;
+			int q9 = (int)(Math.random() * 9) + 1;
+			int q9_9 = (int)(Math.random() * 9) + 1;
+			int q10 = (int)(Math.random() * 9) + 1;
+			int q10_10 = (int)(Math.random() * 9) + 1;
+			
 			
 			// 문제
 			param.setQ1(q1);
@@ -29,18 +42,42 @@ public class StudyUtils {
 			param.setQ3_3(q3_3);
 			param.setQ4(q4);
 			param.setQ4_4(q4_4);
+			param.setQ5(q5);
+			param.setQ5_5(q5_5);
+			param.setQ6(q6);
+			param.setQ6_6(q6_6);
+			param.setQ7(q7);
+			param.setQ7_7(q7_7);
+			param.setQ8(q8);
+			param.setQ8_8(q8_8);
+			param.setQ9(q9);
+			param.setQ9_9(q9_9);
+			param.setQ10(q10);
+			param.setQ10_10(q10_10);
 			
 			// 정답
 			param.setA1(q1 + q1_1);
 			param.setA2(q2 + q2_2);
 			param.setA3(q3 + q3_3);
-			param.setA4(q4 - q4_4);
+			param.setA4(q4 + q4_4);
+			param.setA5(q5 - q5_5);
+			param.setA6(q6 - q6_6);
+			param.setA7(q7 - q7_7);
+			param.setA8(q8 - q8_8);
+			param.setA9(q9 * q9_9);
+			param.setA10(q10 * q10_10);
 			
 			// jsp로 보내기위한 세션값 (return 대신용)
 			hs.setAttribute("a1", param.getA1());
 			hs.setAttribute("a2", param.getA2());
 			hs.setAttribute("a3", param.getA3());
 			hs.setAttribute("a4", param.getA4());
+			hs.setAttribute("a5", param.getA5());
+			hs.setAttribute("a6", param.getA6());
+			hs.setAttribute("a7", param.getA7());
+			hs.setAttribute("a8", param.getA8());
+			hs.setAttribute("a9", param.getA9());
+			hs.setAttribute("a10", param.getA10());
 			
 			return param;
 			
@@ -68,6 +105,12 @@ public class StudyUtils {
 		int a2 = (int)hs.getAttribute("a2");
 		int a3 = (int)hs.getAttribute("a3");
 		int a4 = (int)hs.getAttribute("a4");
+		int a5 = (int)hs.getAttribute("a5");
+		int a6 = (int)hs.getAttribute("a6");
+		int a7 = (int)hs.getAttribute("a7");
+		int a8 = (int)hs.getAttribute("a8");
+		int a9 = (int)hs.getAttribute("a9");
+		int a10 = (int)hs.getAttribute("a10");
 		
 		if(param.getA1() == a1) {
 			System.out.println("1번 정답");
@@ -98,6 +141,53 @@ public class StudyUtils {
 			vo.setTotalPoint(point);
 			vo.setI_user(userParam.getI_user());
 		}
+		
+		if(param.getA5() == a5) {
+			point += 10;
+			vo.setTotalPoint(point);
+			vo.setI_user(userParam.getI_user());
+		}
+		
+		if(param.getA6() == a6) {
+			point += 10;
+			vo.setTotalPoint(point);
+			vo.setI_user(userParam.getI_user());
+		}
+		
+		if(param.getA7() == a7) {
+			point += 10;
+			vo.setTotalPoint(point);
+			vo.setI_user(userParam.getI_user());
+		}
+		
+		if(param.getA8() == a8) {
+			point += 10;
+			vo.setTotalPoint(point);
+			vo.setI_user(userParam.getI_user());
+		}
+		
+		if(param.getA9() == a9) {
+			point += 10;
+			vo.setTotalPoint(point);
+			vo.setI_user(userParam.getI_user());
+		}
+		
+		if(param.getA10() == a10) {
+			point += 10;
+			vo.setTotalPoint(point);
+			vo.setI_user(userParam.getI_user());
+		}
+		
+		hs.removeAttribute("a1");
+		hs.removeAttribute("a2");
+		hs.removeAttribute("a3");
+		hs.removeAttribute("a4");
+		hs.removeAttribute("a5");
+		hs.removeAttribute("a6");
+		hs.removeAttribute("a7");
+		hs.removeAttribute("a8");
+		hs.removeAttribute("a9");
+		hs.removeAttribute("a10");
 		
 		return param;
 	}
