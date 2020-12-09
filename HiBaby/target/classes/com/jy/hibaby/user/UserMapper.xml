@@ -106,9 +106,9 @@
 	<!-- 회원가입시 100포인트 공짜로 주기 -->
 	<insert id="joinPoint" parameterType="PointVO">
 		INSERT INTO t_myPoint
-		(i_user, totalPoint, myPoint)
+		(i_user, totalPoint, myPoint, myCash)
 		VALUES
-		(#{i_user}, #{totalPoint}, #{myPoint})
+		(#{i_user}, #{totalPoint}, #{myPoint}, #{myCash})
 	</insert>	
 	
 	

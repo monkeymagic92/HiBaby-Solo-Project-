@@ -63,10 +63,10 @@ public class StudyController {
 	// 수학 문제 정답 판별
 	@RequestMapping(value="/math", method = RequestMethod.POST)
 	public String math(Model model, RedirectAttributes ra, StudyPARAM param,
-			HttpSession hs, UserPARAM userDMI, PointVO vo) {
+			HttpSession hs, UserPARAM userPARAM, PointVO vo) {
 		
-		userDMI = (UserPARAM)hs.getAttribute("loginUser");
-		StudyUtils.ansMath(hs, param, vo, userDMI);	// 수학 정답
+		userPARAM = (UserPARAM)hs.getAttribute("loginUser");
+		StudyUtils.ansMath(hs, param, vo, userPARAM);	// 수학 정답
 		
 		ra.addFlashAttribute("getPoint", vo.getTotalPoint());
 		int result = userService.updPoint(vo);	// 정답 개수만큼 포인트 증가

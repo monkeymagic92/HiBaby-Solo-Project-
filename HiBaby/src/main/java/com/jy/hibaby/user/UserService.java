@@ -121,15 +121,12 @@ public class UserService {
 		} 
 		maxI_user = i_user + 1;
 		System.out.println("finally Maxi_user 값 : "  + maxI_user);
-	
-		
-		
-		
-		
+			
 		PointVO vo = new PointVO();
 		vo.setI_user(maxI_user);
 		vo.setTotalPoint(100);
 		vo.setMyPoint(100);
+		vo.setMyCash(10);
 		result = mapper.joinUser(param);
 		mapper.joinPoint(vo);
 		
