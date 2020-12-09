@@ -295,7 +295,7 @@ public class UserController {
 		try {			
 			int i_user = SecurityUtils.getLoginUserPk(hs);
 			param.setI_user(i_user);
-			hs.setAttribute(Const.LOGIN_USER, service.selDetailUser(param));
+			hs.setAttribute(Const.LOGIN_USER, service.selUserInfo(param));
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -421,21 +421,13 @@ public class UserController {
 		int result = 0;
 		int nowPoint = Integer.parseInt(request.getParameter("myPoint"));
 		
-		if(param.getMyCash() <= param.getMyPoint()) { // 환급완료
-			int lastMyPoint = param.getMyPoint() - param.getMyCash();
-			param.setMyPoint(lastMyPoint);
+		if(vo.getMyCash() <= vo.getMyPoint()) { // 환급완료
+			int lastMyPoint = vo.getMyPoint() - vo.getMyCash();
+			vo.setMyPoint(lastMyPoint);
 			
-			int success = service.updMyPoint(param); // t_user 포인트 / 캐시 내역
+			int success = service.updMyPoint(vo); // t_user 포인트 / 캐시 내역
 			
-			// t_myPoint 테이블에 담길 내역 ( 포인트몰 )
-			vo.setMyCash(param.getMyCash());// 환급받은 캐시백
-			vo.setMyPoint(nowPoint);		// 현재 포인트
-			vo.setMyPointNow(lastMyPoint);	// 환급후 남은 포인트
-			vo.setI_user(param.getI_user());
-			
-			int pointMall = service.insMyPointPage(vo);
-			
-			hs.setAttribute(Const.LOGIN_USER, service.selDetailUser(param));
+			hs.setAttribute(Const.LOGIN_USER, service.selUserInfo(param));
 			ra.addFlashAttribute("pointMsg", "환급 되었습니다");
 			
 		} else if(param.getMyCash() > param.getMyPoint()) { // 환급금액 초과
@@ -443,7 +435,7 @@ public class UserController {
 		} 
 		
 		return "redirect:/" + ViewRef.USER_MYPAGE;
-	}
+	} 
 
 	
 	// 해당유저 포인트 몰 (환급 내역조회)

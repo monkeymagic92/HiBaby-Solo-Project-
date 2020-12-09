@@ -46,7 +46,7 @@ public interface UserMapper {
 	
 	int userInfoChange(UserPARAM param);	// 유저정보 변경
 	
-	int updMyPoint(UserPARAM param);		// 포인트 전환시 현재 point,cash 업뎃
+	int updMyPoint(PointVO vo);		// 포인트 전환시 현재 point,cash 업뎃
 	
 	int updPoint(PointVO vo);
 	

@@ -266,8 +266,8 @@ public class UserService {
 	}
 	
 	// t_user 포인트 변환시 업데이트 메소드
-	public int updMyPoint(UserPARAM param) {
-		return mapper.updMyPoint(param);
+	public int updMyPoint(PointVO vo) {
+		return mapper.updMyPoint(vo);
 	}
 	
 	// t_myPoint 에 전환 내역 담는 매소드

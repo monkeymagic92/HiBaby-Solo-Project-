@@ -7,9 +7,13 @@
 							
 	<!-- n번 회원 상세정보 -->							
 	<select id="selUser" parameterType="UserPARAM" resultType="UserDMI"> 
-		SELECT i_user, user_id, user_pw, salt, nm, nick, email, myPoint
-		,myCash, sm, profile_img, r_dt, m_dt
-		FROM t_user
+		SELECT A.i_user, A.user_id, A.user_pw, A.salt, A.nm, A.nick, A.email, 
+		A.sm, A.profile_img, A.r_dt, A.m_dt, B.myPoint, B.totalPoint, B.myCash, B.totalCash
+		FROM t_user A
+		
+		LEFT JOIN t_myPoint B
+		ON A.i_user = B.i_user
+		
 		WHERE <if test="i_user > 0"> i_user = #{i_user}</if>
 		<if test="user_id != null and user_id != ''"> user_id = #{user_id}</if>
 	</select>
@@ -51,8 +55,8 @@
 	
 	<!-- 해당유저 상세 프로필 -->
 	<select id="selDetailUser" parameterType="UserPARAM" resultType="UserDMI"> 
-		SELECT A.i_user, A.user_id, A.user_pw, A.salt, A.nm, A.nick, A.email, B.myPoint
-		,B.myCash, A.sm, A.profile_img, A.r_dt, A.m_dt, B.totalPoint, B.totalCash
+		SELECT A.i_user, A.user_id, A.user_pw, A.salt, A.nm, A.nick, A.email, B.myPoint,
+		B.myCash, A.sm, A.profile_img, A.r_dt, A.m_dt, B.totalPoint, B.totalCash
 		FROM t_user A
 		
 		LEFT JOIN t_myPoint B
@@ -120,10 +124,10 @@
 	</update>					
 						
 	
-	<update id="updMyPoint" parameterType="UserPARAM">
-		UPDATE t_user
+	<update id="updMyPoint" parameterType="PointVO">
+		UPDATE t_myPoint
 		SET myPoint = #{myPoint},
-		myCash = #{myCash}
+		myCash = myCash + ${myCash}
 		WHERE i_user = #{i_user}
 	</update>
 		
