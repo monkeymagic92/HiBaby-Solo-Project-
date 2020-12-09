@@ -272,10 +272,6 @@ public class UserService {
 		return mapper.insMyPointPage(vo);
 	}
 	
-	// pointMall 환급내역 조회
-	public List<PointVO> selPointMall(UserPARAM param) {
-		return mapper.selPointMall(param);
-	}
 	
 	// ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ
 	

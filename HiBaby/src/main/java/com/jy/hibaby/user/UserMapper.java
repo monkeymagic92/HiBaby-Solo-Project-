@@ -26,9 +26,8 @@ public interface UserMapper {
 	
 	UserDMI selDetailUser(UserPARAM param);	// info 에서 변경시 값 불러오기
 	
-	List<PointVO> selPointMall(UserPARAM param);		// 나의 pointMall 환급 조회
 	
-	int maxI_user();
+	int maxI_user();	// 회원가입시 t_myPoint 에 기본 포인트 적립용
 	
 	// isnert
 	int joinUser(UserVO param);		// 회원가입

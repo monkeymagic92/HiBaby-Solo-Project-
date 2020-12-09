@@ -51,12 +51,13 @@
        <br><br>
                 계급 : <img src="/res/img/chall.png" class="ClassesImg">
        <br>
-       <div>닉네임 : ${selUser.nick}</div>        
+       <h3>ㅡㅡ 계급은 총 누적포인트 기준으로 계급 잡기 ㅡㅡ</h3>
+       <div>닉네임 : ${selUser.nick}</div>       
+       <div>총누적포인트 : ${selUser.totalPoint}</div> 
        <div>포인트 : ${selUser.myPoint}</div>
        <div>환급받은 캐시 : ${selUser.myCash}</div>
        <br>
        <button id="myPoint">포인트 환급받기</button>            
-       <button onclick="myPointMall(${selUser.i_user})">나의 포인트 조회</button>    
        <br><br>
        <button onclick="moveToInfo(${selUser.i_user})">회원정보 변경</button>
        <br>
@@ -170,10 +171,7 @@
 		alert('${pointMsg}')		
 	}
 	
-	// pointMall 페이지 이동
-	function myPointMall(i_user) {
-		location.href="/user/myPointMall?i_user="+i_user
-	}
+	
 	/*		ㅡ		ㅡ		ㅡ		ㅡ		ㅡ		ㅡ		ㅡ		*/
 	
 	
