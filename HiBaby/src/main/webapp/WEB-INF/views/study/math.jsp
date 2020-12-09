@@ -16,41 +16,42 @@
 	        <form id="frm" action="/study/math" method="post" onsubmit="return chk()">
 	            <div class="formContainer">
 	                ${data.q1} + ${data.q1_1} = <input class="input" type="number" name="a1">
-	                <span class="an">${an_a1}</span><br>
+	                <span class="an"></span><br>
 	                
 	                ${data.q2} + ${data.q2_2} = <input class="input" type="number" name="a2">
-	                <span class="an">${an_a2}</span><br>
+	                <span class="an"></span><br>
 	
 	                ${data.q3} + ${data.q3_3} = <input class="input" type="number" name="a3">
-	                <span class="an">${an_a3}</span><br>
+	                <span class="an"></span><br>
 	                
 	                ${data.q4} + ${data.q4_4} = <input class="input" type="number" name="a4">
-	                <span class="an">${an_a4}</span><br>
+	                <span class="an"></span><br>
 	                
 	                ${data.q5} - ${data.q5_5} = <input class="input" type="number" name="a5">
-	                <span class="an">${an_a5}</span><br>
+	                <span class="an"></span><br>
 	                
 	                ${data.q6} - ${data.q6_6} = <input class="input" type="number" name="a6">
-	                <span class="an">${an_a6}</span><br>
+	                <span class="an"></span><br>
 	                
 	                ${data.q7} - ${data.q7_7} = <input class="input" type="number" name="a7">
-	                <span class="an">${an_a7}</span><br>
+	                <span class="an"></span><br>
 	                
 	                ${data.q8} - ${data.q8_8} = <input class="input" type="number" name="a8">
-	                <span class="an">${an_a8}</span><br>
+	                <span class="an"></span><br>
 	                
 	                ${data.q9} X ${data.q9_9} = <input class="input" type="number" name="a9">
-	                <span class="an">${an_a9}</span><br>
+	                <span class="an"></span><br>
 	                
 	                ${data.q10} X ${data.q10_10} = <input class="input" type="number" name="a10">
-	                <span class="an">${an_a10}</span><br>
+	                <span class="an"></span><br>
 	                
 	                <input type="hidden" name="i_user" value="${loginUser.i_user}">	<%-- 포인트 적립용 --%>
-	            	<button>전송</button>
+	                <input type="hidden" name="level" value="${data.level}">
+	            	<button type="submit">전송</button>
 	            </div>
-	            
 	        </form>
 	    </div>
+	    
 	</div>
 
 
@@ -58,16 +59,7 @@
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>	
 <script>
-	/*
-	var a1 = `${data.q1 + data.q1_1}`
-	var a2 = `${data.q2 + data.q2_2}`
-	.
-	.
-	. 이런식으로 자바스크립트로 막아도됨
-	function chk() {
-	    
-	}
-	*/
+	
 </script>
 </body>
 </html>

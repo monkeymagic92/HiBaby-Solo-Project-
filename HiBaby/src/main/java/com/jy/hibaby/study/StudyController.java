@@ -26,7 +26,7 @@ public class StudyController {
 	@Autowired
 	private UserService userService;	// 포인트 적립 메소드 사용하기위해
 	
-	
+	// 공부메인화면
 	@RequestMapping(value="/main", method = RequestMethod.GET)
 	public String main(Model model, RedirectAttributes ra, StudyPARAM param) {
 		
@@ -34,6 +34,8 @@ public class StudyController {
 		return ViewRef.DEFAULT_TEMP;
 	}
 	
+	
+	// 수학 문제 문제출제
 	@RequestMapping(value="/math", method = RequestMethod.GET)
 	public String math(Model model, RedirectAttributes ra, StudyPARAM param, 
 			UserPARAM up, HttpSession hs) {
@@ -46,7 +48,8 @@ public class StudyController {
 		return ViewRef.DEFAULT_TEMP;
 
 	}
-	
+
+	// 수학 문제 정답 판별
 	@RequestMapping(value="/math", method = RequestMethod.POST)
 	public String math(Model model, RedirectAttributes ra, StudyPARAM param,
 			HttpSession hs, UserPARAM userParam, PointVO vo) {
@@ -54,9 +57,20 @@ public class StudyController {
 		userParam = (UserPARAM)hs.getAttribute("loginUser");
 		StudyUtils.ansMath(hs, param, vo, userParam);	// 수학 정답
 		
-		int result = userService.updPoint(vo);
+		int result = userService.updPoint(vo);	// 정답 개수만큼 포인트 증가
 		
 		return "redirect:/" + ViewRef.STUDY_MAIN;
+	}
+	
+	
+	
+	// 수학 오답 판별
+	@RequestMapping(value="/mathResult", method = RequestMethod.GET)
+	public String mathResult(Model model, RedirectAttributes ra, StudyPARAM param,
+			HttpSession hs, UserPARAM userParam, PointVO vo) {
+		
+		
+		return "";
 	}
 	
 	
