@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
+    <link rel="stylesheet" href="css/myPage.css">
+</head>
+<body>
+
+    
+    <div id="myModal" class="modal">
+        
+        <!-- Modal content -->
+    
+		<div class="modal-content">
+            
+		    <h4>나의포인트 : <fmt:formatNumber value="${selUser.myPoint}" pattern="#,###" />p</h4>
+		    
+            <!-- Modal body -->
+		    <div class="modal-body">
+                
+		    	환급받을 포인트 입력 :
+		    	<form id="pointFrm" action="/user/myPoint" method="post" onsubmit="return pointChk()">
+		    		<input type="number" name="myCash" placeholder="포인트를 입력해 주세요" maxlength="8" oninput="numberMaxLength(this)">
+		    		<input type="hidden" name="myPoint" value="${selUser.myPoint}">
+		    		<input type="hidden" name="i_user" value="${selUser.i_user}">
+		    		<button type="submit">환급받기</button>	
+		    	</form> 
+		    </div>
+		    
+		    <!-- Modal bottom -->
+		    <div class="modal-bottom">
+				Modal Bottom부분		
+            </div>
+            <button class="pop_bt" onclick="hideModal()"><div id="x">X</div></button>
+		    
+		</div>
+    </div>
+
+
+
+<script>
+// 모탈창 나타내기
+$('#myPoint').click(function() {
+		$('#myModal').show();
+	})
+
+	// 모달창 종료
+	function hideModal() {
+		myModal.style.display = 'none'
+	}
+</script>
+</body>
+</html>
