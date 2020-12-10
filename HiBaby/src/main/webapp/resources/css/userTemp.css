@@ -82,7 +82,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    background-image: linear-gradient(to right, #a1c4fd 0%, #8ae6d6 51%, #5bf5ad 100%); 
+    background-image: linear-gradient(to right, #91e0ff 0%, #91e0ff 51%, #91e0ff 100%); 
     text-align: center;
     border-radius: 30px;
     border: 2px solid #ffffff;

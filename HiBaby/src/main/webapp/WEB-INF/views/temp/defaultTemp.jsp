@@ -15,6 +15,7 @@
 body {
 	background-color: #fff7ed;
 	font-family: 'Nerko One', cursive;
+	
 }
 
 ul {
@@ -27,7 +28,7 @@ p {
 }
 a {
 	text-decoration: none;
-	font-size: 15px;
+	font-size: 18px;
 }
 	a:hover {
 		text-decoration: underline;
