@@ -1,4 +1,4 @@
-.modal {
+.modalCar {
     position: fixed;
     z-index: 1; 
     left: 0;
@@ -11,7 +11,7 @@
 }
 
 /* Modal Content/Box */
-.modal-content {    
+.modal-content-car {    
     margin: 15% auto; 
 }
 #x {

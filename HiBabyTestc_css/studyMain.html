@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/studyMain.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="main-container">
@@ -64,14 +65,25 @@
         <!-- studyMain -->
         
         <div class="container">
-            <div class="btnContainer">
-                <img id="mathImg" onclick="openEng()" src="https://ichef.bbci.co.uk/news/640/cpsprodpb/164EE/production/_109347319_gettyimages-611195980.jpg">
-                <br><br><br><br><br><br><br><br><br>
-                <button id="mathBtn" onclick="openMath()">수학공부</button>
-                <button id="engBtn" onclick="openEng()">영어공부</button>
-                
+            
+            <h2 id="h2-1">수학공부</h2>
+            <img id="studyImg" onclick="openMath()" src="https://ichef.bbci.co.uk/news/640/cpsprodpb/164EE/production/_109347319_gettyimages-611195980.jpg">
 
-            </div>
+            <br><br>
+
+            <h2 id="h2-2">영어공부</h2>
+            <img id="studyImg" onclick="openEng()" src="https://www.m-economynews.com/data/photos/20190731/art_15645477617625_faa6e5.png">
+
+            <br><br>
+
+            <h2 id="h2-3">구구단</h2>
+            <img id="studyImg" onclick="#" src="https://t1.daumcdn.net/cfile/tistory/254193505769EE5E08">
+            <br><br>
+
+            <h2 id="h2-3">계산기</h2>
+            <img id="showCarcul" onclick="#" src="https://t1.daumcdn.net/cfile/tistory/99F1383A5CD42CC219">
+            <br><br>
+
         </div>
 
         <!-- 난이도 선택 모달창 -->
@@ -134,8 +146,53 @@
             
         </div>
         <!---->
+
+        
+    <div id="carModal" class="modalCar">
+ 
+		<!-- Modal content -->
+		<div class="modal-content-car">
+            
+		    <div class="modal-body">
+                <button id="hideCarcul"><div id="x">X</div></button>    
+                <!-- 계산기 -->
+                <div id="calculator">
+                    
+                    <div class="top">
+                        <span class="clear">C</span>
+                        <div class="screen"></div>
+                    </div>
+                    
+                    <div class="keys">
+                        <span>7</span>
+                        <span>8</span>
+                        <span>9</span>
+                        <span class="operator">+</span>
+                        <span>4</span>
+                        <span>5</span>
+                        <span>6</span>
+                        <span class="operator">-</span>
+                        <span>1</span>
+                        <span>2</span>
+                        <span>3</span>
+                        <span class="operator">÷</span>
+                        <span>0</span>
+                        <span>.</span>
+                        <span class="eval">=</span>
+                        <span class="operator">x</span>
+                    </div>
+                </div>
+
+		    </div> <!-- body 끝 -->
+		    
+		    <!-- Modal bottom -->
+		</div>
+    </div>
         
         <div id="gugudan"></div>
+
+
+
         
 
     </div>
@@ -160,6 +217,91 @@ function mathHide() {
 function engHide() {
     engModal.style.display = 'none'
 }
+
+$('#carModal').hide(); 
+
+jQuery('#showCarcul').click(function() {
+	    $('#carModal').show();
+	});
+
+jQuery('#hideCarcul').click(function() {
+    $('#carModal').hide(); 
+});
+
+
+var keys = document.querySelectorAll('#calculator span');
+var operators = ['+', '-', 'x', '÷'];
+var decimalAdded = false;
+
+
+for(var i = 0; i < keys.length; i++) {
+	keys[i].onclick = function(e) {
+		
+		var input = document.querySelector('.screen');
+		var inputVal = input.innerHTML;
+		var btnVal = this.innerHTML;
+		var total;
+		if(btnVal == 'C') {
+			input.innerHTML = '';
+			decimalAdded = false;
+		}
+		
+		else if(btnVal == '=') {
+			var equation = inputVal;
+			var lastChar = equation[equation.length - 1];
+			
+			equation = equation.replace(/x/g, '*').replace(/÷/g, '/');
+			
+			if(operators.indexOf(lastChar) > -1 || lastChar == '.')
+				equation = equation.replace(/.$/, '');
+			
+			if(equation)
+				{
+             total = eval(equation);
+              if(total.toString().indexOf('.') != -1)
+                total= total.toFixed(2);
+          
+          input.innerHTML = total;
+        }
+				
+			decimalAdded = false;
+		}
+		
+		
+		else if(operators.indexOf(btnVal) > -1) {
+			
+			var lastChar = inputVal[inputVal.length - 1];
+			
+			if(inputVal != '' && operators.indexOf(lastChar) == -1) 
+				input.innerHTML += btnVal;
+			
+			else if(inputVal == '' && btnVal == '-') 
+				input.innerHTML += btnVal;
+			
+			if(operators.indexOf(lastChar) > -1 && inputVal.length > 1) {
+				input.innerHTML = inputVal.replace(/.$/, btnVal);
+			}
+			
+			decimalAdded =false;
+		}
+		
+		else if(btnVal == '.') {
+			if(!decimalAdded) {
+				input.innerHTML += btnVal;
+				decimalAdded = true;
+			}
+		}
+		
+		else {
+			input.innerHTML += btnVal;
+		}
+		
+		e.preventDefault();
+	} 
+}
+
+
+
 
 // 구구단 표 만들기 메소드
 function make() {
