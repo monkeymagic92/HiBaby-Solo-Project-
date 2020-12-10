@@ -12,7 +12,8 @@
 <body>
 	<div class="container">
 	    <div class="mainContainer">
-	        <!-- 테스트용으로 4개만 해놓고 잘되면 10개 다 만들기 -->
+	    	 <!-- 문제풀이창 열리면 시간초가 흘러감 -->
+            <div id="testStartBtn"></div>
 	        <form id="frm" onsubmit="return chk()">
 	            <div class="formContainer">
 	                ${data.q1} + ${data.q1_1} = <input class="input" type="number" name="aa1">
@@ -47,7 +48,8 @@
 	                
 	                <input type="hidden" name="i_user" value="${loginUser.i_user}">	<%-- 포인트 적립용 --%>
 	                <input type="hidden" name="level" value="${data.level}">
-	            	<button class="mathResult" type="button" onclick="mathResult()">문제 제출</button>
+	                <!-- 문제제출 버튼 누름과 동시에 스톱워치 기능이 멈춤 -->
+	            	<button id="stopWatch" class="mathResult" type="button" onclick="mathResult()">문제 제출</button>
 	            </div>
 			</form>        
 	    </div>
@@ -90,14 +92,30 @@
 		                
 		                10)&nbsp; ${data.q10} X ${data.q10_10} = <input id="ma10" class="input" type="number" name="a10" readonly>
 		                <span id="an10" class="an"></span><br>
-		                <div class="goodCntDiv">
+		                <hr>
+		                <div class="goodCntDiv">		                			                	
 		                    <div id="goodCnt">정답수 : </div>
 		                </div>
 		                <div class="timeAttack">
 		                	<div id="time"></div>
 		                </div>
 		                <input type="hidden" name="level" value="${data.level}">
-		                <button id="submitBtn" type="submit" class="pop_bt" onclick="mathHide()">문제 제출</button>
+		                <!-- 시간기능@@@@@@@@@@@@@@@@@@@ -->
+                        <div class="timeWatchDiv">
+                            <div>
+                            	Time :
+                                <span id="postTestMin">00</span><!-- 분 -->
+                                <span>:</span>
+                                <span id="postTestSec">00</span>
+                                <!--초-->
+                                <span>.</span>
+                                <span id="postTestMilisec">00</span>
+                                <!--밀리초-->
+                                <hr>
+                            </div>
+                        </div>
+                        <!-- 시간기능@@@@@@@@@@@@@@@@@@@ -->
+                        <button id="submitBtn" type="submit" class="pop_bt" onclick="mathHide()">문제 제출</button>
 	                </form>
 	            </div>
 	            
@@ -283,6 +301,34 @@
 	function engHide() {
 	    engModal.style.display = 'none'
 	}
+	
+	var stTime
+    var timerStart
+    $('#testStartBtn').ready(function() {
+        if (!stTime) {
+            stTime = new Date().getTime() //클릭한 시점의 현재시간 timestamp를 stTime에 저장
+        }
+        timerStart = setInterval(function () {
+            var nowTime = new Date().getTime() //1ms당 한 번씩 현재시간 timestamp를 불러와 nowTime에 저장
+            var newTime = new Date(nowTime - stTime) //(nowTime - stTime)을 new Date()에 넣는다
+            var min = newTime.getMinutes() //분
+            var sec = newTime.getSeconds() //초
+            var milisec = Math.floor(newTime.getMilliseconds() / 10) //밀리초
+            document.getElementById('postTestMin').innerText = addZero(min)
+            document.getElementById('postTestSec').innerText = addZero(sec)
+            document.getElementById('postTestMilisec').innerText = addZero(milisec)
+        }, 1)
+    })
+
+    document.getElementById('stopWatch').addEventListener('click', function () {
+        if (timerStart) {
+            clearInterval(timerStart)
+        }
+    })
+
+    function addZero(num) {
+        return (num < 10 ? '0' + num : '' + num)
+    }
 </script>
 </body>
 </html>

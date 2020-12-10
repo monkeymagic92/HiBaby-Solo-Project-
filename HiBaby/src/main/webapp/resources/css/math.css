@@ -79,8 +79,8 @@
 .modal-content {
     background-color: #fefefe;
 	margin: 10% auto; 
-	height: 750px;
-    padding: 25px;
+	height: 850px;
+    padding: 28px;
 	border: 3px solid #fff7ed;
 	border-radius: 20px;
 	width: 25%;                           
@@ -127,3 +127,8 @@
 	margin-left: 20px;
 }
 
+.timeWatchDiv {
+	color: grey;
+	margin-top: 12px;
+	margin-left: 11px;
+}

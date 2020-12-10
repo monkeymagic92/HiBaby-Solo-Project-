@@ -47,9 +47,6 @@
                     ${data.title}
                 </div>
                 <div class="boardData"><span id="hits" class="material-icons">visibility</span><span id="hitsRs">${data.hits}</span> &nbsp;&nbsp;&nbsp;&nbsp; ${data.r_dt}</div>
-                <div class="classesDiv">
-                	
-                </div>
                 <div class="data">
                 	<c:choose>
 	                	<c:when test="${data.totalPoint < 150}">
