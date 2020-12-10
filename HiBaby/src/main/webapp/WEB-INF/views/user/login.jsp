@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Hibaby 로그인</title>
-<%-- 로그인 페이지 css --%>
 </head>
 <body>
     <div id="login-button">

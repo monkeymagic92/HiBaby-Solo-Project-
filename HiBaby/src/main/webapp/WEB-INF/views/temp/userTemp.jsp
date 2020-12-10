@@ -45,14 +45,13 @@
 </style>
 <body>
 	<nav role="navigation">
-        <div id="menuToggle" class="animate__flash animate__animated fas fa-check">  
+        <div id="menuToggle">  
             <input type="checkbox" />
-            	<!-- 아이콘으로 변경하기 -->
+            	
                 <span></span>
                 <span></span>
                 <span></span>
-            
-            
+                
             <ul id="menu">
                 <li><a href="/user/login">로그인</a></li>
                 <li><a href="/user/join">회원가입</a></li>
@@ -66,8 +65,6 @@
             </ul>
         </div>
     </nav>
-    
-    
     
     <div id="myModal" class="modal">
 

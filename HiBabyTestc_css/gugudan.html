@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구구단</title>
+    <link rel="stylesheet" href="css/gugudan.css">
+</head>
+<body>
+    <button id="">구구단</button>
+    <div id="myModal" class="modal">
+ 
+		<!-- Modal content -->
+		<div class="modal-content">
+              <h1>HiBaby</h1>
+		      <h2>인증번호를 입력해 주세요</h2>
+		      <c:if test="${cerCodeCount == null }">
+		      	<div></div>
+		      </c:if>
+		      <c:if test="${cerCodeCount > 0 }">
+		      	<div id="cerCodeCount">${cerCodeCount }회 실패</div>
+		      </c:if>
+		      
+		      <!-- Modal body -->
+		    <div class="modal-body">
+		    	<form id="frm" action="/user/cerCode" method="post" onsubmit="return chk()">
+		    		<input id="cerCodeIns" type="text" name="cerCode" placeholder="코드입력">
+		    		<input id="submitIns" type="submit" value="확인">
+		    	</form>
+		    </div>
+		    
+		    <!-- Modal bottom -->
+		    <div class="modal-bottom">
+				
+		    </div>
+		    <button type="button" class="pop_bt" onclick="moveToLogin()">
+					종료
+			</button>
+		</div>
+    </div>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>    
+<script>
+
+
+	
+	
+	jQuery(document).ready(function() {
+	    $('#myModal').show();
+	});
+	
+	function close_pop(flag) {
+	 $('#myModal').hide();
+	}
+	
+	
+</script>
+</body>
+</html>

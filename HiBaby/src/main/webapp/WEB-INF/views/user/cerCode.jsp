@@ -6,45 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>모달테스트</title>
+<link rel="stylesheet" href="/res/css/cerCode.css">
 </head>
-<style>
-	.modal {
-	    display: none;
-	    position: fixed;
-	    z-index: 1; 
-	    left: 0;
-	    top: 0;
-	    width: 100%; 
-	    height: 100%; 
-	    overflow: auto; 
-	    background-color: rgb(0,0,0); 
-	    background-color: rgba(0,0,0,0.4); 
-	}
-	
-	/* Modal Content/Box */
-	.modal-content {
-	    background-color: #fefefe;
-	    margin: 15% auto; 
-	    padding: 20px;
-	    border: 1px solid #888;
-	    width: 30%;                           
-	}
-	.pop_bt {
-		margin-top: 30px;
-		width: 200px;
-		text-align: center;
-		cursor: pointer;
-	}
-	
-	#cerCodeCount {
-		color: red;
-	}
-</style>
 <body>
-	<div id="myModal" class="modal">
+	<div id="myModalCer" class="modal">
  
 		<!-- Modal content -->
 		<div class="modal-content">
+              <h1>HiBaby</h1>
 		      <h2>인증번호를 입력해 주세요</h2>
 		      <c:if test="${cerCodeCount == null }">
 		      	<div></div>
@@ -56,8 +25,8 @@
 		      <!-- Modal body -->
 		    <div class="modal-body">
 		    	<form id="frm" action="/user/cerCode" method="post" onsubmit="return chk()">
-		    		<input type="text" name="cerCode" placeholder="코드입력">
-		    		<input type="submit" value="확인">
+		    		<input id="cerCodeIns" type="text" name="cerCode" placeholder="코드입력">
+		    		<input id="submitIns" type="submit" value="확인">
 		    	</form>
 		    </div>
 		    
@@ -93,11 +62,11 @@ window.onload = function() {
 		
 	
 	jQuery(document).ready(function() {
-	    $('#myModal').show();
+	    $('#myModalCer').show();
 	});
 	
 	function close_pop(flag) {
-	 $('#myModal').hide();
+	 $('#myModalCer').hide();
 	}
 	
 	function chk() {

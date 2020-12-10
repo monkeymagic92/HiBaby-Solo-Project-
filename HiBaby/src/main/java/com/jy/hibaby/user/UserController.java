@@ -92,7 +92,7 @@ public class UserController {
 		if(param != null) {
 			return ViewRef.INDEX_SELECT;
 		}
-		
+		cerCodeCount = 0;
 		model.addAttribute("view",ViewRef.USER_LOGIN);
 		return ViewRef.USER_TEMP;
 	}
@@ -106,7 +106,7 @@ public class UserController {
 			hs.setAttribute(Const.LOGIN_USER, param);
 			return "redirect:/" + ViewRef.INDEX_SELECT;
 		}
-		
+		cerCodeCount = 0;
 		String msg = null;
 		if (result == Const.NO_ID) {
 			msg = "아이디를 확인해 주세요";
@@ -127,7 +127,7 @@ public class UserController {
 		model.addAttribute("uNumCode",uNumCode);
 		model.addAttribute("joinErrMsg"); // 서버에러시 띄우는 alert창
 		model.addAttribute("view",ViewRef.USER_JOIN);
-		
+		cerCodeCount = 0;
 		return ViewRef.USER_TEMP;
 	}	
 
@@ -137,6 +137,7 @@ public class UserController {
 		int result = service.joinUser(param);
 		
 		if(result == Const.SUCCESS) {
+			cerCodeCount = 0;
 			return "redirect:/" + ViewRef.USER_LOGIN;
 
 		} else { 
@@ -191,7 +192,7 @@ public class UserController {
 		
 		model.addAttribute("view","/user/cerCode");
 		model.addAttribute("cerCodeCount"); 
-		//model.addAttribute("cerCodeMsg");
+		
 		return ViewRef.USER_TEMP;
 	}	
 
