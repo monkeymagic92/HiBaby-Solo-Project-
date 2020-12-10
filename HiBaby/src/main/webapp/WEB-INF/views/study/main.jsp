@@ -32,6 +32,10 @@
             <h2 id="h2-3">계산기</h2>
             <img id="showCarcul" onclick="#" src="/res/img/carcul.png">
             <br><br>
+            
+            <h2 id="h2-3">프로그래밍</h2>
+            <img id="studyImg" onclick="#" src="/res/img/pro.png">
+            <br><br>
 
         </div>
 
