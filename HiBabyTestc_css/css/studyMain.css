@@ -372,3 +372,15 @@ h1, h2, p, a, span{
 	transition: 0.3s;
 	box-shadow: 0 7px 14px -5px grey;
 }
+
+#mathImg {
+	margin-left: -200px;
+	width: 800px;
+	height: 150px;
+	border-radius: 40px;
+}
+
+#mathImg:hover {
+	cursor: pointer;
+	width: 830px;
+}
