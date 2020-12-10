@@ -1,5 +1,6 @@
 package com.jy.hibaby.study;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,6 @@ import com.jy.hibaby.StudyUtils;
 import com.jy.hibaby.ViewRef;
 import com.jy.hibaby.study.model.StudyPARAM;
 import com.jy.hibaby.user.UserService;
-import com.jy.hibaby.user.model.UserDMI;
 import com.jy.hibaby.user.model.UserPARAM;
 
 @Controller
@@ -63,7 +63,7 @@ public class StudyController {
 	// 수학 문제 정답 판별
 	@RequestMapping(value="/math", method = RequestMethod.POST)
 	public String math(Model model, RedirectAttributes ra, StudyPARAM param,
-			HttpSession hs, UserPARAM userPARAM, PointVO vo) {
+			HttpSession hs, UserPARAM userPARAM, PointVO vo, HttpServletRequest request) {
 		
 		userPARAM = (UserPARAM)hs.getAttribute("loginUser");
 		StudyUtils.ansMath(hs, param, vo, userPARAM);	// 수학 정답

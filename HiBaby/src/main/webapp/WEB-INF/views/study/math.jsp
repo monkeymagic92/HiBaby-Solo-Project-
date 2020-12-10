@@ -114,6 +114,9 @@
                                 <hr>
                             </div>
                         </div>
+                        
+                        
+                         
                         <!-- 시간기능@@@@@@@@@@@@@@@@@@@ -->
                         <button id="submitBtn" type="submit" class="pop_bt" onclick="mathHide()">문제 제출</button>
 	                </form>
@@ -223,8 +226,6 @@
 		var ra9 = `${data.q9 * data.q9_9}`
 		var ra10 = `${data.q10 * data.q10_10}`
 		
-		
-		
 		modalFrm.a1.value = mya1
 		modalFrm.a2.value = mya2
 		modalFrm.a3.value = mya3
@@ -317,10 +318,12 @@
             document.getElementById('postTestMin').innerText = addZero(min)
             document.getElementById('postTestSec').innerText = addZero(sec)
             document.getElementById('postTestMilisec').innerText = addZero(milisec)
+            
         }, 1)
     })
 
     document.getElementById('stopWatch').addEventListener('click', function () {
+    	
         if (timerStart) {
             clearInterval(timerStart)
         }
