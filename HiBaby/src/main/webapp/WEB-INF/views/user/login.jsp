@@ -18,13 +18,12 @@
         
         <form id="frm" class="box" action="/user/login" method="post" onsubmit="return chk()">
             <h1>Login</h1>
+            <!-- 
             <input type="text" name="user_id" value="${user_id}" placeholder="아이디">
             <input type="password" name="user_pw" placeholder="비밀번호">
-            <!-- 
+             -->
             <input type="text" name="user_id" value="test321" placeholder="아이디">
             <input type="password" name="user_pw" value="wodyd121!@!" placeholder="비밀번호">
-             -->
-            
             <input type="submit" value="로그인">
         </form>        
     </div> 

@@ -54,7 +54,6 @@
 	</select>
 	
 	<!-- 해당유저 상세 프로필 -->
-	<!--	ㅡㅡㅡㅡㅡ 앞으로 사용 금지 ㅡㅡㅡㅡㅡㅡㅡ  (이거때매 포인트할때 애먹음 앞으로 selUserInfo.mapper 사용하기) 
 	<select id="selDetailUser" parameterType="UserPARAM" resultType="UserDMI"> 
 		SELECT A.i_user, A.user_id, A.user_pw, A.salt, A.nm, A.nick, A.email, B.myPoint,
 		B.myCash, A.sm, A.profile_img, A.r_dt, A.m_dt, B.totalPoint, B.totalCash
@@ -65,10 +64,8 @@
 		
 		WHERE <if test="i_user > 0"> A.i_user = #{i_user}</if>
 	</select>
-	 -->
+	
 	<!-- 포인트샵에서 n번 유저 포인트 정보 뿌리기 -->
-	
-	
 	<select id="maxI_user" resultType="Integer">
 		SELECT MAX(i_user) FROM t_user
 	</select>
