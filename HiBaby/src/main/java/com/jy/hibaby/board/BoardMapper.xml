@@ -43,10 +43,16 @@
 	<select id="detailBoard" resultType="BoardPARAM" parameterType="BoardPARAM">
 		SELECT A.i_board, A.i_user, A.title, A.ctnt, A.image_1, A.image_2,
 		A.image_3, A.image_4, A.hits, B.nick, B.i_user, B.profile_img,
+		C.totalPoint, C.myPoint,
 		date_format(A.r_dt, '%Y/%c/%e 　%p %h:%i') AS r_dt		
 		FROM t_board A
+		
 		LEFT JOIN t_user B
 		ON A.i_user = B.i_user
+		
+		LEFT JOIN t_myPoint C
+		ON A.i_user = C.i_user
+		
 		WHERE i_board = #{i_board}
 	</select>
 	

@@ -29,6 +29,14 @@
 		width: 150px;
 		height: 150px;
 	}
+	
+	.classesImg {
+		width: 60px;
+		height: 60px;
+		border-radius: 90px;
+		margin-right: 6px;
+	}
+
 			
 	
 </style>
@@ -39,7 +47,27 @@
                     ${data.title}
                 </div>
                 <div class="boardData"><span id="hits" class="material-icons">visibility</span><span id="hitsRs">${data.hits}</span> &nbsp;&nbsp;&nbsp;&nbsp; ${data.r_dt}</div>
+                <div class="classesDiv">
+                	
+                </div>
                 <div class="data">
+                	<c:choose>
+	                	<c:when test="${data.totalPoint < 150}">
+	                		<img src="/res/img/ion.png" class="classesImg">
+	                	</c:when>
+	                	<c:when test="${data.totalPoint < 400}">
+	                		<img src="/res/img/gold.png" class="classesImg">
+	                	</c:when>
+	                	<c:when test="${data.totalPoint < 600}">
+	                		<img src="/res/img/dia.png" class="classesImg">
+	                	</c:when>
+	                	<c:when test="${data.totalPoint < 20000}">
+	                		<img src="/res/img/master.png" class="classesImg">
+	                	</c:when>
+	                	<c:when test="${data.totalPoint > 20000}">
+	                		<img src="/res/img/chall.png" class="classesImg">
+	                	</c:when>
+                	</c:choose>
                     <c:if test="${data.profile_img == null }">
 			     		<img src="/res/img/HiBaby.jpg" onchange="setThumbnail(e)" alt="" class="detailImg" onclick="moveToMyPage(${data.i_user})">
 			     	</c:if>

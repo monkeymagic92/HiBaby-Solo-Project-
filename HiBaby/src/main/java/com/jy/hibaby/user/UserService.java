@@ -126,7 +126,6 @@ public class UserService {
 		vo.setI_user(maxI_user);
 		vo.setTotalPoint(100);
 		vo.setMyPoint(100);
-		vo.setMyCash(10);
 		result = mapper.joinUser(param);
 		mapper.joinPoint(vo);
 		

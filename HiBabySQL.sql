@@ -18,6 +18,8 @@ CREATE TABLE t_user(
 SELECT * FROM t_user;
 DROP TABLE t_user;
 
+
+
 CREATE TABLE t_board(
     i_board int primary KEY AUTO_INCREMENT,
     image_1 VARCHAR(200),
@@ -35,13 +37,14 @@ SELECT * FROM t_board;
 DROP TABLE t_board;
 
 
+
 CREATE TABLE t_myPoint(
 	i_point INT UNSIGNED AUTO_INCREMENT,
 	i_user INT,
 	totalPoint INT(8),	-- 총 누적 포인트
 	totalCash INT(8),		-- 총 환급받은 캐시
 	myPoint INT(8),		-- 현재 포인트
-	myCash INT(8),			-- 환급할 캐시입력
+	myCash INT(8) DEFAULT 0,			-- 환급할 캐시입력
 	myPointNow INT(8),	-- 환급후 포인트
 	r_dt DATETIME DEFAULT NOW(),
 	PRIMARY KEY(i_point, i_user),
@@ -49,6 +52,7 @@ CREATE TABLE t_myPoint(
 );
 SELECT * FROM t_myPoint;
 DROP TABLE t_myPoint;
+
 
 
 CREATE TABLE t_cmt(

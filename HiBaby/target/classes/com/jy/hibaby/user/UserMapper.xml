@@ -88,9 +88,9 @@
 	<!-- 포인트 내역 저장 -->
 	<insert id="insMyPointPage" parameterType="PointVO">
 		INSERT INTO t_myPoint
-		(i_user, myPoint, myCash, myPointNow)
+		(i_user, myPoint, myPointNow)
 		VALUES
-		(#{i_user}, #{myPoint}, #{myCash}, #{myPointNow})
+		(#{i_user}, #{myPoint}, #{myPointNow})
 	</insert>	
 	
 	

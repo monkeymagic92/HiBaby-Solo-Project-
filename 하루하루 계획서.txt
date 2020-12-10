@@ -21,4 +21,12 @@
 - 공부하기 로딩바 만들기 
 - Header 드랍다운 수정 ('userTemp'꺼로)
 - board/list 페이징 css
- 
+
+
+
+12/10
+- 서버 재배포
+- 공부기능 css, stopWatch 기능 추가
+- 드랍다운 기능 (header css) 수정
+- 회원 정보수정 css
+- 마이페이지 css

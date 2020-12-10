@@ -9,8 +9,29 @@ public class BoardPARAM extends BoardVO{
 	private int cmt_pageStart;
 	private int cmt_perPageNum;
 	
+	private int totalPoint;	// 계급 나타내기위해 BoardPARAM에 넣음( detail.jsp 에서사용 )
+	private int myPoint;
 	
 	
+	
+	
+	
+	public int getTotalPoint() {
+		return totalPoint;
+	}
+
+	public void setTotalPoint(int totalPoint) {
+		this.totalPoint = totalPoint;
+	}
+
+	public int getMyPoint() {
+		return myPoint;
+	}
+
+	public void setMyPoint(int myPoint) {
+		this.myPoint = myPoint;
+	}
+
 	public int getPageStart() {
 		return pageStart;
 	}
