@@ -1,5 +1,7 @@
 package com.jy.hibaby;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import com.jy.hibaby.study.model.StudyPARAM;
@@ -435,6 +437,7 @@ public class StudyUtils {
 		String[] eArray1 = {"고양이", "사자", "호랑이","강아지", "여자", "자동차", "지구", "피아노", "컴퓨터", "꽃", "아기"};
 		
 		String[] eArray2 = {"cat", "lion", "tiger","dog","girl","car", "earth","piano","computer","flower", "baby"};
+
 		
 		String[] a1 = new String[11];
 		String[] a2 = new String[11];
@@ -489,10 +492,131 @@ public class StudyUtils {
 			param.setEq10(a1[9]);
 			param.setEa10(a2[9]);
 			
+        
+        }
+		
+	} else if(param.getLevel() == 2) { // 난이도 중
+	
+		String[] eArray1 = {"인터넷", "1", "2","3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"};
+		
+		String[] eArray2 = {"internet", "1", "2","3","4","5", "6","7","8","9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"};
+
+		
+		String[] a1 = new String[20];
+		String[] a2 = new String[20];
+		
+		int a[] = new int[20]; 
+        int ran = 0;
+        
+        for(int i=0;i<10;i++) { 
+        	ran = (int)(Math.random() * 20) + 0;
+            a[i] = ran;
+            
+			a1[i] = eArray1[ran];
+			a2[i] = eArray2[ran]; 
+            
+			
+            for(int j=0;j<i;j++) { // 중복제거
+                    
+                if(a[i]==a[j]) {  
+                
+                    i--;
+                }
+            }
+            
+            // 1번문제 / 정답
+            param.setEq1(a1[0]);
+            param.setEa1(a2[0]);
+            
+            param.setEq2(a1[1]);
+			param.setEa2(a2[1]);
+			
+			param.setEq3(a1[2]);
+			param.setEa3(a2[2]);
+			
+			param.setEq4(a1[3]);
+			param.setEa4(a2[3]);
+			
+			param.setEq5(a1[4]);
+			param.setEa5(a2[4]);
+			
+			param.setEq6(a1[5]);
+			param.setEa6(a2[5]);
+			
+			param.setEq7(a1[6]);
+			param.setEa7(a2[6]);
+			
+			param.setEq8(a1[7]);
+			param.setEa8(a2[7]);
+			
+			param.setEq9(a1[8]);
+			param.setEa9(a2[8]);
+			
+			param.setEq10(a1[9]);
+			param.setEa10(a2[9]);
+        }
+		
+	} else {
+		String[] eArray1 = {"인터넷", "1", "2","3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"};
+		
+		String[] eArray2 = {"internet", "1", "2","3","4","5", "6","7","8","9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"};
+
+		
+		String[] a1 = new String[20];
+		String[] a2 = new String[20];
+		
+		int a[] = new int[20]; 
+        int ran = 0;
+        
+        for(int i=0;i<10;i++) { 
+        	ran = (int)(Math.random() * 20) + 0;
+            a[i] = ran;
+            
+			a1[i] = eArray1[ran];
+			a2[i] = eArray2[ran]; 
+            
+			
+            for(int j=0;j<i;j++) { // 중복제거
+                    
+                if(a[i]==a[j]) {  
+                
+                    i--;
+                }
+            }
+            
+            // 1번문제 / 정답
+            param.setEq1(a1[0]);
+            param.setEa1(a2[0]);
+            
+            param.setEq2(a1[1]);
+			param.setEa2(a2[1]);
+			
+			param.setEq3(a1[2]);
+			param.setEa3(a2[2]);
+			
+			param.setEq4(a1[3]);
+			param.setEa4(a2[3]);
+			
+			param.setEq5(a1[4]);
+			param.setEa5(a2[4]);
+			
+			param.setEq6(a1[5]);
+			param.setEa6(a2[5]);
+			
+			param.setEq7(a1[6]);
+			param.setEa7(a2[6]);
+			
+			param.setEq8(a1[7]);
+			param.setEa8(a2[7]);
+			
+			param.setEq9(a1[8]);
+			param.setEa9(a2[8]);
+			
+			param.setEq10(a1[9]);
+			param.setEa10(a2[9]);
+		
         }
 	}
-			
-		
 		
 		hs.setAttribute("a1", param.getEa1());
 		hs.setAttribute("a2", param.getEa2());
@@ -505,9 +629,9 @@ public class StudyUtils {
 		hs.setAttribute("a9", param.getEa9());
 		hs.setAttribute("a10", param.getEa10());
 		
-		
 		return param;
 	}
+	
 	
 	
 	
@@ -529,11 +653,9 @@ public class StudyUtils {
 		String a9 = (String)hs.getAttribute("a9");
 		String a10 = (String)hs.getAttribute("a10");
 		
-		System.out.println("a1값 : " + a1);
-		System.out.println("userEa1 값 : " + param.getUserEa1());
 		
-		if(param.getLevel() == 1) {
-			// 정답에서
+		if(param.getLevel() == 1) {	// 난이도 영어 하
+
 			if(a1.equals(param.getUserEa1())) {
 				point += 10;
 				vo.setTotalPoint(point);
@@ -604,6 +726,149 @@ public class StudyUtils {
 				vo.setI_user(userParam.getI_user());
 			}
 			
+		} else if(param.getLevel() == 2) {	// 난이도 영어 중
+
+			if(a1.equals(param.getUserEa1())) {
+				point += 15;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a2.equals(param.getUserEa2())) {
+				point += 15;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a3.equals(param.getUserEa3())) {
+				point += 15;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a4.equals(param.getUserEa4())) {
+				point += 15;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a5.equals(param.getUserEa5())) {
+				point += 15;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a6.equals(param.getUserEa6())) {
+				point += 15;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a7.equals(param.getUserEa7())) {
+				point += 15;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a8.equals(param.getUserEa8())) {
+				point += 15;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a9.equals(param.getUserEa9())) {
+				point += 15;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a10.equals(param.getUserEa10())) {
+				point += 15;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+		} else {	// 난이도 영어 상
+
+			if(a1.equals(param.getUserEa1())) {
+				point += 20;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a2.equals(param.getUserEa2())) {
+				point += 20;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a3.equals(param.getUserEa3())) {
+				point += 20;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a4.equals(param.getUserEa4())) {
+				point += 20;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a5.equals(param.getUserEa5())) {
+				point += 20;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a6.equals(param.getUserEa6())) {
+				point += 20;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a7.equals(param.getUserEa7())) {
+				point += 20;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a8.equals(param.getUserEa8())) {
+				point += 20;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a9.equals(param.getUserEa9())) {
+				point += 20;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a10.equals(param.getUserEa10())) {
+				point += 20;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
 		}
 		return param;
 	}

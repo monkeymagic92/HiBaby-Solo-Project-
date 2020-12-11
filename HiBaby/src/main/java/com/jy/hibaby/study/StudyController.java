@@ -86,7 +86,7 @@ public class StudyController {
 		
 		model.addAttribute("dataEng", param);
 		model.addAttribute("view", ViewRef.STUDY_ENG);
-		System.out.println("겟을 떠나다");
+		
 		return ViewRef.DEFAULT_TEMP; 
 	}
 	
@@ -95,11 +95,6 @@ public class StudyController {
 	@RequestMapping(value="/eng", method = RequestMethod.POST)
 	public String eng(Model model, StudyPARAM param, HttpSession hs,
 			PointVO vo, UserPARAM userPARAM, RedirectAttributes ra) {
-		
-		System.out.println("@@@@@@@@@@@영어 포스트 @@@@@@@@@@@@@@");
-		System.out.println("user1 : " + param.getUserEa1());
-		System.out.println("user2 : " + param.getUserEa2());
-		System.out.println("user3 : " + param.getUserEa3());
 		
 		userPARAM = (UserPARAM)hs.getAttribute("loginUser");
 		StudyUtils.ansEng(hs, param, vo, userPARAM);	// 수학 정답
