@@ -2,4 +2,43 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jy.hibaby.study.StudyMapper">
 
+	<select id="oneRank" resultType="potinVO">
+		SELECT B.nick, A.totalPoint FROM t_mypoint A
+
+		LEFT JOIN t_user B
+		ON A.i_user = B.i_user
+		
+		ORDER BY A.totalPoint DESC
+		LIMIT 0,1
+	</select>
+	
+	<select id="twoRank" resultType="potinVO">
+		SELECT B.nick, A.totalPoint FROM t_mypoint A
+
+		LEFT JOIN t_user B
+		ON A.i_user = B.i_user
+		
+		ORDER BY A.totalPoint DESC
+		LIMIT 1,1
+	</select>
+	
+	<select id="threeRank" resultType="potinVO">
+		SELECT B.nick, A.totalPoint FROM t_mypoint A
+
+		LEFT JOIN t_user B
+		ON A.i_user = B.i_user
+		
+		ORDER BY A.totalPoint DESC
+		LIMIT 2,1
+	</select>
+	
+	<select id="otherRank" resultType="potinVO">
+		SELECT B.nick, B.sm, A.totalPoint FROM t_mypoint A
+
+		LEFT JOIN t_user B
+		ON A.i_user = B.i_user
+		
+		ORDER BY A.totalPoint DESC
+		LIMIT 3,100
+	</select>
 </mapper>

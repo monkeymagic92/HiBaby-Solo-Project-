@@ -90,7 +90,6 @@ public class StudyController {
 		return ViewRef.DEFAULT_TEMP; 
 	}
 	
-	
 	// 영어 정답
 	@RequestMapping(value="/eng", method = RequestMethod.POST)
 	public String eng(Model model, StudyPARAM param, HttpSession hs,
@@ -111,7 +110,10 @@ public class StudyController {
 	public String rank(Model model, PointVO vo, UserPARAM param,
 			StudyPARAM studyParam) {
 		
-		System.out.println("스터디 랭크 GET");
+		model.addAttribute("oneRank", service.oneRank());
+		model.addAttribute("twoRank", service.twoRank());
+		model.addAttribute("threeRank", service.threeRank());
+		model.addAttribute("otherRank", service.otherRank());
 		
 		model.addAttribute("view", ViewRef.STUDY_RANK);
 		return ViewRef.DEFAULT_TEMP;
