@@ -15,29 +15,29 @@
 <body>
 	<div class="container">
             
-            <h2 id="h2-1">수학공부</h2>
-            <img id="studyImg" onclick="openMath()" src="/res/img/math.jpg">
+        <h2 id="h2-1">수학공부</h2>
+        <img id="studyImg" onclick="openMath()" src="/res/img/math.jpg">
 
-            <br><br>
+        <br><br>
 
-            <h2 id="h2-2">영어공부</h2>
-            <img id="studyImg" onclick="openEng()" src="/res/img/eng.png">
+        <h2 id="h2-2">영어공부</h2>
+        <img id="studyImg" onclick="openEng()" src="/res/img/eng.png">
 
-            <br><br>
+        <br><br>
 
-            <h2 id="h2-3">구구단</h2>
-            <img id="studyImg" onclick="#" src="/res/img/gugudan.jpg">
-            <br><br>
+        <h2 id="h2-3">구구단</h2>
+        <img id="studyImg" onclick="#" src="/res/img/gugudan.jpg">
+        <br><br>
 
-            <h2 id="h2-3">계산기</h2>
-            <img id="showCarcul" onclick="#" src="/res/img/carcul.png">
-            <br><br>
-            
-            <h2 id="h2-3">프로그래밍</h2>
-            <img id="studyImg" onclick="#" src="/res/img/pro.png">
-            <br><br>
+        <h2 id="h2-3">계산기</h2>
+        <img id="showCarcul" src="/res/img/carcul.png">
+        <br><br>
+        
+        <h2 id="h2-3">랭킹</h2>
+        <img id="studyImg" onclick="openRank()" src="/res/img/bestMember.png">
+        <br><br>
 
-        </div>
+    </div>
 
         <!-- 난이도 선택 모달창 -->
         <div id="mathModal" class="modal">
@@ -166,6 +166,12 @@ function openMath() {
 function openEng() {
     engModal.style.display = 'flex'
 }
+
+function openRank() {
+	location.href = "/study/rank"	
+} 
+
+
 
 //모달창 종료
 function mathHide() {

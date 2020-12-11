@@ -1,0 +1,42 @@
+-- 공부 totalPoint 1등 
+SELECT B.nick, B.sm, A.totalPoint FROM t_mypoint A
+
+LEFT JOIN t_user B
+ON A.i_user = B.i_user
+
+ORDER BY A.totalPoint DESC
+LIMIT 0,1;
+
+
+
+-- 2등
+SELECT B.nick, B.sm, A.totalPoint FROM t_mypoint A
+
+LEFT JOIN t_user B
+ON A.i_user = B.i_user
+
+ORDER BY A.totalPoint DESC
+LIMIT 1,1;
+
+
+
+
+-- 3등
+SELECT B.nick, B.sm, A.totalPoint FROM t_mypoint A
+
+LEFT JOIN t_user B
+ON A.i_user = B.i_user
+
+ORDER BY A.totalPoint DESC
+LIMIT 2,1;
+
+
+
+-- 나머지
+SELECT B.nick, B.sm, A.totalPoint FROM t_mypoint A
+
+LEFT JOIN t_user B
+ON A.i_user = B.i_user
+
+ORDER BY A.totalPoint DESC
+LIMIT 3,100;

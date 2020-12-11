@@ -14,7 +14,7 @@
                 <li><a class="liFont" href="http://118.67.132.252:8080/" data-content="Developer site">개발자 사이트</a></li>
                 <li><a class="liFont" href="/study/main" data-content="Study">공부</a></li>
                 <li><a class="liFont" href="/board/list" data-content="Community">커뮤니티</a></li>
-                <li><a class="liFont" href="/test/test" data-content="Diary">일기</a></li>
+                <li><a class="liFont" href="/test/test" data-content="Programing">프로그래밍</a></li>
                 <li><a class="liFont" href="/user/myPage" data-content="Mypage">마이페이지</a></li>
               </ul>
         </nav>

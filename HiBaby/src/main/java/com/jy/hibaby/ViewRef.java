@@ -31,6 +31,7 @@ public class ViewRef {
 	public static final String STUDY_MAIN = "study/main";		// 스터디 메인부분
 	public static final String STUDY_MATH = "study/math";		// 수학공부
 	public static final String STUDY_ENG = "study/eng";			// 영어공부
+	public static final String STUDY_RANK = "study/rank"; 		// study랭크
 	
 	
 }

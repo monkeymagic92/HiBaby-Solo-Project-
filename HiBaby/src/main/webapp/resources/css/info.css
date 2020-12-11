@@ -36,6 +36,7 @@ h2 {
 #pwChange:hover {
     border:2px solid #0042c2;    
     transition: 0.5s;
+    outline-style:none;
 }
 
 #pwBtn {
@@ -57,6 +58,7 @@ h2 {
     cursor:pointer;
     border:2px solid #0042c2;    
     transition: 0.5s;
+    outline-style:none;
 }
 
 #nick_input {
@@ -81,6 +83,7 @@ h2 {
 #nick_input:hover {
     border:2px solid #0042c2;    
     transition: 0.5s;
+    outline-style:none;
     
 }
 
@@ -103,6 +106,7 @@ h2 {
     cursor:pointer;
     border:2px solid #0042c2;    
     transition: 0.5s;
+    outline-style:none;
 }
 
 #email_txt {
@@ -126,6 +130,7 @@ h2 {
 #email_txt:hover {
     border:2px solid #0042c2;    
     transition: 0.5s;
+    outline-style:none;
 }
 
 #emailChk {
@@ -147,6 +152,7 @@ h2 {
     cursor:pointer;
     border:2px solid #0042c2;    
     transition: 0.5s;
+    outline-style:none;
 }
 
 #text_txt {

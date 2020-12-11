@@ -106,4 +106,15 @@ public class StudyController {
 	}
 	
 	
+	// 스터디 랭크
+	@RequestMapping(value="/rank", method = RequestMethod.GET)
+	public String rank(Model model, PointVO vo, UserPARAM param,
+			StudyPARAM studyParam) {
+		
+		System.out.println("스터디 랭크 GET");
+		
+		model.addAttribute("view", ViewRef.STUDY_RANK);
+		return ViewRef.DEFAULT_TEMP;
+	}
+	
 }
