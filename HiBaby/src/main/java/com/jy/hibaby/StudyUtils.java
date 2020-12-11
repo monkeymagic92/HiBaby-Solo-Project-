@@ -493,7 +493,7 @@ public class StudyUtils {
 	}
 			
 		
-		/*
+		
 		hs.setAttribute("a1", param.getEa1());
 		hs.setAttribute("a2", param.getEa2());
 		hs.setAttribute("a3", param.getEa3());
@@ -504,17 +504,19 @@ public class StudyUtils {
 		hs.setAttribute("a8", param.getEa8());
 		hs.setAttribute("a9", param.getEa9());
 		hs.setAttribute("a10", param.getEa10());
-		*/
+		
 		
 		return param;
 	}
 	
 	
 	
-	
-	
 	// 영어정답
-	public static void ansEng(StudyPARAM param, HttpSession hs) {
+	public static StudyPARAM ansEng(HttpSession hs, StudyPARAM param,
+			PointVO vo, UserPARAM userParam) {
+					
+		int point = 0;
+		System.out.println("영어 param.getLevel = " + param.getLevel());
 		
 		String a1 = (String)hs.getAttribute("a1");
 		String a2 = (String)hs.getAttribute("a2");
@@ -527,10 +529,82 @@ public class StudyUtils {
 		String a9 = (String)hs.getAttribute("a9");
 		String a10 = (String)hs.getAttribute("a10");
 		
+		System.out.println("a1값 : " + a1);
+		System.out.println("userEa1 값 : " + param.getUserEa1());
 		
-		// 정답에서
-		if(a1.equals(param.getUserEa1())) {
+		if(param.getLevel() == 1) {
+			// 정답에서
+			if(a1.equals(param.getUserEa1())) {
+				point += 10;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a2.equals(param.getUserEa2())) {
+				point += 10;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a3.equals(param.getUserEa3())) {
+				point += 10;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a4.equals(param.getUserEa4())) {
+				point += 10;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a5.equals(param.getUserEa5())) {
+				point += 10;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a6.equals(param.getUserEa6())) {
+				point += 10;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a7.equals(param.getUserEa7())) {
+				point += 10;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a8.equals(param.getUserEa8())) {
+				point += 10;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a9.equals(param.getUserEa9())) {
+				point += 10;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
+			
+			if(a10.equals(param.getUserEa10())) {
+				point += 10;
+				vo.setTotalPoint(point);
+				vo.setMyPoint(point);
+				vo.setI_user(userParam.getI_user());
+			}
 			
 		}
+		return param;
 	}
 }

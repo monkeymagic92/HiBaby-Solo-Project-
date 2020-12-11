@@ -76,7 +76,7 @@
                 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form id="frm" action="/study/eng" method="post" onsubmit="return chk()">
+                    <form id="frm" action="/study/eng" method="get" onsubmit="return chk()">
                         <label>
                          	상<input id="hard" type="radio" name="level" value="3">&nbsp;                        
                         </label>

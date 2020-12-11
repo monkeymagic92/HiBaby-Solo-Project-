@@ -41,6 +41,7 @@ public class StudyController {
 			return ViewRef.STUDY_MAIN;
 		}
 		
+		StudyUtils.removeSession(hs);
 		model.addAttribute("view", ViewRef.STUDY_MAIN);
 		return ViewRef.DEFAULT_TEMP;
 	}
@@ -77,13 +78,37 @@ public class StudyController {
 	
 	// 영어 문제 출제
 	@RequestMapping(value="/eng", method = RequestMethod.GET)
-	public String eng(Model model, StudyPARAM param, HttpSession hs) {
+	public String eng(Model model, StudyPARAM param, HttpSession hs,
+			PointVO vo, UserPARAM userPARAM, RedirectAttributes ra, HttpServletRequest request) {
 		
 		param = StudyUtils.studyEng(param, hs);
+		System.out.println("레벨 : " + param.getLevel());
 		
 		model.addAttribute("dataEng", param);
 		model.addAttribute("view", ViewRef.STUDY_ENG);
+		System.out.println("겟을 떠나다");
 		return ViewRef.DEFAULT_TEMP; 
 	}
+	
+	
+	// 영어 정답
+	@RequestMapping(value="/eng", method = RequestMethod.POST)
+	public String eng(Model model, StudyPARAM param, HttpSession hs,
+			PointVO vo, UserPARAM userPARAM, RedirectAttributes ra) {
+		
+		System.out.println("@@@@@@@@@@@영어 포스트 @@@@@@@@@@@@@@");
+		System.out.println("user1 : " + param.getUserEa1());
+		System.out.println("user2 : " + param.getUserEa2());
+		System.out.println("user3 : " + param.getUserEa3());
+		
+		userPARAM = (UserPARAM)hs.getAttribute("loginUser");
+		StudyUtils.ansEng(hs, param, vo, userPARAM);	// 수학 정답
+		
+		ra.addFlashAttribute("getPoint", vo.getTotalPoint());
+		int result = userService.updPoint(vo);	// 정답 개수만큼 포인트 증가
+		
+		return "redirect:/" + ViewRef.STUDY_MAIN;
+	}
+	
 	
 }
