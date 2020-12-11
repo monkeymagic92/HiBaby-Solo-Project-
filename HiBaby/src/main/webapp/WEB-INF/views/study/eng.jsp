@@ -9,13 +9,20 @@
 <!-- math.css로 일단 해놨음 -->
 <link rel="stylesheet" href="/res/css/math.css"> 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+	#h4s {
+		color: red;
+	}
+</style>
 </head>
 <body>
 <div class="container">
     <div class="mainContainer">
     	 <!-- 문제풀이창 열리면 시간초가 흘러감 -->
-           <div id="testStartBtn"></div>
+        <div id="testStartBtn"></div>
+        <h4 id="h4s">정답은 소문자로 입력해 주세요</h4>
         <form id="frm" onsubmit="return chk()">
+        	
             <div class="formContainer">
                 ${dataEng.eq1} = <input class="input" type="text" name="aa1">
                 <span class="an"></span><br>

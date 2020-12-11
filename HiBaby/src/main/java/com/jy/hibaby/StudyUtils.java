@@ -432,7 +432,7 @@ public class StudyUtils {
 		/*
 		 * 		배열 길이만큼 eArray1, eArray2 맞춰주고 a1,a2도 맞춰주고 int a[] 길이도 맞춰주고 ran 반복돌 숫자도 맞춰줘야됨
 		 */
-		String[] eArray1 = {"고양이", "사자", "호랑이","개", "여자", "자동차", "지구", "피아노", "컴퓨터", "꽃", "아기"};
+		String[] eArray1 = {"고양이", "사자", "호랑이","강아지", "여자", "자동차", "지구", "피아노", "컴퓨터", "꽃", "아기"};
 		
 		String[] eArray2 = {"cat", "lion", "tiger","dog","girl","car", "earth","piano","computer","flower", "baby"};
 		
