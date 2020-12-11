@@ -74,4 +74,16 @@ public class StudyController {
 		return "redirect:/" + ViewRef.STUDY_MAIN;
 	}
 	
+	
+	// 영어 문제 출제
+	@RequestMapping(value="/eng", method = RequestMethod.GET)
+	public String eng(Model model, StudyPARAM param, HttpSession hs) {
+		
+		param = StudyUtils.studyEng(param, hs);
+		
+		model.addAttribute("dataEng", param);
+		model.addAttribute("view", ViewRef.STUDY_ENG);
+		return ViewRef.DEFAULT_TEMP; 
+	}
+	
 }

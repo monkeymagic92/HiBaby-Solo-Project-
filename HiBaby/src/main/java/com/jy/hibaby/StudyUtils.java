@@ -416,4 +416,121 @@ public class StudyUtils {
 		hs.removeAttribute("a9");
 		hs.removeAttribute("a10");
 	}
+	
+	
+	
+	
+	
+	
+	
+	///////////////////////// 영어 문제제출
+	
+	public static StudyPARAM studyEng(StudyPARAM param, HttpSession hs) {
+		
+		if(param.getLevel() == 1) {
+		
+		/*
+		 * 		배열 길이만큼 eArray1, eArray2 맞춰주고 a1,a2도 맞춰주고 int a[] 길이도 맞춰주고 ran 반복돌 숫자도 맞춰줘야됨
+		 */
+		String[] eArray1 = {"고양이", "사자", "호랑이","개", "여자", "자동차", "지구", "피아노", "컴퓨터", "꽃", "아기"};
+		
+		String[] eArray2 = {"cat", "lion", "tiger","dog","girl","car", "earth","piano","computer","flower", "baby"};
+		
+		String[] a1 = new String[11];
+		String[] a2 = new String[11];
+		
+		int a[] = new int[11]; 
+        int ran = 0;
+        
+        for(int i=0;i<10;i++) { 
+        	ran = (int)(Math.random() * 11) + 0;
+            a[i] = ran;
+            
+			a1[i] = eArray1[ran];
+			a2[i] = eArray2[ran]; 
+            
+			
+            for(int j=0;j<i;j++) { // 중복제거
+                    
+                if(a[i]==a[j]) {  
+                
+                    i--;
+                }
+            }
+            
+            // 1번문제 / 정답
+            param.setEq1(a1[0]);
+            param.setEa1(a2[0]);
+            
+            param.setEq2(a1[1]);
+			param.setEa2(a2[1]);
+			
+			param.setEq3(a1[2]);
+			param.setEa3(a2[2]);
+			
+			param.setEq4(a1[3]);
+			param.setEa4(a2[3]);
+			
+			param.setEq5(a1[4]);
+			param.setEa5(a2[4]);
+			
+			param.setEq6(a1[5]);
+			param.setEa6(a2[5]);
+			
+			param.setEq7(a1[6]);
+			param.setEa7(a2[6]);
+			
+			param.setEq8(a1[7]);
+			param.setEa8(a2[7]);
+			
+			param.setEq9(a1[8]);
+			param.setEa9(a2[8]);
+			
+			param.setEq10(a1[9]);
+			param.setEa10(a2[9]);
+			
+        }
+	}
+			
+		
+		/*
+		hs.setAttribute("a1", param.getEa1());
+		hs.setAttribute("a2", param.getEa2());
+		hs.setAttribute("a3", param.getEa3());
+		hs.setAttribute("a4", param.getEa4());
+		hs.setAttribute("a5", param.getEa5());
+		hs.setAttribute("a6", param.getEa6());
+		hs.setAttribute("a7", param.getEa7());
+		hs.setAttribute("a8", param.getEa8());
+		hs.setAttribute("a9", param.getEa9());
+		hs.setAttribute("a10", param.getEa10());
+		*/
+		
+		return param;
+	}
+	
+	
+	
+	
+	
+	// 영어정답
+	public static void ansEng(StudyPARAM param, HttpSession hs) {
+		
+		String a1 = (String)hs.getAttribute("a1");
+		String a2 = (String)hs.getAttribute("a2");
+		String a3 = (String)hs.getAttribute("a3");
+		String a4 = (String)hs.getAttribute("a4");
+		String a5 = (String)hs.getAttribute("a5");
+		String a6 = (String)hs.getAttribute("a6");
+		String a7 = (String)hs.getAttribute("a7");
+		String a8 = (String)hs.getAttribute("a8");
+		String a9 = (String)hs.getAttribute("a9");
+		String a10 = (String)hs.getAttribute("a10");
+		
+		
+		// 정답에서
+		if(a1.equals(param.getUserEa1())) {
+			
+		}
+	}
 }

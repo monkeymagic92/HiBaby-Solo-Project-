@@ -69,7 +69,7 @@
         </div>
 
 
-        <div id="engModal"" class="modal">
+        <div id="engModal" class="modal">
             <!-- Modal content -->
             <div class="modal-content">
                 <h4>영어 난이도 선택</h4>

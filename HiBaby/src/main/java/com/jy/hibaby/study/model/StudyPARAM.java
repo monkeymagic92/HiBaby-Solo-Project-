@@ -2,7 +2,7 @@ package com.jy.hibaby.study.model;
 
 public class StudyPARAM {
 	
-	// 문제 ex)  q1 , q1_1   =   5 + 8   이란 것
+	// 수학 문제 ex)  q1 , q1_1   =   5 + 8   이란 것
 	private int q1;
 	private int q1_1;
 	private int q2;
@@ -24,7 +24,7 @@ public class StudyPARAM {
 	private int q10;
 	private int q10_10;
 	
-	// 정답
+	// 수학정답
 	private int a1;
 	private int a2;
 	private int a3;
@@ -35,6 +35,49 @@ public class StudyPARAM {
 	private int a8;
 	private int a9;
 	private int a10;
+	
+	
+	
+	// 영어문제
+	private String eq1;
+	private String eq2;
+	private String eq3;
+	private String eq4;
+	private String eq5;
+	private String eq6;
+	private String eq7;
+	private String eq8;
+	private String eq9;
+	private String eq10;
+	
+	
+	// 영어 정답
+	private String ea1;
+	private String ea2;
+	private String ea3;
+	private String ea4;
+	private String ea5;
+	private String ea6;
+	private String ea7;
+	private String ea8;
+	private String ea9;
+	private String ea10;
+
+	
+	private String userEa1;
+	private String userEa2;
+	private String userEa3;
+	private String userEa4;
+	private String userEa5;
+	private String userEa6;
+	private String userEa7;
+	private String userEa8;
+	private String userEa9;
+	private String userEa10;
+	
+	
+	
+	
 	
 	// 난이도 선택
 	private int level;
@@ -297,4 +340,246 @@ public class StudyPARAM {
 	public void setStudyCode(int studyCode) {
 		this.studyCode = studyCode;
 	}
+
+	public String getEq1() {
+		return eq1;
+	}
+
+	public void setEq1(String eq1) {
+		this.eq1 = eq1;
+	}
+
+	public String getEq2() {
+		return eq2;
+	}
+
+	public void setEq2(String eq2) {
+		this.eq2 = eq2;
+	}
+
+	public String getEq3() {
+		return eq3;
+	}
+
+	public void setEq3(String eq3) {
+		this.eq3 = eq3;
+	}
+
+	public String getEa1() {
+		return ea1;
+	}
+
+	public void setEa1(String ea1) {
+		this.ea1 = ea1;
+	}
+
+	public String getEa2() {
+		return ea2;
+	}
+
+	public void setEa2(String ea2) {
+		this.ea2 = ea2;
+	}
+
+	public String getEa3() {
+		return ea3;
+	}
+
+	public void setEa3(String ea3) {
+		this.ea3 = ea3;
+	}
+
+	public String getUserEa1() {
+		return userEa1;
+	}
+
+	public void setUserEa1(String userEa1) {
+		this.userEa1 = userEa1;
+	}
+
+	public String getUserEa2() {
+		return userEa2;
+	}
+
+	public void setUserEa2(String userEa2) {
+		this.userEa2 = userEa2;
+	}
+
+	public String getUserEa3() {
+		return userEa3;
+	}
+
+	public void setUserEa3(String userEa3) {
+		this.userEa3 = userEa3;
+	}
+
+	public String getEq4() {
+		return eq4;
+	}
+
+	public void setEq4(String eq4) {
+		this.eq4 = eq4;
+	}
+
+	public String getEq5() {
+		return eq5;
+	}
+
+	public void setEq5(String eq5) {
+		this.eq5 = eq5;
+	}
+
+	public String getEq6() {
+		return eq6;
+	}
+
+	public void setEq6(String eq6) {
+		this.eq6 = eq6;
+	}
+
+	public String getEq7() {
+		return eq7;
+	}
+
+	public void setEq7(String eq7) {
+		this.eq7 = eq7;
+	}
+
+	public String getEq8() {
+		return eq8;
+	}
+
+	public void setEq8(String eq8) {
+		this.eq8 = eq8;
+	}
+
+	public String getEq9() {
+		return eq9;
+	}
+
+	public void setEq9(String eq9) {
+		this.eq9 = eq9;
+	}
+
+	public String getEq10() {
+		return eq10;
+	}
+
+	public void setEq10(String eq10) {
+		this.eq10 = eq10;
+	}
+
+	public String getEa4() {
+		return ea4;
+	}
+
+	public void setEa4(String ea4) {
+		this.ea4 = ea4;
+	}
+
+	public String getEa5() {
+		return ea5;
+	}
+
+	public void setEa5(String ea5) {
+		this.ea5 = ea5;
+	}
+
+	public String getEa6() {
+		return ea6;
+	}
+
+	public void setEa6(String ea6) {
+		this.ea6 = ea6;
+	}
+
+	public String getEa7() {
+		return ea7;
+	}
+
+	public void setEa7(String ea7) {
+		this.ea7 = ea7;
+	}
+
+	public String getEa8() {
+		return ea8;
+	}
+
+	public void setEa8(String ea8) {
+		this.ea8 = ea8;
+	}
+
+	public String getEa9() {
+		return ea9;
+	}
+
+	public void setEa9(String ea9) {
+		this.ea9 = ea9;
+	}
+
+	public String getEa10() {
+		return ea10;
+	}
+
+	public void setEa10(String ea10) {
+		this.ea10 = ea10;
+	}
+
+	public String getUserEa4() {
+		return userEa4;
+	}
+
+	public void setUserEa4(String userEa4) {
+		this.userEa4 = userEa4;
+	}
+
+	public String getUserEa5() {
+		return userEa5;
+	}
+
+	public void setUserEa5(String userEa5) {
+		this.userEa5 = userEa5;
+	}
+
+	public String getUserEa6() {
+		return userEa6;
+	}
+
+	public void setUserEa6(String userEa6) {
+		this.userEa6 = userEa6;
+	}
+
+	public String getUserEa7() {
+		return userEa7;
+	}
+
+	public void setUserEa7(String userEa7) {
+		this.userEa7 = userEa7;
+	}
+
+	public String getUserEa8() {
+		return userEa8;
+	}
+
+	public void setUserEa8(String userEa8) {
+		this.userEa8 = userEa8;
+	}
+
+	public String getUserEa9() {
+		return userEa9;
+	}
+
+	public void setUserEa9(String userEa9) {
+		this.userEa9 = userEa9;
+	}
+
+	public String getUserEa10() {
+		return userEa10;
+	}
+
+	public void setUserEa10(String userEa10) {
+		this.userEa10 = userEa10;
+	}
+	
+	
 }
