@@ -64,8 +64,6 @@
 	<button onclick="logOut()">로그아웃</button>
 
 	
-	
-	
 	<div id="myModal" class="modal">
 
 		<!-- Modal content -->
