@@ -102,12 +102,14 @@
     </div>
     
     
+    
     <!-- 로그인, 비밀번호찾기, 아이디찾기 등 include  -->
     <main>
     	<section>
 			<jsp:include page="/WEB-INF/views/${view}.jsp"></jsp:include>
 		</section>
 	</main>
+	
 </body>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>

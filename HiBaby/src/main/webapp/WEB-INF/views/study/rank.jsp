@@ -9,6 +9,7 @@
 </head>
 <body>
 	<div>스터디 래읔</div>
+	<video class="videoTest" src="/res/av/loginBGM.mp4" width="1px" autoplay height="1px" controls></video>
 	1등정보
 	<c:choose>
     	<c:when test="${oneRank.totalPoint < 150}">

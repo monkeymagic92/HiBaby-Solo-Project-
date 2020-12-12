@@ -21,6 +21,7 @@ DROP TABLE t_user;
 
 
 
+
 CREATE TABLE t_board(
     i_board int primary KEY AUTO_INCREMENT,
     image_1 VARCHAR(200),
