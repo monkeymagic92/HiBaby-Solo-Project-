@@ -9,7 +9,16 @@ public class PointVO {
 	private int myCash;
 	private int myPointNow;
 	private String r_dt;
+	private String nick;
 	
+	
+	
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
 	public int getTotalCash() {
 		return totalCash;
 	}

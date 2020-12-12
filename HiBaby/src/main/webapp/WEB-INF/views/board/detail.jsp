@@ -50,19 +50,19 @@
                 <div class="data">
                 	<c:choose>
 	                	<c:when test="${data.totalPoint < 150}">
-	                		<img src="/res/img/ion.png" class="classesImg">
+	                		<img src="/res/img/ion.png" class="classesImg" onerror="this.style.display='none'" alt="">
 	                	</c:when>
 	                	<c:when test="${data.totalPoint < 400}">
-	                		<img src="/res/img/gold.png" class="classesImg">
+	                		<img src="/res/img/gold.png" class="classesImg" onerror="this.style.display='none'">
 	                	</c:when>
 	                	<c:when test="${data.totalPoint < 600}">
-	                		<img src="/res/img/dia.png" class="classesImg">
+	                		<img src="/res/img/dia.png" class="classesImg" onerror="this.style.display='none'">
 	                	</c:when>
 	                	<c:when test="${data.totalPoint < 20000}">
-	                		<img src="/res/img/master.png" class="classesImg">
+	                		<img src="/res/img/master.png" class="classesImg" onerror="this.style.display='none'">
 	                	</c:when>
 	                	<c:when test="${data.totalPoint > 20000}">
-	                		<img src="/res/img/chall.png" class="classesImg">
+	                		<img src="/res/img/chall.png" class="classesImg" onerror="this.style.display='none'">
 	                	</c:when>
                 	</c:choose>
                     <c:if test="${data.profile_img == null }">

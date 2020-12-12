@@ -28,5 +28,7 @@
 		<!-- study -->
 		<typeAlias type="com.jy.hibaby.study.model.StudyPARAM" alias="StudyPARAM" />
 		
+		
+		
 	</typeAliases>	
 </configuration>

@@ -34,4 +34,8 @@ public class ViewRef {
 	public static final String STUDY_RANK = "study/rank"; 		// study랭크
 	
 	
+	// /pro  - 프로그래밍
+	public static final String PRO_MAIN = "pro/main";			// 프로그래밍 메인
+	
+	
 }

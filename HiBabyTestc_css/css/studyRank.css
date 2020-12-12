@@ -272,3 +272,9 @@ h1, h2, p, a, span{
     font-weight: bold;
     color: red;
 }
+
+.videoTest {
+	border: 1px solid black;
+	border-radius: 7px;
+	
+}

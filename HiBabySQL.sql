@@ -20,6 +20,7 @@ DROP TABLE t_user;
 
 
 
+
 CREATE TABLE t_board(
     i_board int primary KEY AUTO_INCREMENT,
     image_1 VARCHAR(200),
@@ -69,6 +70,12 @@ CREATE TABLE t_cmt(
 DROP TABLE t_cmt;
 SELECT * FROM t_cmt;
 
+SELECT B.nick, B.sm, A.totalPoint FROM t_mypoint A
 
+		LEFT JOIN t_user B
+		ON A.i_user = B.i_user
+		
+		ORDER BY A.totalPoint DESC
+		LIMIT 3,100;
 
 

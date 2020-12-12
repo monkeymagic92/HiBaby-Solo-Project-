@@ -90,13 +90,14 @@ public class StudyController {
 		return ViewRef.DEFAULT_TEMP; 
 	}
 	
+	
 	// 영어 정답
 	@RequestMapping(value="/eng", method = RequestMethod.POST)
 	public String eng(Model model, StudyPARAM param, HttpSession hs,
 			PointVO vo, UserPARAM userPARAM, RedirectAttributes ra) {
 		
 		userPARAM = (UserPARAM)hs.getAttribute("loginUser");
-		StudyUtils.ansEng(hs, param, vo, userPARAM);	// 수학 정답
+		StudyUtils.ansEng(hs, param, vo, userPARAM);	// 영어 정답
 		
 		ra.addFlashAttribute("getPoint", vo.getTotalPoint());
 		int result = userService.updPoint(vo);	// 정답 개수만큼 포인트 증가

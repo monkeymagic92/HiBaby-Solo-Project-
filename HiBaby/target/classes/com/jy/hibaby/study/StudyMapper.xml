@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jy.hibaby.study.StudyMapper">
 
-	<select id="oneRank" resultType="potinVO">
-		SELECT B.nick, A.totalPoint FROM t_mypoint A
+	<!-- 1등 정보 -->
+	<select id="oneRank" resultType="PointVO">
+		SELECT B.nick, A.totalPoint FROM t_myPoint A
 
 		LEFT JOIN t_user B
 		ON A.i_user = B.i_user
@@ -12,8 +13,9 @@
 		LIMIT 0,1
 	</select>
 	
-	<select id="twoRank" resultType="potinVO">
-		SELECT B.nick, A.totalPoint FROM t_mypoint A
+	<!-- 2등 정보 -->
+	<select id="twoRank" resultType="PointVO">
+		SELECT B.nick, A.totalPoint FROM t_myPoint A
 
 		LEFT JOIN t_user B
 		ON A.i_user = B.i_user
@@ -22,8 +24,9 @@
 		LIMIT 1,1
 	</select>
 	
-	<select id="threeRank" resultType="potinVO">
-		SELECT B.nick, A.totalPoint FROM t_mypoint A
+	<!-- 3등 정보 -->
+	<select id="threeRank" resultType="PointVO">
+		SELECT B.nick, A.totalPoint FROM t_myPoint A
 
 		LEFT JOIN t_user B
 		ON A.i_user = B.i_user
@@ -32,8 +35,9 @@
 		LIMIT 2,1
 	</select>
 	
-	<select id="otherRank" resultType="potinVO">
-		SELECT B.nick, B.sm, A.totalPoint FROM t_mypoint A
+	<!-- 4등 정보 -->
+	<select id="otherRank" resultType="PointVO">
+		SELECT B.nick, B.sm, A.totalPoint FROM t_myPoint A
 
 		LEFT JOIN t_user B
 		ON A.i_user = B.i_user

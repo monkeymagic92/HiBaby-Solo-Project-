@@ -433,19 +433,19 @@ public class StudyUtils {
 		/*
 		 * 		배열 길이만큼 eArray1, eArray2 맞춰주고 a1,a2도 맞춰주고 int a[] 길이도 맞춰주고 ran 반복돌 숫자도 맞춰줘야됨
 		 */
-		String[] eArray1 = {"고양이", "사자", "호랑이","강아지", "여자", "자동차", "지구", "피아노", "컴퓨터", "꽃", "아기"};
+		String[] eArray1 = {"고양이", "사자", "호랑이","강아지", "소녀", "자동차", "곰", "피아노", "컴퓨터", "꽃", "아기", "학교", "소년", "아침", "점심", "저녁", "책", "한국", "의자", "쥐"};
 		
-		String[] eArray2 = {"cat", "lion", "tiger","dog","girl","car", "earth","piano","computer","flower", "baby"};
+		String[] eArray2 = {"cat", "lion", "tiger","dog","girl","car", "bear","piano","computer","flower", "baby", "school", "boy", "morning", "lunch", "Dinner", "book", "korea", "chair", "mouse"};
 
 		
-		String[] a1 = new String[11];
-		String[] a2 = new String[11];
+		String[] a1 = new String[20];
+		String[] a2 = new String[20];
 		
-		int a[] = new int[11]; 
+		int a[] = new int[20]; 
         int ran = 0;
         
-        for(int i=0;i<10;i++) { 
-        	ran = (int)(Math.random() * 11) + 0;
+        for(int i=0;i<20;i++) { 
+        	ran = (int)(Math.random() * 20) + 0;
             a[i] = ran;
             
 			a1[i] = eArray1[ran];
@@ -496,9 +496,9 @@ public class StudyUtils {
 		
 	} else if(param.getLevel() == 2) { // 영어 문제 중
 	
-		String[] eArray1 = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"};
+		String[] eArray1 = {"인터넷", "주제/과목", "행성", "교육", "목적/의도", "물체 대상", "나머지/휴식하다", "존경하다/관점", "거래", "인구", "세대", "기회", "눈물/찢다", "태도", "산업/근면", "도전", "이익", "전문가", "다양성", "때리다/이기다", "자유"};
 		
-		String[] eArray2 = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"};
+		String[] eArray2 = {"internet", "subject", "planet","education","purpose","object", "rest", "respect", "deal", "population", "generation", "opportunity", "tear", "behavior", "industry", "challenge", "benefit", "expert", "variety", "beat", "freedom"};
 
 		
 		String[] a1 = new String[20];
@@ -557,10 +557,10 @@ public class StudyUtils {
 		
 	} else { // 영어 문제 상
 		
-		String[] eArray1 = {"인터넷", "1", "2","3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"};
+		String[] eArray1 = {"생산하다/생산", "쫓다/추적", "침입하다/몰려가다", "할퀴다/긁다", "외치다", "언급하다/말하다", "낭비하다", "빌리다/차용하다", "완성하다/완전한", "미덕/장점", "구덩이/속이 빈", "묘지", "교대", "교환", "살아남다/생존", "창조하다", "묘사하다", "비난하다/비난", "시험/검사", "고르다/선발한", "주소"};
 		
-		String[] eArray2 = {"internet", "1", "2","3","4","5", "6","7","8","9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"};
-
+		String[] eArray2 = {"produce", "chase", "invade", "scratch", "shout", "mention", "waste", "borrow", "complete", "inning", "hollow", "cemetery", "relay", "exchange", "survive", "create", "describe", "blame", "examine", "select", "Address"};
+		
 		
 		String[] a1 = new String[20];
 		String[] a2 = new String[20];
