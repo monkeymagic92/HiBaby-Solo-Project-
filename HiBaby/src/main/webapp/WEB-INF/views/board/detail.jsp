@@ -386,7 +386,7 @@
 		   var updBtn = document.createElement('a')
 		   updBtn.onclick = function(){
 	          //////// 수정창으로 올라가게 하기
-	          window.scrollTo({top:1, left:0, behavior:'smooth'});
+	          window.scrollTo({top:780, left:0, behavior:'smooth'});
 	          updCmt(arr.ctnt, arr.i_cmt);
 	       }
 		   
