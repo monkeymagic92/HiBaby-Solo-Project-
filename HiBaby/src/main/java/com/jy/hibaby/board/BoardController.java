@@ -1,7 +1,6 @@
 package com.jy.hibaby.board;
 
 import java.io.File;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,10 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.jy.hibaby.CommonUtils;
 import com.jy.hibaby.Pagination;
 import com.jy.hibaby.SecurityUtils;
 import com.jy.hibaby.ViewRef;
@@ -94,6 +93,7 @@ public class BoardController {
 			model.addAttribute("loginMsg", "로그인을 해주세요");
 			return ViewRef.BOARD_REG;
 		}
+		
 		try { // 디테일에서 수정버튼 눌렀을때 뜨는 부분 detail.jsp 에서 쿼리스트링으로 i_board값 보냄
 			int i_board = Integer.parseInt(request.getParameter("i_board"));
 			boardPARAM.setI_board(i_board);
@@ -116,9 +116,21 @@ public class BoardController {
 		System.out.println("regResult 값 ; " + regResult);
 		
 		if(regResult == 1) { // 등록
+			// 욕, script 필터링
+			
+			String filterCtnt = swearWordFilter(mReq.getParameter("ctnt"));
+			String filterCtnt2 = scriptFilter(filterCtnt);
+			
+			String filterTitle = swearWordFilter(mReq.getParameter("title"));
+			String filterTitle2 = scriptFilter(filterTitle);
+			
+			param.setCtnt(filterCtnt2);
+			param.setTitle(filterTitle2);
+			
 			int result = service.insBoard(param, mReq, hs);
 			System.out.println("ㅡ ㅡ ㅡ 글등록 ㅡ ㅡ ㅡ");
 			if(result == 1) {
+				
 				int i_board = (int)hs.getAttribute("i_board");
 				ra.addAttribute("i_board", i_board);
 				hs.removeAttribute("i_board");
@@ -139,6 +151,17 @@ public class BoardController {
 			int i_board = Integer.parseInt(mReq.getParameter("i_board"));
 			param.setI_board(i_board);
 			hs.setAttribute("updI_board", i_board);
+			
+			// 욕, script 필터링
+			
+			String filterCtnt = swearWordFilter(mReq.getParameter("ctnt"));
+			String filterCtnt2 = scriptFilter(filterCtnt);
+			
+			String filterTitle = swearWordFilter(mReq.getParameter("title"));
+			String filterTitle2 = scriptFilter(filterTitle);
+			
+			param.setCtnt(filterCtnt2);
+			param.setTitle(filterTitle2);
 			
 			int result = service.updBoard(param,mReq,hs);
 			if(result == 1) {
@@ -212,5 +235,27 @@ public class BoardController {
 			}
 		}
 		return "redirect:/" + ViewRef.BOARD_LIST;
+	}
+	
+	//욕 필터
+	private String swearWordFilter(final String ctnt) {
+		String[] filters = CommonUtils.filter();
+		String result = ctnt;
+		for(int i=0; i<filters.length; i++) {
+			result = result.replace(filters[i], "***");
+		}
+		return result;
+	}
+	
+	//스크립트 필터
+	private String scriptFilter(final String ctnt) {
+		String[] filters = {"<script>", "</script>"};
+		String[] filterReplaces = {"&lt;script&gt;", "&lt;/script&gt;"};
+		
+		String result = ctnt;
+		for(int i=0; i<filters.length; i++) {
+			result = result.replace(filters[i], filterReplaces[i]);
+		}
+		return result;
 	}
 }

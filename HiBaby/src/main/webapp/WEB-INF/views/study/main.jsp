@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div class="container">
-        <video class="videoTest" src="/res/av/loginBGM.mp4" width="1px" autoplay height="1px" controls></video>    
+            
         <h2 id="h2-1">수학공부</h2>
         <img id="studyImg" onclick="openMath()" src="/res/img/math.jpg">
 
