@@ -85,16 +85,20 @@ public class BoardController {
 	public String boardReg(Model model, BoardPARAM boardPARAM, 
 			UserPARAM param, HttpSession hs,
 			HttpServletRequest request) {
-		try { // 비로그인 상태로 접근시 로그인페이지로		
+		
+		try {	// 12.17 프로젝트 클린문제였는지 몰라도 다시 정상작동함
 			int i_user = SecurityUtils.getLoginUserPk(hs);
 			param.setI_user(i_user);
 			
-		} catch (Exception e) {
+		} catch(Exception e) {
 			model.addAttribute("loginMsg", "로그인을 해주세요");
-			return ViewRef.BOARD_REG;
+			model.addAttribute("view", ViewRef.BOARD_REG);
+			return ViewRef.DEFAULT_TEMP;
 		}
 		
+				
 		try { // 디테일에서 수정버튼 눌렀을때 뜨는 부분 detail.jsp 에서 쿼리스트링으로 i_board값 보냄
+			
 			int i_board = Integer.parseInt(request.getParameter("i_board"));
 			boardPARAM.setI_board(i_board);
 			model.addAttribute("data", service.detailBoard(boardPARAM));
@@ -117,12 +121,14 @@ public class BoardController {
 		
 		if(regResult == 1) { // 등록
 			// 욕, script 필터링
-			
-			String filterCtnt = swearWordFilter(mReq.getParameter("ctnt"));
+			// toLowerCase()를 사용하니 script 대소문자 구분없이 막히긴하는데 일반글도 다 소문자로나옴... ( 해결방안 찾아야됨 )
+			String filterCtnt = swearWordFilter(mReq.getParameter("ctnt").toLowerCase());
 			String filterCtnt2 = scriptFilter(filterCtnt);
+			System.out.println("filterCtnt2값 : " + filterCtnt2);
 			
-			String filterTitle = swearWordFilter(mReq.getParameter("title"));
+			String filterTitle = swearWordFilter(mReq.getParameter("title").toLowerCase());
 			String filterTitle2 = scriptFilter(filterTitle);
+			System.out.println("filterTitle2값 : " + filterTitle2);
 			
 			param.setCtnt(filterCtnt2);
 			param.setTitle(filterTitle2);
@@ -249,13 +255,19 @@ public class BoardController {
 	
 	//스크립트 필터
 	private String scriptFilter(final String ctnt) {
+		
 		String[] filters = {"<script>", "</script>"};
 		String[] filterReplaces = {"&lt;script&gt;", "&lt;/script&gt;"};
 		
-		String result = ctnt;
+		String result = ctnt.toLowerCase();
+		System.out.println("result 값 : " + result);
+		
 		for(int i=0; i<filters.length; i++) {
+			
 			result = result.replace(filters[i], filterReplaces[i]);
 		}
+		
 		return result;
+		
 	}
 }

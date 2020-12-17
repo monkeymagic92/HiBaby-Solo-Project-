@@ -51,7 +51,10 @@
 		                <input type="hidden" name="regResult" value="2">
 		            	<input type="hidden" name="i_board" value="${data.i_board }"> 
 		            </c:if>
+		            
 		            <input type="hidden" name="i_user" value="${loginUser.i_user }">
+		            
+		            
                     <button class="submitBtn" type="submit">${data.i_board == null ? '글등록' : '글수정'}</button>
                 </div>
             </form>
