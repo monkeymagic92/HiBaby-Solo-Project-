@@ -25,10 +25,6 @@
 
         <br><br>
 
-        <h2 id="h2-3">구구단</h2>
-        <img id="studyImg" onclick="#" src="/res/img/gugudan.jpg">
-        <br><br>
-
         <h2 id="h2-3">계산기</h2>
         <img id="showCarcul" src="/res/img/carcul.png">
         <br><br>

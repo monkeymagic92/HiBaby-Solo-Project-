@@ -250,31 +250,80 @@ h1, h2, p, a, span{
 
 /*        rankContainer 작업 단         */
 
-.rankContainer {
-    margin: 0 auto;
-    width: 100%;
+.firDiv {
+	display:flex;
+	justify-content: center;
 }
 
-.one {
-    margin-top: 45px;
-    margin-left: 510px;
-}
-
-
-.oneRankImg {
-    width: 140px;
-    height: 130px;
-    border-radius: 80px;
-}
-
-.oneInfo {
-    margin-left: 30px;
-    font-weight: bold;
-    color: red;
-}
-
-.videoTest {
-	border: 1px solid black;
-	border-radius: 7px;
+.firBord {
+	display: flex;
+	height: 130px;
 	
 }
+
+.rankProfile {
+	width: 100px;
+	border-radius: 100px;
+}
+
+.rankImg {
+	margin-top: 55px;
+	width: 70px;
+	height: 70px;
+	border-radius: 100px;
+}
+
+.firInfo {
+	margin-left: 20px;
+	margin-top: 70px;
+	font-size: 1.2em;
+	font-weight: bold;
+	color: grey;
+}
+
+.dansang1 {
+	width: 250px;
+	margin-left: 420px;
+	margin-top: 20px;
+	text-align: center;
+	font-size: 1.4em;
+	font-weight: bold;
+	color: gold;
+}
+
+.secDivContainer {
+	display: flex;
+}
+
+.secDiv {
+	margin-left: 120px;
+}
+
+.thirDiv {
+	margin-left: 300px;
+}
+
+.dansangDiv {
+	display: flex;
+}
+
+.dansang2 {
+	width: 250px;
+	margin-left: 140px;
+	margin-top: 20px;
+	text-align: center;
+	font-size: 1.4em;
+	font-weight: bold;
+	color: gold;
+}
+
+.dansang3 {
+	width: 250px;
+	margin-left: 310px;
+	margin-top: 30px;
+	text-align: center;
+	font-size: 1.4em;
+	font-weight: bold;
+	color: gold;
+}
+
