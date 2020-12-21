@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,62 +62,10 @@
         </div>
 
 
-
-
-
-
-
-
-
-
-
-<!-- 
-
-	<div class="boardRegContainer">
-		<form id="frm" action="/board/boardReg" method="post" enctype="multipart/form-data" onsubmit="return chk()">
-			<div class="pics2">
-                <label for="mfile">
-					<img src="/res/img/이미지등록.jpg"  alt="" class="img2"  id="imgId">
-                </label>
-				<input type="file" name="images"  id="mfile" multiple accept="image/png, image/jpeg, image/jpg">
-				<c:if test="${data.i_board != null}">
-					<c:if test="${data.image_1 != '' }">
-						<img src="/res/img/board/${data.i_board }/${data.image_1}" class="selProductFile">
-					</c:if>
-					<c:if test="${data.image_2 != '' }">
-						<img src="/res/img/board/${data.i_board }/${data.image_2}" class="selProductFile">
-					</c:if>					
-					<c:if test="${data.image_3 != '' }">
-						<img src="/res/img/board/${data.i_board }/${data.image_3}" class="selProductFile">
-					</c:if>
-					<c:if test="${data.image_4 != '' }">
-						<img src="/res/img/board/${data.i_board }/${data.image_4}" class="selProductFile">
-					</c:if>
-				</c:if>
-            </div>
-            <br>
-            <div>
-            	<input type="text" name="title" placeholder="제목 입력" value="${data.title}"><br>
-            </div>
-            <div>
-            	<textarea rows="10" cols="40" placeholder="내용 입력" name="ctnt">${data.ctnt}</textarea><br>
-            </div>
-             <c:if test="${data.i_board == null }">
-               	<input type="hidden" name="regResult" value="1">
-             </c:if>
-             <c:if test="${data.i_board != null }">
-             	<input type="hidden" name="regResult" value="2">
-             	<input type="hidden" name="i_board" value="${data.i_board }"> 
-             </c:if>
-            <input type="hidden" name="i_user" value="${loginUser.i_user }">
-            <button type="submit">${data.i_board == null ? '글등록' : '글수정'}</button>
-		</form>
-	</div>
-	 -->
-
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+
 // 비로그인시 글쓰기에 접근할경우
 if(${loginMsg != null}) {
 	alert('${loginMsg}')
