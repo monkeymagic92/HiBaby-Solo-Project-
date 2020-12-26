@@ -4,7 +4,8 @@
 
 	<!-- 1등 정보 -->
 	<select id="oneRank" resultType="PointVO">
-		SELECT B.nick, A.totalPoint FROM t_myPoint A
+		SELECT B.i_user, B.profile_img, B.nick,
+		A.totalPoint FROM t_myPoint A
 
 		LEFT JOIN t_user B
 		ON A.i_user = B.i_user
@@ -35,7 +36,7 @@
 		LIMIT 2,1
 	</select>
 	
-	<!-- 4등 정보 -->
+	<!-- other 정보 -->
 	<select id="otherRank" resultType="PointVO">
 		SELECT B.nick, B.sm, A.totalPoint FROM t_myPoint A
 

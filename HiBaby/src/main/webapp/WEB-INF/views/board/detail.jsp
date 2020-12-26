@@ -53,16 +53,16 @@
 	                		<img src="/res/img/ion.png" class="classesImg" onerror="this.style.display='none'" alt="">
 	                	</c:when>
 	                	<c:when test="${data.totalPoint < 400}">
-	                		<img src="/res/img/gold.png" class="classesImg" onerror="this.style.display='none'">
+	                		<img src="/res/img/gold.png" class="classesImg" onerror="this.style.display='none'" alt="">
 	                	</c:when>
 	                	<c:when test="${data.totalPoint < 600}">
-	                		<img src="/res/img/dia.png" class="classesImg" onerror="this.style.display='none'">
+	                		<img src="/res/img/dia.png" class="classesImg" onerror="this.style.display='none'" alt="">
 	                	</c:when>
 	                	<c:when test="${data.totalPoint < 20000}">
-	                		<img src="/res/img/master.png" class="classesImg" onerror="this.style.display='none'">
+	                		<img src="/res/img/master.png" class="classesImg" onerror="this.style.display='none'" alt="">
 	                	</c:when>
 	                	<c:when test="${data.totalPoint > 20000}">
-	                		<img src="/res/img/chall.png" class="classesImg" onerror="this.style.display='none'">
+	                		<img src="/res/img/chall.png" class="classesImg" onerror="this.style.display='none'" alt="">
 	                	</c:when>
                 	</c:choose>
                     <c:if test="${data.profile_img == null }">
@@ -82,16 +82,16 @@
                 		<h1>사진이 없어요 ㅠㅠ</h1>
                 	</c:if>
 					<c:if test="${data.image_1 != '' }">
-						<img src="/res/img/board/${data.i_board }/${data.image_1}" class="selProductFile" onclick="popup(this.src)">
+						<img src="/res/img/board/${data.i_board }/${data.image_1}" class="selProductFile" onclick="popup(this.src)" alt="img">
 					</c:if>
 					<c:if test="${data.image_2 != '' }">
-						<img src="/res/img/board/${data.i_board }/${data.image_2}" class="selProductFile" onclick="popup(this.src)">
+						<img src="/res/img/board/${data.i_board }/${data.image_2}" class="selProductFile" onclick="popup(this.src)" alt="img">
 					</c:if>					
 					<c:if test="${data.image_3 != '' }">
-						<img src="/res/img/board/${data.i_board }/${data.image_3}" class="selProductFile" onclick="popup(this.src)">
+						<img src="/res/img/board/${data.i_board }/${data.image_3}" class="selProductFile" onclick="popup(this.src)" alt="img">
 					</c:if>
 					<c:if test="${data.image_4 != '' }">
-						<img src="/res/img/board/${data.i_board }/${data.image_4}" class="selProductFile" onclick="popup(this.src)">
+						<img src="/res/img/board/${data.i_board }/${data.image_4}" class="selProductFile" onclick="popup(this.src)" alt="img">
 					</c:if>
 				</c:if>
 				
@@ -212,18 +212,18 @@
 	   ajaxSelCount();
 	
 	
-   // ajax로 댓글 수 뽑아오기
+    // ajax로 댓글 수 뽑아오기
     function ajaxSelCount() {
-    axios.get('/cmt/selCount', {
-        params: {
-          i_board: `${data.i_board}`,
-        }
-     
-     }).then(function(res) {   
-       cmtCnt = res.data;
-       cmtCount.innerText = '댓글수' +'(' + cmtCnt + ')';
-     })
- }
+	    axios.get('/cmt/selCount', {
+	        params: {
+	          i_board: `${data.i_board}`,
+	        }
+	     
+	     }).then(function(res) {   
+	       cmtCnt = res.data;
+	       cmtCount.innerText = '댓글수' +'(' + cmtCnt + ')';
+	     })
+	 }
 
 	
 	
@@ -274,7 +274,7 @@
       
    }
 	
-// 댓글 뿌리기 (첨에 한번 실행 됨)
+	// 댓글 뿌리기 (첨에 한번 실행 됨)
    function ajaxSelCmt() {
       console.log(`i_board : ${data.i_board}`)
       axios.get('/cmt/selCmt', {

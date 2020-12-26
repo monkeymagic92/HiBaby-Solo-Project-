@@ -1,1 +1,137 @@
 @charset "UTF-8";
+
+.rankContainer {
+	margin:0 auto;
+	
+}
+
+#h2-1 {
+	color: grey;
+	margin-left: 400px;
+	margin-bottom: -1px;
+}
+
+.firRank {
+	margin: 0 auto;
+	border: 3px solid grey;
+	border-radius: 5px;
+	width: 290px;
+	height: 170px;
+}
+.firInfoBox {
+	display: flex;
+}
+
+#userImg1 {
+	margin-left: 10px;
+	margin-top: 22px;
+	width: 130px;
+	height: 120px;
+	border-radius: 100px;
+}
+.userInfo {
+	margin-left: 15px;
+	margin-top: 10px;
+	font-size: 1.3em;
+	color: grey;
+	font-weight: bold;
+}
+
+#userNick1 {
+	margin-top: 10px;
+}
+
+#userRankImg1 {
+	margin-top: 10px;
+	margin-left: 5px;
+	width: 60px;
+	height: 60px;
+	border-radius: 100px;
+}
+
+.otherRank {
+	display: flex;
+	
+	
+}
+
+.otherRankNum {
+	color: grey;
+	margin-top: 40px;
+	margin-left: 50px;
+	margin-bottom: -25px;
+
+}
+
+.oterBox {
+	margin-top: 24px;
+	margin-left: 50px;
+	width: 210px;
+	height: 110px;
+	border: 2px solid grey;
+	border-radius: 5px;
+	display: flex;
+}
+
+.otherImg {
+	width: 80px;
+	height: 80px;
+	border-radius: 100px;
+	margin-top: 10px;
+}
+
+.otherInfo {
+	margin-top: 4px;
+	font-weight: bold;
+	font-size: 1.1;
+	margin-left: 20px;
+	color: grey;
+}
+
+.otherRankImg {
+	margin-top: 2px;
+	margin-left: 6px;
+	width: 50px;
+	height: 50px;
+	border-radius: 100px;
+}
+
+.otherPoint {
+	margin-left: 5px;
+}
+
+
+.otherTable {
+	margin-top: 70px;
+	margin-left: 250px;
+}
+
+.tableImg {
+	width: 50px;
+	height: 50px;
+	border-radius: 100px;
+}
+.headTr {
+	height: 60px;
+	font-size: 1.2em;
+	color: #111;
+}
+
+.bodyTr {
+	color: grey;
+}
+
+.bodyTh {
+	width: 210px;
+}
+
+.bodyImg {
+	width: 300px;
+}
+
+table {
+	border: 1px solid black;
+	border-radius: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+}

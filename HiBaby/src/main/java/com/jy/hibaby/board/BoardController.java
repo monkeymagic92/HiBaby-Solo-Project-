@@ -58,7 +58,7 @@ public class BoardController {
 			model.addAttribute("listCnt", listCnt);
 			model.addAttribute("pagination", pagination);
 			model.addAttribute("view", ViewRef.BOARD_LIST);
-			
+ 
 			
 		} else {	// 검색 리스트
 

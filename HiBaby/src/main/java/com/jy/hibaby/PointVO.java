@@ -10,9 +10,16 @@ public class PointVO {
 	private int myPointNow;
 	private String r_dt;
 	private String nick;
+	private String profile_img;
 	
 	
 	
+	public String getProfile_img() {
+		return profile_img;
+	}
+	public void setProfile_img(String profile_img) {
+		this.profile_img = profile_img;
+	}
 	public String getNick() {
 		return nick;
 	}

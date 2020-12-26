@@ -250,80 +250,140 @@ h1, h2, p, a, span{
 
 /*        rankContainer 작업 단         */
 
-.firDiv {
-	display:flex;
-	justify-content: center;
-}
 
-.firBord {
-	display: flex;
-	height: 130px;
+
+.rankContainer {
+	margin:0 auto;
 	
 }
 
-.rankProfile {
-	width: 100px;
-	border-radius: 100px;
+#h2-1 {
+	color: grey;
+	margin-left: 400px;
+	margin-bottom: -1px;
 }
 
-.rankImg {
-	margin-top: 55px;
-	width: 70px;
-	height: 70px;
-	border-radius: 100px;
+.firRank {
+	margin: 0 auto;
+	border: 3px solid grey;
+	border-radius: 5px;
+	width: 290px;
+	height: 170px;
+}
+.firInfoBox {
+	display: flex;
 }
 
-.firInfo {
-	margin-left: 20px;
-	margin-top: 70px;
-	font-size: 1.2em;
+#userImg1 {
+	margin-left: 10px;
+	margin-top: 22px;
+	width: 130px;
+	height: 120px;
+	border-radius: 100px;
+}
+.userInfo {
+	margin-left: 15px;
+	margin-top: 10px;
+	font-size: 1.3em;
+	color: grey;
 	font-weight: bold;
+}
+
+#userNick1 {
+	margin-top: 10px;
+}
+
+#userRankImg1 {
+	margin-top: 10px;
+	margin-left: 5px;
+	width: 60px;
+	height: 60px;
+	border-radius: 100px;
+}
+
+.otherRank {
+	display: flex;
+	
+	
+}
+
+.otherRankNum {
+	color: grey;
+	margin-top: 40px;
+	margin-left: 50px;
+	margin-bottom: -25px;
+
+}
+
+.oterBox {
+	margin-top: 24px;
+	margin-left: 50px;
+	width: 210px;
+	height: 110px;
+	border: 2px solid grey;
+	border-radius: 5px;
+	display: flex;
+}
+
+.otherImg {
+	width: 80px;
+	height: 80px;
+	border-radius: 100px;
+	margin-top: 10px;
+}
+
+.otherInfo {
+	margin-top: 4px;
+	font-weight: bold;
+	font-size: 1.1;
+	margin-left: 20px;
 	color: grey;
 }
 
-.dansang1 {
-	width: 250px;
-	margin-left: 420px;
-	margin-top: 20px;
-	text-align: center;
-	font-size: 1.4em;
-	font-weight: bold;
-	color: gold;
+.otherRankImg {
+	margin-top: 2px;
+	margin-left: 6px;
+	width: 50px;
+	height: 50px;
+	border-radius: 100px;
 }
 
-.secDivContainer {
-	display: flex;
+.otherPoint {
+	margin-left: 5px;
 }
 
-.secDiv {
-	margin-left: 120px;
+
+.otherTable {
+	margin-top: 70px;
+	margin-left: 250px;
 }
 
-.thirDiv {
-	margin-left: 300px;
+.tableImg {
+	width: 50px;
+	height: 50px;
+	border-radius: 100px;
+}
+.headTr {
+	height: 60px;
+	font-size: 1.2em;
+	color: #111;
 }
 
-.dansangDiv {
-	display: flex;
+.bodyTr {
+	color: grey;
 }
 
-.dansang2 {
-	width: 250px;
-	margin-left: 140px;
-	margin-top: 20px;
-	text-align: center;
-	font-size: 1.4em;
-	font-weight: bold;
-	color: gold;
+.bodyTh {
+	width: 210px;
 }
 
-.dansang3 {
-	width: 250px;
-	margin-left: 310px;
-	margin-top: 30px;
-	text-align: center;
-	font-size: 1.4em;
-	font-weight: bold;
-	color: gold;
+.bodyImg {
+	width: 300px;
 }
 
+table {
+	border: 1px solid black;
+	border-radius: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
