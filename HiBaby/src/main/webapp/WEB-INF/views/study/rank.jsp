@@ -56,10 +56,10 @@
             <div class="firInfoBox">
                 <!-- 유저사진 -->
                 <c:if test="${oneRank.profile_img == null}">
-                	<img id="userImg1" src="/res/img/hibaby.jpg" alt="img">
+                	<img id="userImg1" src="/res/img/Hibaby.jpg" alt="img">
                 </c:if>
                 <c:if test="${oneRank.profile_img != null}">
-                	<img class="pimg" src="/res/img/HiBaby/profile_img/user/${oneRank.i_user }/${oneRank.profile_img}" id="userImg1" alt="userImg">
+                	<img class="pimg" src="/res/img/HiBaby/profile_img/user/${oneRank.i_user }/${oneRank.profile_img}" id="userImg1" alt="">
                 </c:if>
 
                 <div class="userInfo">
@@ -91,11 +91,32 @@
             <div>
                 <h3 class="otherRankNum">2</h3>
                 <div class="oterBox">
-                    <img class="otherImg" src="img/HiBaby.jpg" alt="img">
+                	<c:if test="${twoRank.profile_img == null}">
+	                	<img class="otherImg" src="/res/img/HiBaby.jpg" alt="">
+	                </c:if>
+	                <c:if test="${twoRank.profile_img != null}">
+	                	<img class="otherImg" src="/res/img/HiBaby/profile_img/user/${twoRank.i_user }/${twoRank.profile_img}" alt="">
+	                </c:if>    
                     <div class="otherInfo">
-                        <div class="otherNick">Test321</div>
-                        <img class="otherRankImg" src="img/chall.png" alt="rankImg">
-                        <div class="otherPoint">8,500p</div>
+                        <div class="otherNick">${twoRank.nick}</div>
+                         <c:choose>
+					    	<c:when test="${twoRank.totalPoint < 150}">
+					    		<img class="otherRankImg" src="/res/img/ion.png" alt="img">
+					    	</c:when>
+					    	<c:when test="${twoRank.totalPoint < 400}">
+					    		<img class="otherRankImg" src="/res/img/gold.png" alt="img">
+					    	</c:when>
+					    	<c:when test="${twoRank.totalPoint < 600}">
+					    		<img class="otherRankImg" src="/res/img/dia.png" alt="img">
+					    	</c:when>
+					    	<c:when test="${twoRank.totalPoint < 20000}">
+					    		<img class="otherRankImg" src="/res/img/master.png" alt="img">
+					    	</c:when>
+					    	<c:when test="${twoRank.totalPoint > 20000}">
+					    		<img class="otherRankImg" src="/res/img/chall.png" alt="img">
+					    	</c:when>
+					   	</c:choose>
+                        <div class="otherPoint">${twoRank.totalPoint}p</div>
                     </div>
                 </div>
             </div>
