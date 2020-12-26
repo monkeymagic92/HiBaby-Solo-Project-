@@ -15,6 +15,10 @@ public interface StudyMapper {
 	
 	PointVO threeRank();	// 3등 정보
 	
+	PointVO fourRank();	// 4등 정보
+	
+	PointVO fiveRank();	// 5등 정보
+	
 	List<PointVO> otherRank(); // 4등정보
 	
 }

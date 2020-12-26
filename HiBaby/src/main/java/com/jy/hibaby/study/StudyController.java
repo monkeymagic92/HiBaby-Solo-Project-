@@ -114,6 +114,8 @@ public class StudyController {
 		model.addAttribute("oneRank", service.oneRank());
 		model.addAttribute("twoRank", service.twoRank());
 		model.addAttribute("threeRank", service.threeRank());
+		model.addAttribute("fourRank", service.fourRank());
+		model.addAttribute("fiveRank", service.fiveRank());
 		model.addAttribute("otherRank", service.otherRank());
 		
 		model.addAttribute("view", ViewRef.STUDY_RANK);

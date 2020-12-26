@@ -36,14 +36,36 @@
 		LIMIT 2,1
 	</select>
 	
-	<!-- other 정보 -->
-	<select id="otherRank" resultType="PointVO">
-		SELECT B.nick, B.sm, A.totalPoint FROM t_myPoint A
+	<!-- 4등 정보 -->
+	<select id="fourRank" resultType="PointVO">
+		SELECT B.nick, A.totalPoint FROM t_myPoint A
 
 		LEFT JOIN t_user B
 		ON A.i_user = B.i_user
 		
 		ORDER BY A.totalPoint DESC
-		LIMIT 3,100
+		LIMIT 3,1
+	</select>
+	
+	<!-- 5등 정보 -->
+	<select id="fiveRank" resultType="PointVO">
+		SELECT B.nick, A.totalPoint FROM t_myPoint A
+
+		LEFT JOIN t_user B
+		ON A.i_user = B.i_user
+		
+		ORDER BY A.totalPoint DESC
+		LIMIT 4,1
+	</select>
+	
+	<!-- other 정보 -->
+	<select id="otherRank" resultType="PointVO">
+		SELECT A.i_point, B.nick, B.sm, A.totalPoint FROM t_myPoint A
+		
+		LEFT JOIN t_user B
+		ON A.i_user = B.i_user
+		
+		ORDER BY A.totalPoint DESC
+		LIMIT 4,100;
 	</select>
 </mapper>
