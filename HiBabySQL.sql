@@ -55,6 +55,11 @@ CREATE TABLE t_myPoint(
 SELECT * FROM t_myPoint;
 DROP TABLE t_myPoint;
 
+INSERT INTO t_myPoint
+(i_user,totalPoint)
+VALUES
+(1, 30000);
+
 
 
 CREATE TABLE t_cmt(
@@ -68,15 +73,31 @@ CREATE TABLE t_cmt(
 	FOREIGN KEY (i_user) REFERENCES t_user(i_user)  ON DELETE CASCADE,
 	FOREIGN KEY (i_board) REFERENCES t_board(i_board) ON DELETE CASCADE
 );
-DROP TABLE t_cmt;
 SELECT * FROM t_cmt;
+DROP TABLE t_cmt;
+
+
+
+
+
+
+
+
 
 SELECT B.nick, B.sm, A.totalPoint FROM t_mypoint A
 
-		LEFT JOIN t_user B
-		ON A.i_user = B.i_user
-		
-		ORDER BY A.totalPoint DESC
-		LIMIT 3,100;
+LEFT JOIN t_user B
+ON A.i_user = B.i_user
 
+ORDER BY A.totalPoint DESC
+LIMIT 3,1;
+
+
+SELECT A.i_point, B.nick, B.sm, A.totalPoint FROM t_myPoint A
+
+LEFT JOIN t_user B
+ON A.i_user = B.i_user
+
+ORDER BY A.totalPoint DESC
+LIMIT 4,100;
 

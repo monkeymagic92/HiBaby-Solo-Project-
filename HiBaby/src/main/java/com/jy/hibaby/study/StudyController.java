@@ -32,14 +32,6 @@ public class StudyController {
 	@RequestMapping(value="/main", method = RequestMethod.GET)
 	public String main(Model model, RedirectAttributes ra, StudyPARAM param,
 			UserPARAM userParam, HttpSession hs) {
-		try { // 비로그인 상태로 접근시 로그인페이지로		
-			int i_user = SecurityUtils.getLoginUserPk(hs);
-			userParam.setI_user(i_user);
-			
-		} catch (Exception e) {
-			model.addAttribute("loginMsg", "로그인을 해주세요");
-			return ViewRef.STUDY_MAIN;
-		}
 		
 		StudyUtils.removeSession(hs);
 		model.addAttribute("view", ViewRef.STUDY_MAIN);

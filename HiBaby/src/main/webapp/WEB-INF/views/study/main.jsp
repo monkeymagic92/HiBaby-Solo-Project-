@@ -149,12 +149,6 @@ if(${getPoint != null}) {
 	alert('${getPoint}p를 획득하였습니다')
 }
 
-if(${loginMsg != null}) {
-	alert('${loginMsg}')
-	location.href="/user/login"
-}
-
-
 function openMath() {
     mathModal.style.display = 'flex'
 }

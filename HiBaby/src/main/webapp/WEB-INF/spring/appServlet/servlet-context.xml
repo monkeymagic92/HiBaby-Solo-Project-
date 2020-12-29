@@ -115,32 +115,12 @@
 	-->
 	
 	
-	
-	
-	<!-- 
- 					- 	인터셉터 관련	-	
-		인터셉터  즉, 로그인한사람이 굳이 또 로그인창가고 회원가입창 가는걸 사전에 막는거 
-		(병신같잖아 ? 로그인됬는데 로그인창누르면 로그인창이 열린다는게 ?)
-	
+	<!-- 인터셉터 -->	
 	<interceptors>
 		<interceptor>
 			<mapping path="/**"/>			
-			<beans:bean class="com.#.#.LoginCheckInterceptor"/>
-		</interceptor>
-		
-		<interceptor>
-			<mapping path="/rest/*"/>			
-			<beans:bean class="com.#.#.RestInterceptor"/>
+			<beans:bean class="com.jy.hibaby.LoginCheckInterceptor"/>
 		</interceptor>
 	</interceptors>
 	
-	
-	 file Upload 하는 Beans (참고자료 : 디테일 사진 추가할때)
-		빨리치기위해 class="Commons" ctrl+spacebar 하면 자동으로 링크목록나옴
-	
-	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="maxUploadSize" value="52428800" /> 
-		<beans:property name="defaultEncoding" value="utf-8" />			
-	</beans:bean>
-	 -->
 </beans:beans>
