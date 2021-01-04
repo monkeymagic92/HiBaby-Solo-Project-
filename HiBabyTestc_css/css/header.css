@@ -1,0 +1,131 @@
+body {
+	background-color: #fff7ed;
+	font-family: 'Nerko One', cursive;
+	
+}
+
+.main-container {
+	font-family: 'Ubuntu', sans-serif;
+	width: 1080px;
+	height: 850px;
+    margin: 2em auto;
+    
+    
+}
+
+.main-header {
+    width: 1080px;
+    height: 90px;
+    background-color: pink;
+    border-radius: 7px;
+}
+
+.header-ul {
+    display: flex;
+    list-style: none;
+}
+
+.li-a1 {
+    text-decoration: none;
+}
+
+#li1 {
+    position: relative;
+    top: 22px;
+    font-size: 2em;
+    color: white;
+    font-weight: bold;
+}
+
+.li-a2 {
+    text-decoration: none;
+    
+}
+
+#li2 {
+    position: relative;
+    top: 32px;
+    left: 570px;
+    color: white;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.li-a3 {
+    text-decoration: none;
+}
+
+#li3 {
+    position: relative;
+    top: 32px;
+    left: 620px;
+    color: white;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+
+
+.li-img:hover {
+    cursor: pointer;
+}
+
+
+
+/**/
+
+.dropbtn {
+background-color: pink;
+color: white;
+padding: 10px;
+border: none;
+position: relative;
+top: 3px;
+left: 690px;
+}
+
+.dropbtn:hover {
+    cursor: pointer;
+    background-color: pink;
+}
+
+.drop-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+}
+
+.drop-img:hover {
+    background-color: pink;
+}
+
+.dropdown {
+position: relative;
+display: inline-block;
+}
+
+.dropdown-content {
+display: none;
+position: absolute;
+top: 0px;
+left: 770px;
+background-color: #f1f1f1;
+min-width: 160px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+}
+
+.dropdown-content a {
+color: black;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color:pink;}
+
+

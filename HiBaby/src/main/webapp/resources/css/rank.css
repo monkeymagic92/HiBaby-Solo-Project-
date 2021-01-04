@@ -51,8 +51,10 @@
 
 .otherRank {
 	display: flex;
-	
-	
+}
+
+.otherNick {
+	margin-left: 5px;
 }
 
 .otherRankNum {
