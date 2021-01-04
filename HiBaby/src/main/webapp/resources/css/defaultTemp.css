@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 body {
 	background-color: #fff7ed;
 	font-family: 'Nerko One', cursive;
@@ -128,5 +130,3 @@ display: block;
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color:pink;}
-
-
