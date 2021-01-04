@@ -8,13 +8,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/res/css/animate.css">
-<link rel="stylesheet" href="/res/css/main.css">
+<link rel="stylesheet" href="/res/css/studyMain.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
-            
         <h2 id="h2-1">수학공부</h2>
         <img id="studyImg" onclick="openMath()" src="/res/img/math.jpg">
 
@@ -32,8 +31,8 @@
         <h2 id="h2-3">랭킹</h2>
         <img id="studyImg" onclick="openRank()" src="/res/img/bestMember.png">
         <br><br>
-
     </div>
+
 
         <!-- 난이도 선택 모달창 -->
         <div id="mathModal" class="modal">
