@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>pro</title>
 </head>
 <body>
 	<div>프로메인부</div>
