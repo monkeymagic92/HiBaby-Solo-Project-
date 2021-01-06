@@ -16,7 +16,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 		String uri = request.getRequestURI();
 		String[] uriArr = uri.split("/");
 		
-		System.out.println("uriArr.length : " + uriArr.length);
+		
 		
 		if(uri.equals("/")) {
 			return true;
@@ -25,7 +25,6 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 		}
 		
 		chkNum++;
-		System.out.println("! ! !인 터 셉 터  ! ! !" + chkNum);		
 		boolean isLogout = SecurityUtils.isLogout(request);		
 		
 		switch(uriArr[1]) {

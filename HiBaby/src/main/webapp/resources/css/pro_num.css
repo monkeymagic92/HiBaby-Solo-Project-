@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.numContainer {
+    margin-top: 80px;
+}
+
+.msgBox {
+    width: 350px;
+    height: 80px;
+    border: 1px solid black;
+    margin-left: 400px;
+}
+
+.inputBox {
+    display: flex;
+    margin-top: 100px;
+    margin-left: 100px;
+}
+
+#comResult {
+    margin-left: 650px;
+}

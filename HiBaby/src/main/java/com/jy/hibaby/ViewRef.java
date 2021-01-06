@@ -36,6 +36,7 @@ public class ViewRef {
 	
 	// /pro  - 프로그래밍
 	public static final String PRO_MAIN = "pro/main";			// 프로그래밍 메인
+	public static final String PRO_NUM = "pro/pro_num";			// 스무고개
 	
 	
 }

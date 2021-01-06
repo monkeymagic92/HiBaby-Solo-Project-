@@ -28,6 +28,12 @@
 		<!-- study -->
 		<typeAlias type="com.jy.hibaby.study.model.StudyPARAM" alias="StudyPARAM" />
 		
+		<!-- pro -->
+		<typeAlias type="com.jy.hibaby.pro.model.ProVO" alias="ProVO" />
+		<typeAlias type="com.jy.hibaby.pro.model.ProPARAM" alias="ProPARAM" />
+		
+		
+		
 		
 		
 	</typeAliases>	
