@@ -21,7 +21,7 @@
                     <label for="mfile">
                         <img src="/res/img/이미지등록.jpg"  alt="" class="img2"  id="imgId">
                     </label>
-                    <input type="file" name="images"  id="mfile" multiple accept="image/png, image/jpeg, image/jpg">
+                    <input type="file" name="images" id="mfile" multiple accept="image/png, image/jpeg, image/jpg">
                         <c:if test="${data.i_board != null}">
 							<c:if test="${data.image_1 != '' }">
 								<img src="/res/img/board/${data.i_board }/${data.image_1}" class="selProductFile">

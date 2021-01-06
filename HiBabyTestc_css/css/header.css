@@ -1,15 +1,15 @@
 body {
 	background-color: #fff7ed;
-	font-family: 'Nerko One', cursive;
-	
+    font-family: 'Nerko One', cursive;
 }
+
+
 
 .main-container {
 	font-family: 'Ubuntu', sans-serif;
 	width: 1080px;
 	height: 850px;
     margin: 2em auto;
-    
     
 }
 

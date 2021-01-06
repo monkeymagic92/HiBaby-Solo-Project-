@@ -195,9 +195,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                	<c:forEach items="${otherRank}" var="item">                	
+                	<c:forEach items="${otherRank}" var="item"> 
+                		<c:set var="i" value="${i+1}" />
 	                    <tr class="bodyTr">
-	                        <th>#</th>
+	                        <th>${i+5}</th>
 	                        <th class="bodyTh">
 	                        	<div>${item.nick}</div>
 		                        <c:if test="${item.profile_img == null}">

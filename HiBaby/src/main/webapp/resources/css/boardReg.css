@@ -23,6 +23,11 @@
     text-align: center;
 }
 
+/* 여기서 이미지 margin-top 값 수정하기  2021.01.05 해야됨 */
+.pics2 {
+	margin-top: 40px;
+}
+
 .titleIn {
     margin-top: 20px;
     width: 700px;

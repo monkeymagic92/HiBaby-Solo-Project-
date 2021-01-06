@@ -2,6 +2,7 @@ body {
 	background-color: #fff7ed;
 }
 
+
 ul {
 	list-style-type: none;
 	margin: 0;
@@ -262,6 +263,19 @@ h1, h2, p, a, span{
 	margin-left: 400px;
 	margin-bottom: -1px;
 }
+
+.flyLeft {
+	position: relative;
+	top: -620px;
+	left: 290px;
+}
+
+.flyRight {
+	position: relative;
+	top: -620px;
+	left: 290px;
+}
+
 
 .firRank {
 	margin: 0 auto;
