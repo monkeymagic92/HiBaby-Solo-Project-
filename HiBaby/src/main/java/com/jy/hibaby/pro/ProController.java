@@ -21,8 +21,8 @@ public class ProController {
 
 	// pro_num.jsp(get,post) 에 사용될 static 값
 	private static int level = 0;
-	private static int turn = 1; // 홀수턴 = user / 짝수턴 = com
-	private static int count = 0;
+	private static int turn = 0; // 홀수턴 = user / 짝수턴 = com
+	private static int count = 21;
 	private static int gameResult = 0;
 	private static int userResult = 0;
 	private static int comResult = 0;
@@ -70,22 +70,18 @@ public class ProController {
 		
 		if(level == 1) {
 			
-			// 정답이 0일경우 랜덤값을 박음   그이후 그 랜덤값은 계속 유지
+			// gameResult가 0일경우 랜덤값을 박음   그이후 그 랜덤값은 계속 유지
 			if(gameResult == 0) {
 				int ranNum = (int)(Math.random() * 100) + 1;
 				gameResult = ranNum;
 			}
 			
-			
-			++count;
+			--count;
 			++turn;
-			System.out.println("num부분 level 1");
-			System.out.println("count 값 : " + count);
-			System.out.println("turn 값 : " + turn);
 			
-			model.addAttribute("gameResult", gameResult);
-			model.addAttribute("count", count);
-			model.addAttribute("turn", turn);
+			model.addAttribute("gameResult", gameResult); // 게임정답
+			model.addAttribute("count", count); // 총 횟수
+			model.addAttribute("turn", turn);  // user/com 구분 짓기위한 값
 			model.addAttribute("levelAlert", "1~100 까지 맞추기");
 			
 			

@@ -16,7 +16,7 @@
         <div class="msgBox">        	
         	<div id="levelMsg">난이도 : ${levelAlert}</div>
         	<div id="gameResult">정답 : ${gameResult}</div>
-            <div id="numCount">${count} 회</div>
+            <div id="numCount">${count} 회 남았습니다</div>
             <div id="numMsg">${turn} 홀수 짝수 구분지어 홀수 = user / 짝수 = com</div>
         </div>
 
