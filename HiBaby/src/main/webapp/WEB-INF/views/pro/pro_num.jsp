@@ -16,7 +16,9 @@
         <div class="msgBox">        	
         	<div id="levelMsg">난이도 : ${levelAlert}</div>
         	<div id="gameResult">정답 : ${gameResult}</div>
-        	<div id="msgResult">내용 : ${msgResult}</div>
+        	<c:if test="${count != 20}">
+        		<div id="msgResult">내용 : ${msgResult}</div>
+        	</c:if>
             <div id="numCount">${count} 회 남았습니다</div>
             
         </div>
@@ -44,7 +46,26 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-	
+	function userChk() {
+		if(userInsFrm.userResult.value > 100) {
+			alert('100 이하 숫자를 입력해 주세요')
+			userInsFrm.userResult.focus()
+			return false;
+		}
+		
+		if(userInsFrm.userResult.value < 1) {
+			alert('1 이상 숫자를 입력해주세요')
+			userInsFrm.userResult.focus()
+			return false;
+		} 
+		
+		if(userInsFrm.userResult.value == '') {
+			alert('숫자를 입력해 주세요')
+			userInsFrm.userResult.focus()
+			return false;
+		} 
+		
+	} 
 	
 </script>
 </body>
