@@ -44,12 +44,12 @@ public class ProController {
 	public String main(Model model, ProPARAM param) {
 		
 		level = 0;
-		System.out.println("레벨 : " + param.getLevel());
+		
 		if(param.getLevel() == 1) {	// 랜덤값 미리 찍어서 static 에다가 넣기
 			level = 1;
 			return "redirect:/" + ViewRef.PRO_NUM;
 			
-		} else if(param.getLevel() == 2) {
+		} else if(param.getLevel() == 2) {  // level 2,3,4   2p 스무고개 용
 			level = 2;
 			return "redirect:/" + ViewRef.PEOPLEGAME;
 			
