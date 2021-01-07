@@ -55,7 +55,7 @@
                         1~500<input id="normal" type="radio" name="level" value="2">&nbsp;
                     </label>
                     <label>
-                        1~100<input id="eazy" type="radio" name="level" value="1">&nbsp;
+                        1~100<input id="eazy" type="radio" name="level" value="1" checked>&nbsp;
                     </label>
                     <br>
                     <!-- 필요없으면 지우기 -->

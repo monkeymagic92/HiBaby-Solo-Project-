@@ -16,19 +16,25 @@
         <div class="msgBox">        	
         	<div id="levelMsg">난이도 : ${levelAlert}</div>
         	<div id="gameResult">정답 : ${gameResult}</div>
+        	<div id="msgResult">내용 : ${msgResult}</div>
             <div id="numCount">${count} 회 남았습니다</div>
-            <div id="numMsg">${turn} 홀수 짝수 구분지어 홀수 = user / 짝수 = com</div>
+            
         </div>
 
 		<!-- inputBox -->
         <div class="inputBox">
-            <div>user</div>
-            <!-- ajax로 값 넘기기 -->
-            <form id="userInsFrm" action="/pro/pro_num" method="post" onsubmit="return userChk()">
-                <input type="number" id="userResult">
+            
+            <form id="userInsFrm" action="/pro/pro_num" method="get" onsubmit="return userChk()">
+                <input type="number" id="userResult" name="userResult">
                 <button type="submit">입력</button>
             </form>
-            <div id="comResult">ComResult</div>
+            
+            <%-- 위 if문 때문에 css 포지션으로 잡아야됨 (아니면 com 위치 왼쪽으로 옴) --%>
+			<c:if test="${count != 20}">
+				<div id="computer">com</div>
+            	<div id="comResult">${comResult}</div>
+			</c:if>
+			
         </div>
         
         

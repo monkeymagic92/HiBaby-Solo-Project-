@@ -21,7 +21,6 @@ public class ProController {
 
 	// pro_num.jsp(get,post) 에 사용될 static 값
 	private static int level = 0;
-	private static int turn = 0; // 홀수턴 = user / 짝수턴 = com
 	private static int count = 21;
 	private static int gameResult = 0;
 	private static int userResult = 0;
@@ -55,8 +54,7 @@ public class ProController {
 			level = 2;
 			return "redirect:/" + ViewRef.PRO_NUM;
 			
-		} else {
-			System.out.println("1~1000");
+		} else { // 다른 거 나오면 else if로 계속 분기하기
 			level = 3;
 			return "redirect:/" + ViewRef.PRO_NUM;
 		}
@@ -66,40 +64,87 @@ public class ProController {
 
 	// 스무고개 화면
 	@RequestMapping(value="/pro_num", method = RequestMethod.GET)
-	public String pro_num(Model model) {
-		
-		if(level == 1) {
-			
+	public String pro_num(Model model, ProPARAM param) {
+				
+		if(level == 1) {			
 			// gameResult가 0일경우 랜덤값을 박음   그이후 그 랜덤값은 계속 유지
 			if(gameResult == 0) {
-				int ranNum = (int)(Math.random() * 100) + 1;
+				int ranNum = (int)(Math.random() * 10) + 1;
 				gameResult = ranNum;
-			}
-			
-			--count;
-			++turn;
-			
-			model.addAttribute("gameResult", gameResult); // 게임정답
-			model.addAttribute("count", count); // 총 횟수
-			model.addAttribute("turn", turn);  // user/com 구분 짓기위한 값
+			}			
 			model.addAttribute("levelAlert", "1~100 까지 맞추기");
-			
-			
-			
-			
-			
-			
+
 		} else if(level == 2) {
-			System.out.println("num부분 level 2");
+			if(gameResult == 0) {
+				int ranNum = (int)(Math.random() * 500) + 1;
+				gameResult = ranNum;
+			}			
 			model.addAttribute("levelAlert", "1~500 까지 맞추기");
 			
 			
 		} else {
-			System.out.println("num부분 level 3");
+			if(gameResult == 0) {
+				int ranNum = (int)(Math.random() * 1000) + 1;
+				gameResult = ranNum;
+			}			
 			model.addAttribute("levelAlert", "1~1000 까지 맞추기");
+		}		
+
+		// -	-	-	-	- level end -	-	-	-	-
+		
+		
+		count--;
+		// 유저 관련
+		if(param.getUserResult() < gameResult) {
+			model.addAttribute("msgResult", param.getUserResult()
+					+ " 보다 큰숫자 입니다.");
 			
+		} else if(param.getUserResult() > gameResult) {
+			model.addAttribute("msgResult", param.getUserResult()
+					+ " 보다 작은 숫자 입니다.");
+			
+		} else {
+			model.addAttribute("msgResult","유저 정답!");
+			model.addAttribute("gameEnd", "유저 승리!");
+			model.addAttribute("view", ViewRef.PRO_NUM);
+			return ViewRef.DEFAULT_TEMP; 
+					
+		}
+	
+	
+	
+		// 컴퓨터 관련
+		if(param.getUserResult() < gameResult) {	// 실행잘됨
+	
+			int maxmin = param.getUserResult() + 1;
+			int a = (101 - maxmin);
+			comResult = (int)(Math.random() * a) + maxmin;
+			
+			
+			if(comResult == gameResult) {
+				model.addAttribute("msgResult","컴퓨터 정답!");
+				model.addAttribute("gameEnd", "컴퓨터 승리!");
+			}
+			model.addAttribute("comResult", comResult);
+			
+
+		} else if(param.getUserResult() > gameResult) {	// 문제있음
+	
+			int maxmin = param.getUserResult() - 1;
+			int a = (param.getUserResult() - maxmin);
+			comResult = (int)(Math.random() * param.getUserResult()) + 1;
+			
+			if(comResult == gameResult) {
+				model.addAttribute("msgResult","컴퓨터 정답!");
+				model.addAttribute("gameEnd", "컴퓨터 승리!");
+			}
+			model.addAttribute("comResult", comResult);
 		}
 		
+		
+		
+		model.addAttribute("gameResult", gameResult); // 게임정답
+		model.addAttribute("count", count); // 총 횟수		
 		model.addAttribute("view", ViewRef.PRO_NUM);
 		return ViewRef.DEFAULT_TEMP;
 	}
