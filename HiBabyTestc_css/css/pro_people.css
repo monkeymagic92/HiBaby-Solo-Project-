@@ -138,3 +138,55 @@
     margin-left: 55px;
 }
 
+
+/* Modal */
+.modal {
+	
+    position: fixed;
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+    
+}
+
+/* Modal Content/Box */
+.modal-content {
+	margin: 15% auto; 
+	height: 220px;
+    padding-top: 90px;
+	
+	border-radius: 20px;
+	width: 15%;                           
+	text-align: center;
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+	
+}
+
+#modalDraw {
+    margin-top: 50px;
+    font-size: 2.3em;
+    color: red;
+    font-weight: bold;
+}
+.pop_bt {
+    position: relative;
+    top: 70px;
+	margin-top: 40px;
+	width: 200px;
+	
+    cursor: pointer;
+    font-size: 1.5em;
+    transition: 0.3s;
+}
+
+.pop_bt:hover {
+    font-size:1.8em;
+    transition: 0.3s;
+}
+

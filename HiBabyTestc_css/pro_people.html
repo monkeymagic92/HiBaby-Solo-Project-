@@ -80,18 +80,37 @@
                     </c:if>
                 </div>
             </c:if>
-            
+            <button type="button" onclick="showModal()">ㄹㅇ</button>
 
 
             <c:if test="${draw != null}">
-                <h1>무승부! 모달창 만들기</h1>
+                <div id="numModal" class="modal">
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <span id="modalDraw">${draw}</span>
+                        </div>
+                        
+                        <!-- Modal bottom -->
+                        <a id="exitBtn" class="pop_bt" onclick="backBtn()">뒤로가기</a>
+                    </div>
+                </div>
             </c:if>
         </div>
     </div>
     
-
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script>
+    function showModal() {
+        numModal.style.display='flex'
+    }
 
+    function backBtn() {
+        location.href="/pro/main"
+    }
 </script>
 </body>
 </html>

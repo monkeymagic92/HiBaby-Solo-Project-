@@ -223,8 +223,8 @@ public class ProController {
 						+ " 보다 작은 숫자 입니다.");
 				
 			} else {
-				ra.addFlashAttribute("msgResult","1p 정답!");
-				ra.addFlashAttribute("gameEnd", "1p 승리!");
+				ra.addFlashAttribute("msgResult", oneNick + " 정답!");
+				ra.addFlashAttribute("gameEnd", oneNick + " 승리!");
 			}
 		}
 		
@@ -239,8 +239,8 @@ public class ProController {
 						+ " 보다 작은 숫자 입니다.");
 			
 			} else {
-				ra.addFlashAttribute("msgResult","2p 정답!");
-				ra.addFlashAttribute("gameEnd", "2p 승리!");
+				ra.addFlashAttribute("msgResult",twoNick + " 정답!");
+				ra.addFlashAttribute("gameEnd", twoNick + " 승리!");
 			}
 		}
 		return "redirect:/" + ViewRef.PEOPLEGAME;

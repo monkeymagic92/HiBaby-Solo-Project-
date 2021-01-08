@@ -24,40 +24,58 @@
         </div>
         <br><br>
         <div class="fatherDiv">
-        <c:if test="${gameEnd == null}">
-            <c:if test="${count % 2 == 0}">
-            
-	            <div class="ins1">
-	                <span class="nick1">1P : ${oneNick}</span>
+	        <c:if test="${gameEnd == null}">
+	            <c:if test="${count % 2 == 0}">
 	            
-	                <form id="oneFrm" action="/pro/peopleGame" method="post" onsubmit="return oneFrmChk()">
-	                    <input id="oneResult" type="number" name="oneResult"><br>
-	                    <button id="submitBtn1" type="submit">입력</button> 
-	                </form>
-	            </div>
-	            </c:if>
+		            <div class="ins1">
+		                <span class="nick1">1P : ${oneNick}</span>
+		            
+		                <form id="oneFrm" action="/pro/peopleGame" method="post" onsubmit="return oneFrmChk()">
+		                    <input id="oneResult" type="number" name="oneResult"><br>
+		                    <button id="submitBtn1" type="submit">입력</button> 
+		                </form>
+		            </div>
+		            </c:if>
+		            
+		        
+		            <span id="vs">VS</span>
+		            
+		            <c:if test="${count % 2 == 1}">
+		            <div class="ins2">
+		                <span class="nick2">2P : ${twoNick}</span>
+		                
+		                <form id="twoFrm" action="/pro/peopleGame" method="post" onsubmit="return twoFrmChk()">
+		                    <input id="twoResult" type="number" name="twoResult"><br>
+		                    <button id="submitBtn2" type="submit">입력</button> 
+		                </form>
+		            </div>
 	            
-	        
-	            <span id="vs">VS</span>
-	            
-	            <c:if test="${count % 2 == 1}">
-	            <div class="ins2">
-	                <span class="nick2">2P : ${twoNick}</span>
-	                
-	                <form id="twoFrm" action="/pro/peopleGame" method="post" onsubmit="return twoFrmChk()">
-	                    <input id="twoResult" type="number" name="twoResult"><br>
-	                    <button id="submitBtn2" type="submit">입력</button> 
-	                </form>
-	            </div>
-            
-            </c:if>            
-        </c:if>
+	            </c:if>            
+	        </c:if>
         </div>
         
 
 
-        <c:if test="${draw != null}">
-            <h1>무승부! 모달창 만들기</h1>
+        <c:if test="${draw != null || gameEnd != null}">
+            <div id="numModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                    	<c:if test="${draw != null}">
+                        	<span id="modalDraw">${draw}</span>
+                        </c:if>
+                        <c:if test="${gameEnd != null}">
+                        	<span id="modalDraw">${gameEnd}</span>
+                        </c:if>
+                        
+                    </div>
+                    
+                    <!-- Modal bottom -->
+                    <a id="exitBtn" class="pop_bt" onclick="backBtn()">뒤로가기</a>
+                </div>
+            </div>
         </c:if>
     </div>
 	
@@ -91,6 +109,11 @@
 			return false;
 		}
 	}
+	
+	// 모달 뒤로가기
+	function backBtn() {
+        location.href="/pro/main"
+    }
 </script>
 </body>
 </html>
