@@ -49,10 +49,16 @@
 
 #msgResult {
     margin-top: 15px;
-    margin-left: 170px;
+    margin-left: 100px;
     font-size: 1.5em;
     font-weight: bold;
     color: #111;
+}
+
+.nick1 {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: skyblue;
 }
 
 .ins1 {
@@ -61,30 +67,74 @@
     left: 80px;
 }
 
+#oneResult {
+    margin-top: 15px;
+    margin-left: 40px;
+    width: 100px;
+    height: 20px;
+    border: 2px solid grey;
+    border-radius: 5px;
+}
+
+#submitBtn1 {
+    width: 80px;
+    height: 40px;
+    border: 2px solid skyblue;
+    border-radius: 5px;
+    background-color: #fff7ed;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: grey;
+    margin-top: 7px;
+    margin-left: 55px;
+}
+
+#submitBtn1:hover{
+    cursor: pointer;
+    
+}
+
 #vs {
     position: relative;
-    top: -20px;
+    top: 90px;
     left: 500px;
     font-size: 6em;
     color: red;
     font-weight: bold;
 }
 
+.nick2 {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #89ff45;
+}
+
 .ins2 {
     position: relative;
-    top: -110px;
+    top: 90px;
     left: 870px;
 }
 
-
-
-#submitBtn1 {
-    margin-top: 7px;
-    margin-left: 70px;
+#twoResult {
+    margin-top: 15px;
+    margin-left: 40px;
+    width: 100px;
+    height: 20px;
+    border: 2px solid grey;
+    border-radius: 5px;
 }
 
+
 #submitBtn2 {
+    width: 80px;
+    height: 40px;
+    border: 2px solid skyblue;
+    border-radius: 5px;
+    background-color: #fff7ed;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: grey;
     margin-top: 7px;
-    margin-left: 70px;
+    margin-left: 55px;
 }
 

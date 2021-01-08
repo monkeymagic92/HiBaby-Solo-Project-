@@ -53,31 +53,32 @@
             <br><br>
             
             <c:if test="${gameEnd == null}">
-                <c:if test="${count % 2 == 0}">
-                <div class="ins1">
-                    <span class="nick1">1P : ${oneNick}</span>
-                
-                    <form id="oneFrm" action="/pro/peopleGame" method="post" onsubmit="return oneFrmChk()">
-                        <input id="oneResult" type="number" name="oneResult"><br>
-                        <button id="submitBtn1" type="submit">입력</button> 
-                    </form>
-                </div>
-                </c:if>
-                
-            
-                <div id="vs">VS</div>
-                
-                <c:if test="${count % 2 == 1}">
-                <div class="ins2">
-                    <span class="nick1">2P : ${twoNick}</span>
+                <div class="box">
+                    <c:if test="${count % 2 == 0}">
+                    <div class="ins1">
+                        <span class="nick1">1P : ${oneNick}</span>
                     
-                    <form id="twoFrm" action="/pro/peopleGame" method="post" onsubmit="return twoFrmChk()">
-                        <input id="twoResult" type="number" name="twoResult"><br>
-                        <button id="submitBtn2" type="submit">입력</button> 
-                    </form>
-                </div>
-                </c:if>
+                        <form id="oneFrm" action="/pro/peopleGame" method="post" onsubmit="return oneFrmChk()">
+                            <input id="oneResult" type="number" name="oneResult"><br>
+                            <button id="submitBtn1" type="submit">입력</button> 
+                        </form>
+                    </div>
+                    </c:if>
+                    
                 
+                    <div id="vs">VS</div>
+                    
+                    <c:if test="${count % 2 == 1}">
+                    <div class="ins2">
+                        <span class="nick2">2P : ${twoNick}</span>
+                        
+                        <form id="twoFrm" action="/pro/peopleGame" method="post" onsubmit="return twoFrmChk()">
+                            <input id="twoResult" type="number" name="twoResult"><br>
+                            <button id="submitBtn2" type="submit">입력</button> 
+                        </form>
+                    </div>
+                    </c:if>
+                </div>
             </c:if>
             
 
