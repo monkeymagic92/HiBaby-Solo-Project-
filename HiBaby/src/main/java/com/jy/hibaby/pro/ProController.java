@@ -6,14 +6,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jy.hibaby.ViewRef;
 import com.jy.hibaby.pro.model.ProPARAM;
-import com.jy.hibaby.pro.model.ProVO;
 
 @Controller
 @RequestMapping("/pro")
@@ -25,6 +23,9 @@ public class ProController {
 	public static int gameResult = 0;
 	public static int userResult = 0;
 	public static int comResult = 0;
+	
+	public static String oneNick = "";
+	public static String twoNick = "";
 	 
 	
 	
@@ -41,9 +42,14 @@ public class ProController {
 	
 	// level 1,2,3 = 스무고개 , 4 = ??, 5 = ??, 6 = ?? 쭉 만들기
 	@RequestMapping(value="/main", method = RequestMethod.POST)
-	public String main(Model model, ProPARAM param) {
+	public String main(Model model, ProPARAM param,
+			HttpServletRequest request) {
 		
 		level = 0;
+		oneNick = request.getParameter("oneNick");
+		twoNick = request.getParameter("twoNick");
+		System.out.println("oneNick 값 : " + oneNick);
+		System.out.println("twoNick 값 : " + twoNick);
 		
 		if(param.getLevel() == 1) {	// 랜덤값 미리 찍어서 static 에다가 넣기
 			level = 1;
@@ -155,9 +161,17 @@ public class ProController {
 	}
 	
 	
-	// 2p 스무고개 
+	// 2인용 스무고개 
 	@RequestMapping(value="/peopleGame", method=RequestMethod.GET)
-	private String peopleGame(ProPARAM param, Model model) {
+	private String peopleGame(ProPARAM param, Model model,
+			HttpServletRequest request) {
+		--count;
+		if(count == 0) {
+			model.addAttribute("draw", "무승부");
+			model.addAttribute("view", ViewRef.PEOPLEGAME);
+			return ViewRef.DEFAULT_TEMP;
+			
+		}
 		if(level == 2) {			
 			// gameResult가 0일경우 랜덤값을 박음   그이후 그 랜덤값은 계속 유지
 			if(gameResult == 0) {
@@ -183,8 +197,52 @@ public class ProController {
 			model.addAttribute("levelAlert", "1~1000 까지 맞추기");
 		}
 		
+	
+		model.addAttribute("count", count);
+		model.addAttribute("oneNick", oneNick);
+		model.addAttribute("twoNick", twoNick);
+		model.addAttribute("gameResult", gameResult);
 		model.addAttribute("view", ViewRef.PEOPLEGAME);
 		return ViewRef.DEFAULT_TEMP;
 	}
 	
+	
+	@RequestMapping(value="/peopleGame", method=RequestMethod.POST)
+	public String peopleGame(Model model, HttpServletRequest request,
+			ProPARAM param, RedirectAttributes ra) {
+		
+				
+		// 1p 값 입력
+		if(param.getOneResult() != 0) {
+			if(param.getOneResult() < gameResult) {
+				ra.addFlashAttribute("msgResult", param.getOneResult()
+						+ " 보다 큰숫자 입니다.");
+				
+			} else if(param.getOneResult() > gameResult) {
+				ra.addFlashAttribute("msgResult", param.getOneResult()
+						+ " 보다 작은 숫자 입니다.");
+				
+			} else {
+				ra.addFlashAttribute("msgResult","1p 정답!");
+				ra.addFlashAttribute("gameEnd", "1p 승리!");
+			}
+		}
+		
+		// 2p 값 입력
+		if(param.getTwoResult() != 0) {
+			if(param.getTwoResult() < gameResult) {
+				ra.addFlashAttribute("msgResult", param.getTwoResult()
+						+ " 보다 큰숫자 입니다.");
+			
+			} else if(param.getTwoResult() > gameResult) {
+				ra.addFlashAttribute("msgResult", param.getTwoResult()
+						+ " 보다 작은 숫자 입니다.");
+			
+			} else {
+				ra.addFlashAttribute("msgResult","2p 정답!");
+				ra.addFlashAttribute("gameEnd", "2p 승리!");
+			}
+		}
+		return "redirect:/" + ViewRef.PEOPLEGAME;
+	}
 }

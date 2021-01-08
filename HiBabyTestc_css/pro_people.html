@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/pro_people.css">
+</head>
+<body>
+    <!-- mainContainer 안에 페이지 container 넣어야 됨 -->
+    <div class="main-container">
+        <header class="main-header">
+             <ul class="header-ul">
+                 <li><a class="li-a1" href="/index/select"><span id="li1">HiBaby</span></a></li>
+                 <li><a class="li-a2" href="#"><span id="li2">이동하기</span></a></li>
+                 <li>
+                     <span id="li3">쪽지함</span> 
+                     <!-- span으로 쪽지함 ! 나타나게 하기 -->
+                 </li>
+                 <li>
+                     <div class="dropdown">
+                         <button class="dropbtn">
+                             <c:if test="${loginUser.profile_img == null}">
+                                 <img class="drop-img" src="img/HiBaby.jpg" class="profileImg">
+                             </c:if>
+                         </button>
+                         <div class="dropdown-content">
+                           <a href="/user/myPage">마이페이지</a>
+                           <div class="hrDiv">
+                               <hr>
+                           </div>
+                           <a href="#" onclick="logOut()">로그아웃</a>
+                         </div>
+                     </div>
+                 </li>
+             </ul>
+        </header>
+
+
+        <div class="proContainer">
+            <div class="topContainer">
+                <div class="marginTop">
+                    <span id="titleMsg">2인용 숫자 스무고개</span>
+                    <div id="levelMsg">- 난이도 : <span id="levelNum">${levelAlert}</span></div>
+                    <div id="countMsg">- <span id="countNum">${count}</span> 회 남았습니다</div>
+                    <!--<div id="gameResult">정답 : ${gameResult}</div>-->
+                    <c:if test="${count != 20}">
+                        <div id="msgResult">${msgResult}</div>
+                    </c:if>
+                </div>
+            </div>
+            <br><br>
+            
+            <c:if test="${gameEnd == null}">
+                <c:if test="${count % 2 == 0}">
+                <div class="ins1">
+                    <span class="nick1">1P : ${oneNick}</span>
+                
+                    <form id="oneFrm" action="/pro/peopleGame" method="post" onsubmit="return oneFrmChk()">
+                        <input id="oneResult" type="number" name="oneResult"><br>
+                        <button id="submitBtn1" type="submit">입력</button> 
+                    </form>
+                </div>
+                </c:if>
+                
+            
+                <div id="vs">VS</div>
+                
+                <c:if test="${count % 2 == 1}">
+                <div class="ins2">
+                    <span class="nick1">2P : ${twoNick}</span>
+                    
+                    <form id="twoFrm" action="/pro/peopleGame" method="post" onsubmit="return twoFrmChk()">
+                        <input id="twoResult" type="number" name="twoResult"><br>
+                        <button id="submitBtn2" type="submit">입력</button> 
+                    </form>
+                </div>
+                </c:if>
+                
+            </c:if>
+            
+
+
+            <c:if test="${draw != null}">
+                <h1>무승부! 모달창 만들기</h1>
+            </c:if>
+        </div>
+    </div>
+    
+
+<script>
+
+</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+.proContainer {
+   margin-top: 40px;
+}
+
+.topContainer {
+    margin-left: 300px;
+    width: 500px;
+    height: 240px;
+    border: 4px solid skyblue;
+    border-radius: 6px;
+    
+}
+
+.marginTop {
+    margin-top: 10px;
+}
+
+#titleMsg {
+    margin-top: 100px;
+    margin-left: 100px;
+    font-size: 2.1em;
+    font-weight: bold;
+    color: #111;
+}
+
+#levelNum {
+    color: #9dd1ce;
+}
+
+#levelMsg {
+    margin-top: 15px;
+    margin-left: 100px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: grey;
+}
+
+#countNum {
+    color: red;
+}
+
+#countMsg {
+    margin-top: 15px;
+    margin-left: 100px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: grey;
+}
+
+#msgResult {
+    margin-top: 15px;
+    margin-left: 170px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #111;
+}
+
+.ins1 {
+    position: relative;
+    top: 90px;
+    left: 80px;
+}
+
+#vs {
+    position: relative;
+    top: -20px;
+    left: 500px;
+    font-size: 6em;
+    color: red;
+    font-weight: bold;
+}
+
+.ins2 {
+    position: relative;
+    top: -110px;
+    left: 870px;
+}
+
+
+
+#submitBtn1 {
+    margin-top: 7px;
+    margin-left: 70px;
+}
+
+#submitBtn2 {
+    margin-top: 7px;
+    margin-left: 70px;
+}
+
