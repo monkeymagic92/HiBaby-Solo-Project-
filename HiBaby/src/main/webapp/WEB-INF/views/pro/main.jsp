@@ -76,7 +76,7 @@
             <!-- Modal body -->
             <div class="modal-body">
                 <form id="peopleFrm" action="/pro/main" method="post" onsubmit="return peopleChk()">
-                	1p 닉네임<input type="text" id="oneNick" name="oneNick"><br>
+                	1p 닉네임<input type="text" id="oneNick" name="oneNick"><br><br>
                 	2p 닉네임<input type="text" id="twoNick" name="twoNick"><br>
                     <label>
                         1~1000<input id="hard" type="radio" name="level" value="4">&nbsp;                        

@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/res/css/peopleGame.css">
+<link rel="stylesheet" type="text/css" href="/res/css/animate.css">
 </head>
 <body>
 	<div class="proContainer">
@@ -16,7 +17,7 @@
                 <span id="titleMsg">2인용 숫자 스무고개</span>
                 <div id="levelMsg">- 난이도 : <span id="levelNum">${levelAlert}</span></div>
                 <div id="countMsg">- <span id="countNum">${count}</span> 회 남았습니다</div>
-                <!--<div id="gameResult">정답 : ${gameResult}</div>-->
+                <!--  <div id="gameResult">정답 : ${gameResult}</div>-->
                 <c:if test="${count != 20}">
                     <div id="msgResult">${msgResult}</div>
                 </c:if>
@@ -59,7 +60,7 @@
         <c:if test="${draw != null || gameEnd != null}">
             <div id="numModal" class="modal">
                 <!-- Modal content -->
-                <div class="modal-content">
+                <div class="modal-content animate__rubberBand animate__animated">
                     
                     <!-- Modal body -->
                     <div class="modal-body">

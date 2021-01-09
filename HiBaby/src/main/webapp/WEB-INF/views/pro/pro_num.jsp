@@ -10,42 +10,45 @@
 <link rel="stylesheet" href="/res/css/pro_num.css">
 </head>
 <body>
-	<div class="numContainer">
+	<div class="proContainer">
+            <div class="topContainer">
+                <div class="marginTop">
+                    <span id="titleMsg">스무고개 연습</span>
+                    <div id="countMsg">- <span id="countNum">${count}</span> 회 남았습니다</div>
+                    <!--  <div id="gameResult">정답 : ${gameResult}</div>-->
+                    <c:if test="${count != 20}">
+                        <div id="msgResult">${msgResult}</div>
+                    </c:if>
+                </div>
+            </div>
+            <br><br>
 
-		<!-- msgBox -->
-        <div class="msgBox">        	
-        	<div id="levelMsg">난이도 : ${levelAlert}</div>
-        	<div id="gameResult">정답 : ${gameResult}</div>
-        	<c:if test="${count != 20}">
-        		<div id="msgResult">내용 : ${msgResult}</div>
-        	</c:if>
-            <div id="numCount">${count} 회 남았습니다</div>
-            
-        </div>
-
-		<!-- inputBox -->
-        <div class="inputBox">
-            
-            <form id="userInsFrm" action="/pro/pro_num" method="get" onsubmit="return userChk()">
-                <input type="number" id="userResult" name="userResult">
-                <button type="submit">입력</button>
-            </form>
-            
-            <%-- 위 if문 때문에 css 포지션으로 잡아야됨 (아니면 com 위치 왼쪽으로 옴) --%>
-			<c:if test="${count != 20}">
-				<div id="computer">com</div>
-            	<div id="comResult">${comResult}</div>
-			</c:if>
-			
-        </div>
-        
-        
+            <div class="inputBox">
+                <div class="userBox">
+                    <img src="/res/img/userGif.gif" class="userGif">
+                    <form id="userInsFrm" action="/pro/pro_num" method="get" onsubmit="return userChk()">
+                        <input type="number" id="userResult" name="userResult">
+                        <button id="submitBtn1" type="submit">입력</button>
+                    </form>
+                </div>
+                
+                <c:if test="${count != 20}">                    
+                    <div class="comBox">
+                        <img src="/res/img/robot.gif" class="robotGif">   
+                        <div id="comResult">${comResult}</div>
+                    </div>
+                </c:if>
+            </div>
     </div>
-
+	
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+	window.onload = function(){
+		userInsFrm.userResult.focus()
+	}
+
 	function userChk() {
 		if(userInsFrm.userResult.value > 100) {
 			alert('100 이하 숫자를 입력해 주세요')

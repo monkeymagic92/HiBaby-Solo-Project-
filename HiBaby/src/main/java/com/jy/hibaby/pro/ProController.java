@@ -48,8 +48,7 @@ public class ProController {
 		level = 0;
 		oneNick = request.getParameter("oneNick");
 		twoNick = request.getParameter("twoNick");
-		System.out.println("oneNick 값 : " + oneNick);
-		System.out.println("twoNick 값 : " + twoNick);
+		
 		
 		if(param.getLevel() == 1) {	// 랜덤값 미리 찍어서 static 에다가 넣기
 			level = 1;

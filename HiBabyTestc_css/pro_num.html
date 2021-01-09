@@ -37,23 +37,35 @@
              </ul>
         </header>
 
-        <div class="numContainer">
-
-            <div class="msgBox">
-                <div id="numCount"></div>
-                <div id="numMsg"></div>
+        <div class="proContainer">
+            <div class="topContainer">
+                <div class="marginTop">
+                    <span id="titleMsg">스무고개 연습</span>
+                    <div id="countMsg">- <span id="countNum">${count}</span> 회 남았습니다</div>
+                    <!--  <div id="gameResult">정답 : ${gameResult}</div>-->
+                    <c:if test="${count != 20}">
+                        <div id="msgResult">${msgResult}</div>
+                    </c:if>
+                </div>
             </div>
+            <br><br>
 
             <div class="inputBox">
-                <div>user</div>
-                <form id="">
-                    <input type="number" id="userResult">
-                </form>
-                <div id="comResult">ComResult</div>
+                <div class="userBox">
+                    <img src="img/userGif.gif" class="userGif">
+                    <form id="userInsFrm" action="/pro/pro_num" method="get" onsubmit="return userChk()">
+                        <input type="number" id="userResult" name="userResult">
+                        <button id="submitBtn1" type="submit">입력</button>
+                    </form>
+                </div>
+                
+                <c:if test="${count != 20}">                    
+                    <div class="comBox">
+                        <img src="img/robot.gif" class="robotGif">   
+                        <div id="comResult">${comResult}</div>
+                    </div>
+                </c:if>
             </div>
-            
-
-        </div>
     </div>
 
 
