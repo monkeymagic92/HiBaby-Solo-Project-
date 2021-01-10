@@ -127,7 +127,7 @@ display: block;
 
 .dropdown:hover .dropbtn {background-color:pink;}
 
-
+/* 유저 검색 모달 */
 .modal {
     
 	display: none;
@@ -144,7 +144,7 @@ display: block;
 
 #searchNickFrm {
     margin-left: 160px;
-    margin-top: 15px;
+    margin-top: -5px;
     display: flex;
 }
 
@@ -184,7 +184,7 @@ display: block;
 .modal-content {
     background-color: #fefefe;
 	margin: 15% auto; 
-	height: 50%;
+	height: 54%;
     padding: 20px;
 	border: 3px solid #fff7ed;
 	border-radius: 20px;
@@ -193,7 +193,21 @@ display: block;
 	background-color: #fff7ed;
 }
 
+#exitBtn {
+    font-size: 2.8em;
+    margin-top: -12px;
+    margin-left: 466px;
+}
+
+#exitBtn:hover {
+    cursor: pointer;
+    color: grey;
+}
+
+
 .userListTable {
+    height: 370px;
+    overflow: auto;
     margin-top: 25px;
 }
 
@@ -240,10 +254,39 @@ display: block;
     border: 3px solid black;
 }
 
-.pop_bt {
-	margin-top: 45px;
-	width: 200px;
-	text-align: center;
-	cursor: pointer;
-}
 
+
+
+
+
+
+
+
+
+
+::-webkit-scrollbar {
+    width: 5px;  /* 세로축 스크롤바 길이 */
+    }
+    ::-webkit-scrollbar-track {
+    background-color: lightblue;
+    }
+    ::-webkit-scrollbar-track-piece {
+    background-color: white;
+    }
+    ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: grey;
+    }
+    ::-webkit-scrollbar-button {
+    background-color: darkblue;
+    width: 20px;
+    height: 10px;
+    }
+    ::-webkit-scrollbar-button:start {
+    background-color: white; /* Top, Left 방향의 이동버튼 */
+    height: 0px;
+    }
+    ::-webkit-scrollbar-button:end {
+    background-color: white; /* Bottom, Right 방향의 이동버튼 */
+    height: 0px;
+    }
