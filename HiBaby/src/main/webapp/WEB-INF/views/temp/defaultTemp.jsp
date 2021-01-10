@@ -61,7 +61,9 @@
                 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <div>유저 검색</div>
+                    <div id="userListBox">
+                    	<!-- 계급, 사진, 닉네임, 상태메세지( 20글자이상 ...으로 ) 스크롤 기능 넣기-->
+                    </div>
                 </div>
                 
                 <!-- Modal bottom -->
