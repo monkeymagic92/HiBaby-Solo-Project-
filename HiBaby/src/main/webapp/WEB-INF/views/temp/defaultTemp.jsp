@@ -14,7 +14,7 @@
        <header class="main-header">
             <ul class="header-ul">
                 <li><a class="li-a1" href="/index/select"><span id="li1">HiBaby</span></a></li>
-                <li><a class="li-a2" href="#"><span id="li2">이동하기</span></a></li>
+                <li><a class="li-a2" href="#"><span id="li2" onclick="showUserList()">유저목록</span></a></li>
                 <li>
                     <a class="li-a3" href="#"><span id="li3">쪽지함</span></a> 
                     <!-- span으로 쪽지함 ! 나타나게 하기 -->
@@ -45,6 +45,32 @@
         <div class="includeContainer">
 	    	<jsp:include page="/WEB-INF/views/${view}.jsp"></jsp:include>
  		</div>
+ 		
+ 		
+ 		
+ 		<!-- 유저검색 모달창start( ajax로 만들기 ) -->
+ 		<div id="searchBox" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div>
+                	<form id="searchNickFrm">
+						<input id="searchNick" type="text" name="searchNick" placeholder="유저 검색">
+						<button type="button" onclick="searchUserList()">구글 아이콘 돋보기 넣기</button>                	
+                	</form>
+                </div>
+                
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div>유저 검색</div>
+                </div>
+                
+                <!-- Modal bottom -->
+                <button id="exitBtn" type="button" class="pop_bt" onclick="engHide()">종료</button>
+            </div>
+        </div>
+        <!-- 유저검색 End -->
+        
+        
     </div>
 
 
@@ -56,6 +82,18 @@
 			location.href="/user/logout"	
 		}
 	}
+	
+	searchBox.style.display = 'none'
+	
+	function showUserList() {
+		searchBox.style.display = 'flex'
+	}
+	
+	function searchUserList() {
+		alert('아작스로 검색 만들기')
+	}
+	
+	// 유저 리스트 뿌리기 ajax로 만들기
 
 </script>
 </body>

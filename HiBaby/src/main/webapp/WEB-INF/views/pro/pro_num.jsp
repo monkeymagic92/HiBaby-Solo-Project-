@@ -45,6 +45,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+	// 창이 켜지면 user input 커서 
 	window.onload = function(){
 		userInsFrm.userResult.focus()
 	}

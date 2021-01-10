@@ -435,7 +435,7 @@ public class StudyUtils {
 		 */
 		String[] eArray1 = {"고양이", "사자", "호랑이","강아지", "소녀", "자동차", "곰", "피아노", "컴퓨터", "꽃", "아기", "학교", "소년", "아침", "점심", "저녁", "책", "한국", "의자", "쥐"};
 		
-		String[] eArray2 = {"cat", "lion", "tiger","dog","girl","car", "bear","piano","computer","flower", "baby", "school", "boy", "morning", "lunch", "Dinner", "book", "korea", "chair", "mouse"};
+		String[] eArray2 = {"cat", "lion", "tiger","dog","girl","car", "bear","piano","computer","flower", "baby", "school", "boy", "morning", "lunch", "dinner", "book", "korea", "chair", "mouse"};
 
 		
 		String[] a1 = new String[20];

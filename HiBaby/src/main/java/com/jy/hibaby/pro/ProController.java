@@ -113,6 +113,7 @@ public class ProController {
 			int maxmin = param.getUserResult() + 1;
 			int a = (101 - maxmin);
 			
+			
 			comResult = (int)(Math.random() * a) + maxmin;
 			
 			if(comResult == gameResult) {
