@@ -298,8 +298,13 @@ public class UserService {
 	}
 	
 	
+	// 유저 목록 검색시 list 값 뿌리기
 	public List<UserPARAM> searchUserList(UserPARAM param) {
 		return mapper.searchUserList(param);
+	}
+	
+	public UserPARAM detailUser(UserPARAM param) {
+		return mapper.detailUser(param);
 	}
 	
 	

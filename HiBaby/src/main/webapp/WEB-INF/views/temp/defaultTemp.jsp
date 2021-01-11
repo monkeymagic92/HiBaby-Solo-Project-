@@ -15,7 +15,7 @@
        <header class="main-header">
             <ul class="header-ul">
                 <li><a class="li-a1" href="/index/select"><span id="li1">HiBaby</span></a></li>
-                <li><a class="li-a2" href="#"><span id="li2-1" onclick="showUserList()">친구 목록</span></a></li>
+                <li><a class="li-a2" href="#"><span id="li2-1" onclick="#">친구 목록</span></a></li>
                 <li><a class="li-a2" href="#"><span id="li2" onclick="showUserList()">유저 목록</span></a></li>
                 <li>
                     <a class="li-a3" href="#"><span id="li3">쪽지함</span></a> 
@@ -101,27 +101,37 @@
             <!-- Modal content -->
             <div class="detailModal-content">                
                 <span id="detailExitBtn" class="material-icons" onclick="detailModalHide()">clear</span>
+                
+                
                 <!-- detailUserBox 안에 append 하기 -->
                 <div id="detailUserBox">
 
-                    <img class="detailImg1" src="/res/img/chall.png">
-                    <div class="detailUserInfo">
+                    <!--  <img class="detailImg1" src="/res/img/chall.png"> -->
+                    <div id="detailUserInfo" class="detailUserInfo">
+                    	<!-- 
                         <img class="detailImg2" src="/res/img/HiBaby.jpg">
                         <span class="detailNick">
                             testJy
-                        </span>                                                
+                        </span>
+                        -->                                                
                     </div>
+                    <!-- 
                     <span class="detailPoint">
                         12,500p
                     </span>
-                    <div class="detailSm">
+                     -->
+                    <div id="detailSm" class="detailSm">
+                    	<!-- 
                         <p class="detailP">
                         동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록
                         </p>
+                         -->
                     </div>
                 </div>
-                <button id="frPlusBtn">친구 추가</button>
-                <button id="messageBtn">쪽지</button>
+                <div id="detailBtnMall">
+	                <button id="frPlusBtn">친구 추가</button>
+	                <button id="messageBtn">쪽지</button>
+                </div>
                 
                 <!-- Modal body -->
                
@@ -152,11 +162,7 @@
 	// 유저 검색창 열기
 	function showUserList() {
 		searchBox.style.display = 'flex'
-	}	
-	// userDetailModal 열기
-	function showDetailModal() {
-        detailUser.style.display = 'flex'
-    }
+	}
 	
 	// 닫기 눌렀을시 userList 검색창 닫기
 	function searchBoxHide() {
@@ -166,6 +172,7 @@
     function detailModalHide() {
         detailUser.style.display = 'none'
     }
+	
 	
 	
 	
@@ -202,8 +209,8 @@
 		
 		userListBox.onclick = function() {
 			// ★★ 클릭했을시 상대방 상세화면 띄우기
-			showDetailModal()
-			
+			var i_user = arr.i_user
+			showDetailModal(i_user)
 		}
 		
 		var userListDiv1 = document.createElement('div')
@@ -271,6 +278,98 @@
 	// 유저 '검색 리스트' 뿌리기 ajax 로 검색기능 end
 	
 	
+	
+	// userDetailModal -ajax 값 뿌리기-
+	function showDetailModal(i_user) {
+        
+       	axios.get('/user/detailUser',{
+   			params: {
+   		          i_user : i_user
+   		    }
+   			
+   		}).then(function(res) {
+   			detailUserBox.innerHTML = ''
+   			makeUserDetail(res.data)
+   			detailUser.style.display = 'flex'	// 나중에 대비해서 혹시 화면 잘안뜨면 위치 밑으로 뺴기
+			
+   		})
+    }
+	
+	function makeUserDetail(res) {
+		
+		var detailImg1 = document.createElement('img')
+		detailImg1.setAttribute('class', 'detailImg1')
+		if(res.totalPoint < 150) {			
+			detailImg1.setAttribute('src',`/res/img/ion.png`)
+			
+		} else if(res.totalPoint < 400) {
+			detailImg1.setAttribute('src',`/res/img/gold.png`)
+			
+		} else if(res.totalPoint < 600) {
+			detailImg1.setAttribute('src',`/res/img/dia.png`)
+			
+		} else if(res.totalPoint < 20000) {
+			detailImg1.setAttribute('src',`/res/img/master.png`)
+			
+		} else if(res.totalPoint > 20000) {
+			detailImg1.setAttribute('src',`/res/img/chall.png`)
+		}
+		
+		detailUserBox.append(detailImg1)
+		
+		var detailUserInfo = document.createElement('div')
+		detailUserInfo.setAttribute('id', 'detailUserInfo')
+		detailUserInfo.setAttribute('class', 'detailUserInfo')
+		
+		detailUserBox.append(detailUserInfo)
+		
+		var detailImg2 = document.createElement('img')
+		detailImg2.setAttribute('class', 'detailImg2')
+		if(res.profile_img != null) {
+			detailImg2.setAttribute('src',`/res/img/HiBaby/profile_img/user/\${res.i_user}/\${res.profile_img}`)
+			
+		} else {
+			detailImg2.setAttribute('src','/res/img/HiBaby.jpg')
+		}
+		detailUserInfo.append(detailImg2)
+		
+		var detailNick = document.createElement('span')
+		detailNick.setAttribute('class', 'detailNick')
+		detailNick.append(res.nick)
+		
+		detailUserInfo.append(detailNick)
+		
+		var detailPoint = document.createElement('span')
+		detailPoint.setAttribute('class', 'detailPoint')
+		detailPoint.append(res.totalPoint + 'p')
+		
+		detailUserBox.append(detailPoint)
+		
+		var detailSm = document.createElement('div')
+		detailSm.setAttribute('class', 'detailSm')
+		
+		var detailP = document.createElement('p')
+		detailP.setAttribute('class', 'detailP')
+		
+		if(res.sm == null) {
+			detailP.innerText = '상태메세지가 없습니다.'
+		} else {
+			detailP.append(res.sm)
+		}
+		
+		
+		detailSm.append(detailP)
+		
+		detailUserBox.append(detailSm)
+		
+		
+		
+		
+		
+		
+		
+		
+	}
 	
 </script>
 </body>

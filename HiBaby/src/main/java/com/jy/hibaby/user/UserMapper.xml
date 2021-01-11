@@ -70,7 +70,7 @@
 		SELECT MAX(i_user) FROM t_user
 	</select>
 
-
+	<!-- 유저목록 검색시 list 값 -->
 	<select id="searchUserList" parameterType="UserPARAM" resultType="UserPARAM">
 		SELECT B.totalPoint, A.profile_img, A.nick, A.sm, A.i_user
 		FROM t_user A
@@ -81,6 +81,16 @@
 	 	WHERE A.nick LIKE CONCAT('%', #{searchNick}, '%')
 	</select>
 	
+	<!-- 유저목록 상세 detail 값 -->
+	<select id="detailUser" parameterType="UserPARAM" resultType="UserPARAM">
+		SELECT B.totalPoint, A.profile_img, A.nick, A.sm, A.i_user
+		FROM t_user A
+		
+		LEFT JOIN t_myPoint B
+		ON A.i_user = B.i_user
+		
+		WHERE A.i_user = #{i_user}
+	</select>
 
 						<!-- insert -->
 						 
