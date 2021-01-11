@@ -80,6 +80,10 @@ DROP TABLE t_cmt;
 
 
 
+CREATE TABLE t_fr(
+	i_fr INT UNSIGNED AUTO_INCREMENT,
+		
+);
 
 
 

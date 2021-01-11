@@ -1,8 +1,8 @@
 package com.jy.hibaby.user;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -448,8 +448,6 @@ public class UserController {
 	@RequestMapping(value="/searchUserList", method=RequestMethod.GET)
 	private @ResponseBody List<UserPARAM> searchUserList(Model model, UserPARAM param){
 		System.out.println("자바 서치닉 : " + param.getSearchNick());
-		
-		
 		return service.searchUserList(param);
 	}
 	
@@ -460,6 +458,19 @@ public class UserController {
 		return service.detailUser(param); 
 	}
 	
+	// 친구 추가
+	@RequestMapping(value="/insFr", method=RequestMethod.POST)
+	@ResponseBody	
+	public String insFr(@RequestBody UserPARAM param, HttpSession hs) {
+		
+		int result = 0;
+		// 친구추가 중복 방지 만들기
+		
+		result = service.insFr(param); // 친구추가
+		
+		
+		return String.valueOf(result);
+	}
 	
 			
 }

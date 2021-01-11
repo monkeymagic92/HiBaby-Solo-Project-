@@ -392,9 +392,30 @@
 		var frPlusBtn = document.createElement('button')
 		frPlusBtn.setAttribute('id', 'frPlusBtn')
 		frPlusBtn.innerText = '친구추가'
-		frPlusBtn.onclick = function() {
-			// 친구추가 기능 넣기 
-			alert('친구추가 기능 넣기');
+		frPlusBtn.onclick = function() { // 친구 추가
+			
+			var loginNick = `${loginUser.nick}`
+			if(loginNick == '') {
+				alert('로그인을 해주세요')
+				return false;
+			}
+			
+			var i_user = `${loginUser.i_user}`
+			var to_user = res.i_user
+			
+			axios.post('/user/insFr',{
+				i_user : i_user,
+				to_user : to_user
+				
+			}).then(function(res) {
+				if(res.data == 1) {
+					alert('친구가 되었습니다.')
+				} else {
+					alert('시스템 오류가 발생하였습니다 다시 시도해 주세요.')
+				}
+				
+			})
+			
 		}
 		
 		var messageBtn = document.createElement('button')

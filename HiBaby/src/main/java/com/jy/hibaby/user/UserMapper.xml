@@ -91,6 +91,12 @@
 		
 		WHERE A.i_user = #{i_user}
 	</select>
+	
+	<!-- 친추 중복 방지 -->
+	<select id="frUniqueChk" parameterType="UserPARAM" resultType="UserPARAM">
+		SELECT to_user FROM t_fr
+		WHERE i_user = #{i_user}
+	</select>
 
 						<!-- insert -->
 						 
@@ -118,6 +124,13 @@
 		VALUES
 		(#{i_user}, #{totalPoint}, #{myPoint}, #{myCash})
 	</insert>	
+	
+	<insert id="insFr" parameterType="UserPARAM">
+		INSERT INTO t_fr
+		(i_user, to_user)
+		VALUES
+		(#{i_user}, #{to_user})
+	</insert>
 	
 	
 	

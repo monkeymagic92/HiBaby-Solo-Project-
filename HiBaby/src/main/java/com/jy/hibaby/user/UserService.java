@@ -4,6 +4,7 @@ package com.jy.hibaby.user;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -316,6 +317,16 @@ public class UserService {
 	// 로그아웃 할경우 loginChk 값 = 1로 (비접속)
 	public int loginChkMin(UserPARAM param) {
 		return mapper.loginChkMin(param);
+	}
+	
+	// 친구 추가
+	public int insFr(UserPARAM param) {
+		return mapper.insFr(param);
+	}
+	
+	// 친구 추가 중복 제거
+	public List<UserPARAM> frUniqueChk(UserPARAM param) {
+		return mapper.frUniqueChk(param);
 	}
 	
 	
