@@ -450,7 +450,7 @@ public class UserController {
 		return service.searchUserList(param);
 	}
 	
-	// ajax로 처리해야됨 (return으로 마땅히 보내줄만한 곳이없음 걍 값만 뿌려야됨)
+	// 유저 목록 검색 상세페이지
 	@RequestMapping(value="/detailUser", method=RequestMethod.GET)
 	private @ResponseBody UserPARAM detailUser(Model model, UserPARAM param){
 		System.out.println("detail I-user 값 : " + param.getI_user());

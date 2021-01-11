@@ -127,11 +127,14 @@
                         </p>
                          -->
                     </div>
+                    <!-- 
+                    <div id="detailBtnMall">
+		                <button id="frPlusBtn">친구 추가</button>
+		                <button id="messageBtn">쪽지</button>
+                	</div>
+                	 -->
                 </div>
-                <div id="detailBtnMall">
-	                <button id="frPlusBtn">친구 추가</button>
-	                <button id="messageBtn">쪽지</button>
-                </div>
+                
                 
                 <!-- Modal body -->
                
@@ -356,18 +359,33 @@
 		} else {
 			detailP.append(res.sm)
 		}
-		
-		
 		detailSm.append(detailP)
 		
 		detailUserBox.append(detailSm)
 		
+		// 친구추가 / 쪽지 btn 값 넣기
+		//순서도 : detailUserBox > detailBtnMall > frPlusBtn 순으로
+		var detailBtnMall = document.createElement('div')
+		detailBtnMall.setAttribute('id', 'detailBtnMall')
 		
+		var frPlusBtn = document.createElement('button')
+		frPlusBtn.setAttribute('id', 'frPlusBtn')
+		frPlusBtn.innerText = '친구추가'
+		frPlusBtn.onclick = function() {
+			alert('친구추가 기능 넣기')
+		}
 		
+		var messageBtn = document.createElement('button')
+		messageBtn.setAttribute('id', 'messageBtn')
+		messageBtn.innerText = '쪽지'
+		messageBtn.onclick = function() {
+			alert('쪽지 기능 넣기')
+		}
 		
+		detailBtnMall.append(frPlusBtn)
+		detailBtnMall.append(messageBtn)
 		
-		
-		
+		detailUserBox.append(detailBtnMall)
 		
 	}
 	
