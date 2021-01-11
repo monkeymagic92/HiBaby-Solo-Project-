@@ -91,6 +91,41 @@
             </div>
         </div>
         <!-- 유저검색 모달 end -->
+        
+        <!-- 유저검색 상세모달 start -->
+        <div id="detailUser" class="detailModal">
+
+            <!-- Modal content -->
+            <div class="detailModal-content">                
+                <span id="detailExitBtn" class="material-icons" onclick="detailModalHide()">clear</span>
+                <!-- detailUserBox 안에 append 하기 -->
+                <div id="detailUserBox">
+
+                    <img class="detailImg1" src="/res/img/chall.png">
+                    <div class="detailUserInfo">
+                        <img class="detailImg2" src="/res/img/HiBaby.jpg">
+                        <span class="detailNick">
+                            testJy
+                        </span>                                                
+                    </div>
+                    <span class="detailPoint">
+                        12,500p
+                    </span>
+                    <div class="detailSm">
+                        <p>
+                        동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록
+                        </p>
+                    </div>
+                </div>
+                <button id="frPlusBtn">친구 추가</button>
+                <button id="messageBtn">쪽지</button>
+                
+                <!-- Modal body -->
+               
+                
+                <!-- Modal bottom -->
+            </div>
+        </div>
  		
         
     </div>
@@ -109,17 +144,26 @@
 	
 	// 화면 켜졌을때 유저 검색창 닫기
 	searchBox.style.display = 'none'
+	// ""   ""      유저 detail 모달 닫기
+    detailUser.style.display = 'none'
 	
 	// 유저 검색창 열기
 	function showUserList() {
-		
 		searchBox.style.display = 'flex'
-	}
+	}	
+	// userDetailModal 열기
+	function showDetailModal() {
+        detailUser.style.display = 'flex'
+    }
 	
-	// 닫기 눌렀을시 유저 검색창 닫기
+	// 닫기 눌렀을시 userList 검색창 닫기
 	function searchBoxHide() {
 	    searchBox.style.display = 'none'
 	}    
+	// userDetailModal 닫기
+    function detailModalHide() {
+        detailUser.style.display = 'none'
+    }
 	
 	
 	
@@ -156,7 +200,7 @@
 		
 		userListBox.onclick = function() {
 			// ★★ 클릭했을시 상대방 상세화면 띄우기
-			alert('i_user 값 : ' + arr.i_user)
+			showDetailModal()
 			
 		}
 		
