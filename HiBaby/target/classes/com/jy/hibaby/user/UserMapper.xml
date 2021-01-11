@@ -169,6 +169,19 @@
 		WHERE i_user = #{i_user}
 	</update>
 	
+	<!-- 로그인 했을시 loginChk 값 2로 upd  (친구추가 접속 상태) -->
+	<update id="loginChkPlus" parameterType="UserPARAM">
+		UPDATE t_user
+		SET loginChk = 2
+		WHERE i_user = #{i_user}
+	</update>
+	
+	<!-- 로그아웃 했을시 loginChk 값 1로 upd (비접속 상태) -->
+	<update id="loginChkMin" parameterType="UserPARAM">
+		UPDATE t_user
+		SET loginChk = 1
+		WHERE i_user = #{i_user}
+	</update>
 	
 						<!-- delete -->
 	

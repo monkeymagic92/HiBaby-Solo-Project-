@@ -403,7 +403,6 @@ display: block;
     font-size: 1em;
     font-weight: bold;
     color: #8ebdb7;
-    
 }
 
 #frPlusBtn:hover {
@@ -433,3 +432,126 @@ display: block;
 }
 /* detail User Modal End */
 
+
+
+/* 친구목록 모달 start */
+.frListmodal {
+	display: none;
+    position: fixed;
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+#frTitle {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: grey;
+    margin-left: 65px;
+}
+
+/* Modal Content/Box */
+.frListmodal-content {
+    background-color: #fefefe;
+    overflow: auto;
+	margin: 10% auto; 
+	height: 54%;
+    padding: 20px;
+    padding-right: 57px;
+	border: 3px solid #fff7ed;
+	border-radius: 20px;
+	width: 26%;                           
+	text-align: center;
+	background-color: #fff7ed;
+}
+.frListmodal-content::-webkit-scrollbar {   /* 스크롤 안보이게 숨기기 */
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+
+
+#frexitBtn {
+    font-size: 2.8em;
+    margin-top: -12px;
+    margin-left: 505px;
+}
+
+#frexitBtn:hover {
+    cursor: pointer;
+    color: grey;
+}
+
+.frmodal-body {
+    overflow:auto;
+}
+
+.frListTable {
+    display: flex;
+    overflow: auto;
+    border: 2px solid grey;
+    width: 530px;
+    margin-top: 25px;
+    border-radius: 10px;
+}
+
+.frListTable:hover {
+    cursor: pointer;
+    border: 2px solid skyblue;
+}
+
+.userListDiv1 {
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.userListDiv2 {
+    margin-top: 2px;
+    margin-left: 10px;
+}
+
+.userListDiv3 {
+    margin-top: 12px;
+    margin-left: 8px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.userListDiv4 {
+    margin-top: 15px;
+    margin-left: 15px;
+    font-size: 1em;
+    color: grey;
+}
+
+#loginChkCir {
+    margin-top: 14px;
+    margin-left: 27px;
+    color: #6ed1ff;
+    font-size: 1.7em;
+    width: 15px;
+    height: 15px;
+    border-radius: 100px;
+}
+
+.userListImg {
+    width: 45px;
+    height: 45px;
+    border-radius: 100px;
+}
+
+#frListBox {
+    margin-top: 4px;
+    border: 2px solid grey;
+    border-radius: 6px;
+}
+
+#frListBox:hover {
+    cursor: pointer;
+    border: 3px solid black;
+}
+/* 친구목록 모달 End */

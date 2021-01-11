@@ -78,7 +78,9 @@ public class UserController {
 	
 	// 로그아웃
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
-	public String logout(Model model, HttpSession hs) {
+	public String logout(Model model, HttpSession hs, UserPARAM param) {
+		param = (UserPARAM)hs.getAttribute(Const.LOGIN_USER);
+		service.loginChkMin(param); // 로그인 할시 loginChk값 = 2  (접속상태)
 		hs.invalidate();
 		return "redirect:/" + ViewRef.USER_LOGIN;
 	}
@@ -105,6 +107,7 @@ public class UserController {
 		int result = service.login(param);
 		
 		if(result == Const.SUCCESS) {
+			// 로그인할시 loginChk 값을 2로 넘기기
 			hs.setAttribute(Const.LOGIN_USER, param);
 			return "redirect:/" + ViewRef.INDEX_SELECT;
 		}

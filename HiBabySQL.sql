@@ -13,10 +13,12 @@ CREATE TABLE t_user(
 	profile_img VARCHAR(200),
 	r_dt DATETIME DEFAULT NOW(),
 	m_dt DATETIME DEFAULT NOW(),
+	loginChk INT(5) DEFAULT 1,	-- 로그인했을시 2로 값 넘기기
 	PRIMARY KEY(i_user)
 );
 SELECT * FROM t_user;
 DROP TABLE t_user;
+
 
 
 
@@ -75,6 +77,9 @@ CREATE TABLE t_cmt(
 );
 SELECT * FROM t_cmt;
 DROP TABLE t_cmt;
+
+
+
 
 
 

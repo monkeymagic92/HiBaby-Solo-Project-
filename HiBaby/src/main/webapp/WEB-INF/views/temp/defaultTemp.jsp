@@ -15,7 +15,7 @@
        <header class="main-header">
             <ul class="header-ul">
                 <li><a class="li-a1" href="/index/select"><span id="li1">HiBaby</span></a></li>
-                <li><a class="li-a2" href="#"><span id="li2-1" onclick="#">친구 목록</span></a></li>
+                <li><a class="li-a2" href="#"><span id="li2-1" onclick="showFrList()">친구 목록</span></a></li>
                 <li><a class="li-a2" href="#"><span id="li2" onclick="showUserList()">유저 목록</span></a></li>
                 <li>
                     <a class="li-a3" href="#"><span id="li3">쪽지함</span></a> 
@@ -134,14 +134,35 @@
                 	</div>
                 	 -->
                 </div>
-                
-                
+                 <!-- Modal bottom -->
+            </div>
+        </div>
+        <!-- 유저검색 상세모달 end -->
+        
+        <!-- 친구 목록 모달 start-->
+        <div id="frList" class="frListmodal">
+            <!-- Modal content -->
+            
+            <div class="frListmodal-content">                
+                <span id="frexitBtn" class="material-icons" onclick="frListHide()">clear</span>
                 <!-- Modal body -->
-               
-                
+                <span id="frTitle">친구 목록(4)</span>
+                <div class="frListmodal-body">
+                    <!-- forEach 돌리기 (클릭할시 친구삭제, 쪽지보내기 모달창 띄우기)-->
+                    <div class="frListTable" onclick="choiceMenu()">
+                        <!-- 계급, 사진, 닉네임, 상태메세지( 20글자이상 ...으로 ) 스크롤 기능 넣기-->
+                        <div class="userListDiv1"><img class="userListImg" src="/res/img/chall.png"></div>
+                        <div class="userListDiv2"><img class="userListImg" src="/res/img/HiBaby.jpg"></div>
+                        <div class="userListDiv3">Test321</div>
+                        <div class="userListDiv4">저의 상태메세지 입니다 말은점으로...</div>                            
+                        <span id="loginChkCir" class="material-icons">child_care</span>
+                    </div>
+                </div>
                 <!-- Modal bottom -->
             </div>
         </div>
+        <!-- 친구 목록 모달 end -->
+        
  		
     </div>
 
@@ -372,14 +393,16 @@
 		frPlusBtn.setAttribute('id', 'frPlusBtn')
 		frPlusBtn.innerText = '친구추가'
 		frPlusBtn.onclick = function() {
-			alert('친구추가 기능 넣기')
+			// 친구추가 기능 넣기 
+			alert('친구추가 기능 넣기');
 		}
 		
 		var messageBtn = document.createElement('button')
 		messageBtn.setAttribute('id', 'messageBtn')
 		messageBtn.innerText = '쪽지'
 		messageBtn.onclick = function() {
-			alert('쪽지 기능 넣기')
+			// 쪽지 기능 넣기
+			alert('쪽지 기능 넣기');
 		}
 		
 		detailBtnMall.append(frPlusBtn)
@@ -388,6 +411,23 @@
 		detailUserBox.append(detailBtnMall)
 		
 	}
+	
+    // frList Start
+
+    // frList show
+    function showFrList() {
+        frList.style.display = 'flex'
+    }
+    // frList hide
+    function frListHide() {
+        frList.style.display = 'none'
+    }
+
+    function choiceMenu() {
+        alert('친구삭제, 쪽지 모달창 만들기')
+    }
+
+    // frList End
 	
 </script>
 </body>

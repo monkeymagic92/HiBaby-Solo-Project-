@@ -303,8 +303,19 @@ public class UserService {
 		return mapper.searchUserList(param);
 	}
 	
+	// 유저 목록 검색후 detail 값
 	public UserPARAM detailUser(UserPARAM param) {
 		return mapper.detailUser(param);
+	}
+	
+	// 로그인할경우 loginChk 값 = 2로 (접속)
+	public int loginChkPlus(UserPARAM param) {
+		return mapper.loginChkPlus(param);
+	}
+	
+	// 로그아웃 할경우 loginChk 값 = 1로 (비접속)
+	public int loginChkMin(UserPARAM param) {
+		return mapper.loginChkMin(param);
 	}
 	
 	

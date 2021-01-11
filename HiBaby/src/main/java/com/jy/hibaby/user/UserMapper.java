@@ -53,6 +53,10 @@ public interface UserMapper {
 	
 	int updPoint(PointVO vo);
 	
+	int loginChkPlus(UserPARAM param);	// 로그인 할경우 접속상태 chk = 2
+	
+	int loginChkMin(UserPARAM param);	// 로그아웃 할경우 비접속 상태 chk = 1
+	
 	
 	
 	// delete 
