@@ -226,13 +226,6 @@
 	
 	
 	
-	// 유저  '전체 리스트' 뿌리기 ajax로 만들기
-	function allUserBtn() {
-		
-	}
-	
-	
-
 </script>
 </body>
 </html>
