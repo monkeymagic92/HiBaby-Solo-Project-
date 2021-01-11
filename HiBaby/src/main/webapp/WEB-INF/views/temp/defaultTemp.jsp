@@ -68,11 +68,15 @@
                 
                 <!-- Modal body -->
                 <div class="searchModal-body">
-                    <div class="userListTable">
+                    <div id="userListTableId" class="userListTable">
                         <div id="userListBox">
                             <!-- 계급, 사진, 닉네임, 상태메세지( 20글자이상 ...으로 ) 스크롤 기능 넣기-->
-                            <div class="userListDiv1"><img class="userListImg" src="/res/img/chall.png"></div>
-                            <div class="userListDiv2"><img class="userListImg" src="/res/img/HiBaby.jpg"></div>
+                            <div class="userListDiv1">
+                            	<img class="userListImg" src="/res/img/chall.png">
+                            </div>
+                            <div class="userListDiv2">
+                            	<img class="userListImg" src="/res/img/HiBaby.jpg">
+                            </div>
                             <div class="userListDiv3">Test321</div>
                             <div class="userListDiv4">저의 상태메세지 입니다 말은점으로...</div>
                         </div>
@@ -136,7 +140,8 @@
  		
         
     </div>
-    
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
 	//로그아웃
 	function logOut() {
@@ -153,6 +158,7 @@
 	
 	// 유저 검색창 열기
 	function showUserList() {
+		
 		searchBox.style.display = 'flex'
 	}
 	
@@ -163,18 +169,107 @@
 	
 	
 	
-	// 유저 '검색 리스트' 뿌리기 ajax 로 검색기능
+	// 유저 '검색 리스트' 뿌리기 ajax 로 검색기능 start
 	function searchUserList() {
-		var searchNick = searchNickFrm.searchNick.value 
-		console.log('searchNick1 : ' + searchNick)
+		var searchNick = searchNickFrm.searchNick.value
+		console.log('서치닉 : ' + searchNick)
 		
 		axios.get('/user/searchUserList',{
-			searchNick : searchNick
+			params: {
+		          searchNick : searchNick,
+		    }
 			
 		}).then(function(res) {
-			console.log('searchNick2 : ' + searchNick)
+			userListTableId.innerHTML = ''
+			refreshUserList(res.data)
+			
 		})
 	}
+	
+	 
+	function refreshUserList(arr) {
+		for (let i = 0; i<arr.length; i++) {
+	         makeUserList(arr[i])
+	    }
+	}
+	var lastText = '...'
+	
+	function makeUserList(arr) {		
+		
+		var userListBox = document.createElement('div')
+		userListBox.setAttribute('id', 'userListBox')
+		
+		userListBox.onclick = function() {
+			// ★★ 클릭했을시 상대방 상세화면 띄우기
+			alert('i_user 값 : ' + arr.i_user)
+			
+		}
+		
+		var userListDiv1 = document.createElement('div')
+		userListDiv1.setAttribute('class', 'userListDiv1')
+		
+		var userListImg1 = document.createElement('img')
+		userListImg1.setAttribute('class', 'userListImg')
+		if(arr.totalPoint < 150) {			
+			userListImg1.setAttribute('src',`/res/img/ion.png`)
+			
+		} else if(arr.totalPoint < 400) {
+			userListImg1.setAttribute('src',`/res/img/gold.png`)
+			
+		} else if(arr.totalPoint < 600) {
+			userListImg1.setAttribute('src',`/res/img/dia.png`)
+			
+		} else if(arr.totalPoint < 20000) {
+			userListImg1.setAttribute('src',`/res/img/master.png`)
+			
+		} else if(arr.totalPoint > 20000) {
+			userListImg1.setAttribute('src',`/res/img/chall.png`)
+		}
+		
+		userListDiv1.append(userListImg1)
+		userListBox.append(userListDiv1)
+		
+		var userListDiv2 = document.createElement('div')
+		userListDiv2.setAttribute('class', 'userListDiv2')
+		
+		var userListImg2 = document.createElement('img')
+		userListImg2.setAttribute('class', 'userListImg')
+		if(arr.profile_img != null) {
+			userListImg2.setAttribute('src',`/res/img/HiBaby/profile_img/user/\${arr.i_user}/\${arr.profile_img}`)
+			
+		} else {
+			userListImg2.setAttribute('src','/res/img/HiBaby.jpg')
+		}
+		
+		userListDiv2.append(userListImg2)
+		userListBox.append(userListDiv2)
+		
+		var userListDiv3 = document.createElement('div')
+		userListDiv3.setAttribute('class', 'userListDiv3')
+		userListDiv3.append(arr.nick)
+		
+		userListTableId.append(userListBox)
+		userListBox.append(userListDiv3)
+		
+		var userListDiv4 = document.createElement('div')
+		userListDiv4.setAttribute('class', 'userListDiv4')
+		
+		if(arr.sm == null) {
+			userListDiv4.innerText = ' 상태메세지가 없습니다.'
+			
+		} else if(arr.sm.length < 25) {
+			userListDiv4.append(arr.sm)
+			
+		} else if (arr.sm.length > 25) {
+			userListDiv4.append(arr.sm.substring(0,20) + lastText)
+			
+		} 
+		
+		userListBox.append(userListDiv4)
+		
+	}
+	
+	// 유저 '검색 리스트' 뿌리기 ajax 로 검색기능 end
 	
 	
 	

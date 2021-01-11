@@ -296,7 +296,11 @@ public class UserService {
 		
 		return param;
 	}
-		
+	
+	
+	public List<UserPARAM> searchUserList(UserPARAM param) {
+		return mapper.searchUserList(param);
+	}
 	
 	
 	

@@ -26,6 +26,8 @@ public interface UserMapper {
 	
 	UserDMI selDetailUser(UserPARAM param);	// info 에서 변경시 값 불러오기
 	
+	List<UserPARAM> searchUserList(UserPARAM param);
+	
 	
 	int maxI_user();	// 회원가입시 t_myPoint 에 기본 포인트 적립용
 	
