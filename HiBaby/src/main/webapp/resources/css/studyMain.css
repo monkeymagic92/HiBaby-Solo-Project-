@@ -186,7 +186,7 @@ h2 {
 }
 
 #hideCarcul {
-    margin-left: 1728px;
+    margin-left: 1741px;
     background-color: rgb(0,0,0); 
     background-color: rgba(0,0,0,0.4); 
     border-radius: 4px;
@@ -197,26 +197,20 @@ h2 {
     background-color: rgb(1,5,2); 
     background-color: rgba(56, 56, 39, 0.4); 
 }
-
-
-
 /* modal end */
 
 
 
-* {
-	box-sizing: border-box;
-}
+
+/* calc css */
+
 
 #calculator {
     
-    margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+  
 	font: normal 25px Arial, sans-serif;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  user-select: none;
+  	box-sizing: border-box;
+  
 	width: 325px;
 	height: auto;
 	overflow:hidden;
@@ -229,15 +223,8 @@ h2 {
 	box-shadow:  0px 10px 15px rgba(0, 0, 0, 0.2);
 }
 
-
-.top span.clear {
-	position:absolute;
-  z-index:6;
- 
-}
-
-
 .top .screen {
+	box-sizing: border-box;
 	height: 80px;
 	width: 100%;
 	position:absolute;
@@ -257,6 +244,7 @@ h2 {
 
 
 .keys span, .top span.clear {
+	box-sizing: border-box;
 	float: left;
 	position: relative;
 	top: 0;

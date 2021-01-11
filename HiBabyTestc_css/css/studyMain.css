@@ -457,13 +457,11 @@ h2 {
 
 #calculator {
     
-    margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+   
+	
 	font: normal 25px Arial, sans-serif;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  user-select: none;
+  
+
 	width: 325px;
 	height: auto;
 	overflow:hidden;

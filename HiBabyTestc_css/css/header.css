@@ -376,6 +376,10 @@ display: block;
     font-weight: bold;
 }
 
+.detailP {
+    padding-left: 8px;
+    padding-right: 8px;
+}
 #detailExitBtn {
     font-size: 2.8em;
     margin-top: -12px;
@@ -409,7 +413,7 @@ display: block;
 }
 
 #messageBtn {
-    position: relative;
+    position: relative;    
     top: 130px;
     left: 30px;
     width: 100px;

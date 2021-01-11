@@ -92,6 +92,9 @@
         </div>
         <!-- 유저검색 모달 end -->
         
+        
+        
+        
         <!-- 유저검색 상세모달 start -->
         <div id="detailUser" class="detailModal">
 
@@ -112,7 +115,7 @@
                         12,500p
                     </span>
                     <div class="detailSm">
-                        <p>
+                        <p class="detailP">
                         동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록
                         </p>
                     </div>
@@ -127,7 +130,6 @@
             </div>
         </div>
  		
-        
     </div>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
