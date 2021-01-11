@@ -77,7 +77,7 @@ body {
 .dropbtn {
 background-color: pink;
 color: white;
-padding: 10px;
+padding: 8px;
 border: none;
 position: relative;
 top: 3px;
@@ -139,7 +139,7 @@ display: block;
 
 
 /* 유저 검색 모달 */
-.modal {
+.searchModal {
     
 	display: none;
     position: fixed;
@@ -192,25 +192,29 @@ display: block;
 }
 
 /* Modal Content/Box */
-.modal-content {
+.searchModal-con {
     background-color: #fefefe;
 	margin: 15% auto; 
 	height: 54%;
     padding: 20px;
 	border: 3px solid #fff7ed;
 	border-radius: 20px;
-	width: 26%;                           
+	width: 540px;                           
 	text-align: center;
 	background-color: #fff7ed;
 }
 
-#exitBtn {
+.searchNickFrmDiv {
+	margin-left: 6%;
+}
+
+#searchExitBtn {
     font-size: 2.8em;
     margin-top: -12px;
     margin-left: 466px;
 }
 
-#exitBtn:hover {
+#searchExitBtn:hover {
     cursor: pointer;
     color: grey;
 }
@@ -264,9 +268,6 @@ display: block;
     cursor: pointer;
     border: 3px solid black;
 }
-
-
-
 
 
 

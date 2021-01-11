@@ -49,12 +49,12 @@
  		
  		
  		<!-- 유저검색 모달 start -->
-       <div id="searchBox" class="modal">
+       <div id="searchBox" class="searchModal">
             <!-- Modal content -->
             
-            <div class="modal-content">                
-                <span id="exitBtn" class="material-icons" onclick="searchBoxHide()">clear</span>
-                <div>
+            <div class="searchModal-con">                
+                <span id="searchExitBtn" class="material-icons" onclick="searchBoxHide()">clear</span>
+                <div class="searchNickFrmDiv">
                     <form id="searchNickFrm">
                         <input id="searchNick" type="text" name="searchNick" placeholder="유저 검색">
                         <div class="searchBtnDiv">
@@ -67,7 +67,7 @@
                 </div>
                 
                 <!-- Modal body -->
-                <div class="modal-body">
+                <div class="searchModal-body">
                     <div class="userListTable">
                         <div id="userListBox">
                             <!-- 계급, 사진, 닉네임, 상태메세지( 20글자이상 ...으로 ) 스크롤 기능 넣기-->
@@ -92,36 +92,36 @@
                         </div>
                         <div id="userListBox">
                             <!-- 계급, 사진, 닉네임, 상태메세지( 20글자이상 ...으로 ) 스크롤 기능 넣기-->
-                            <div class="userListDiv1"><img class="userListImg" src="img/chall.png"></div>
-                            <div class="userListDiv2"><img class="userListImg" src="img/HiBaby.jpg"></div>
+                            <div class="userListDiv1"><img class="userListImg" src="/res/img/chall.png"></div>
+                            <div class="userListDiv2"><img class="userListImg" src="/res/img/HiBaby.jpg"></div>
                             <div class="userListDiv3">Test321</div>
                             <div class="userListDiv4">저의 상태메세지 입니다 말은점으로...</div>
                         </div>
                         <div id="userListBox">
                             <!-- 계급, 사진, 닉네임, 상태메세지( 20글자이상 ...으로 ) 스크롤 기능 넣기-->
-                            <div class="userListDiv1"><img class="userListImg" src="img/chall.png"></div>
-                            <div class="userListDiv2"><img class="userListImg" src="img/HiBaby.jpg"></div>
+                            <div class="userListDiv1"><img class="userListImg" src="/res/img/chall.png"></div>
+                            <div class="userListDiv2"><img class="userListImg" src="/res/img/HiBaby.jpg"></div>
                             <div class="userListDiv3">Test321</div>
                             <div class="userListDiv4">저의 상태메세지 입니다 말은점으로...</div>
                         </div>
                         <div id="userListBox">
                             <!-- 계급, 사진, 닉네임, 상태메세지( 20글자이상 ...으로 ) 스크롤 기능 넣기-->
-                            <div class="userListDiv1"><img class="userListImg" src="img/chall.png"></div>
-                            <div class="userListDiv2"><img class="userListImg" src="img/HiBaby.jpg"></div>
+                            <div class="userListDiv1"><img class="userListImg" src="/res/img/chall.png"></div>
+                            <div class="userListDiv2"><img class="userListImg" src="/res/img/HiBaby.jpg"></div>
                             <div class="userListDiv3">Test321</div>
                             <div class="userListDiv4">저의 상태메세지 입니다 말은점으로...</div>
                         </div>
                         <div id="userListBox">
                             <!-- 계급, 사진, 닉네임, 상태메세지( 20글자이상 ...으로 ) 스크롤 기능 넣기-->
-                            <div class="userListDiv1"><img class="userListImg" src="img/chall.png"></div>
-                            <div class="userListDiv2"><img class="userListImg" src="img/HiBaby.jpg"></div>
+                            <div class="userListDiv1"><img class="userListImg" src="/res/img/chall.png"></div>
+                            <div class="userListDiv2"><img class="userListImg" src="/res/img/HiBaby.jpg"></div>
                             <div class="userListDiv3">Test321</div>
                             <div class="userListDiv4">저의 상태메세지 입니다 말은점으로...</div>
                         </div>
                         <div id="userListBox">
                             <!-- 계급, 사진, 닉네임, 상태메세지( 20글자이상 ...으로 ) 스크롤 기능 넣기-->
-                            <div class="userListDiv1"><img class="userListImg" src="img/chall.png"></div>
-                            <div class="userListDiv2"><img class="userListImg" src="img/HiBaby.jpg"></div>
+                            <div class="userListDiv1"><img class="userListImg" src="/res/img/chall.png"></div>
+                            <div class="userListDiv2"><img class="userListImg" src="/res/img/HiBaby.jpg"></div>
                             <div class="userListDiv3">Test321</div>
                             <div class="userListDiv4">저의 상태메세지 입니다 말은점으로...</div>
                         </div>
@@ -136,9 +136,7 @@
  		
         
     </div>
-
-
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    
 <script>
 	//로그아웃
 	function logOut() {
@@ -146,6 +144,7 @@
 			location.href="/user/logout"	
 		}
 	}
+	
 	
 	/* ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	유저 검색 관련	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ */
 	
@@ -166,14 +165,22 @@
 	
 	// 유저 '검색 리스트' 뿌리기 ajax 로 검색기능
 	function searchUserList() {
-		alert('아작스로 검색 만들기')
+		var searchNick = searchNickFrm.searchNick.value 
+		console.log('searchNick1 : ' + searchNick)
+		
+		axios.get('/user/searchUserList',{
+			searchNick : searchNick
+			
+		}).then(function(res) {
+			console.log('searchNick2 : ' + searchNick)
+		})
 	}
 	
 	
 	
 	// 유저  '전체 리스트' 뿌리기 ajax로 만들기
 	function allUserBtn() {
-	
+		
 	}
 	
 	

@@ -6,6 +6,17 @@ public class UserPARAM extends UserVO {
 	private int totalCash;
 	private int myCash;
 	private int myPointNow;
+	
+	private String searchNick;	// 유저 검색
+	
+	
+	
+	public String getSearchNick() {
+		return searchNick;
+	}
+	public void setSearchNick(String searchNick) {
+		this.searchNick = searchNick;
+	}
 	public int getMyPoint() {
 		return myPoint;
 	}

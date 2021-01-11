@@ -1,6 +1,7 @@
 package com.jy.hibaby.user;
 
 import java.io.File;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,6 +20,8 @@ import com.jy.hibaby.Const;
 import com.jy.hibaby.PointVO;
 import com.jy.hibaby.SecurityUtils;
 import com.jy.hibaby.ViewRef;
+import com.jy.hibaby.board.model.BoardPARAM;
+import com.jy.hibaby.cmt.model.CmtDMI;
 import com.jy.hibaby.mail.MailSendService;
 import com.jy.hibaby.mail.model.EmailVO;
 import com.jy.hibaby.user.model.UserDMI;
@@ -437,6 +440,16 @@ public class UserController {
 		
 		return "redirect:/" + ViewRef.USER_MYPAGE;
 	} 
+	
+	
+	// 유저 목록 검색
+	@RequestMapping(value="/searchUserList", method=RequestMethod.GET)
+	private @ResponseBody UserPARAM searchUserList(Model model, UserPARAM param){
+		System.out.println("자바 서치닉 : " + param.getSearchNick());
+		
+		return param;
+	}
+	
 			
 }
 

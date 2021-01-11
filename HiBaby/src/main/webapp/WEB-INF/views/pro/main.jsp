@@ -99,7 +99,7 @@
         </div>
     </div>
 
-
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>    
 <script>
 
