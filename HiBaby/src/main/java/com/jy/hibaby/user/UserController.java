@@ -462,13 +462,15 @@ public class UserController {
 	@RequestMapping(value="/insFr", method=RequestMethod.POST)
 	@ResponseBody	
 	public String insFr(@RequestBody UserPARAM param, HttpSession hs) {
-		
+		/* 
+		 * 찜 목록처럼 아예 chk값 줘서 중복 확인 떠나서 친추 되어있으면 친구삭제 버튼 뜨게 만들기
+		 * */
 		int result = 0;
-		// 친구추가 중복 방지 만들기
+				
+		result = service.frUniqueChk(param, hs);
 		
-		result = service.insFr(param); // 친구추가
-		
-		
+		System.out.println("result 값 : " + result);
+	
 		return String.valueOf(result);
 	}
 	

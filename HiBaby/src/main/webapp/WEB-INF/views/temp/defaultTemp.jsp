@@ -320,6 +320,7 @@
     }
 	
 	function makeUserDetail(res) {
+		var loginI_user = `${loginUser.i_user}`
 		
 		var detailImg1 = document.createElement('img')
 		detailImg1.setAttribute('class', 'detailImg1')
@@ -389,6 +390,8 @@
 		var detailBtnMall = document.createElement('div')
 		detailBtnMall.setAttribute('id', 'detailBtnMall')
 		
+		
+		
 		var frPlusBtn = document.createElement('button')
 		frPlusBtn.setAttribute('id', 'frPlusBtn')
 		frPlusBtn.innerText = '친구추가'
@@ -410,27 +413,34 @@
 			}).then(function(res) {
 				if(res.data == 1) {
 					alert('친구가 되었습니다.')
-				} else {
-					alert('시스템 오류가 발생하였습니다 다시 시도해 주세요.')
-				}
+					
+				} else if(res.data == 2) {
+					alert('나자신은 등록할수 없습니다.')
+					
+				}  else if(res.data == 10){
+					alert('이미 등록되어 있는 친구 입니다.')
+				} 
 				
 			})
 			
 		}
 		
+	
+	
 		var messageBtn = document.createElement('button')
 		messageBtn.setAttribute('id', 'messageBtn')
 		messageBtn.innerText = '쪽지'
 		messageBtn.onclick = function() {
 			// 쪽지 기능 넣기
 			alert('쪽지 기능 넣기');
-		}
+		}	
+	
 		
-		detailBtnMall.append(frPlusBtn)
-		detailBtnMall.append(messageBtn)
-		
-		detailUserBox.append(detailBtnMall)
-		
+		if(loginI_user != res.i_user) { // 나자신은 쪽지, 친추 금지
+			detailBtnMall.append(frPlusBtn)
+			detailBtnMall.append(messageBtn)
+			detailUserBox.append(detailBtnMall)
+		}		
 	}
 	
     // frList Start

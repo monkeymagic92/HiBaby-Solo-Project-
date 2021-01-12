@@ -82,8 +82,28 @@ DROP TABLE t_cmt;
 
 CREATE TABLE t_fr(
 	i_fr INT UNSIGNED AUTO_INCREMENT,
-		
+	i_user INT,
+	to_user INT,
+	r_dt DATETIME DEFAULT NOW(),
+	PRIMARY KEY(i_fr, i_user, to_user),
+	FOREIGN KEY (i_user) REFERENCES t_user(i_user)  ON DELETE CASCADE,
+	FOREIGN KEY (to_user) REFERENCES t_user(i_user)  ON DELETE CASCADE
 );
+SELECT * FROM t_fr;
+DROP TABLE t_fr;
+
+SELECT to_user FROM t_fr
+WHERE i_user = 1;
+
+
+
+
+
+
+
+
+
+
 
 
 

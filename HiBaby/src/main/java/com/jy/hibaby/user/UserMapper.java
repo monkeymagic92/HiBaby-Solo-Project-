@@ -1,6 +1,5 @@
 package com.jy.hibaby.user;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -31,7 +30,7 @@ public interface UserMapper {
 	
 	UserPARAM detailUser(UserPARAM param);	// 유저 목록 상세 페이지
 	
-	List<UserPARAM> frUniqueChk(UserPARAM param);
+	UserDMI frUniqueChk(UserPARAM param);	// 친구추가 중복 제거
 	
 	
 	int maxI_user();	// 회원가입시 t_myPoint 에 기본 포인트 적립용

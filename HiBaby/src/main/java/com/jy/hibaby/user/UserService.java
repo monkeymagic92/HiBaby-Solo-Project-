@@ -4,7 +4,6 @@ package com.jy.hibaby.user;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -325,10 +324,31 @@ public class UserService {
 	}
 	
 	// 친구 추가 중복 제거
-	public List<UserPARAM> frUniqueChk(UserPARAM param) {
-		return mapper.frUniqueChk(param);
+	public int frUniqueChk(UserPARAM param, HttpSession hs) {
+		int result = 0;
+		UserPARAM hsParam = (UserPARAM)hs.getAttribute(Const.LOGIN_USER);
+		
+		UserDMI dmi = mapper.frUniqueChk(param);
+		System.out.println("hs : " + hsParam.getI_user());
+		System.out.println("param : " + param.getI_user());
+		
+		if(dmi == null) {	// 친구 추가
+			
+			result = mapper.insFr(param);
+			return result;
+		}
+		
+		if(param.getTo_user() == dmi.getTo_user()) {
+			
+			result = 10;
+			return result;
+			
+		} 
+		
+		
+		
+		return result;
 	}
-	
 	
 	
 }

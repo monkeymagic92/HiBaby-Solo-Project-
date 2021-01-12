@@ -6,6 +6,17 @@ public class UserDMI extends UserVO {
 	private int totalCash;
 	private int myCash;
 	private int myPointNow;
+	
+	private int to_user;
+	
+	
+	
+	public int getTo_user() {
+		return to_user;
+	}
+	public void setTo_user(int to_user) {
+		this.to_user = to_user;
+	}
 	public int getMyPoint() {
 		return myPoint;
 	}
