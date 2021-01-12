@@ -279,6 +279,7 @@ public class UserController {
 	// myPage
 	@RequestMapping(value="/myPage", method = RequestMethod.GET)
 	public String myPage(Model model, RedirectAttributes ra, UserPARAM param, HttpSession hs) {
+		
 		try {
 			int i_user = SecurityUtils.getLoginUserPk(hs);
 			param.setI_user(i_user);
@@ -472,6 +473,19 @@ public class UserController {
 	@RequestMapping(value="/selFr", method=RequestMethod.GET)
 	private @ResponseBody List<UserPARAM> selFr(Model model, UserPARAM param){
 		return service.selFr(param);
+	}
+	
+	
+	// 친구 삭제
+	@RequestMapping(value="/delFr", method=RequestMethod.POST)
+	@ResponseBody	
+	public String delFr(@RequestBody UserPARAM param) {
+		
+		System.out.println("i_user 값 : " + param.getI_user());
+		System.out.println("to_user값 : " + param.getTo_user());
+		
+		int result = service.delFr(param);
+		return String.valueOf(result);
 	}
 	
 }

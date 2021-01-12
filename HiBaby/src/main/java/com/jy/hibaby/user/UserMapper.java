@@ -70,4 +70,6 @@ public interface UserMapper {
 	
 	int delImg(int i_user);
 	
+	int delFr(UserPARAM param);
+	
 }

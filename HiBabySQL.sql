@@ -19,6 +19,21 @@ CREATE TABLE t_user(
 SELECT * FROM t_user;
 DROP TABLE t_user;
 
+UPDATE t_user
+SET loginChk = '2'
+WHERE i_user = 2;
+
+SELECT B.to_user, B.i_user, A.nick, A.sm, A.profile_img, A.loginChk, C.totalPoint 
+FROM t_user A
+
+LEFT JOIN t_fr B
+ON A.i_user = B.to_user
+
+LEFT JOIN t_mypoint C
+ON A.i_user = C.i_user
+
+WHERE B.i_user = 1;
+
 
 
 
@@ -92,8 +107,18 @@ CREATE TABLE t_fr(
 SELECT * FROM t_fr;
 DROP TABLE t_fr;
 
-SELECT to_user FROM t_fr
-WHERE i_user = 1;
+
+SELECT B.to_user, A.i_user, A.nick, A.sm, A.profile_img, A.loginChk, C.totalPoint 
+FROM t_user A
+
+LEFT JOIN t_fr B
+ON A.i_user = B.to_user
+
+LEFT JOIN t_myPoint C
+ON A.i_user = C.i_user
+
+WHERE B.i_user = 1;
+
 
 
 

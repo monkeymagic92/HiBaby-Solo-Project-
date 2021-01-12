@@ -181,6 +181,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+	var frDetailChk = 0; // 유저목록 상세페이지 화면 = 0 / 친구목록 상세페이지 화면 = 1
+	
 	//로그아웃
 	function logOut() {
 		if(confirm('로그아웃 하시겠습니까?')) {
@@ -245,7 +247,9 @@
 		userListBox.setAttribute('id', 'userListBox')
 		
 		userListBox.onclick = function() {
-			// ★★ 클릭했을시 상대방 상세화면 띄우기
+			
+			frDetailChk = 0;	// 유저 목록에서 상세페이지 열때
+			
 			var i_user = arr.i_user
 			showDetailModal(i_user)
 		}
@@ -316,6 +320,8 @@
 	
 	
 	
+	
+	
 	// userDetailModal -ajax 값 뿌리기-
 	function showDetailModal(i_user) {
         
@@ -333,6 +339,7 @@
     }
 	
 	function makeUserDetail(res) {
+		console.log('frChk : ' + frDetailChk)
 		var loginI_user = `${loginUser.i_user}`
 		
 		var detailImg1 = document.createElement('img')
@@ -400,11 +407,12 @@
 		
 		// 친구추가 / 쪽지 btn 값 넣기
 		//순서도 : detailUserBox > detailBtnMall > frPlusBtn 순으로
+		
+		
 		var detailBtnMall = document.createElement('div')
 		detailBtnMall.setAttribute('id', 'detailBtnMall')
 		
-		
-		
+
 		var frPlusBtn = document.createElement('button')
 		frPlusBtn.setAttribute('id', 'frPlusBtn')
 		frPlusBtn.innerText = '친구추가'
@@ -444,12 +452,68 @@
 			alert('쪽지 기능 넣기');
 		}	
 	
+		if(frDetailChk == 0) { 	
+			
+			if(loginI_user != res.i_user) { // 나자신은 쪽지, 친추 금지
+				detailBtnMall.append(frPlusBtn)
+				detailBtnMall.append(messageBtn)
+				detailUserBox.append(detailBtnMall)	
+			}
 		
-		if(loginI_user != res.i_user) { // 나자신은 쪽지, 친추 금지
-			detailBtnMall.append(frPlusBtn)
-			detailBtnMall.append(messageBtn)
-			detailUserBox.append(detailBtnMall)
-		}		
+		
+		/* 친구목록에서 상세페이지 띄울때  */
+		} else if(frDetailChk == 1)	{
+			
+			var detailBtnMall = document.createElement('div')
+			detailBtnMall.setAttribute('id', 'detailBtnMall')
+			
+
+			var frDelBtn = document.createElement('button')
+			frDelBtn.setAttribute('id', 'frPlusBtn')
+			frDelBtn.innerText = '친구삭제'
+			frDelBtn.onclick = function() { // 친구 추가
+				
+				if(confirm('친구와 절교하시겠습니까?')) {
+					var loginNick = `${loginUser.nick}`
+						if(loginNick == '') {
+							alert('로그인을 해주세요')
+							return false;
+						}
+						
+						var i_user = `${loginUser.i_user}`
+						var to_user = res.i_user
+						
+						axios.post('/user/delFr',{
+							i_user : i_user,	// 로그인한 pk 값
+							to_user : to_user	// 삭제할 친구 pk 값
+							
+						}).then(function(res) {
+							if(res.data == 1) {
+								location.reload();
+								
+							} else {
+								alert('절교가 안되었습니다 다시 시도해 주세요')
+							}
+						})	
+				}
+				
+			}
+			
+			var frmessageBtn = document.createElement('button')
+			frmessageBtn.setAttribute('id', 'messageBtn')
+			frmessageBtn.innerText = '친구쪽지'
+			frmessageBtn.onclick = function() {
+				// 쪽지 기능 넣기
+				alert('쪽지 기능 넣기');
+			}	
+			
+			detailBtnMall.append(frDelBtn)
+			detailBtnMall.append(frmessageBtn)
+			detailUserBox.append(detailBtnMall)	
+			
+		}
+			
+					
 	}
 	
     // frList Start
@@ -490,8 +554,14 @@
     	frListTable.setAttribute('class', 'frListTable')
     	
     	frListTable.onclick = function() {
-    		alert('pk : ' + arr.to_user + '상대pk값으로 친삭, 쪽지, 마이페이지 작업 ㄱ')
-    		// 친삭, 쪽지, 마이페이지 모달창 열기 함수 만들기
+    		
+    		console.log('pk 값 : ' + arr.to_user)
+    		
+    		frDetailChk = 1	//	친구 목록에서 상세 페이지 열때
+    		
+    		frList.style.display = 'none'
+    		var i_user = arr.to_user
+			showDetailModal(i_user)
     	}
     	
     	var userListDiv1 = document.createElement('div')
@@ -544,11 +614,11 @@
     	if(arr.sm == null) {
 			userListDiv4.innerText = ' 상태메세지가 없습니다.'
 			
-		} else if(arr.sm.length < 25) {
+		} else if(arr.sm.length < 16) {
 			userListDiv4.append(arr.sm)
 			
-		} else if (arr.sm.length > 25) {
-			userListDiv4.append(arr.sm.substring(0,20) + lastText)
+		} else if (arr.sm.length > 16) {
+			userListDiv4.append(arr.sm.substring(0,15) + lastText)
 		} 
     	
     	frListTable.append(userListDiv4)
@@ -568,14 +638,8 @@
     	
     }
     
-    
-    
 
     
-    
-    function choiceMenu() {
-        alert('친구삭제, 쪽지 모달창 만들기')
-    }
 
     // frList End
 	

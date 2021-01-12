@@ -107,7 +107,7 @@
 		LEFT JOIN t_fr B
 		ON A.i_user = B.to_user
 		
-		LEFT JOIN t_mypoint C
+		LEFT JOIN t_myPoint C
 		ON A.i_user = C.i_user
 		
 		WHERE B.i_user = #{i_user}
@@ -219,6 +219,12 @@
 	<delete id="delProfile_img" parameterType="UserPARAM">
 		DELETE FROM t_user
 		WHERE profile_img = #{profile_img}
+	</delete>
+	
+	<delete id="delFr" parameterType="UserPARAM">
+		DELETE FROM t_fr
+		WHERE i_user = #{i_user}
+		AND to_user = #{to_user}
 	</delete>
 		
 	

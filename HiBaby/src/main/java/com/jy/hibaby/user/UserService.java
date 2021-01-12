@@ -349,5 +349,10 @@ public class UserService {
 		return mapper.selFr(param);
 	}
 	
+	// 친구 삭제
+	public int delFr(UserPARAM param) {
+		return mapper.delFr(param);
+	}
+	
 	
 }

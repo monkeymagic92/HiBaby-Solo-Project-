@@ -140,6 +140,12 @@ function chk() {
 		}
 	}
 	
+	if(frm.sm.value.length > 79) {
+		alert('상태메세지가 너무 길어요')
+		frm.sm.focus()
+		return false;
+	}
+	
 }
 
 $('#emailClick').hide(); // 이메일 중복체크 v표
