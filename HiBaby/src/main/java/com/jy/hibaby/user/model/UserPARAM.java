@@ -1,7 +1,5 @@
 package com.jy.hibaby.user.model;
 
-import java.util.List;
-
 public class UserPARAM extends UserVO {
 	private int myPoint;
 	private int totalPoint;
@@ -9,32 +7,21 @@ public class UserPARAM extends UserVO {
 	private int myCash;
 	private int myPointNow;
 	
+	private int loginChk;
+	
 	private String searchNick;	// 유저 검색
 	
 	private int to_user;	// 친구 추가 할시 상대방 pk 값
-	private int to_userChk;
-	//private List<UserPARAM> to_userChkList;
 	
 	
 	
-		
-	
-	
-	
-	public int getTo_userChk() {
-		return to_userChk;
+
+	public int getLoginChk() {
+		return loginChk;
 	}
-	public void setTo_userChk(int to_userChk) {
-		this.to_userChk = to_userChk;
+	public void setLoginChk(int loginChk) {
+		this.loginChk = loginChk;
 	}
-	/*
-	public List<UserPARAM> getTo_userChkList() {
-		return to_userChkList;
-	}
-	public void setTo_userChkList(List<UserPARAM> to_userChkList) {
-		this.to_userChkList = to_userChkList;
-	}
-	*/
 	public int getTo_user() {
 		return to_user;
 	}

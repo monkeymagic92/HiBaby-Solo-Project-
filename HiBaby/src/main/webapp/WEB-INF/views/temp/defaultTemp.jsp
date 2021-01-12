@@ -15,7 +15,7 @@
        <header class="main-header">
             <ul class="header-ul">
                 <li><a class="li-a1" href="/index/select"><span id="li1">HiBaby</span></a></li>
-                <li><a class="li-a2" href="#"><span id="li2-1" onclick="showFrList()">친구 목록</span></a></li>
+                <li><a class="li-a2" href="#"><span id="li2-1" onclick="showFrList(${loginUser.i_user})">친구 목록</span></a></li>
                 <li><a class="li-a2" href="#"><span id="li2" onclick="showUserList()">유저 목록</span></a></li>
                 <li>
                     <a class="li-a3" href="#"><span id="li3">쪽지함</span></a> 
@@ -146,17 +146,30 @@
             <div class="frListmodal-content">                
                 <span id="frexitBtn" class="material-icons" onclick="frListHide()">clear</span>
                 <!-- Modal body -->
-                <span id="frTitle">친구 목록(4)</span>
+                <span id="frTitle">친구 목록</span>
                 <div class="frListmodal-body">
                     <!-- forEach 돌리기 (클릭할시 친구삭제, 쪽지보내기 모달창 띄우기)-->
-                    <div class="frListTable" onclick="choiceMenu()">
-                        <!-- 계급, 사진, 닉네임, 상태메세지( 20글자이상 ...으로 ) 스크롤 기능 넣기-->
-                        <div class="userListDiv1"><img class="userListImg" src="/res/img/chall.png"></div>
-                        <div class="userListDiv2"><img class="userListImg" src="/res/img/HiBaby.jpg"></div>
-                        <div class="userListDiv3">Test321</div>
-                        <div class="userListDiv4">저의 상태메세지 입니다 말은점으로...</div>                            
-                        <span id="loginChkCir" class="material-icons">child_care</span>
+                    
+                    <div id="frListBoxMall">
+                    	<!-- 
+	                    <div class="frListTable" onclick="choiceMenu()">
+	                    
+	                        <div class="userListDiv1">
+	                        	<img class="userListImg" src="/res/img/chall.png">
+	                        </div>
+	                        
+	                        <div class="userListDiv2">
+	                        	<img class="userListImg" src="/res/img/HiBaby.jpg">
+	                        </div>
+	                        
+	                        <div class="userListDiv3">Test321</div>
+	                        <div class="userListDiv4">저의 상태메세지 입니다 말은점으로...</div>                            
+	                        <span id="loginChkCir" class="material-icons">child_care</span>
+	                    </div>
+	                     -->
                     </div>
+                    
+                    
                 </div>
                 <!-- Modal bottom -->
             </div>
@@ -420,13 +433,9 @@
 				}  else if(res.data == 10){
 					alert('이미 등록되어 있는 친구 입니다.')
 				} 
-				
 			})
-			
 		}
 		
-	
-	
 		var messageBtn = document.createElement('button')
 		messageBtn.setAttribute('id', 'messageBtn')
 		messageBtn.innerText = '쪽지'
@@ -444,16 +453,126 @@
 	}
 	
     // frList Start
-
-    // frList show
-    function showFrList() {
-        frList.style.display = 'flex'
-    }
+    
     // frList hide
     function frListHide() {
         frList.style.display = 'none'
+       	
     }
+    
+    
+    // frList show
+    function showFrList(i_user) {
+        frList.style.display = 'flex'
+        
+        axios.get('/user/selFr',{
+   			params: {
+   		          i_user : i_user
+   		    }
+   			
+   		}).then(function(res) {
+   			frListBoxMall.innerHTML = ''
+   			refreshFrList(res.data)
+   		})
+        
+    }
+    
+    function refreshFrList(arr) {
+		for (let i = 0; i<arr.length; i++) {
+	         makeFrList(arr[i])
+	    }
+	}
+    
+    var lastText = '...'
+    function makeFrList(arr) {
+    	
+    	var frListTable = document.createElement('div')
+    	frListTable.setAttribute('class', 'frListTable')
+    	
+    	frListTable.onclick = function() {
+    		alert('pk : ' + arr.to_user + '상대pk값으로 친삭, 쪽지, 마이페이지 작업 ㄱ')
+    		// 친삭, 쪽지, 마이페이지 모달창 열기 함수 만들기
+    	}
+    	
+    	var userListDiv1 = document.createElement('div')
+    	userListDiv1.setAttribute('class', 'userListDiv1')
+    	
+    	var userListImg1 = document.createElement('img')
+		userListImg1.setAttribute('class', 'userListImg')
+		if(arr.totalPoint < 150) {			
+			userListImg1.setAttribute('src',`/res/img/ion.png`)
+			
+		} else if(arr.totalPoint < 400) {
+			userListImg1.setAttribute('src',`/res/img/gold.png`)
+			
+		} else if(arr.totalPoint < 600) {
+			userListImg1.setAttribute('src',`/res/img/dia.png`)
+			
+		} else if(arr.totalPoint < 20000) {
+			userListImg1.setAttribute('src',`/res/img/master.png`)
+			
+		} else if(arr.totalPoint > 20000) {
+			userListImg1.setAttribute('src',`/res/img/chall.png`)
+		}
+    	
+    	userListDiv1.append(userListImg1)
+    	frListTable.append(userListDiv1)
+    	
+    	var userListDiv2 = document.createElement('div')
+    	userListDiv2.setAttribute('class', 'userListDiv2')
+    	
+    	var userListImg2 = document.createElement('img')
+		userListImg2.setAttribute('class', 'userListImg')
+		if(arr.profile_img != null) {
+			userListImg2.setAttribute('src',`/res/img/HiBaby/profile_img/user/\${arr.to_user}/\${arr.profile_img}`)
+			
+		} else {
+			userListImg2.setAttribute('src','/res/img/HiBaby.jpg')
+		}
+    	
+    	userListDiv2.append(userListImg2)
+    	frListTable.append(userListDiv2)
+    	
+    	var userListDiv3 = document.createElement('div')
+    	userListDiv3.setAttribute('class', 'userListDiv3')
+    	userListDiv3.append(arr.nick)
+    	
+    	frListTable.append(userListDiv3)
+    	
+    	var userListDiv4 = document.createElement('div')
+    	userListDiv4.setAttribute('class', 'userListDiv4')
+    	if(arr.sm == null) {
+			userListDiv4.innerText = ' 상태메세지가 없습니다.'
+			
+		} else if(arr.sm.length < 25) {
+			userListDiv4.append(arr.sm)
+			
+		} else if (arr.sm.length > 25) {
+			userListDiv4.append(arr.sm.substring(0,20) + lastText)
+		} 
+    	
+    	frListTable.append(userListDiv4)
+    	
+    	var loginChkCir = document.createElement('span')
+    	loginChkCir.setAttribute('id', 'loginChkCir')
+    	loginChkCir.setAttribute('class', 'material-icons')
+    	loginChkCir.innerText = 'child_care'
+    	
+    	console.log(arr.loginChk)
+    	if(arr.loginChk == 2) {
+    		frListTable.append(loginChkCir)	
+    	}
+    	
+    	// 마지막 최종 셋트 한묶음 넣기
+    	frListBoxMall.append(frListTable)
+    	
+    }
+    
+    
+    
 
+    
+    
     function choiceMenu() {
         alert('친구삭제, 쪽지 모달창 만들기')
     }

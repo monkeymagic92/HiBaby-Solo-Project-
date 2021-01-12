@@ -324,13 +324,10 @@ public class UserService {
 	}
 	
 	// 친구 추가 중복 제거
-	public int frUniqueChk(UserPARAM param, HttpSession hs) {
+	public int frUniqueChk(UserPARAM param) {
 		int result = 0;
-		UserPARAM hsParam = (UserPARAM)hs.getAttribute(Const.LOGIN_USER);
 		
 		UserDMI dmi = mapper.frUniqueChk(param);
-		System.out.println("hs : " + hsParam.getI_user());
-		System.out.println("param : " + param.getI_user());
 		
 		if(dmi == null) {	// 친구 추가
 			
@@ -342,12 +339,14 @@ public class UserService {
 			
 			result = 10;
 			return result;
-			
 		} 
 		
-		
-		
 		return result;
+	}
+	
+	// 친구 목록 뿌리기
+	public List<UserPARAM> selFr(UserPARAM param) {
+		return mapper.selFr(param);
 	}
 	
 	

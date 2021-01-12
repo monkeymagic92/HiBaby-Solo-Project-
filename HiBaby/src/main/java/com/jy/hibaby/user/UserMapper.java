@@ -32,6 +32,8 @@ public interface UserMapper {
 	
 	UserDMI frUniqueChk(UserPARAM param);	// 친구추가 중복 제거
 	
+	List<UserPARAM> selFr(UserPARAM param);	// 친구목록 뿌리기
+	
 	
 	int maxI_user();	// 회원가입시 t_myPoint 에 기본 포인트 적립용
 	

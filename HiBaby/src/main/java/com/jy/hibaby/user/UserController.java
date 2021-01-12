@@ -461,20 +461,19 @@ public class UserController {
 	// 친구 추가
 	@RequestMapping(value="/insFr", method=RequestMethod.POST)
 	@ResponseBody	
-	public String insFr(@RequestBody UserPARAM param, HttpSession hs) {
-		/* 
-		 * 찜 목록처럼 아예 chk값 줘서 중복 확인 떠나서 친추 되어있으면 친구삭제 버튼 뜨게 만들기
-		 * */
+	public String insFr(@RequestBody UserPARAM param) {
 		int result = 0;
-				
-		result = service.frUniqueChk(param, hs);
-		
-		System.out.println("result 값 : " + result);
-	
+		result = service.frUniqueChk(param);
 		return String.valueOf(result);
 	}
 	
-			
+	
+	// 친구 목록
+	@RequestMapping(value="/selFr", method=RequestMethod.GET)
+	private @ResponseBody List<UserPARAM> selFr(Model model, UserPARAM param){
+		return service.selFr(param);
+	}
+	
 }
 
 

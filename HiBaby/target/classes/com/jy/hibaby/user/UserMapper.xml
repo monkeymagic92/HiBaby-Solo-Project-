@@ -98,6 +98,22 @@
 		WHERE i_user = #{i_user}
 		AND to_user = #{to_user}
 	</select>
+	
+	<!-- 친구 목록 -->
+	<select id="selFr" parameterType="UserPARAM" resultType="UserPARAM">
+		SELECT B.to_user, A.i_user, A.nick, A.sm, A.profile_img, A.loginChk, C.totalPoint 
+		FROM t_user A
+		
+		LEFT JOIN t_fr B
+		ON A.i_user = B.to_user
+		
+		LEFT JOIN t_mypoint C
+		ON A.i_user = C.i_user
+		
+		WHERE B.i_user = #{i_user}
+	</select>
+	
+	
 
 						<!-- insert -->
 						 

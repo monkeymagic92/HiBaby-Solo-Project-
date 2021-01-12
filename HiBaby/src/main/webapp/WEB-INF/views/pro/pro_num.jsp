@@ -71,6 +71,88 @@
 		
 	} 
 	
+	
+	
+	
+	
+	
+	// 삭제하기 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	function makeUserList(arr) {		
+		
+		var userListBox = document.createElement('div')
+		userListBox.setAttribute('id', 'userListBox')
+		
+		userListBox.onclick = function() {
+			// ★★ 클릭했을시 상대방 상세화면 띄우기
+			var i_user = arr.i_user
+			showDetailModal(i_user)
+		}
+		
+		var userListDiv1 = document.createElement('div')
+		userListDiv1.setAttribute('class', 'userListDiv1')
+		
+		var userListImg1 = document.createElement('img')
+		userListImg1.setAttribute('class', 'userListImg')
+		if(arr.totalPoint < 150) {			
+			userListImg1.setAttribute('src',`/res/img/ion.png`)
+			
+		} else if(arr.totalPoint < 400) {
+			userListImg1.setAttribute('src',`/res/img/gold.png`)
+			
+		} else if(arr.totalPoint < 600) {
+			userListImg1.setAttribute('src',`/res/img/dia.png`)
+			
+		} else if(arr.totalPoint < 20000) {
+			userListImg1.setAttribute('src',`/res/img/master.png`)
+			
+		} else if(arr.totalPoint > 20000) {
+			userListImg1.setAttribute('src',`/res/img/chall.png`)
+		}
+		
+		userListDiv1.append(userListImg1)
+		userListBox.append(userListDiv1)
+		
+		var userListDiv2 = document.createElement('div')
+		userListDiv2.setAttribute('class', 'userListDiv2')
+		
+		var userListImg2 = document.createElement('img')
+		userListImg2.setAttribute('class', 'userListImg')
+		if(arr.profile_img != null) {
+			userListImg2.setAttribute('src',`/res/img/HiBaby/profile_img/user/\${arr.i_user}/\${arr.profile_img}`)
+			
+		} else {
+			userListImg2.setAttribute('src','/res/img/HiBaby.jpg')
+		}
+		
+		userListDiv2.append(userListImg2)
+		userListBox.append(userListDiv2)
+		
+		var userListDiv3 = document.createElement('div')
+		userListDiv3.setAttribute('class', 'userListDiv3')
+		userListDiv3.append(arr.nick)
+		
+		userListTableId.append(userListBox)
+		userListBox.append(userListDiv3)
+		
+		var userListDiv4 = document.createElement('div')
+		userListDiv4.setAttribute('class', 'userListDiv4')
+		
+		if(arr.sm == null) {
+			userListDiv4.innerText = ' 상태메세지가 없습니다.'
+			
+		} else if(arr.sm.length < 25) {
+			userListDiv4.append(arr.sm)
+			
+		} else if (arr.sm.length > 25) {
+			userListDiv4.append(arr.sm.substring(0,20) + lastText)
+			
+		} 
+		
+		userListBox.append(userListDiv4)
+	}	
+	// 삭제하기 @@@@@@@@@@@@@@@@@@@@@@@@@
+	
+	
 </script>
 </body>
 </html>
