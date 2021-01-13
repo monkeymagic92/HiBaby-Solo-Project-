@@ -42,43 +42,51 @@
 		</header>
 		<!-- Header End -->
 		<div class="myPageContainer">
-			<section class="pro_Img">
-				<div class="imgBtn">
-					<div class="pImgbox">
-						<label for="file">
-							<c:if test="${selUser.profile_img == null }">
-								<img src="/res/img/HiBaby.jpg" onchange="setThumbnail(e)" alt="" class="img">
-							</c:if>
-							<c:if test="${selUser.profile_img != null }">
-								<img src="/res/img/HiBaby/profile_img/user/${selUser.i_user }/${selUser.profile_img}" class="img">                    	
-							</c:if>
-						</label>
-						<br><br>
-						<div class="div-cngBtn">
-							<div class="div-subBtn">
-								<form id="imgFrm" action="/user/imgUpload" method="post" enctype="multipart/form-data" onsubmit="return imgChk()">
-									<input type="file" name="user_profile_img" id="file" accept="image/png, image/jpeg, image/jpg">
-									<input class="cngImg" type="submit" value="사진 저장">
-								</form>
-							</div>
+			<div class="infoBox">
+				<section class="pro_Img">
+					<div class="imgBtn">
+						<div class="pImgbox">
+							<label for="file">
+								<!--
+								<c:if test="${selUser.profile_img == null }">
+									<img src="/res/img/HiBaby.jpg" onchange="setThumbnail(e)" alt="" class="profileImg">
+								</c:if>
+								-->
+								<c:if test="${selUser.profile_img != null }">
+									<img src="/res/img/HiBaby/profile_img/user/${selUser.i_user }/${selUser.profile_img}" class="profileImg">                    	
+								</c:if>
+							</label>
 							<br><br>
-							<div class="delBtn">
-								<form id="imgDelFrm" action="/user/imgDel" method="post">
-									<input class="cngImg2" type="submit" value="사진 삭제">
-								</form>
+							<div class="div-cngBtn">
+								<div class="div-subBtn">
+									<form id="imgFrm" action="/user/imgUpload" method="post" enctype="multipart/form-data" onsubmit="return imgChk()">
+										<input type="file" name="user_profile_img" id="file" accept="image/png, image/jpeg, image/jpg">
+										<input class="cngImg" type="submit" value="저장">
+									</form>
+								</div>
+								<br><br>
+								<div class="delBtn">
+									<form id="imgDelFrm" action="/user/imgDel" method="post">
+										<input class="cngImg2" type="submit" value="삭제">
+									</form>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</section>
+				</section>
+				
+				<div id="nickDiv">닉네임 : ${selUser.nick}</div>       
+				<div>가입 날짜 : ${selUser.r_dt}</div>
+				<div>총누적포인트 : ${selUser.totalPoint}</div> 
+				<div>포인트 : ${selUser.myPoint}</div>
+				<div>환급받은 캐시 : ${selUser.myCash}</div>
+				
+			</div>
 			<br><br>
-			계급 : <img src="/res/img/chall.png" class="ClassesImg">
+			계급 : <img src="/img/chall.png" class="ClassesImg">
 			<br>
-			<h3>ㅡㅡ 계급은 총 누적포인트 기준으로 계급 잡기 ㅡㅡ</h3>
-			<div>닉네임 : ${selUser.nick}</div>       
-			<div>총누적포인트 : ${selUser.totalPoint}</div> 
-			<div>포인트 : ${selUser.myPoint}</div>
-			<div>환급받은 캐시 : ${selUser.myCash}</div>
+			
+			
 			<br>
 			<button id="myPoint">포인트 환급받기</button>            
 			<br><br>
@@ -87,32 +95,39 @@
 			<button onclick="logOut()">로그아웃</button>
 	 
 		 
-			<div id="myModal" class="modal">
+
+
+
+
+
+			<!-- PointModal Start -->
+			<div id="myModal" class="pointModal">
 					<!-- Modal content -->
-				<div class="modal-content">
+				<div class="pointModal-content">
 					<h4>나의포인트 : <fmt:formatNumber value="${selUser.myPoint}" pattern="#,###" />p</h4>
 					
 					<!-- Modal body -->
-					<div class="modal-body">
+					<div class="pointModal-body">
 						
-						환급받을 포인트 입력 :
+						환급받을 포인트 입력 
 						<form id="pointFrm" action="/user/myPoint" method="post" onsubmit="return pointChk()">
-							<input type="number" name="myCash" placeholder="포인트를 입력해 주세요" maxlength="8" oninput="numberMaxLength(this)">
+							<input id="pointIns" type="number" name="myCash" placeholder="포인트 입력" maxlength="8" oninput="numberMaxLength(this)">
 							<input type="hidden" name="myPoint" value="${selUser.myPoint}">
 							<input type="hidden" name="i_user" value="${selUser.i_user}">
-							<button type="submit">환급받기</button>	
+							<button id="pointSubmitBtn" type="submit">환급받기</button>	
 						</form> 
 					</div>
 					
 					<!-- Modal bottom -->
 					<div class="modal-bottom">
-						Modal Bottom부분		
+						
 					</div>
 					<button type="button" class="pop_bt" onclick="hideModal()">종료</button>
 				</div>
 			</div>
+			<!-- PointModal End -->
 		</div>
-		<!-- myPage Start -->
+		
 	</div>
 
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -247,7 +262,7 @@
 /* 프로필 사진 등록 관련 JS */
 let reader = new FileReader()
 reader.onload = (readerEvent) => {
-    document.querySelector('.img').setAttribute('src', readerEvent.target.result)
+    document.querySelector('.profileImg').setAttribute('src', readerEvent.target.result)
 };
 document.querySelector('#file').addEventListener('change', (changeEvent) => {
     let imgFile = changeEvent.target.files[0]

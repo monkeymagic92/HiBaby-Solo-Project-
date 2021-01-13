@@ -1,3 +1,4 @@
+/* 프로필 사진 등록  */
 .pImgbox input[type="file"]{
     width: 0;
     height: 0;
@@ -8,29 +9,40 @@
     
 .pImgbox label { cursor: pointer; }
 
+.profileImg {
+    margin-left: 160px;
+	width: 220px;
+	height: 290px;
+	border-radius: 40px;
+}
+
+/* myPage css Start */
+.myPageContainer {
+    margin: 80px;
+}
+
+.infoBox {
+    position: relative;
+}
+
+#nickDiv {
+    position: absolute;
+    top: 15px;
+    left: 500px;
+}
+
 .div-cngBtn {
-	display: flex;
-	
+    display: flex;
 }
 
-.div-subBtn {
-    justify-content: flex-end;
-}
 
-.img {
-	width: 180px;
-	height: 180px;
-	border-radius: 10px;
-}
 
-.ClassesImg {
-	width: 75px;
-	height: 75px;
-	border-radius: 20px;
-	
-}
 
-.modal {
+
+
+
+/* pointModal Start */
+.pointModal {
     display: none;
     position: fixed;
     z-index: 1; 
@@ -40,20 +52,76 @@
     height: 100%; 
     overflow: auto; 
     background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4); 
+    background-color: rgba(0,0,0,0.3); 
 }
 
 /* Modal Content/Box */
-.modal-content {
+.pointModal-content {
     background-color: #fefefe;
-    margin: 15% auto; 
+    margin: 16% auto; 
+    width: 20%;
+	height: 23%;
     padding: 20px;
-    border: 1px solid #888;
-    width: 30%;                           
-}
-.pop_bt {
-	margin-top: 30px;
-	width: 200px;
+	border: 3px solid #fff7ed;
+	border-radius: 20px;	                           
 	text-align: center;
-	cursor: pointer;
+	background-color: #fff7ed;                    
 }
+
+.pointModal-body {
+    margin-top: 30px;
+}
+
+#pointFrm {
+    margin-top: 12px;
+}
+
+#pointIns {
+    width: 170px;
+    height: 20px;
+    border-radius: 4px;
+    border: 2px solid grey;
+}
+
+#pointSubmitBtn {
+    width: 90px;
+    height: 30px;
+    border-radius: 6px;
+    border: 2px solid grey;
+    background-color: #abd8ff;
+    color: grey;
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+#pointSubmitBtn:hover {
+    color: #111;
+    font-size: 1.06em;
+    font-weight: bold;
+}
+
+.pop_bt {
+	margin-top: 50px;
+    width: 120px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: grey;
+    height: 30px;
+    border: 2px solid #abd8ff;
+    border-radius: 6px;
+    outline-style: none;
+	text-align: center;
+    cursor: pointer;
+    background-color: #abd8ff;
+    transition: 0.1s;
+}
+
+.pop_bt:hover {
+    transition: 0.1s;
+    font-size: 1.2em;
+    font-weight: bold;
+    background-color: #b7d9f7;
+    color: black;
+}
+/* pointModal End */
