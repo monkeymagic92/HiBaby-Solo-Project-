@@ -80,8 +80,9 @@ public class UserController {
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public String logout(Model model, HttpSession hs, UserPARAM param) {
 		param = (UserPARAM)hs.getAttribute(Const.LOGIN_USER);
-		service.loginChkMin(param); // 로그인 할시 loginChk값 = 2  (접속상태)
+		service.loginChkMin(param); // 로그인 할시 loginChk값 = 1  (비접속 상태)
 		hs.invalidate();
+		
 		return "redirect:/" + ViewRef.USER_LOGIN;
 	}
 	
@@ -107,10 +108,12 @@ public class UserController {
 		int result = service.login(param);
 		
 		if(result == Const.SUCCESS) {
-			// 로그인할시 loginChk 값을 2로 넘기기
+
 			hs.setAttribute(Const.LOGIN_USER, param);
+			
 			return "redirect:/" + ViewRef.INDEX_SELECT;
 		}
+		
 		cerCodeCount = 0;
 		String msg = null;
 		if (result == Const.NO_ID) {
@@ -480,9 +483,6 @@ public class UserController {
 	@RequestMapping(value="/delFr", method=RequestMethod.POST)
 	@ResponseBody	
 	public String delFr(@RequestBody UserPARAM param) {
-		
-		System.out.println("i_user 값 : " + param.getI_user());
-		System.out.println("to_user값 : " + param.getTo_user());
 		
 		int result = service.delFr(param);
 		return String.valueOf(result);

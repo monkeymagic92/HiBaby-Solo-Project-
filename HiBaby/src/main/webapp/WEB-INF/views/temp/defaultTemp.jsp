@@ -322,7 +322,7 @@
 	
 	
 	
-	// userDetailModal -ajax 값 뿌리기-
+	// -	- 유저 상세 목록 (친구목록 / 유저목록 각각 button 다름)-	-
 	function showDetailModal(i_user) {
         
        	axios.get('/user/detailUser',{
@@ -452,6 +452,8 @@
 			alert('쪽지 기능 넣기');
 		}	
 	
+				/* 유저목록에서 상세페이지 띄울때 */
+				
 		if(frDetailChk == 0) { 	
 			
 			if(loginI_user != res.i_user) { // 나자신은 쪽지, 친추 금지
@@ -461,7 +463,8 @@
 			}
 		
 		
-		/* 친구목록에서 상세페이지 띄울때  */
+				/* 친구목록에서 상세페이지 띄울때  */
+				
 		} else if(frDetailChk == 1)	{
 			
 			var detailBtnMall = document.createElement('div')
@@ -501,7 +504,7 @@
 			
 			var frmessageBtn = document.createElement('button')
 			frmessageBtn.setAttribute('id', 'messageBtn')
-			frmessageBtn.innerText = '친구쪽지'
+			frmessageBtn.innerText = '쪽지'
 			frmessageBtn.onclick = function() {
 				// 쪽지 기능 넣기
 				alert('쪽지 기능 넣기');

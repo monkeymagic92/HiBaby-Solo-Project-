@@ -23,7 +23,7 @@
             <button class="append">#</button>
             <button type="button" class="selBtn" onclick="moveToBoardList()">전체글</button>
             <form id="searchFrm" action="/board/list" method="get" class="search" >
-                <input type="text" name="search" class="searchTerm" placeholder="Search">
+                <input type="text" name="search" class="searchTerm" placeholder="게시글 검색">
                 <input type="hidden" name="searchResult" value="1">
                 <button type="submit" class="searchButton"><i class="fa fa-search"></i></button>
             </form>                

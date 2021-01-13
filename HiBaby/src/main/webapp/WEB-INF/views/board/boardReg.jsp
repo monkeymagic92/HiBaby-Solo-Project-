@@ -8,10 +8,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/res/css/boardReg.css">
-<style>
-
-      
-</style>
 </head>
 <body>
 
@@ -19,7 +15,7 @@
             <form class="frmContainer" id="frm" action="/board/boardReg" method="post" enctype="multipart/form-data" onsubmit="return chk()">
                 <div class="pics2">
                     <label for="mfile">
-                        <img src="/res/img/이미지등록.jpg"  alt="" class="img2"  id="imgId">
+                        <img src="/res/img/앨범.png"  alt="" class="img2"  id="imgId">
                     </label>
                     <input type="file" name="images" id="mfile" multiple accept="image/png, image/jpeg, image/jpg">
                         <c:if test="${data.i_board != null}">

@@ -137,7 +137,7 @@ WHERE B.i_user = 1;
 
 
 
-
+-- 랭크 순이 나타내는 쿼리문
 SELECT B.nick, B.sm, A.totalPoint FROM t_mypoint A
 
 LEFT JOIN t_user B

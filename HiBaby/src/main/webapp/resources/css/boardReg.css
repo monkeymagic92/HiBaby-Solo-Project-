@@ -47,6 +47,14 @@
     transition-duration: 0.5s;
 }
 
+.img2 {
+	width: 180px;
+	height: 190px;
+}
+
+.img2:hover {
+	cursor: pointer;
+}
 
 .ctntIn {
     margin-top: 20px;
