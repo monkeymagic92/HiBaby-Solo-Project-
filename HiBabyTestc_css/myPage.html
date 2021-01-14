@@ -6,6 +6,7 @@
     <title>마이페이지</title>
 	<link rel="stylesheet" href="css/myPage.css">
 	<link rel="stylesheet" href="css/header.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <div class="main-container">
@@ -74,25 +75,66 @@
 						</div>
 					</div>
 				</section>
+
+				<div id="classesDiv">
+					<img src="/img/chall.png" class="classesImg">
+				</div>
+
+				<div id="myTotalPoint">
+					<span id="totalPointIcon" class="material-icons">
+						local_parking
+					</span>
+					<span id="totalPointSpan">
+						${selUser.totalPoint}
+						 
+					</span>
+				</div> 
+
+				<div id="nowPoint">
+					<span id="nowPointIcon" class="material-icons">
+						card_membership
+					</span>
+					<span id="nowPointSpan">
+						${selUser.myPoint}
+					</span>
+				</div>
+
+				<div id="nowCash">
+					<span id="nowCashIcon" class="material-icons">
+						atm
+					</span>
+					<span id="nowCashSpan">
+						${selUser.myCash}
+					</span>
+				</div>
 				
-				<div id="nickDiv">닉네임 : ${selUser.nick}</div>       
-				<div>가입 날짜 : ${selUser.r_dt}</div>
-				<div>총누적포인트 : ${selUser.totalPoint}</div> 
-				<div>포인트 : ${selUser.myPoint}</div>
-				<div>환급받은 캐시 : ${selUser.myCash}</div>
+				<button id="myPoint">포인트 환급받기</button>
+				<div id="hrDiv"></div>
+
+			
+				<div id="nickDiv">
+					<span id="nickIcon" class="material-icons">
+						tag_faces
+					</span>
+					<span id="nickSpan">
+						${selUser.nick}
+					</span>
+				</div>       
+				<div id="rdtDiv">
+					<span id="rdtIcon" class="material-icons">
+						date_range
+					</span>
+					<span id="rdtSpan">
+						${selUser.r_dt}
+					</span>
+				</div>
+				<button id="infoChangeBtn" onclick="moveToInfo(${selUser.i_user})">회원정보 변경</button>
+				<br>
+				<button id="logoutBtn" onclick="logOut()">로그아웃</button>
 				
 			</div>
-			<br><br>
-			계급 : <img src="/img/chall.png" class="ClassesImg">
-			<br>
+		
 			
-			
-			<br>
-			<button id="myPoint">포인트 환급받기</button>            
-			<br><br>
-			<button onclick="moveToInfo(${selUser.i_user})">회원정보 변경</button>
-			<br>
-			<button onclick="logOut()">로그아웃</button>
 	 
 		 
 

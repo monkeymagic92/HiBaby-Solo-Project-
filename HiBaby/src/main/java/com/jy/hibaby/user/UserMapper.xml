@@ -19,8 +19,9 @@
 	</select>
 	
 	<select id="selUserInfo" parameterType="UserPARAM" resultType="UserPARAM">
-		SELECT A.i_user, A.user_id, A.nm, A.nick, A.email, A.sm, A.profile_img, A.r_dt, A.m_dt,
-		B.myPoint, B.totalPoint, B.myCash, B.totalCash
+		SELECT A.i_user, A.user_id, A.nm, A.nick, A.email, A.sm, A.profile_img,
+		B.myPoint, B.totalPoint, B.myCash, B.totalCash,
+		date_format(A.r_dt, '%Y-%c-%e') AS r_dt
 		FROM t_user A
 		
 		LEFT JOIN t_myPoint B

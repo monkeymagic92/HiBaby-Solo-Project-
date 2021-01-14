@@ -19,76 +19,141 @@
 	
  -->
 
-       <section class="pro_Img">
-           <div class="imgBtn">
-               <div class="pImgbox">
-                   <label for="file">
-                   	<c:if test="${selUser.profile_img == null }">
-                   		<img src="/res/img/HiBaby.jpg" onchange="setThumbnail(e)" alt="" class="img">
-                   	</c:if>
-                   	<c:if test="${selUser.profile_img != null }">
-                           <img src="/res/img/HiBaby/profile_img/user/${selUser.i_user }/${selUser.profile_img}" class="img">                    	
-                   	</c:if>
-                   </label>
-                   <br><br>
-                   <div class="div-cngBtn">
-                       <div class="div-subBtn">
-                           <form id="imgFrm" action="/user/imgUpload" method="post" enctype="multipart/form-data" onsubmit="return imgChk()">
-                               <input type="file" name="user_profile_img" id="file" accept="image/png, image/jpeg, image/jpg">
-                               <input class="cngImg" type="submit" value="사진 저장">
-                           </form>
-                       </div>
-                       <br><br>
-                       <div class="delBtn">
-                           <form id="imgDelFrm" action="/user/imgDel" method="post">
-                               <input class="cngImg2" type="submit" value="사진 삭제">
-                           </form>
-                       </div>
-                   </div>
-               </div>
-           </div>
-       </section>
-       <br><br>
-                계급 : <img src="/res/img/chall.png" class="ClassesImg">
-       <br>
-       <h3>ㅡㅡ 계급은 총 누적포인트 기준으로 계급 잡기 ㅡㅡ</h3>
-       <div>닉네임 : ${selUser.nick}</div>       
-       <div>총누적포인트 : ${selUser.totalPoint}</div> 
-       <div>포인트 : ${selUser.myPoint}</div>
-       <div>환급받은 캐시 : ${selUser.myCash}</div>
-       <br>
-       <button id="myPoint">포인트 환급받기</button>            
-       <br><br>
-       <button onclick="moveToInfo(${selUser.i_user})">회원정보 변경</button>
-       <br>
-	<button onclick="logOut()">로그아웃</button>
+       <div class="myPageContainer">
+			<div class="infoBox">
+				<section class="pro_Img">
+					<div class="imgBtn">
+						<div class="pImgbox">
+							<label for="file">
+								<c:if test="${selUser.profile_img == null }">
+									<img src="/res/img/HiBaby.jpg" onchange="setThumbnail(e)" alt="" class="profileImg">
+								</c:if>
+								
+								<c:if test="${selUser.profile_img != null }">
+									<img src="/res/img/HiBaby/profile_img/user/${selUser.i_user }/${selUser.profile_img}" class="profileImg">                    	
+								</c:if>
+							</label>
+							<br><br>
+							<div class="div-cngBtn">
+								<div class="div-subBtn">
+									<form id="imgFrm" action="/user/imgUpload" method="post" enctype="multipart/form-data" onsubmit="return imgChk()">
+										<input type="file" name="user_profile_img" id="file" accept="image/png, image/jpeg, image/jpg">
+										<input class="cngImg" type="submit" value="저장">
+									</form>
+								</div>
+								<br><br>
+								<div class="delBtn">
+									<form id="imgDelFrm" action="/user/imgDel" method="post">
+										<input class="cngImg2" type="submit" value="삭제">
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
 
-	
-	<div id="myModal" class="modal">
+				<div id="classesDiv">
+					<c:choose>
+				    	<c:when test="${selUser.totalPoint < 150}">
+				    		<img class="classesImg" src="/res/img/ion.png" alt="img">
+				    	</c:when>
+				    	<c:when test="${selUser.totalPoint < 400}">
+				    		<img class="classesImg" src="/res/img/gold.png" alt="img">
+				    	</c:when>
+				    	<c:when test="${selUser.totalPoint < 600}">
+				    		<img class="classesImg" src="/res/img/dia.png" alt="img">
+				    	</c:when>
+				    	<c:when test="${selUser.totalPoint < 20000}">
+				    		<img class="classesImg" src="/res/img/master.png" alt="img">
+				    	</c:when>
+				    	<c:when test="${selUser.totalPoint > 20000}">
+				    		<img class="classesImg" src="/res/img/chall.png" alt="img">
+				    	</c:when>
+				   	</c:choose>
+				</div>
 
-		<!-- Modal content -->
-		<div class="modal-content">
-		    <h4>나의포인트 : <fmt:formatNumber value="${selUser.myPoint}" pattern="#,###" />p</h4>
-		    
-            <!-- Modal body -->
-		    <div class="modal-body">
-		    	
-		    	환급받을 포인트 입력 :
-		    	<form id="pointFrm" action="/user/myPoint" method="post" onsubmit="return pointChk()">
-		    		<input type="number" name="myCash" placeholder="포인트를 입력해 주세요" maxlength="8" oninput="numberMaxLength(this)">
-		    		<input type="hidden" name="myPoint" value="${selUser.myPoint}">
-		    		<input type="hidden" name="i_user" value="${selUser.i_user}">
-		    		<button type="submit">환급받기</button>	
-		    	</form> 
-		    </div>
-		    
-		    <!-- Modal bottom -->
-		    <div class="modal-bottom">
-				Modal Bottom부분		
-		    </div>
-		    <button type="button" class="pop_bt" onclick="hideModal()">종료</button>
+				<div id="myTotalPoint">
+					<span id="totalPointIcon" class="material-icons">
+						local_parking
+					</span>
+					<span id="totalPointSpan">
+						&nbsp;<fmt:formatNumber value="${selUser.totalPoint}" pattern="#,###" />p 
+					</span>
+				</div> 
+
+				<div id="nowPoint">
+					<span id="nowPointIcon" class="material-icons">
+						card_membership
+					</span>
+					<span id="nowPointSpan">
+						&nbsp;<fmt:formatNumber value="${selUser.myPoint}" pattern="#,###" />p
+					</span>
+				</div>
+
+				<div id="nowCash">
+					<span id="nowCashIcon" class="material-icons">
+						atm
+					</span>
+					<span id="nowCashSpan">
+						&nbsp;<fmt:formatNumber value="${selUser.myCash}" pattern="#,###" />p
+					</span>
+				</div>
+				
+				<button id="myPoint">포인트 환급받기</button>
+				<div id="hrDiv"></div>
+
+			
+				<div id="nickDiv">
+					<span id="nickIcon" class="material-icons">
+						tag_faces
+					</span>
+					<span id="nickSpan">
+						${selUser.nick}
+					</span>
+				</div>       
+				<div id="rdtDiv">
+					<span id="rdtIcon" class="material-icons">
+						date_range
+					</span>
+					<span id="rdtSpan">
+						${selUser.r_dt}
+					</span>
+				</div>
+				<button id="infoChangeBtn" onclick="moveToInfo(${selUser.i_user})">회원정보 변경</button>
+				<br>
+				<button id="logoutBtn" onclick="logOut()">로그아웃</button>
+				
+			</div>
+		
+		
+
+			<!-- PointModal Start -->
+			<div id="myModal" class="pointModal">
+					<!-- Modal content -->
+				<div class="pointModal-content">
+					<h4>나의포인트 : <fmt:formatNumber value="${selUser.myPoint}" pattern="#,###" />p</h4>
+					
+					<!-- Modal body -->
+					<div class="pointModal-body">
+						
+						환급받을 포인트 입력 
+						<form id="pointFrm" action="/user/myPoint" method="post" onsubmit="return pointChk()">
+							<input id="pointIns" type="number" name="myCash" placeholder="포인트 입력" maxlength="8" oninput="numberMaxLength(this)">
+							<input type="hidden" name="myPoint" value="${selUser.myPoint}">
+							<input type="hidden" name="i_user" value="${selUser.i_user}">
+							<button id="pointSubmitBtn" type="submit">환급받기</button>	
+						</form> 
+					</div>
+					
+					<!-- Modal bottom -->
+					<div class="modal-bottom">
+						
+					</div>
+					<button type="button" class="pop_bt" onclick="hideModal()">종료</button>
+				</div>
+			</div>
+			<!-- PointModal End -->
 		</div>
-    </div>
 	
 </body>
 <script src="/res/js/myPage.js"></script>
@@ -96,11 +161,13 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
 
+	
 	//비로그인시 접근할경우
 	if(${loginErr != null}) {
-		alert('${loginErr}')
-		location.href="/user/login"
+			alert('${loginErr}')
+			location.href="/user/login"
 	}
+	
 	
 	// 회원정보변경
 	function moveToInfo(i_user) {
@@ -131,12 +198,12 @@
 	$('#myPoint').click(function() {
 		$('#myModal').show();
 	})
-
+	
 	// 모달창 종료
 	function hideModal() {
 		myModal.style.display = 'none'
 	}
-
+	
 	//환급포인트 길이 제한
 	function numberMaxLength(e){
 	    if(e.value.length >= e.maxLength){
@@ -164,54 +231,53 @@
 		
 	}
 	
+	
 	// 환급 성공 실패 여부 메세지
 	if(${pointMsg != null}) {
 		alert('${pointMsg}')		
 	}
+
+
+/*		ㅡ		ㅡ		ㅡ		ㅡ		ㅡ		ㅡ		ㅡ		*/
+
+
 	
+/*
+
+				ㅡ 아작스버전 일단 보류 ㅡ
+
+// 포인트 환급받기
+function ajaxPoint() {
+	const myPoint = `${loginUser.myPoint}`
+	const i_user = `${loginUser.i_user}`
+	//var myCash = $('#myCashId').val();   jquery 로 id value값 가져오기
+	const myCash = document.getElementById("myCashId").value
 	
-	/*		ㅡ		ㅡ		ㅡ		ㅡ		ㅡ		ㅡ		ㅡ		*/
-	
-	
-	
-	
-	
-	/*
-	
-					ㅡ 아작스버전 일단 보류 ㅡ
-	
-	// 포인트 환급받기
-	function ajaxPoint() {
-		const myPoint = `${loginUser.myPoint}`
-		const i_user = `${loginUser.i_user}`
-		//var myCash = $('#myCashId').val();   jquery 로 id value값 가져오기
-		const myCash = document.getElementById("myCashId").value
+	if(confirm(myCash + 'p 를 환급 하시겠습니까?')) {
 		
-		if(confirm(myCash + 'p 를 환급 하시겠습니까?')) {
+		console.log(myPoint)
+		console.log(i_user)
+		console.log(myCash)
+		
+		axios.post('/user/ajaxMyPoint', {
 			
-			console.log(myPoint)
-			console.log(i_user)
-			console.log(myCash)
-			
-			axios.post('/user/ajaxMyPoint', {
+				i_user,
+				myPoint,
+				myCash
 				
-					i_user,
-					myPoint,
-					myCash
-					
-			}).then(function(res) {
-				if(res.data =='1') {
-					alert('환급되었습니다')
-					pointFrm.myCashName.value = 0
-					
-				} else if(res.data == '2') {
-					alert('현재 보유한 포인트를 초과하였습니다')
-					pointFrm.myCashName.value = 0
-					
-				} 
-			})	
-		}
+		}).then(function(res) {
+			if(res.data =='1') {
+				alert('환급되었습니다')
+				pointFrm.myCashName.value = 0
+				
+			} else if(res.data == '2') {
+				alert('현재 보유한 포인트를 초과하였습니다')
+				pointFrm.myCashName.value = 0
+				
+			} 
+		})	
 	}
-	*/
+}
+*/
 </script>
 </html>
