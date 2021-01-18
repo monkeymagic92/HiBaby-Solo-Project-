@@ -198,7 +198,7 @@
 		$('#message').val('')
 	});
 
-	var ws = new WebSocket("ws://localhost:8080/echo?bno=1234");
+	var ws = new WebSocket("ws://localhost:8080/echo");
 	
 	ws.onmessage = ws.onMessage;
 	ws.onclose = ws.onClose;
@@ -231,7 +231,33 @@
 		$("#messageArea").append("연결 끊김");
 	}
 	
+
+	// 댓글 뿌리기 (첨에 한번 실행 됨)
+   function selMessage() {
+      
+      axios.get('/message/selMessage', {
+         
+      }).then(function(res) {
+         refreshMessage(res.data)
+      })
+   }
 	
+   function refreshMessage(arr) {
+	      for (let i = 0; i<arr.length; i++) {
+	         makeMessageList(arr[i])
+	      }
+   }
+   
+   function makeMessageList(arr) {
+	   var messageTest = document.createElement('div')
+	   messageTest.setAttribute('class', 'messageTest')
+	   messageTest.append(arr.ctnt)
+	   
+	   messageArea.append(messageTest)
+	   
+   }
+   selMessage()
+   
 	
 	
 	//////////////////////

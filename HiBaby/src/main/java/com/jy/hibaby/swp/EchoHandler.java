@@ -5,13 +5,21 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.jy.hibaby.message.MessageService;
+import com.jy.hibaby.message.model.MessagePARAM;
+
+
 public class EchoHandler extends TextWebSocketHandler{
 	
+	@Autowired
+	private MessageService messageSservice;
 	
 	//세션 리스트
     private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
@@ -30,12 +38,21 @@ public class EchoHandler extends TextWebSocketHandler{
     //클라이언트가 웹소켓 서버로 메시지를 전송했을 때 실행
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+    	MessagePARAM param = new MessagePARAM();
+    	
         logger.info("{}로 부터 {} 받음", session.getId(), message.getPayload());
+        
+        param.setCtnt(message.getPayload());
+        System.out.println("param.setCtnt : " + param.getCtnt());
+        
+        int result = messageSservice.intMessage(param);
+        
         
         //모든 유저에게 메세지 출력
         for(WebSocketSession sess : sessionList){
             sess.sendMessage(new TextMessage(message.getPayload()));
         }
+        
     }
     
     
