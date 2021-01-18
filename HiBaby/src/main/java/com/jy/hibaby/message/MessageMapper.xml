@@ -4,9 +4,9 @@
 	
 	<insert id="insMessage" parameterType="MessagePARAM">
 		INSERT INTO t_message
-		(ctnt)
+		(to_user, from_user, ctnt)
 		VALUES
-		(#{ctnt})
+		(#{to_user}, #{from_user}, #{ctnt})
 	</insert>
 	
 	<select id="selMessage" resultType="MessagePARAM">

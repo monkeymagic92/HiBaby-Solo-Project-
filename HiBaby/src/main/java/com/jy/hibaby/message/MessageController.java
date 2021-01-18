@@ -18,7 +18,7 @@ public class MessageController {
 	@Autowired
 	private MessageService service;
 	
-	// 댓글 뿌리기
+	// message 뿌리기
 	@RequestMapping(value="/selMessage", method=RequestMethod.GET)
 	private @ResponseBody List<MessagePARAM> selMessage(Model model, MessagePARAM param){
 		

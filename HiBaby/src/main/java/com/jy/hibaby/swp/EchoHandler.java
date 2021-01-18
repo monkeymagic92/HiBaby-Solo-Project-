@@ -43,6 +43,12 @@ public class EchoHandler extends TextWebSocketHandler{
         logger.info("{}로 부터 {} 받음", session.getId(), message.getPayload());
         
         param.setCtnt(message.getPayload());
+        
+        // 임시용
+        param.setTo_user(1);
+        param.setFrom_user(2);
+        //
+        
         System.out.println("param.setCtnt : " + param.getCtnt());
         
         int result = messageSservice.intMessage(param);

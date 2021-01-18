@@ -212,6 +212,8 @@
 		console.log(event.data+'\n')
 	}
 	
+	
+	
 	ws.sendMessage = function() {
 		console.log('sendMessage 실행')
 		ws.send($("#message").val());
@@ -224,6 +226,8 @@
 		console.log('onMessage 실행' + data)
 		$("#messageArea").append(data + "<br/>");
 	}
+	
+	
 	
 	// 서버와 연결을 끊었을 때
 	ws.onClose = function(evt) {
@@ -263,10 +267,14 @@
 	 
 	}
 	selMessage()
+	
    
 	
 	
-	//////////////////////
+	////////////////////// 채팅 관련 End
+	
+	
+	
 	var frDetailChk = 0; // 유저목록 상세페이지 화면 = 0 / 친구목록 상세페이지 화면 = 1
 	
 	//로그아웃
@@ -534,7 +542,8 @@
 		messageBtn.setAttribute('id', 'messageBtn')
 		messageBtn.innerText = '쪽지'
 		messageBtn.onclick = function() {
-			// 쪽지 기능 넣기
+			
+			
 			alert('쪽지 기능 넣기');
 		}	
 	
@@ -592,18 +601,19 @@
 			frmessageBtn.setAttribute('id', 'messageBtn')
 			frmessageBtn.innerText = '쪽지'
 			frmessageBtn.onclick = function() {
-				// 쪽지 기능 넣기
+				// 쪽지 show 사용
+				// 나의 pk 값  = from_user
+				// 상대 pk 값 = to_user 매개변수로 2개 ajax post 값 insert 하는함수에 넣기
 				alert('쪽지 기능 넣기');
 			}	
 			
 			detailBtnMall.append(frDelBtn)
 			detailBtnMall.append(frmessageBtn)
 			detailUserBox.append(detailBtnMall)	
-			
 		}
-			
-					
 	}
+	
+	
 	
     // frList Start
     
