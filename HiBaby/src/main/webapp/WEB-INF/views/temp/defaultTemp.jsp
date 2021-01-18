@@ -198,7 +198,7 @@
 		$('#message').val('')
 	});
 
-	var ws = new WebSocket("ws://118.67.130.227:8080//echo?bno=1234");
+	var ws = new WebSocket("ws://localhost:8080/echo?bno=1234");
 	
 	ws.onmessage = ws.onMessage;
 	ws.onclose = ws.onClose;
