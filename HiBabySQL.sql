@@ -122,6 +122,20 @@ WHERE B.i_user = 1;
 
 
 
+CREATE TABLE t_message(
+	i_message INT UNSIGNED AUTO_INCREMENT,
+	to_user INT(6),
+	from_user INT(6),	
+	ctnt VARCHAR(100),
+	r_dt DATETIME DEFAULT NOW(),
+	PRIMARY KEY(i_message, to_user, from_user),
+	FOREIGN KEY(to_user) REFERENCES t_user(i_user) ON DELETE CASCADE,
+	FOREIGN KEY(from_user) REFERENCES t_user(i_user) ON DELETE CASCADE
+	
+);
+DROP TABLE t_message;
+SELECT * FROM t_message;
+
 
 
 
