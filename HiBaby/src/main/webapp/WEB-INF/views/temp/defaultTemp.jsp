@@ -9,6 +9,8 @@
 <title>HiBaby</title>
 <link rel="stylesheet" href="/res/css/defaultTemp.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 </head>
 <body>
 	<div class="main-container">
@@ -171,16 +173,68 @@
                     
                     
                 </div>
+                
+                
+                <!-- socket 테스트 -->
+                <input type="text" id="message" />
+				<input type="button" id="sendBtnf" value="submit"/>
+				<div id="messageArea"></div>
+				
+				
+				
                 <!-- Modal bottom -->
             </div>
         </div>
         <!-- 친구 목록 모달 end -->
-        
  		
     </div>
-
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
+<script type="text/javascript">
+	
+	//////////////////////
+	$("#sendBtnf").click(function() {
+		ws.sendMessage();
+		$('#message').val('')
+	});
+
+	var ws = new WebSocket("ws://118.67.130.227:8080//echo?bno=1234");
+	
+	ws.onmessage = ws.onMessage;
+	ws.onclose = ws.onClose;
+	
+	ws.onopen = function() {
+		console.log('연결 성공')
+	}
+	
+	// 메시지 전송
+	ws.onmessage = function(event) {
+		console.log(event.data+'\n')
+	}
+	
+	ws.sendMessage = function() {
+		console.log('sendMessage 실행')
+		ws.send($("#message").val());
+	}
+	
+	// 서버로부터 메시지를 받았을 때
+	ws.onmessage = function(event) {
+		console.log('msgㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ')
+		var data = event.data;
+		console.log('onMessage 실행' + data)
+		$("#messageArea").append(data + "<br/>");
+	}
+	
+	// 서버와 연결을 끊었을 때
+	ws.onClose = function(evt) {
+		
+		$("#messageArea").append("연결 끊김");
+	}
+	
+	
+	
+	
+	//////////////////////
 	var frDetailChk = 0; // 유저목록 상세페이지 화면 = 0 / 친구목록 상세페이지 화면 = 1
 	
 	//로그아웃
@@ -640,12 +694,9 @@
     	frListBoxMall.append(frListTable)
     	
     }
-    
-
-    
-
     // frList End
-	
+    
+     
 </script>
 </body>
 </html>

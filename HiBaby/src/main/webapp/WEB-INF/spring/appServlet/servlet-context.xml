@@ -5,7 +5,9 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
 	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
@@ -52,10 +54,15 @@
 		
 		<!-- 집에서 DB url 연결할때 serverTimezone 에러시 config.properties파일 안에 값 추가해주기 : &amp;serverTimezone=UTC -->
 		 					
-		   
+		<!-- 
 		<beans:property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/HiBaby?characterEncoding=UTF-8&amp;serverTimezone=UTC "/>
 		<beans:property name="username" value="root" />
 		<beans:property name="password" value="orcl" />
+		 -->
+		 
+		 <beans:property name="jdbcUrl" value="jdbc:mysql://118.67.130.227:3306/HiBaby?characterEncoding=UTF-8&amp;serverTimezone=UTC "/>
+<beans:property name="username" value="root" />
+<beans:property name="password" value="tkfkd121!@!" />
 		
 		<!-- 배포할시 !!!!!!!!   위에꺼 지우고 내 배포자료 메모장에있는거 그대로 복붙하기 -->
 		
@@ -124,5 +131,20 @@
 			<beans:bean class="com.jy.hibaby.LoginCheckInterceptor"/>
 		</interceptor>
 	</interceptors>
+	
+	
+	
+	<!-- websocket handler -->
+	<beans:bean id="echoHandler" class="com.jy.hibaby.swp.EchoHandler" />
+	
+	<websocket:handlers>
+		<websocket:mapping handler="echoHandler" path="/echo" />
+		<websocket:handshake-interceptors>
+			<beans:bean
+				class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor">
+			</beans:bean>
+		</websocket:handshake-interceptors>
+	</websocket:handlers>
+	
 	
 </beans:beans>

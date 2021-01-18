@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/test.css">
+</head>
+<body>
+    <div class="container">
+        <button id="btn" onclick="btnClick()">Click</button>
+       <div id="count"></div>
+    </div>
+
+   
+
+
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+var time = 3
+
+function btnClick() {
+    setInterval(function(){
+    if(time != 0) {
+        var time_text = '(' + time +'초 후 목록이 갱신됩니다.)';
+
+    $("#count").text(time_text);
+
+    time--;
+    } else {
+        count.innerText = '끝'
+    }
+
+    },1000);    
+}
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
