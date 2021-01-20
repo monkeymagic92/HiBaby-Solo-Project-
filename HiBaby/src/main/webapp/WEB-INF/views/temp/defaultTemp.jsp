@@ -184,8 +184,12 @@
         <!-- 대화창 전체 div -->
         <div id="chatDiv">
             <div id="userInfoBox">
+            
+            	<!-- 
                 <img src="/res/img/chall.png" id="chatUserImg">
                 <span id="chatUserNick">Test321</span>
+                 -->
+                 
             </div>
         
             <span id="chatExitBtn" class="material-icons" onclick="chatModalHide()">clear</span>
@@ -197,6 +201,7 @@
                 <!-- 상대 채팅 -->
                 <div id="youChatBox">
                 	
+                	<!-- 
                     <div id="youChat">
                         <img src="/res/img/chall.png" class="youChatImg">
                         <span class="youChatNick">Test321</span>
@@ -205,6 +210,7 @@
                         	동해물과 백두산이 마르고 닳도록 하느님이 
                     </div>
                     <span class="youChatDate">2020. 04. 29 12:35</span>
+                     -->
                 </div>
 
 							<!-- 구 분 선 -->
@@ -217,10 +223,12 @@
                         <img src="/img/chall.png" class="myChatImg">
                     </div>
                     -->
+                    <!-- 
                     <div class="myChatText">
                 	   	     동해물과 백두산이 마르고 닳도록 하느님이 
                     </div>
                     <span class="myChatDate">2020. 04. 29 12:35</span>
+                     -->
                 </div>
                 
             </div>
@@ -229,7 +237,7 @@
                 <form id="chatForm">
                     <textarea id="chatText" name="chatText"></textarea>
                 </form>
-                <span id="chatSend" class="material-icons" onclick="chatSend()">
+                <span id="chatSend" class="material-icons">
                     send
                 </span>
             </div>
@@ -525,14 +533,13 @@
 			}
 		
 		
-				/* 친구목록에서 상세페이지 띄울때  */
-				
+			/* 친구목록에서 상세페이지 띄울때  */
+			
 		} else if(frDetailChk == 1)	{
 			
 			var detailBtnMall = document.createElement('div')
 			detailBtnMall.setAttribute('id', 'detailBtnMall')
 			
-
 			var frDelBtn = document.createElement('button')
 			frDelBtn.setAttribute('id', 'frPlusBtn')
 			frDelBtn.innerText = '친구삭제'
@@ -582,12 +589,12 @@
 					3. 웹소켓 실행(값 뿌리기 )
 				*/
 
-				
+
 				
 				chatDiv.style.display = 'flex'
 				
 				var from_user = `${loginUser.i_user}`
-				var to_user = res.i_user;
+				var to_user = res.i_user
 				
 				
 				selChat(from_user, to_user); // 챗 뿌리기
@@ -597,12 +604,14 @@
 				// 나의 pk 값  = from_user
 				// 상대 pk 값 = to_user 매개변수로 2개 ajax post 값 insert 하는함수에 넣기
 				
-			}	
+			}
 			
 			detailBtnMall.append(frDelBtn);
 			detailBtnMall.append(frmessageBtn);
 			detailUserBox.append(detailBtnMall);
+		
 		}
+				
 	}
 	
 	
@@ -622,6 +631,7 @@
 			}).then(function(res) {
 				chatForm.chatText.value = ''
 				chatForm.chatText.focus()
+				console.log('뿌리기 성공')
 				
 				// 웹소켓 작업하기
 				
@@ -631,27 +641,32 @@
 	
 	// n : n 대화 뿌리기
 	function selChat(from_user, to_user) {
+		
 		axios.get('/chat/selChat', {
+			
 			
 	        params: {
 	        	from_user : from_user,
 	        	to_user : to_user
 	        }
+			
 		     
 		}).then(function(res) {
 			
 			refreshChatMenu(res.data)
+			
 		})
 	}
 	
+			
 	function refreshChatMenu(arr) {
 		for (let i = 0; i<arr.length; i++) {
-		   makeCmtList(arr[i])
+		   makeChatList(arr[i])
 		}
 	}
 		
-	// 댓글 뿌리는 만드는 공간 ( 12.5 12:10 현재 진행중 )
-	function makeCmtList(arr) {
+	// 챗 뿌리기 만들기
+	function makeChatList(arr) {
 		var from_userPk = `${loginUser.i_user}`
 		
 		if(from_userPk == arr.from_user) {	// 나 
@@ -675,19 +690,45 @@
 			
 			
 		} else { // 상대
+			
 			var youChatBox = document.createElement('div')
 			youChatBox.setAttribute('id', 'youChatBox')
+			
+			var youChat = document.createElement('div')
+			youChat.setAttribute('id', 'youChat')
+			
+			var youChatImg = document.createElement('img')
+			youChatImg.setAttribute('class', 'youChatImg')
+			if(arr.from_profile_img != null) {
+				console.log('사진 있음')
+				youChatImg.setAttribute('src',`/res/img/HiBaby/profile_img/user/\${arr.from_user}/\${arr.from_profile_img}`)
+	    	  
+	        } else {
+	     	   console.log('사진 없음')
+	           youChatImg.setAttribute('src','/res/img/HiBaby.jpg')
+	        }
+		
+			youChat.append(youChatImg)
+			
+			var youChatNick = document.createElement('span')
+			youChatNick.setAttribute('class', 'youChatNick')
+			youChatNick.append(arr.from_nick)
+			
+			youChat.append(youChatNick)
+			youChatBox.append(youChat)
 			
 			var youChatText = document.createElement('div')
 			youChatText.setAttribute('class', 'youChatText')
 			youChatText.append(arr.ctnt)
-			
 			youChatBox.append(youChatText)
+			
+			var youChatDate = document.createElement('span')
+			youChatDate.setAttribute('class', 'youChatDate')
+			youChatDate.append(arr.r_dt)
+			youChatBox.append(youChatDate)
+			
 			chatArea.append(youChatBox)
-			
-			
 		}
-	 	
 	}
 	
 	

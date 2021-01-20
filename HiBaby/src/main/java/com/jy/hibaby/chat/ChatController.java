@@ -25,6 +25,10 @@ public class ChatController {
 	// 챗 입력
 	@RequestMapping(value="/insChat", method=RequestMethod.POST) 
     private @ResponseBody String cmtInsert(@RequestBody ChatPARAM param){
+		
+		System.out.println("from_user : " + param.getFrom_user());
+		System.out.println("to_user : " + param.getTo_user());
+		
 		int result = service.insChat(param);
 		
 		return String.valueOf(result);

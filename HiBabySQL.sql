@@ -123,18 +123,46 @@ WHERE B.i_user = 1;
 
 
 CREATE TABLE t_chat(
-	i_message INT UNSIGNED AUTO_INCREMENT,
-	to_user INT(6),
+	i_chat INT UNSIGNED AUTO_INCREMENT,
 	from_user INT(6),	
+	to_user INT(6),
 	ctnt VARCHAR(100),
 	r_dt DATETIME DEFAULT NOW(),
-	PRIMARY KEY(i_message, to_user, from_user),
+	PRIMARY KEY(i_chat, to_user, from_user),
 	FOREIGN KEY(to_user) REFERENCES t_user(i_user) ON DELETE CASCADE,
-	FOREIGN KEY(from_user) REFERENCES t_user(i_user) ON DELETE CASCADE
-	
+	FOREIGN KEY(from_user) REFERENCES t_user(i_user) ON DELETE CASCADE	
 );
 DROP TABLE t_chat;
 SELECT * FROM t_chat;
+
+SELECT B.i_user AS from_user, C.i_user AS to_user, B.profile_img AS from_profile_img, C.profile_img AS to_profile_img,
+B.nick, ctnt
+FROM t_chat A
+
+LEFT JOIN t_user B
+ON A.from_user = B.i_user
+
+LEFT JOIN t_user C
+ON A.to_user = C.i_user
+
+WHERE A.to_user = 4 AND A.from_user = 1 OR A.from_user = 4 AND A.to_user = 1;
+
+SELECT B.i_user AS from_user, C.i_user AS to_user,
+B.profile_img AS from_profile_img,
+ C.profile_img AS to_profile_img,
+B.nick as from_nick, C.nick as to_nick, A.r_dt, ctnt
+FROM t_chat A
+
+LEFT JOIN t_user B
+ON A.from_user = B.i_user
+
+LEFT JOIN t_user C
+ON A.to_user = C.i_user
+
+WHERE A.to_user = 4 AND A.from_user = 1
+OR
+A.from_user = 4 AND A.to_user = 1;
+
 
 
 

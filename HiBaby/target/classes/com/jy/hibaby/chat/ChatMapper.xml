@@ -10,8 +10,10 @@
 	</insert>
 	
 	<select id="selChat" parameterType="ChatPARAM" resultType="ChatPARAM">
-		SELECT B.i_user AS from_user, C.i_user AS to_user, B.profile_img AS from_profile_img, C.profile_img AS to_profile_img,
-		B.nick, C.nick, A.r_dt, ctnt
+		SELECT B.i_user AS from_user, C.i_user AS to_user,
+		B.profile_img AS from_profile_img,
+	    C.profile_img AS to_profile_img,
+		B.nick as from_nick, C.nick as to_nick, A.r_dt, ctnt
 		FROM t_chat A
 		
 		LEFT JOIN t_user B
@@ -23,5 +25,7 @@
 		WHERE A.to_user = ${to_user} AND A.from_user = ${from_user}
 		OR
 		A.from_user = ${to_user} AND A.to_user = ${from_user}
+		
+		ORDER BY r_dt ASC
 	</select>
 </mapper>
