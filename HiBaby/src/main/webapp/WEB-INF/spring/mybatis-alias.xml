@@ -32,9 +32,9 @@
 		<typeAlias type="com.jy.hibaby.pro.model.ProVO" alias="ProVO" />
 		<typeAlias type="com.jy.hibaby.pro.model.ProPARAM" alias="ProPARAM" />
 		
-		<!-- message -->
-		<typeAlias type="com.jy.hibaby.message.model.MessageVO" alias="MessageVO" />
-		<typeAlias type="com.jy.hibaby.message.model.MessagePARAM" alias="MessagePARAM" />
+		<!-- chat -->
+		<typeAlias type="com.jy.hibaby.chat.model.ChatVO" alias="ChatVO" />
+		<typeAlias type="com.jy.hibaby.chat.model.ChatPARAM" alias="ChatPARAM" />
 		
 		
 		

@@ -1,18 +1,17 @@
-package com.jy.hibaby.message.model;
+package com.jy.hibaby.chat.model;
 
-public class MessageVO {
-
-	private int i_message;
+public class ChatVO {
+	private int i_chat;
 	private int to_user;
 	private int from_user;
 	private String ctnt;
 	private String r_dt;
 	
-	public int getI_message() {
-		return i_message;
+	public int getI_chat() {
+		return i_chat;
 	}
-	public void setI_message(int i_message) {
-		this.i_message = i_message;
+	public void setI_chat(int i_chat) {
+		this.i_chat = i_chat;
 	}
 	public int getTo_user() {
 		return to_user;
@@ -38,6 +37,5 @@ public class MessageVO {
 	public void setR_dt(String r_dt) {
 		this.r_dt = r_dt;
 	}
-	
 	
 }

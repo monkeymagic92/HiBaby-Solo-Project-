@@ -173,107 +173,71 @@
                     
                     
                 </div>
-                
-                
-                <!-- socket 테스트 -->
-                <input type="text" id="message" />
-				<input type="button" id="sendBtnf" value="submit"/>
-				<div id="messageArea"></div>
-				
-				
-				
+             
                 <!-- Modal bottom -->
             </div>
         </div>
         <!-- 친구 목록 모달 end -->
+        
+        
+        <!-- 대화창 start -->
+        <!-- 대화창 전체 div -->
+        <div id="chatDiv">
+            <div id="userInfoBox">
+                <img src="img/chall.png" id="chatUserImg">
+                <span id="chatUserNick">Test321</span>
+            </div>
+        
+            <span id="chatExitBtn" class="material-icons" onclick="chatModalHide()">clear</span>
+            <div id="chatDivheader">Drag Zone</div>
+            
+            <!-- 채팅 화면 div (itemBox)-->
+            <div id="chatArea">
+
+                <!-- 상대 채팅 -->
+                <div id="youChatBox">
+                    <div id="youChat">
+                        <img src="/img/chall.png" class="youChatImg">
+                        <span class="youChatNick">Test321</span>
+                    </div>
+                    <div class="youChatText">
+                        	동해물과 백두산이 마르고 닳도록 하느님이 
+                    </div>
+                    <span class="youChatDate">2020. 04. 29 12:35</span>
+                </div>
+
+                <!-- 내 채팅 -->
+                <div id="myChatBox">
+                    <!-- (일단 이거뺌 (카카오톡처럼 하기 위해서 내껀 정보 안나타냄))
+                    <div id="myChat">
+                        <span class="myChatNick">Test321</span>
+                        <img src="/img/chall.png" class="myChatImg">
+                    </div>
+                    -->
+                    <div class="myChatText">
+                	   	     동해물과 백두산이 마르고 닳도록 하느님이 
+                    </div>
+                    <span class="myChatDate">2020. 04. 29 12:35</span>
+                </div>
+                
+            </div>
+
+            <div id="chatTextArea">
+                <form id="chatForm">
+                    <textarea id="chatText" name="chatText"></textarea>
+                </form>
+                <span id="chatSend" class="material-icons" onclick="chatSend()">
+                    send
+                </span>
+            </div>
+        </div>
+    	<!-- 대화창 end -->
+        
  		
     </div>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script type="text/javascript">
-	
-	//////////////////////
-	$("#sendBtnf").click(function() {
-		ws.sendMessage();
-		$('#message').val('')
-	});
-
-	var ws = new WebSocket("ws://localhost:8080/echo");
-	
-	ws.onmessage = ws.onMessage;
-	ws.onclose = ws.onClose;
-	
-	ws.onopen = function() {
-		console.log('연결 성공')
-	}
-	
-	// 메시지 전송
-	ws.onmessage = function(event) {
-		console.log(event.data+'\n')
-	}
-	
-	
-	
-	ws.sendMessage = function() {
-		console.log('sendMessage 실행')
-		ws.send($("#message").val());
-	}
-	
-	// 서버로부터 메시지를 받았을 때
-	ws.onmessage = function(event) {
-		console.log('msgㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ')
-		var data = event.data;
-		console.log('onMessage 실행' + data)
-		$("#messageArea").append(data + "<br/>");
-	}
-	
-	
-	
-	// 서버와 연결을 끊었을 때
-	ws.onClose = function(evt) {
-		
-		$("#messageArea").append("연결 끊김");
-	}
-	
-
-	
-	/*
-		채팅내용 뿌리기
-	*/
-	// 메세지 뿌리기 (첨에 한번 실행 됨)
-	function selMessage() {
-	   
-	   axios.get('/message/selMessage', {
-	      params: {
-	    	  
-	      }
-	   }).then(function(res) {
-	      refreshMessage(res.data)
-	   })
-	}
-	
-	function refreshMessage(arr) {
-	    for (let i = 0; i<arr.length; i++) {
-	       makeMessageList(arr[i])
-	    }
-	}
-	
-	function makeMessageList(arr) {
-	 var messageTest = document.createElement('div')
-	 messageTest.setAttribute('class', 'messageTest')
-	 messageTest.append(arr.ctnt)
-	 
-	 messageArea.append(messageTest)
-	 
-	}
-	selMessage()
-	
-   
-	
-	
-	////////////////////// 채팅 관련 End
-	
-	
 	
 	var frDetailChk = 0; // 유저목록 상세페이지 화면 = 0 / 친구목록 상세페이지 화면 = 1
 	
@@ -599,12 +563,22 @@
 			
 			var frmessageBtn = document.createElement('button')
 			frmessageBtn.setAttribute('id', 'messageBtn')
-			frmessageBtn.innerText = '쪽지'
+			frmessageBtn.innerText = '대화하기'
 			frmessageBtn.onclick = function() {
-				// 쪽지 show 사용
+				var loginNick = `${loginUser.nick}`
+				if(loginNick == '') {
+					alert('로그인을 해주세요')
+					return false;
+				}
+				chatDiv.style.display = 'flex'
+				var from_user = `${loginUser.i_user}`
+				var to_user = res.i_user;
+				
+				insChat(from_user, to_user);
+				
 				// 나의 pk 값  = from_user
 				// 상대 pk 값 = to_user 매개변수로 2개 ajax post 값 insert 하는함수에 넣기
-				alert('쪽지 기능 넣기');
+				
 			}	
 			
 			detailBtnMall.append(frDelBtn)
@@ -613,6 +587,34 @@
 		}
 	}
 	
+	
+	// 대화 내용 입력
+	function insChat(from_userParam, to_userParam) {
+		
+		$('#chatSend').click(function() {
+			var from_user = from_userParam
+			var to_user = to_userParam
+			var ctnt = chatForm.chatText.value
+			
+			axios.post('/chat/insChat',{
+				from_user : from_user,
+				to_user : to_user,
+				ctnt : ctnt
+				
+			}).then(function(res) {
+				chatForm.chatText.value = ''
+				chatForm.chatText.focus()
+				
+				// 웹소켓 작업하기
+				
+			})		
+		})
+	}
+	
+	
+	
+	
+	// 
 	
 	
     // frList Start
@@ -653,8 +655,6 @@
     	frListTable.setAttribute('class', 'frListTable')
     	
     	frListTable.onclick = function() {
-    		
-    		console.log('pk 값 : ' + arr.to_user)
     		
     		frDetailChk = 1	//	친구 목록에서 상세 페이지 열때
     		
@@ -739,6 +739,65 @@
     // frList End
     
      
+    
+    
+    
+    
+    
+    
+    // 채팅창 드래그
+    
+    // Make the DIV element draggable:
+	dragElement(document.getElementById("chatDiv"));
+	
+	function dragElement(elmnt) {
+	  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+	  if (document.getElementById(elmnt.id + "header")) {
+	    // if present, the header is where you move the DIV from:
+	    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+	  } else {
+	    // otherwise, move the DIV from anywhere inside the DIV:
+	    elmnt.onmousedown = dragMouseDown;
+	  }
+	
+	  function dragMouseDown(e) {
+	    e = e || window.event;
+	    e.preventDefault();
+	    // get the mouse cursor position at startup:
+	    pos3 = e.clientX;
+	    pos4 = e.clientY;
+	    document.onmouseup = closeDragElement;
+	    // call a function whenever the cursor moves:
+	    document.onmousemove = elementDrag;
+	  }
+	
+	  function elementDrag(e) {
+	    e = e || window.event;
+	    e.preventDefault();
+	    // calculate the new cursor position:
+	    pos1 = pos3 - e.clientX;
+	    pos2 = pos4 - e.clientY;
+	    pos3 = e.clientX;
+	    pos4 = e.clientY;
+	    // set the element's new position:
+	    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+	    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+	  }
+	
+	  function closeDragElement() {
+	    // stop moving when mouse button is released:
+	    document.onmouseup = null;
+	    document.onmousemove = null;
+	  }
+	}
+	
+	
+	// 채팅창 닫기
+	function chatModalHide() {
+	    chatDiv.style.display = 'none'
+	}
+    
+    
 </script>
 </body>
 </html>

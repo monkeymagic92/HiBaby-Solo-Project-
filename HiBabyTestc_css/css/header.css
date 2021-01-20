@@ -648,6 +648,7 @@ display: block;
 
 /* 채팅공간 start */
 #chatArea {
+    display: none;
     position: absolute;
     top: 110px;
     width: 348px;

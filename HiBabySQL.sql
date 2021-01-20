@@ -122,7 +122,7 @@ WHERE B.i_user = 1;
 
 
 
-CREATE TABLE t_message(
+CREATE TABLE t_chat(
 	i_message INT UNSIGNED AUTO_INCREMENT,
 	to_user INT(6),
 	from_user INT(6),	
@@ -133,8 +133,8 @@ CREATE TABLE t_message(
 	FOREIGN KEY(from_user) REFERENCES t_user(i_user) ON DELETE CASCADE
 	
 );
-DROP TABLE t_message;
-SELECT * FROM t_message;
+DROP TABLE t_chat;
+SELECT * FROM t_chat;
 
 
 
