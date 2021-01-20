@@ -555,3 +555,223 @@ display: block;
     border: 3px solid black;
 }
 /* 친구목록 모달 End */
+
+
+
+/* 대화창 Start */
+.chatModal {
+    position: fixed;
+    right: 20px; top: 400px;
+    padding-top: 20px;
+    padding-left: 15px;
+    border-top-style: none;
+    border: 2px solid grey;
+    border-radius: 6px;
+    width: 310px;
+    height: 460px;
+    overflow-y: auto;
+}
+
+
+
+/* Modal Content/Box */
+.chatModal-content {
+    margin: 15% auto; 
+    height: 39%;
+    padding: 20px;
+    border: 3px solid #fff7ed;
+    border-radius: 20px;
+    width: 26%;                           
+    text-align: center;
+    background-color:#f2f2f2;
+}
+
+
+
+
+/* 대화창 End */
+
+
+#chatDiv {
+    position: absolute;
+    top: 280px;
+    left: 830px;
+    width: 350px;
+    height: 620px;
+    z-index: 9;
+    background-color: #f1f1f1;
+    border: 1px solid #d3d3d3;
+    border-radius: 16px;
+    text-align: center;
+}
+
+#chatUserImg {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+}
+
+#chatUserNick {
+    position: absolute;
+    top: 18px;
+    left: 85px;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: grey;
+}
+
+#chatExitBtn {
+    position: absolute;
+    font-size: 2.7em;
+    top: 12px;
+    left: 300px;
+}
+
+#chatExitBtn:hover {
+    cursor: pointer;
+    color: grey;
+}
+
+#chatDivheader {
+    position: absolute;
+    top: 65px;
+    width: 326px;
+    padding: 12px;
+    cursor: move;
+    z-index: 10;
+    background-color: #2196F3;
+    color: #fff;
+}
+
+/* 채팅공간 start */
+#chatArea {
+    position: absolute;
+    top: 110px;
+    width: 348px;
+    height: 450px;
+    overflow: auto;
+}
+
+#youChat {
+   display: flex;
+}
+
+.youChatImg {
+    margin-top: 15px;
+    margin-left: 20px;
+    width: 50px;
+    height: 50px;
+}
+
+.youChatNick {
+    margin-top: 25px;
+    margin-left: 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color:#111;
+}
+
+.youChatText {
+    margin-top: 5px;
+    margin-left: 15px;
+    width: 260px;
+    padding: 8px;
+    background-color: white;
+    border-radius: 10px;
+    color: #141414;
+    text-align: start;
+}
+
+.youChatDate {
+    margin-right: 167px;
+    color: grey;
+    font-size: 1.1em;
+}
+
+
+#myChat {
+    display: flex;
+}
+
+.myChatImg {
+    margin-top: 5px;
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+}
+
+.myChatNick {
+    margin-top: 21px;
+    margin-left: 215px;
+    margin-right: 6px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #9097b0;
+}
+
+.myChatText {
+    margin-top: 20px; /* 내정보넣으면 px 조절하기 */
+    margin-left: 60px;
+    width: 260px;
+    padding: 8px;
+    background-color: white;
+    border-radius: 10px;
+    color: #141414;
+    text-align: start;
+    background-color: #a6ecff;
+}
+
+.myChatDate {
+    margin-left: 167px;
+    color: grey;
+    font-size: 1.1em;
+}
+
+
+
+
+
+/* 채팅공간 end */
+
+
+
+/* 챗입력 공간 start */
+#chatTextArea {
+    position: relative;
+    top: 523px;
+}
+
+
+
+/* 챗 입력 */
+#chatText {
+    position: absolute;
+    left: -1px;
+    top: 39px;
+    width: 338px;
+    height: 50px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border: 1px solid #d3d3d3;
+    outline-style: none;
+    font-size: 1.2em;
+    line-height: 20px;
+    overflow: hidden;
+    resize: none;
+}
+
+
+#chatSend {
+    position: absolute;
+    top: 52px;
+    right: 10px;
+    font-size: 2.1em;
+    color: grey;
+    cursor: pointer;
+}
+/* 챗입력 공간 end */

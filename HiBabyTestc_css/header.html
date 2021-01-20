@@ -144,6 +144,86 @@
         </div>
         <!-- 친구 목록 모달 end -->
 
+
+        <!-- 대화창 모달 Start 
+        <div id="chatItem" class="chatModal">
+            <span id="chatExitBtn" class="material-icons" onclick="detailModalHide()">clear</span>
+            <div>
+                
+            
+                
+                
+                Modal content 
+                <div class="chatModal-content">                
+                    
+                    
+                    asd
+                    
+                </div>
+            </div>
+        </div>
+        대화창 모달 End -->
+
+        <!-- 대화창 start -->
+        <!-- 대화창 전체 div -->
+        
+
+            <div id="chatDiv">
+                <div id="userInfoBox">
+                    <img src="img/chall.png" id="chatUserImg">
+                    <span id="chatUserNick">Test321</span>
+                </div>
+            
+                <span id="chatExitBtn" class="material-icons" onclick="chatModalHide()">clear</span>
+                <div id="chatDivheader">Drag Zone</div>
+                
+                <!-- 채팅 화면 div (itemBox)-->
+                <div id="chatArea">
+
+                    <!-- 상대 채팅 -->
+                    <div id="youChatBox">
+                        <div id="youChat">
+                            <img src="/img/chall.png" class="youChatImg">
+                            <span class="youChatNick">Test321</span>
+                        </div>
+                        <div class="youChatText">
+                            동해물과 백두산이 마르고 닳도록 하느님이 
+                        </div>
+                        <span class="youChatDate">2020. 04. 29 12:35</span>
+                    </div>
+
+                    <!-- 내 채팅 -->
+                    <div id="myChatBox">
+                        <!-- (일단 이거뺌 (카카오톡처럼 하기 위해서 내껀 정보 안나타냄))
+                        <div id="myChat">
+                            <span class="myChatNick">Test321</span>
+                            <img src="/img/chall.png" class="myChatImg">
+                        </div>
+                        -->
+                        <div class="myChatText">
+                            동해물과 백두산이 마르고 닳도록 하느님이 
+                        </div>
+                        <span class="myChatDate">2020. 04. 29 12:35</span>
+                    </div>
+                    
+                </div>
+
+                <div id="chatTextArea">
+                    <form id="chatForm">
+                        <textarea id="chatText" name="chatText" type="text"></textarea>
+                    </form>
+                    <span id="chatSend" class="material-icons" onclick="chatSend()">
+                        send
+                    </span>
+                </div>
+            </div>
+            
+       
+        <!-- 대화창 end -->
+
+
+
+
     </div>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -196,8 +276,6 @@
 
 
 
-
-
     // frList Start
 
     // frList show
@@ -215,7 +293,62 @@
 
     // frList End
 
-    
+
+
+
+
+// 1.20 챗 개발 내용 아래부터 
+
+// Make the DIV element draggable:
+dragElement(document.getElementById("chatDiv"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    // otherwise, move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+
+
+// 채팅창 닫기
+function chatModalHide() {
+    chatDiv.style.display = 'none'
+}
+
 </script>
 </body>
 
