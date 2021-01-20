@@ -184,7 +184,7 @@
         <!-- 대화창 전체 div -->
         <div id="chatDiv">
             <div id="userInfoBox">
-                <img src="img/chall.png" id="chatUserImg">
+                <img src="/res/img/chall.png" id="chatUserImg">
                 <span id="chatUserNick">Test321</span>
             </div>
         
@@ -196,8 +196,9 @@
 
                 <!-- 상대 채팅 -->
                 <div id="youChatBox">
+                	
                     <div id="youChat">
-                        <img src="/img/chall.png" class="youChatImg">
+                        <img src="/res/img/chall.png" class="youChatImg">
                         <span class="youChatNick">Test321</span>
                     </div>
                     <div class="youChatText">
@@ -205,6 +206,8 @@
                     </div>
                     <span class="youChatDate">2020. 04. 29 12:35</span>
                 </div>
+
+							<!-- 구 분 선 -->
 
                 <!-- 내 채팅 -->
                 <div id="myChatBox">
@@ -565,25 +568,40 @@
 			frmessageBtn.setAttribute('id', 'messageBtn')
 			frmessageBtn.innerText = '대화하기'
 			frmessageBtn.onclick = function() {
+				
 				var loginNick = `${loginUser.nick}`
 				if(loginNick == '') {
 					alert('로그인을 해주세요')
 					return false;
 				}
+				
+				/*
+					1. 화면 켜고 from_user(나), to_user(상대) pk값 가져옴
+					1-1 (아래작업 웹소켓으로 감싸기)
+					2. insChat(n,n) 함수 실행후..
+					3. 웹소켓 실행(값 뿌리기 )
+				*/
+
+				
+				
 				chatDiv.style.display = 'flex'
+				
 				var from_user = `${loginUser.i_user}`
 				var to_user = res.i_user;
 				
-				insChat(from_user, to_user);
+				
+				selChat(from_user, to_user); // 챗 뿌리기
+				
+				insChat(from_user, to_user);	// 챗 입력
 				
 				// 나의 pk 값  = from_user
 				// 상대 pk 값 = to_user 매개변수로 2개 ajax post 값 insert 하는함수에 넣기
 				
 			}	
 			
-			detailBtnMall.append(frDelBtn)
-			detailBtnMall.append(frmessageBtn)
-			detailUserBox.append(detailBtnMall)	
+			detailBtnMall.append(frDelBtn);
+			detailBtnMall.append(frmessageBtn);
+			detailUserBox.append(detailBtnMall);
 		}
 	}
 	
@@ -611,7 +629,66 @@
 		})
 	}
 	
+	// n : n 대화 뿌리기
+	function selChat(from_user, to_user) {
+		axios.get('/chat/selChat', {
+			
+	        params: {
+	        	from_user : from_user,
+	        	to_user : to_user
+	        }
+		     
+		}).then(function(res) {
+			
+			refreshChatMenu(res.data)
+		})
+	}
 	
+	function refreshChatMenu(arr) {
+		for (let i = 0; i<arr.length; i++) {
+		   makeCmtList(arr[i])
+		}
+	}
+		
+	// 댓글 뿌리는 만드는 공간 ( 12.5 12:10 현재 진행중 )
+	function makeCmtList(arr) {
+		var from_userPk = `${loginUser.i_user}`
+		
+		if(from_userPk == arr.from_user) {	// 나 
+			
+			var myChatBox = document.createElement('div')
+			myChatBox.setAttribute('id', 'myChatBox')
+			
+			var myChatText = document.createElement('div')
+			myChatText.setAttribute('class', 'myChatText')
+			myChatText.append(arr.ctnt)		
+			
+			myChatBox.append(myChatText)
+			chatArea.append(myChatBox)
+			
+			var myChatDate = document.createElement('span')
+			myChatDate.setAttribute('class', 'myChatDate')
+			myChatDate.append(arr.r_dt)
+			
+			myChatBox.append(myChatDate)
+			chatArea.append(myChatBox)
+			
+			
+		} else { // 상대
+			var youChatBox = document.createElement('div')
+			youChatBox.setAttribute('id', 'youChatBox')
+			
+			var youChatText = document.createElement('div')
+			youChatText.setAttribute('class', 'youChatText')
+			youChatText.append(arr.ctnt)
+			
+			youChatBox.append(youChatText)
+			chatArea.append(youChatBox)
+			
+			
+		}
+	 	
+	}
 	
 	
 	// 

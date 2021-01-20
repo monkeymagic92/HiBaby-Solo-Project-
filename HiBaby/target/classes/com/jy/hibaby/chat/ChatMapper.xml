@@ -11,7 +11,7 @@
 	
 	<select id="selChat" parameterType="ChatPARAM" resultType="ChatPARAM">
 		SELECT B.i_user AS from_user, C.i_user AS to_user, B.profile_img AS from_profile_img, C.profile_img AS to_profile_img,
-		B.nick, ctnt
+		B.nick, C.nick, A.r_dt, ctnt
 		FROM t_chat A
 		
 		LEFT JOIN t_user B

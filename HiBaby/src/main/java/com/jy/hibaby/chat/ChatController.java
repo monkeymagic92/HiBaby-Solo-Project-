@@ -34,6 +34,9 @@ public class ChatController {
 	@RequestMapping(value="/selChat", method=RequestMethod.GET)
 	private @ResponseBody List<ChatPARAM> selCmt(Model model, ChatPARAM param, HttpServletRequest request, HttpSession hs){
 		
+		System.out.println("(나)from_user : " + param.getFrom_user());
+		System.out.println("(상대)to_user ; " + param.getTo_user());
+		
 		return service.selChat(param);
 	}
 	
