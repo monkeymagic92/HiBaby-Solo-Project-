@@ -15,9 +15,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 		
 		String uri = request.getRequestURI();
 		String[] uriArr = uri.split("/");
-		
-		
-		
+				
 		if(uri.equals("/")) {
 			return true;
 		} else if(uriArr[1].equals("res")) { //리소스 (js, css, img)
@@ -27,8 +25,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 		chkNum++;
 		boolean isLogout = SecurityUtils.isLogout(request);		
 		
-		switch(uriArr[1]) {
-		case "user":// 1차 주소값이 user라면 무조건 로그인이 되어있어야 함
+		
 			switch(uriArr[2]) {
 			case "login": case "join": // 로그인이 되어있다면 login,join 페이지못들어가고 /index/main 으로 가겠다
 				if(!isLogout) { // 로그인 되어있는 상태  (!가 붙어있으니, 위에 isLogout 변수참고)
@@ -37,9 +34,8 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 					return false;
 				}
 			}
-		}
 		
-		/* board */
+				/* board */
 		switch(uriArr[1]) {
 		case "board":// 1차 주소값이 user라면 무조건 로그인이 되어있어야 함
 			switch(uriArr[2]) {

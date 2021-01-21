@@ -457,7 +457,7 @@
 					return;
 				}
 				
-				ws = new WebSocket('ws://localhost:8080/echo')
+				ws = new WebSocket('ws://118.67.130.227:8080/echo')
 				
 				/*
 					1. 화면 켜고 from_user(나), to_user(상대) pk값 가져옴

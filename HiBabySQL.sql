@@ -19,6 +19,8 @@ CREATE TABLE t_user(
 SELECT * FROM t_user;
 DROP TABLE t_user;
 
+
+
 UPDATE t_user
 SET loginChk = '2'
 WHERE i_user = 2;

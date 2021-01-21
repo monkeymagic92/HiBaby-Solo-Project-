@@ -92,6 +92,7 @@ public class UserController {
 	public String login(Model model, HttpServletRequest request) {
 		// 로그인이 되어있다면 로그인페이지로 갈수없게 막아놓음 
 		// 메소드 다시 만들기  // 또는 인터셉터에서 추후에 걸러줄것임 @@@@@@@@
+		
 		UserVO param = SecurityUtils.getLoginUser(request);
 				
 		if(param != null) {
