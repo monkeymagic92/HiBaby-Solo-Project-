@@ -185,7 +185,8 @@
         <div id="chatDiv">
             <div id="userInfoBox">
             
-            	<!-- 
+            	<!-- 	상단 상대방 유저 이미지 / 닉네임 띄우기
+            	
                 <img src="/res/img/chall.png" id="chatUserImg">
                 <span id="chatUserNick">Test321</span>
                  -->
@@ -249,148 +250,12 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script type="text/javascript">
+	var isNewCmt = true;	// 채팅 입력시 스크롤바 제일 하단, 마지막 글을 보여줌
 	
 	var frDetailChk = 0; // 유저목록 상세페이지 화면 = 0 / 친구목록 상세페이지 화면 = 1
 	
-	//로그아웃
-	function logOut() {
-		if(confirm('로그아웃 하시겠습니까?')) {
-			location.href="/user/logout"	
-		}
-	}
 	
-	
-	/* ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	유저 검색 관련	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ */
-	
-	// 화면 켜졌을때 유저 검색창 닫기
-	searchBox.style.display = 'none'
-	// ""   ""      유저 detail 모달 닫기
-    detailUser.style.display = 'none'
-	
-	// 유저 검색창 열기
-	function showUserList() {
-		searchBox.style.display = 'flex'
-	}
-	
-	// 닫기 눌렀을시 userList 검색창 닫기
-	function searchBoxHide() {
-	    searchBox.style.display = 'none'
-	}    
-	// userDetailModal 닫기
-    function detailModalHide() {
-        detailUser.style.display = 'none'
-    }
-	
-	
-	
-	
-	// 유저 '검색 리스트' 뿌리기 ajax 로 검색기능 start
-	function searchUserList() {
-		var searchNick = searchNickFrm.searchNick.value
 		
-		axios.get('/user/searchUserList',{
-			params: {
-		          searchNick : searchNick,
-		    }
-			
-		}).then(function(res) {
-			searchNickFrm.searchNick.value = ''
-			userListTableId.innerHTML = ''
-			refreshUserList(res.data)
-			
-		})
-	}
-	
-	 
-	function refreshUserList(arr) {
-		for (let i = 0; i<arr.length; i++) {
-	         makeUserList(arr[i])
-	    }
-	}
-	
-	var lastText = '...' // 상태메세지 length 값 초과시 그뒤에 글은 ...
-	
-	function makeUserList(arr) {		
-		
-		var userListBox = document.createElement('div')
-		userListBox.setAttribute('id', 'userListBox')
-		
-		userListBox.onclick = function() {
-			
-			frDetailChk = 0;	// 유저 목록에서 상세페이지 열때
-			
-			var i_user = arr.i_user
-			showDetailModal(i_user)
-		}
-		
-		var userListDiv1 = document.createElement('div')
-		userListDiv1.setAttribute('class', 'userListDiv1')
-		
-		var userListImg1 = document.createElement('img')
-		userListImg1.setAttribute('class', 'userListImg')
-		if(arr.totalPoint < 150) {			
-			userListImg1.setAttribute('src',`/res/img/ion.png`)
-			
-		} else if(arr.totalPoint < 400) {
-			userListImg1.setAttribute('src',`/res/img/gold.png`)
-			
-		} else if(arr.totalPoint < 600) {
-			userListImg1.setAttribute('src',`/res/img/dia.png`)
-			
-		} else if(arr.totalPoint < 20000) {
-			userListImg1.setAttribute('src',`/res/img/master.png`)
-			
-		} else if(arr.totalPoint > 20000) {
-			userListImg1.setAttribute('src',`/res/img/chall.png`)
-		}
-		
-		userListDiv1.append(userListImg1)
-		userListBox.append(userListDiv1)
-		
-		var userListDiv2 = document.createElement('div')
-		userListDiv2.setAttribute('class', 'userListDiv2')
-		
-		var userListImg2 = document.createElement('img')
-		userListImg2.setAttribute('class', 'userListImg')
-		if(arr.profile_img != null) {
-			userListImg2.setAttribute('src',`/res/img/HiBaby/profile_img/user/\${arr.i_user}/\${arr.profile_img}`)
-			
-		} else {
-			userListImg2.setAttribute('src','/res/img/HiBaby.jpg')
-		}
-		
-		userListDiv2.append(userListImg2)
-		userListBox.append(userListDiv2)
-		
-		var userListDiv3 = document.createElement('div')
-		userListDiv3.setAttribute('class', 'userListDiv3')
-		userListDiv3.append(arr.nick)
-		
-		userListTableId.append(userListBox)
-		userListBox.append(userListDiv3)
-		
-		var userListDiv4 = document.createElement('div')
-		userListDiv4.setAttribute('class', 'userListDiv4')
-		
-		if(arr.sm == null) {
-			userListDiv4.innerText = ' 상태메세지가 없습니다.'
-			
-		} else if(arr.sm.length < 25) {
-			userListDiv4.append(arr.sm)
-			
-		} else if (arr.sm.length > 25) {
-			userListDiv4.append(arr.sm.substring(0,20) + lastText)
-			
-		} 
-		
-		userListBox.append(userListDiv4)
-	}	
-	// 유저 '검색 리스트' 뿌리기 ajax 로 검색기능 end
-	
-	
-	
-	
-	
 	// -	- 유저 상세 목록 (친구목록 / 유저목록 각각 button 다름)-	-
 	function showDetailModal(i_user) {
         
@@ -407,8 +272,9 @@
    		})
     }
 	
+	
 	function makeUserDetail(res) {
-		console.log('frChk : ' + frDetailChk)
+		
 		var loginI_user = `${loginUser.i_user}`
 		
 		var detailImg1 = document.createElement('img')
@@ -568,7 +434,6 @@
 							}
 						})	
 				}
-				
 			}
 			
 			var frmessageBtn = document.createElement('button')
@@ -576,11 +441,7 @@
 			frmessageBtn.innerText = '대화하기'
 			frmessageBtn.onclick = function() {
 				
-				var loginNick = `${loginUser.nick}`
-				if(loginNick == '') {
-					alert('로그인을 해주세요')
-					return false;
-				}
+				
 				
 				/*
 					1. 화면 켜고 from_user(나), to_user(상대) pk값 가져옴
@@ -588,14 +449,16 @@
 					2. insChat(n,n) 함수 실행후..
 					3. 웹소켓 실행(값 뿌리기 )
 				*/
-
-
 				
 				chatDiv.style.display = 'flex'
 				
 				var from_user = `${loginUser.i_user}`
 				var to_user = res.i_user
 				
+				chatArea.innerHTML = ''		// 채팅창이 열릴때마다 새로운 n번 유저의 대화목록을 띄우기용
+				
+				console.log('from_User 값 : ' + from_user)
+				console.log('to_user 값 : ' + to_user)
 				
 				selChat(from_user, to_user); // 챗 뿌리기
 				
@@ -609,9 +472,7 @@
 			detailBtnMall.append(frDelBtn);
 			detailBtnMall.append(frmessageBtn);
 			detailUserBox.append(detailBtnMall);
-		
 		}
-				
 	}
 	
 	
@@ -631,7 +492,7 @@
 			}).then(function(res) {
 				chatForm.chatText.value = ''
 				chatForm.chatText.focus()
-				console.log('뿌리기 성공')
+				console.log('친구목록 채팅 뿌리기 성공')
 				
 				// 웹소켓 작업하기
 				
@@ -644,12 +505,10 @@
 		
 		axios.get('/chat/selChat', {
 			
-			
 	        params: {
 	        	from_user : from_user,
 	        	to_user : to_user
 	        }
-			
 		     
 		}).then(function(res) {
 			
@@ -700,11 +559,11 @@
 			var youChatImg = document.createElement('img')
 			youChatImg.setAttribute('class', 'youChatImg')
 			if(arr.from_profile_img != null) {
-				console.log('사진 있음')
+				
 				youChatImg.setAttribute('src',`/res/img/HiBaby/profile_img/user/\${arr.from_user}/\${arr.from_profile_img}`)
 	    	  
 	        } else {
-	     	   console.log('사진 없음')
+	     	   
 	           youChatImg.setAttribute('src','/res/img/HiBaby.jpg')
 	        }
 		
@@ -732,7 +591,110 @@
 	}
 	
 	
-	// 
+	
+	// 유저 '검색 리스트' 뿌리기 ajax 로 검색기능 start
+	function searchUserList() {
+		var searchNick = searchNickFrm.searchNick.value
+		
+		axios.get('/user/searchUserList',{
+			params: {
+		          searchNick : searchNick,
+		    }
+			
+		}).then(function(res) {
+			searchNickFrm.searchNick.value = ''
+			userListTableId.innerHTML = ''
+			refreshUserList(res.data)
+			
+		})
+	}
+	
+	 
+	function refreshUserList(arr) {
+		for (let i = 0; i<arr.length; i++) {
+	         makeUserList(arr[i])
+	    }
+	}
+	
+	var lastText = '...' // 상태메세지 length 값 초과시 그뒤에 글은 ...
+	
+	function makeUserList(arr) {		
+		
+		var userListBox = document.createElement('div')
+		userListBox.setAttribute('id', 'userListBox')
+		
+		userListBox.onclick = function() {
+			
+			frDetailChk = 0;	// 유저 목록에서 상세페이지 열때
+			
+			var i_user = arr.i_user
+			showDetailModal(i_user)
+		}
+		
+		var userListDiv1 = document.createElement('div')
+		userListDiv1.setAttribute('class', 'userListDiv1')
+		
+		var userListImg1 = document.createElement('img')
+		userListImg1.setAttribute('class', 'userListImg')
+		if(arr.totalPoint < 150) {			
+			userListImg1.setAttribute('src',`/res/img/ion.png`)
+			
+		} else if(arr.totalPoint < 400) {
+			userListImg1.setAttribute('src',`/res/img/gold.png`)
+			
+		} else if(arr.totalPoint < 600) {
+			userListImg1.setAttribute('src',`/res/img/dia.png`)
+			
+		} else if(arr.totalPoint < 20000) {
+			userListImg1.setAttribute('src',`/res/img/master.png`)
+			
+		} else if(arr.totalPoint > 20000) {
+			userListImg1.setAttribute('src',`/res/img/chall.png`)
+		}
+		
+		userListDiv1.append(userListImg1)
+		userListBox.append(userListDiv1)
+		
+		var userListDiv2 = document.createElement('div')
+		userListDiv2.setAttribute('class', 'userListDiv2')
+		
+		var userListImg2 = document.createElement('img')
+		userListImg2.setAttribute('class', 'userListImg')
+		if(arr.profile_img != null) {
+			userListImg2.setAttribute('src',`/res/img/HiBaby/profile_img/user/\${arr.i_user}/\${arr.profile_img}`)
+			
+		} else {
+			userListImg2.setAttribute('src','/res/img/HiBaby.jpg')
+		}
+		
+		userListDiv2.append(userListImg2)
+		userListBox.append(userListDiv2)
+		
+		var userListDiv3 = document.createElement('div')
+		userListDiv3.setAttribute('class', 'userListDiv3')
+		userListDiv3.append(arr.nick)
+		
+		userListTableId.append(userListBox)
+		userListBox.append(userListDiv3)
+		
+		var userListDiv4 = document.createElement('div')
+		userListDiv4.setAttribute('class', 'userListDiv4')
+		
+		if(arr.sm == null) {
+			userListDiv4.innerText = ' 상태메세지가 없습니다.'
+			
+		} else if(arr.sm.length < 25) {
+			userListDiv4.append(arr.sm)
+			
+		} else if (arr.sm.length > 25) {
+			userListDiv4.append(arr.sm.substring(0,20) + lastText)
+			
+		} 
+		
+		userListBox.append(userListDiv4)
+	}	
+	// 유저 '검색 리스트' 뿌리기 ajax 로 검색기능 end
+	
 	
 	
     // frList Start
@@ -845,7 +807,7 @@
     	loginChkCir.setAttribute('class', 'material-icons')
     	loginChkCir.innerText = 'child_care'
     	
-    	console.log(arr.loginChk)
+    	
     	if(arr.loginChk == 2) {
     		frListTable.append(loginChkCir)	
     	}
@@ -856,13 +818,40 @@
     }
     // frList End
     
-     
     
+    //로그아웃
+	function logOut() {
+		if(confirm('로그아웃 하시겠습니까?')) {
+			location.href="/user/logout"	
+		}
+	}
+	
+	
+	/* ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	유저 검색 관련	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ	ㅡ */
+	
+	// 화면 켜졌을때 유저 검색창 닫기
+	searchBox.style.display = 'none'
+	// ""   ""      유저 detail 모달 닫기
+    detailUser.style.display = 'none'
+	
+	// 유저 검색창 열기
+	function showUserList() {
+		searchBox.style.display = 'flex'
+	}
+	
+	// 닫기 눌렀을시 userList 검색창 닫기
+	function searchBoxHide() {
+	    searchBox.style.display = 'none'
+	}    
+	// userDetailModal 닫기
+    function detailModalHide() {
+        detailUser.style.display = 'none'
+    }
     
-    
-    
-    
-    
+
+	
+	
+	
     // 채팅창 드래그
     
     // Make the DIV element draggable:
