@@ -22,4 +22,8 @@ public class ChatService {
 	public List<ChatPARAM> selChat(ChatPARAM param) {
 		return mapper.selChat(param);
 	}
+	
+	public ChatPARAM selChatTop(ChatPARAM param) {
+		return mapper.selChatTop(param);
+	}
 }

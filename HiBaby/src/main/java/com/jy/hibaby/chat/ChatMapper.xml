@@ -28,4 +28,21 @@
 		
 		ORDER BY r_dt ASC
 	</select>
+	
+	<!-- 챗 top 내용 (상대 사진, 닉네임) -->
+	<select id="selChatTop" parameterType="ChatPARAM" resultType="ChatPARAM">
+		SELECT
+			B.i_user as to_user,
+			B.nick as to_nick,
+			B.profile_img AS to_profile_img
+		FROM t_chat A
+		
+		LEFT JOIN t_user B
+		ON A.to_user = B.i_user 
+		
+		WHERE A.to_user = #{to_user}
+		LIMIT 0,1
+		
+	</select>
+	
 </mapper>

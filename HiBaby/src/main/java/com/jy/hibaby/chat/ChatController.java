@@ -31,11 +31,21 @@ public class ChatController {
 		return String.valueOf(result);
     }
 	
-	// 댓글 뿌리기
+	// 챗 뿌리기
 	@RequestMapping(value="/selChat", method=RequestMethod.GET)
-	private @ResponseBody List<ChatPARAM> selCmt(Model model, ChatPARAM param, HttpServletRequest request, HttpSession hs){
+	private @ResponseBody List<ChatPARAM> selChat(Model model, ChatPARAM param, HttpServletRequest request, HttpSession hs){
 		
 		return service.selChat(param);
+	}
+	
+	
+	// 챗 뿌리기
+	@RequestMapping(value="/selChatTop", method=RequestMethod.GET)
+	private @ResponseBody ChatPARAM selChatTop(ChatPARAM param){
+		
+		System.out.println("!!!!!!!!param from_user : " + param.getTo_user());
+		
+		return service.selChatTop(param);
 	}
 	
 }

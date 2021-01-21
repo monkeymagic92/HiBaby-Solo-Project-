@@ -457,7 +457,6 @@
 					return;
 				}
 				
-				
 				ws = new WebSocket('ws://localhost:8080/echo')
 				
 				/*
@@ -469,14 +468,13 @@
 				
 				chatDiv.style.display = 'flex'
 				
-				
-				
 				from_user = `${loginUser.i_user}`
 				to_user = res.i_user
 				
 				//chatArea.innerHTML = ''		// 채팅창이 열릴때마다 새로운 n번 유저의 대화목록을 띄우기용
 				
-				selChat(from_user, to_user); // 챗 뿌리기
+				selChatTop(to_user);			// 상대방 챗 상단 부
+				selChat(from_user, to_user); 	// 챗 뿌리기
 				insChat(from_user, to_user);	// 챗 입력
 				
 		   		
@@ -552,6 +550,42 @@
 		})
 	}
 	
+	
+	// 상대방 챗 상단 부
+	function selChatTop(to_user) {
+		
+		axios.get('/chat/selChatTop', {
+			
+	        params: {
+	        	to_user : to_user
+	        }
+		     
+		}).then(function(res) {
+			refreshChatTop(res.data)
+		})
+	}
+	
+	// 챗 상단부 값 뿌리기
+	function refreshChatTop(res) {
+		
+		var chatUserImg = document.createElement('img')
+		chatUserImg.setAttribute('id', 'chatUserImg')
+		
+		if(res.to_profile_img != null) {
+			chatUserImg.setAttribute('src',`/res/img/HiBaby/profile_img/user/\${res.to_user}/\${res.to_profile_img}`)
+			
+        } else {
+        	chatUserImg.setAttribute('src','/res/img/HiBaby.jpg')
+        }
+		userInfoBox.append(chatUserImg)
+		
+		var chatUserNick = document.createElement('span')
+		chatUserNick.setAttribute('id', 'chatUserNick')
+		chatUserNick.append(res.to_nick)
+		
+		userInfoBox.append(chatUserNick)
+	}
+	
 	// n : n 대화 뿌리기
 	function selChat(from_user, to_user) {
 		
@@ -564,6 +598,7 @@
 		     
 		}).then(function(res) {
 			//chatArea.innerHTML = ''		// 채팅창이 열릴때마다 새로운 n번 유저의 대화목록을 띄우기용
+			
 			refreshChatMenu(res.data)
 			
 		})

@@ -11,5 +11,7 @@ public interface ChatMapper {
 
 	List<ChatPARAM> selChat(ChatPARAM param);
 	
+	ChatPARAM selChatTop(ChatPARAM param);
+	
 	int insChat(ChatPARAM param);
 }
