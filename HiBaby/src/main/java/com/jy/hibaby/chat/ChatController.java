@@ -26,9 +26,6 @@ public class ChatController {
 	@RequestMapping(value="/insChat", method=RequestMethod.POST) 
     private @ResponseBody String cmtInsert(@RequestBody ChatPARAM param){
 		
-		System.out.println("from_user : " + param.getFrom_user());
-		System.out.println("to_user : " + param.getTo_user());
-		
 		int result = service.insChat(param);
 		
 		return String.valueOf(result);
@@ -37,9 +34,6 @@ public class ChatController {
 	// 댓글 뿌리기
 	@RequestMapping(value="/selChat", method=RequestMethod.GET)
 	private @ResponseBody List<ChatPARAM> selCmt(Model model, ChatPARAM param, HttpServletRequest request, HttpSession hs){
-		
-		System.out.println("(나)from_user : " + param.getFrom_user());
-		System.out.println("(상대)to_user ; " + param.getTo_user());
 		
 		return service.selChat(param);
 	}

@@ -1,78 +1,83 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>HiBaby</title>
 <link rel="stylesheet" href="/res/css/defaultTemp.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 </head>
 <body>
 	<div class="main-container">
-       <header class="main-header">
-            <ul class="header-ul">
-                <li><a class="li-a1" href="/index/select"><span id="li1">HiBaby</span></a></li>
-                <li><a class="li-a2" href="#"><span id="li2-1" onclick="showFrList(${loginUser.i_user})">친구 목록</span></a></li>
-                <li><a class="li-a2" href="#"><span id="li2" onclick="showUserList()">유저 목록</span></a></li>
-                <li>
-                    <a class="li-a3" href="#"><span id="li3">쪽지함</span></a> 
-                    <!-- span으로 쪽지함 ! 나타나게 하기 -->
-                    <!-- 애니메이션 효과넣어서 !가 나타날때 깜빡임 표시 넣기 -->
-                </li>
-                <li>
-                    <div class="dropdown">
-                        <button class="dropbtn">
-                            <c:if test="${loginUser.profile_img != null}">
-                        		<img class="drop-img" src="/res/img/HiBaby/profile_img/user/${loginUser.i_user }/${loginUser.profile_img}" class="profileImg">
-                        	</c:if>
-                        	<c:if test="${loginUser.profile_img == null}">
-                        		<img class="drop-img" src="/res/img/HiBaby.jpg" class="profileImg">
-                        	</c:if>
-                        </button>
-                        <div class="dropdown-content">
-                          <a href="/user/myPage">마이페이지</a>
-                          <div class="hrDiv">
-                              <hr>
-                          </div>
-                          <a href="#" onclick="logOut()">로그아웃</a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-       </header>
-       
-        <div class="includeContainer">
-	    	<jsp:include page="/WEB-INF/views/${view}.jsp"></jsp:include>
- 		</div>
- 		
- 		
- 		<!-- 유저검색 모달 start -->
-       <div id="searchBox" class="searchModal">
-            <!-- Modal content -->
-            
-            <div class="searchModal-con">                
-                <span id="searchExitBtn" class="material-icons" onclick="searchBoxHide()">clear</span>
-                <div class="searchNickFrmDiv">
-                    <form id="searchNickFrm">
-                        <input id="searchNick" type="text" name="searchNick" placeholder="유저 검색">
-                        <div class="searchBtnDiv">
-                            <span id="userSearchBtn" class="material-icons" onclick="searchUserList()">
-                                person_search
-                            </span>
-                        </div>
-                    </form>
-                    <button type="button" id="allUserBtn" onclick="searchUserList()">전체 유저 보기</button>
-                </div>
-                
-                <!-- Modal body -->
-                <div class="searchModal-body">
-                    <div id="userListTableId" class="userListTable">
-                    	<!-- 
+		<header class="main-header">
+			<ul class="header-ul">
+				<li><a class="li-a1" href="/index/select"><span id="li1">HiBaby</span></a></li>
+				<li><a class="li-a2" href="#"><span id="li2-1"
+						onclick="showFrList(${loginUser.i_user})">친구 목록</span></a></li>
+				<li><a class="li-a2" href="#"><span id="li2"
+						onclick="showUserList()">유저 목록</span></a></li>
+				<li><a class="li-a3" href="#"><span id="li3">쪽지함</span></a> <!-- span으로 쪽지함 ! 나타나게 하기 -->
+					<!-- 애니메이션 효과넣어서 !가 나타날때 깜빡임 표시 넣기 --></li>
+				<li>
+					<div class="dropdown">
+						<button class="dropbtn">
+							<c:if test="${loginUser.profile_img != null}">
+								<img class="drop-img"
+									src="/res/img/HiBaby/profile_img/user/${loginUser.i_user }/${loginUser.profile_img}"
+									class="profileImg">
+							</c:if>
+							<c:if test="${loginUser.profile_img == null}">
+								<img class="drop-img" src="/res/img/HiBaby.jpg"
+									class="profileImg">
+							</c:if>
+						</button>
+						<div class="dropdown-content">
+							<a href="/user/myPage">마이페이지</a>
+							<div class="hrDiv">
+								<hr>
+							</div>
+							<a href="#" onclick="logOut()">로그아웃</a>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</header>
+
+		<div class="includeContainer">
+			<jsp:include page="/WEB-INF/views/${view}.jsp"></jsp:include>
+		</div>
+
+
+		<!-- 유저검색 모달 start -->
+		<div id="searchBox" class="searchModal">
+			<!-- Modal content -->
+
+			<div class="searchModal-con">
+				<span id="searchExitBtn" class="material-icons"
+					onclick="searchBoxHide()">clear</span>
+				<div class="searchNickFrmDiv">
+					<form id="searchNickFrm">
+						<input id="searchNick" type="text" name="searchNick"
+							placeholder="유저 검색">
+						<div class="searchBtnDiv">
+							<span id="userSearchBtn" class="material-icons"
+								onclick="searchUserList()"> person_search </span>
+						</div>
+					</form>
+					<button type="button" id="allUserBtn" onclick="searchUserList()">전체
+						유저 보기</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="searchModal-body">
+					<div id="userListTableId" class="userListTable">
+						<!-- 
                         <div id="userListBox">
                                                         계급, 사진, 닉네임, 상태메세지( 20글자이상 ...으로 ) 스크롤 기능 넣기
                             <div class="userListDiv1">
@@ -85,75 +90,76 @@
                             <div class="userListDiv4">저의 상태메세지 입니다 말은점으로...</div>
                         </div>
                         -->
-                    </div>
-                </div>
-                
-                <!-- Modal bottom -->
+					</div>
+				</div>
 
-            </div>
-        </div>
-        <!-- 유저검색 모달 end -->
-        
-        
-        
-        
-        <!-- 유저검색 상세모달 start -->
-        <div id="detailUser" class="detailModal">
+				<!-- Modal bottom -->
 
-            <!-- Modal content -->
-            <div class="detailModal-content">                
-                <span id="detailExitBtn" class="material-icons" onclick="detailModalHide()">clear</span>
-                
-                
-                <!-- detailUserBox 안에 append 하기 -->
-                <div id="detailUserBox">
+			</div>
+		</div>
+		<!-- 유저검색 모달 end -->
 
-                    <!--  <img class="detailImg1" src="/res/img/chall.png"> -->
-                    <div id="detailUserInfo" class="detailUserInfo">
-                    	<!-- 
+
+
+
+		<!-- 유저검색 상세모달 start -->
+		<div id="detailUser" class="detailModal">
+
+			<!-- Modal content -->
+			<div class="detailModal-content">
+				<span id="detailExitBtn" class="material-icons"
+					onclick="detailModalHide()">clear</span>
+
+
+				<!-- detailUserBox 안에 append 하기 -->
+				<div id="detailUserBox">
+
+					<!--  <img class="detailImg1" src="/res/img/chall.png"> -->
+					<div id="detailUserInfo" class="detailUserInfo">
+						<!-- 
                         <img class="detailImg2" src="/res/img/HiBaby.jpg">
                         <span class="detailNick">
                             testJy
                         </span>
-                        -->                                                
-                    </div>
-                    <!-- 
+                        -->
+					</div>
+					<!-- 
                     <span class="detailPoint">
                         12,500p
                     </span>
                      -->
-                    <div id="detailSm" class="detailSm">
-                    	<!-- 
+					<div id="detailSm" class="detailSm">
+						<!-- 
                         <p class="detailP">
                         동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록
                         </p>
                          -->
-                    </div>
-                    <!-- 
+					</div>
+					<!-- 
                     <div id="detailBtnMall">
 		                <button id="frPlusBtn">친구 추가</button>
 		                <button id="messageBtn">쪽지</button>
                 	</div>
                 	 -->
-                </div>
-                 <!-- Modal bottom -->
-            </div>
-        </div>
-        <!-- 유저검색 상세모달 end -->
-        
-        <!-- 친구 목록 모달 start-->
-        <div id="frList" class="frListmodal">
-            <!-- Modal content -->
-            
-            <div class="frListmodal-content">                
-                <span id="frexitBtn" class="material-icons" onclick="frListHide()">clear</span>
-                <!-- Modal body -->
-                <span id="frTitle">친구 목록</span>
-                <div class="frListmodal-body">
-                    <!-- forEach 돌리기 (클릭할시 친구삭제, 쪽지보내기 모달창 띄우기)-->
-                    
-                    <div id="frListBoxMall">
-                    	<!-- 
+				</div>
+				<!-- Modal bottom -->
+			</div>
+		</div>
+		<!-- 유저검색 상세모달 end -->
+
+		<!-- 친구 목록 모달 start-->
+		<div id="frList" class="frListmodal">
+			<!-- Modal content -->
+
+			<div class="frListmodal-content">
+				<span id="frexitBtn" class="material-icons" onclick="frListHide()">clear</span>
+				<!-- Modal body -->
+				<span id="frTitle">친구 목록</span>
+				<div class="frListmodal-body">
+					<!-- forEach 돌리기 (클릭할시 친구삭제, 쪽지보내기 모달창 띄우기)-->
+
+					<div id="frListBoxMall">
+						<!-- 
 	                    <div class="frListTable" onclick="choiceMenu()">
 	                    
 	                        <div class="userListDiv1">
@@ -169,40 +175,41 @@
 	                        <span id="loginChkCir" class="material-icons">child_care</span>
 	                    </div>
 	                     -->
-                    </div>
-                    
-                    
-                </div>
-             
-                <!-- Modal bottom -->
-            </div>
-        </div>
-        <!-- 친구 목록 모달 end -->
-        
-        
-        <!-- 대화창 start -->
-        <!-- 대화창 전체 div -->
-        <div id="chatDiv">
-            <div id="userInfoBox">
-            
-            	<!-- 	상단 상대방 유저 이미지 / 닉네임 띄우기
+					</div>
+
+
+				</div>
+
+				<!-- Modal bottom -->
+			</div>
+		</div>
+		<!-- 친구 목록 모달 end -->
+
+
+		<!-- 대화창 start -->
+		<!-- 대화창 전체 div -->
+		<div id="chatDiv">
+			<div id="userInfoBox">
+
+				<!-- 	상단 상대방 유저 이미지 / 닉네임 띄우기
             	
                 <img src="/res/img/chall.png" id="chatUserImg">
                 <span id="chatUserNick">Test321</span>
                  -->
-                 
-            </div>
-        
-            <span id="chatExitBtn" class="material-icons" onclick="chatModalHide()">clear</span>
-            <div id="chatDivheader">Drag Zone</div>
-            
-            <!-- 채팅 화면 div (itemBox)-->
-            <div id="chatArea">
 
-                <!-- 상대 채팅 -->
-                <div id="youChatBox">
-                	
-                	<!-- 
+			</div>
+
+			<span id="chatExitBtn" class="material-icons"
+				onclick="chatModalHide()">clear</span>
+			<div id="chatDivheader">Drag Zone</div>
+
+			<!-- 채팅 화면 div (itemBox)-->
+			<div id="chatArea">
+
+				<!-- 상대 채팅 -->
+				<div id="youChatBox">
+
+					<!-- 
                     <div id="youChat">
                         <img src="/res/img/chall.png" class="youChatImg">
                         <span class="youChatNick">Test321</span>
@@ -212,50 +219,54 @@
                     </div>
                     <span class="youChatDate">2020. 04. 29 12:35</span>
                      -->
-                </div>
+				</div>
 
-							<!-- 구 분 선 -->
+				<!-- 구 분 선 -->
 
-                <!-- 내 채팅 -->
-                <div id="myChatBox">
-                    <!-- (일단 이거뺌 (카카오톡처럼 하기 위해서 내껀 정보 안나타냄))
+				<!-- 내 채팅 -->
+				<div id="myChatBox">
+					<!-- (일단 이거뺌 (카카오톡처럼 하기 위해서 내껀 정보 안나타냄))
                     <div id="myChat">
                         <span class="myChatNick">Test321</span>
                         <img src="/img/chall.png" class="myChatImg">
                     </div>
                     -->
-                    <!-- 
+					<!-- 
                     <div class="myChatText">
                 	   	     동해물과 백두산이 마르고 닳도록 하느님이 
                     </div>
                     <span class="myChatDate">2020. 04. 29 12:35</span>
                      -->
-                </div>
-                
-            </div>
+				</div>
 
-            <div id="chatTextArea">
-                <form id="chatForm">
-                    <textarea id="chatText" name="chatText"></textarea>
-                </form>
-                <span id="chatSend" class="material-icons">
-                    send
-                </span>
-            </div>
-        </div>
-    	<!-- 대화창 end -->
-        
- 		
-    </div>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script type="text/javascript">
+			</div>
+
+			<div id="chatTextArea">
+				<form id="chatForm">
+					<textarea id="chatText" name="chatText"></textarea>
+				</form>
+				<span id="chatSend" class="material-icons"> send </span>
+			</div>
+		</div>
+		<!-- 대화창 end -->
+
+
+	</div>
+	<script
+		src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script type="text/javascript">
 	var isNewCmt = true;	// 채팅 입력시 스크롤바 제일 하단, 마지막 글을 보여줌
 	
 	var frDetailChk = 0; // 유저목록 상세페이지 화면 = 0 / 친구목록 상세페이지 화면 = 1
+			
+	// 웹소켓
+	var ws;
+	var from_user;  
+	var to_user;
+	var chatModalChk = 0 
 	
 	
-		
 	// -	- 유저 상세 목록 (친구목록 / 유저목록 각각 button 다름)-	-
 	function showDetailModal(i_user) {
         
@@ -440,8 +451,14 @@
 			frmessageBtn.setAttribute('id', 'messageBtn')
 			frmessageBtn.innerText = '대화하기'
 			frmessageBtn.onclick = function() {
+				chatModalChk += 1
+				if(chatModalChk > 1) {
+					alert('기존의 채팅창을 닫아주세요')
+					return;
+				}
 				
 				
+				ws = new WebSocket('ws://localhost:8080/echo')
 				
 				/*
 					1. 화면 켜고 from_user(나), to_user(상대) pk값 가져옴
@@ -452,18 +469,52 @@
 				
 				chatDiv.style.display = 'flex'
 				
-				var from_user = `${loginUser.i_user}`
-				var to_user = res.i_user
 				
-				chatArea.innerHTML = ''		// 채팅창이 열릴때마다 새로운 n번 유저의 대화목록을 띄우기용
 				
-				console.log('from_User 값 : ' + from_user)
-				console.log('to_user 값 : ' + to_user)
+				from_user = `${loginUser.i_user}`
+				to_user = res.i_user
+				
+				//chatArea.innerHTML = ''		// 채팅창이 열릴때마다 새로운 n번 유저의 대화목록을 띄우기용
 				
 				selChat(from_user, to_user); // 챗 뿌리기
-				
 				insChat(from_user, to_user);	// 챗 입력
 				
+		   		
+				// 웹소켓 관련
+				$("#chatSend").click(function() {
+					ws.sendMessage();
+				});
+				
+				// 1. 채팅창 들어오면 웹소켓 연결됨
+				ws.onopen = function() {	
+					
+					console.log('웹소켓 연결 성공(친구목록 -> 대화)')
+				}
+				
+				// 2. 메세지 전송
+				ws.sendMessage = function() {
+					console.log('fromUser : ' + from_user)
+					console.log('to_user : ' + to_user)
+					console.log('222222')
+					ws.send($("#chatText").val());
+					
+				}
+				
+				
+				// 3. 서버로부터 메시지를 받았을 때
+				ws.onmessage = function(event) {
+					console.log('3333333')
+					
+					//var data = event.data;
+					//$("#chatArea").append(data + "<br/>");
+					chatArea.innerHTML = ''		// 채팅창이 열릴때마다 새로운 n번 유저의 대화목록을 띄우기용
+					
+					selChat(from_user, to_user); // 챗 뿌리기
+				}	
+				
+				
+				
+								
 				// 나의 pk 값  = from_user
 				// 상대 pk 값 = to_user 매개변수로 2개 ajax post 값 insert 하는함수에 넣기
 				
@@ -492,6 +543,7 @@
 			}).then(function(res) {
 				chatForm.chatText.value = ''
 				chatForm.chatText.focus()
+				//chatArea.innerHTML = ''		// 채팅창이 열릴때마다 새로운 n번 유저의 대화목록을 띄우기용
 				console.log('친구목록 채팅 뿌리기 성공')
 				
 				// 웹소켓 작업하기
@@ -511,7 +563,7 @@
 	        }
 		     
 		}).then(function(res) {
-			
+			//chatArea.innerHTML = ''		// 채팅창이 열릴때마다 새로운 n번 유저의 대화목록을 띄우기용
 			refreshChatMenu(res.data)
 			
 		})
@@ -588,6 +640,9 @@
 			
 			chatArea.append(youChatBox)
 		}
+		if(isNewCmt){
+	    	  document.getElementById('chatArea').scrollTop = document.getElementById('chatArea').scrollHeight;
+	    }
 	}
 	
 	
@@ -901,8 +956,16 @@
 	
 	// 채팅창 닫기
 	function chatModalHide() {
+		chatModalChk = 0
+		console.log('챗 모달 체크 값 : ' + chatModalChk)
 	    chatDiv.style.display = 'none'
+	    //ws.close()
+	    location.reload();
 	}
+	
+	
+	
+
     
     
 </script>
