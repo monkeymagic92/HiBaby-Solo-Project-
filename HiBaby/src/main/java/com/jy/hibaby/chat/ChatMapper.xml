@@ -35,7 +35,7 @@
 			B.i_user as to_user,
 			B.nick as to_nick,
 			B.profile_img AS to_profile_img
-		FROM t_chat A
+		FROM t_fr A
 		
 		LEFT JOIN t_user B
 		ON A.to_user = B.i_user 
