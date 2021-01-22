@@ -36,6 +36,10 @@
 		<typeAlias type="com.jy.hibaby.chat.model.ChatVO" alias="ChatVO" />
 		<typeAlias type="com.jy.hibaby.chat.model.ChatPARAM" alias="ChatPARAM" />
 		
+		<!-- chatChk -->
+		<typeAlias type="com.jy.hibaby.chat.model.ChatChkVO" alias="ChatChkVO" />
+		<typeAlias type="com.jy.hibaby.chat.model.ChatChkPARAM" alias="ChatChkPARAM" />
+		
 		
 		
 		

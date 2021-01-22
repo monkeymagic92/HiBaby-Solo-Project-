@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jy.hibaby.chat.ChatMapper">
-
+	
+	
+	<!-- 채팅 입력 -->
 	<insert id="insChat" parameterType="ChatPARAM">
 		INSERT INTO t_chat
 		(to_user, from_user, ctnt)
@@ -9,6 +11,51 @@
 		(#{to_user}, #{from_user}, #{ctnt})
 	</insert>
 	
+	
+	<!-- selChatPk가 실행되면 pk값을 t_chatChk에 한번만 추가함 -->
+	<insert id="insChatChk" parameterType="ChatPARAM">
+		INSERT INTO t_chatChk
+		(to_user)
+		VALUES
+		(#{to_user})
+	</insert>
+	
+	
+	
+	
+	
+	
+	<!-- ★★★ 여기서 작업하rl	 -->
+	<!-- insChatChk가 한번만 실행되게하면서
+		 chk 값을 확인할수있음(chk가 1이면 알림창 띄우기)
+	 -->
+	<select id="selChatPk" parameterType="ChatChkPARAM" resultType="ChatChkPARAM">
+		SELECT to_user, to_Chk FROM t_chatChk
+		WHERE to_user = #{to_user}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- t_chatChk에서 상대방이 쪽지보냈을때 to_user에 to_chk 값을 1로 만듬 -->
+	<update id="updChatChk" parameterType="ChatPARAM">
+		UPDATE t_chatChk
+		SET to_chk = '1'
+		WHERE to_user = #{to_user}
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	<!-- 채팅 내용 뿌리기 -->
 	<select id="selChat" parameterType="ChatPARAM" resultType="ChatPARAM">
 		SELECT B.i_user AS from_user, C.i_user AS to_user,
 		B.profile_img AS from_profile_img,
@@ -42,7 +89,6 @@
 		
 		WHERE A.to_user = #{to_user}
 		LIMIT 0,1
-		
 	</select>
 	
 </mapper>

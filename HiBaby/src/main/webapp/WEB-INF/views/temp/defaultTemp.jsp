@@ -457,7 +457,7 @@
 					return;
 				}
 				
-				ws = new WebSocket('ws://118.67.130.227:8080/echo')
+				ws = new WebSocket('ws://localhost:8080/echo')
 				
 				/*
 					1. 화면 켜고 from_user(나), to_user(상대) pk값 가져옴
@@ -495,7 +495,6 @@
 					console.log('to_user : ' + to_user)
 					console.log('222222')
 					ws.send($("#chatText").val());
-					
 				}
 				
 				
@@ -525,7 +524,7 @@
 	}
 	
 	
-	// 대화 내용 입력
+	// 채팅 내용 입력
 	function insChat(from_userParam, to_userParam) {
 		
 		$('#chatSend').click(function() {
@@ -551,7 +550,7 @@
 	}
 	
 	
-	// 상대방 챗 상단 부
+	// 상대방 채팅 상단 부
 	function selChatTop(to_user) {
 		
 		axios.get('/chat/selChatTop', {
@@ -564,6 +563,19 @@
 			refreshChatTop(res.data)
 		})
 	}
+	
+	
+	
+	
+	
+	// ★★★ 알림이 왔을때 chk 값 기준으로 처리
+	function selChatChk() {
+		console.log('???????????????????????????????')
+	}
+	
+	
+	
+
 	
 	// 챗 상단부 값 뿌리기
 	function refreshChatTop(res) {

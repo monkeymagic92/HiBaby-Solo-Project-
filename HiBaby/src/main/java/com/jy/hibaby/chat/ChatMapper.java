@@ -4,14 +4,23 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.jy.hibaby.chat.model.ChatChkPARAM;
 import com.jy.hibaby.chat.model.ChatPARAM;
 
 @Mapper
 public interface ChatMapper {
 
-	List<ChatPARAM> selChat(ChatPARAM param);
+	List<ChatPARAM> selChat(ChatPARAM param);	// n : n 채팅 값 뿌리기
 	
-	ChatPARAM selChatTop(ChatPARAM param);
+	ChatPARAM selChatTop(ChatPARAM param);		// 채팅 상단 상대방 유저 정보
 	
-	int insChat(ChatPARAM param);
+	ChatChkPARAM selChatPk(ChatPARAM param);
+	
+	int insChat(ChatPARAM param);			// 채팅 등록
+	
+	int insChatChk(ChatPARAM param);
+	
+	int updChatChk(ChatPARAM param);
+	
+	
 }
