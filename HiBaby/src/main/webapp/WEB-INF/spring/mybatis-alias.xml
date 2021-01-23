@@ -39,6 +39,7 @@
 		<!-- chatChk -->
 		<typeAlias type="com.jy.hibaby.chat.model.ChatChkVO" alias="ChatChkVO" />
 		<typeAlias type="com.jy.hibaby.chat.model.ChatChkPARAM" alias="ChatChkPARAM" />
+		<typeAlias type="com.jy.hibaby.chat.model.ChatChkDMI" alias="ChatChkDMI" />
 		
 		
 		

@@ -16,7 +16,7 @@
 <body>
 	<div class="main-container">
 		<header class="main-header">
-			<ul class="header-ul">
+			<ul id="headerBox" class="header-ul">
 				<li><a class="li-a1" href="/index/select"><span id="li1">HiBaby</span></a></li>
 				<li><a class="li-a2" href="#"><span id="li2-1"
 						onclick="showFrList(${loginUser.i_user})">친구 목록</span></a></li>
@@ -549,6 +549,32 @@
 		})
 	}
 	
+	function selChatChk() {
+		
+		axios.post('/chat/selChatChk',{
+			
+		}).then(function(res) {
+			console.log('res data 값 : ' + res.data)
+			if(res.data == 1) {
+				showChatAlert()
+				
+			} else {
+				return;
+			}
+		})		
+	}
+	
+	function showChatAlert() {
+		var showChatSpan = document.createElement('h1')
+		showChatSpan.setAttribute('class', 'abc')
+		showChatSpan.setAttribute('id', 'abc')
+		showChatSpan.innerText = '메세지 왔다!!!!!'
+
+		headerBox.append(showChatSpan)
+	}
+	
+	selChatChk();
+	
 	
 	// 상대방 채팅 상단 부
 	function selChatTop(to_user) {
@@ -563,11 +589,6 @@
 			refreshChatTop(res.data)
 		})
 	}
-	
-			
-	
-	
-
 	
 	// 챗 상단부 값 뿌리기
 	function refreshChatTop(res) {

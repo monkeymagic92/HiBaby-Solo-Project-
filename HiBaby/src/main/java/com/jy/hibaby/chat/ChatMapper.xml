@@ -25,10 +25,8 @@
 	
 	
 	
-	<!-- ★★★ 여기서 작업하rl	 -->
-	<!-- insChatChk가 한번만 실행되게하면서
-		 chk 값을 확인할수있음(chk가 1이면 알림창 띄우기)
-	 -->
+	
+	
 	<select id="selChatPk" parameterType="ChatChkPARAM" resultType="ChatChkPARAM">
 		SELECT to_user, to_Chk FROM t_chatChk
 		WHERE to_user = #{to_user}
@@ -36,7 +34,10 @@
 	
 	
 	
-	
+	<select id="selChatChk" parameterType="ChatChkPARAM" resultType="ChatChkDMI">
+		SELECT to_user, to_chk FROM t_chatChk
+		WHERE to_user = #{to_user}
+	</select>
 	
 	
 	

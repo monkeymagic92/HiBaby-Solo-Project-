@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jy.hibaby.chat.model.ChatChkDMI;
 import com.jy.hibaby.chat.model.ChatChkPARAM;
 import com.jy.hibaby.chat.model.ChatPARAM;
 
@@ -27,6 +28,10 @@ public class ChatService {
 	// to_chk 값을 1기준으로  1 = 챗왔음  0 = 대화없음 나누기
 	public ChatChkPARAM selChatPk(ChatPARAM param) {
 		return mapper.selChatPk(param);
+	}
+	
+	public ChatChkDMI selChatChk(ChatChkPARAM param) {
+		return mapper.selChatChk(param);
 	}
 	
 	// 상대방이 n번유저에게 대화를 했다면 to_chk값을 = 1로

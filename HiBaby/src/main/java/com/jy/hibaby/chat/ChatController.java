@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jy.hibaby.Const;
+import com.jy.hibaby.chat.model.ChatChkDMI;
 import com.jy.hibaby.chat.model.ChatChkPARAM;
 import com.jy.hibaby.chat.model.ChatPARAM;
 import com.jy.hibaby.user.model.UserPARAM;
@@ -69,10 +70,32 @@ public class ChatController {
 	 */
 	// 챗 입력
 	@RequestMapping(value="/selChatChk", method=RequestMethod.POST) 
-    private @ResponseBody String selChatChk(@RequestBody ChatChkPARAM chkParam){
+    private @ResponseBody String selChatChk(@RequestBody ChatChkPARAM chkParam, HttpSession hs){
 		
+		//ChatChkPARAM param = new ChatChkPARAM();	// mapper 실행 시키기 위한 객체
+		ChatChkDMI dmi = new ChatChkDMI();		// mapper 의 return 값을 받기 위한 객체
+		UserPARAM userParam = (UserPARAM)hs.getAttribute(Const.LOGIN_USER);	// 접속한 유저를 where to_user = #{to_user} 박기위한용 
+
 		int result = 0;
+		int i_pk = userParam.getI_user();
+
+		chkParam.setTo_user(i_pk); // 로그인한 유저 pk값을 mapper 쿼리 돌리기위해 ChatChkPARAM 객체값에 넣음 
+		
+
+		dmi = service.selChatChk(chkParam);
+		
+		if(dmi == null) {	// 아무것도 쪽지온게 없다면 result = 0
+			result = 0;
+			return String.valueOf(result);
+		}
+		
+		if(dmi.getTo_chk() == 1) { // 쪽지가 왔다면 result = 1
+			result = 1;
+		}
+		
+		
 		return String.valueOf(result);
+		
     }
 	/////////// 위에 작업하기
 	///////////////////////////////
