@@ -148,8 +148,11 @@ CREATE TABLE t_chatChk(
 	PRIMARY KEY(i_chatChk, to_user),
 	FOREIGN KEY(to_user) REFERENCES t_user(i_user) ON DELETE CASCADE
 );
-DROP TABLE t_chatchk;
-SELECT * FROM t_chatchk;
+DROP TABLE t_chatChk;
+SELECT * FROM t_chatChk;
+
+
+
 
 
 

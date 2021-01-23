@@ -81,6 +81,9 @@ public class UserController {
 	public String logout(Model model, HttpSession hs, UserPARAM param) {
 		param = (UserPARAM)hs.getAttribute(Const.LOGIN_USER);
 		service.loginChkMin(param); // 로그인 할시 loginChk값 = 1  (비접속 상태)
+		if(param == null) {
+			service.loginChkMin(param); // 로그인 할시 loginChk값 = 1  (비접속 상태)
+		}
 		hs.invalidate();
 		
 		return "redirect:/" + ViewRef.USER_LOGIN;

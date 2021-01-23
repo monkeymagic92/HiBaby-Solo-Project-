@@ -54,10 +54,13 @@
 		
 		<!-- 집에서 DB url 연결할때 serverTimezone 에러시 config.properties파일 안에 값 추가해주기 : &amp;serverTimezone=UTC -->
 		 					
-		 
+		  
 		<beans:property name="jdbcUrl" value="jdbc:mysql://localhost:3306/HiBaby?characterEncoding=UTF-8&amp;serverTimezone=UTC "/>
 		<beans:property name="username" value="root" />
 		<beans:property name="password" value="orcl" />
+		 
+		 
+		 
 		<!-- 배포할시 !!!!!!!!   위에꺼 지우고 내 배포자료 메모장에있는거 그대로 복붙하기(1.21 건망증으로인해 아디 비번 입력없이 시도했음) -->
 		
 	</beans:bean>

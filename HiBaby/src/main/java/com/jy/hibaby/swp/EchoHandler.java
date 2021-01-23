@@ -14,12 +14,12 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 public class EchoHandler extends TextWebSocketHandler{
 	
 
-	//세션 리스트
+	// 세션 리스트
     private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
 
     private static Logger logger = LoggerFactory.getLogger(EchoHandler.class);
 
-    //클라이언트가 연결 되었을 때 실행
+    // 클라이언트가 연결 되었을 때 실행
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
     	System.out.println("웹소켓 연결이 되었습니다");
@@ -28,7 +28,7 @@ public class EchoHandler extends TextWebSocketHandler{
     }
     
 
-    //클라이언트가 웹소켓 서버로 메시지를 전송했을 때 실행
+    // 클라이언트가 웹소켓 서버로 메시지를 전송했을 때 실행
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
     	
@@ -42,7 +42,7 @@ public class EchoHandler extends TextWebSocketHandler{
     }
     
     
-    //클라이언트 연결을 끊었을 때 실행
+    // 클라이언트 연결을 끊었을 때 실행
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
     	System.out.println("웹소켓 연결이 끊겼습니다!");

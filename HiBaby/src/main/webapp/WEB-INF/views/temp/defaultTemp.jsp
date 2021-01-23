@@ -24,9 +24,7 @@
 						<span id="li2-1" onclick="showFrList(${loginUser.i_user})">친구 목록</span>
 					</a>
 				</li>
-				
                 <!--  <span id="showAlertMs" class="animate__flash animate__animated material-icons">chat</span>-->
-                
 				<li><a class="li-a2" href="#"><span id="li2"
 						onclick="showUserList()">유저 목록</span></a></li>
 				<li><a class="li-a3" href="#"><span id="li3">쪽지함</span></a> <!-- span으로 쪽지함 ! 나타나게 하기 -->
@@ -268,10 +266,10 @@
 	var frDetailChk = 0; // 유저목록 상세페이지 화면 = 0 / 친구목록 상세페이지 화면 = 1
 			
 	// 웹소켓
-	var ws;
+	var ws;	// 대화 웹소켓	
 	var from_user;  
 	var to_user;
-	var chatModalChk = 0 
+	var chatModalChk = 0
 	
 	
 	// -	- 유저 상세 목록 (친구목록 / 유저목록 각각 button 다름)-	-
@@ -464,7 +462,9 @@
 					return;
 				}
 				
-				ws = new WebSocket('ws://localhost:8080/echo')
+				/*
+					selChatChk 의 값delete 하는 mapper 만들기 (다만들었으면 주석 지우기)
+				*/
 				
 				/*
 					1. 화면 켜고 from_user(나), to_user(상대) pk값 가져옴
@@ -484,17 +484,27 @@
 				selChat(from_user, to_user); 	// 챗 뿌리기
 				insChat(from_user, to_user);	// 챗 입력
 				
+				//selChatChk()	 @@@@@@
 		   		
+				ws = new WebSocket('ws://localhost:8080/echo')
+				// 1. 채팅창 들어오면 웹소켓 연결됨
+				ws.onopen = function() {
+					console.log('웹소켓 연결 성공(친구목록 -> 대화)')
+				}
+				
 				// 웹소켓 관련
 				$("#chatSend").click(function() {
 					ws.sendMessage();
+					
 				});
 				
 				// 1. 채팅창 들어오면 웹소켓 연결됨
+				/*
 				ws.onopen = function() {	
 					
 					console.log('웹소켓 연결 성공(친구목록 -> 대화)')
 				}
+				*/
 				
 				// 2. 메세지 전송
 				ws.sendMessage = function() {
@@ -502,6 +512,7 @@
 					console.log('to_user : ' + to_user)
 					console.log('222222')
 					ws.send($("#chatText").val());
+					
 				}
 				
 				
@@ -514,11 +525,9 @@
 					chatArea.innerHTML = ''		// 채팅창이 열릴때마다 새로운 n번 유저의 대화목록을 띄우기용
 					
 					selChat(from_user, to_user); // 챗 뿌리기
+					
 				}	
 				
-				
-				
-								
 				// 나의 pk 값  = from_user
 				// 상대 pk 값 = to_user 매개변수로 2개 ajax post 값 insert 하는함수에 넣기
 				
@@ -556,6 +565,7 @@
 		})
 	}
 	
+	// 채팅 알림창 띄우는 함수
 	function selChatChk() {
 		
 		axios.post('/chat/selChatChk',{
@@ -571,7 +581,7 @@
 		})		
 	}
 	
-	function showChatAlert() {
+	function showChatAlert() {	// 채팅 알림창 띄우기용
 		var showAlertMs = document.createElement('span')
 		showAlertMs.setAttribute('id', 'showAlertMs')
 		showAlertMs.setAttribute('class', 'animate__flash animate__animated material-icons')
@@ -851,7 +861,7 @@
 	}
     
     var lastText = '...'
-    function makeFrList(arr) {
+    function makeFrList(arr) {	// 친구리스트 값 뿌리기
     	
     	var frListTable = document.createElement('div')
     	frListTable.setAttribute('class', 'frListTable')
@@ -930,8 +940,20 @@
     	loginChkCir.innerText = 'child_care'
     	
     	
-    	if(arr.loginChk == 2) {
-    		frListTable.append(loginChkCir)	
+    	/*
+    	
+    		따로 밑에 ajax 함수 만들어서 매개변수값 arr.i_user 값을 보내어
+    		
+    		
+    	*/
+    	var test = document.createElement('span')
+    	test.setAttribute('id', 'loginChkCir')
+    	test.setAttribute('class', 'material-icons')
+    	test.innerText = 'chat'
+    	
+    	
+    	if(arr.loginChk == 2) {	// 로그인이 되어있다면 child_care 아이콘 띄움
+    		frListTable.append(loginChkCir)
     	}
     	
     	// 마지막 최종 셋트 한묶음 넣기
