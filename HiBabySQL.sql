@@ -137,6 +137,33 @@ CREATE TABLE t_chat(
 DROP TABLE t_chat;
 SELECT * FROM t_chat;
 
+
+
+
+CREATE TABLE t_chatChk(
+	i_chatChk INT UNSIGNED AUTO_INCREMENT,
+	to_user INT(6),
+	to_chk INT DEFAULT(0),
+	r_dt DATETIME DEFAULT NOW(),
+	PRIMARY KEY(i_chatChk, to_user),
+	FOREIGN KEY(to_user) REFERENCES t_user(i_user) ON DELETE CASCADE
+);
+DROP TABLE t_chatchk;
+SELECT * FROM t_chatchk;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 SELECT B.i_user AS from_user, C.i_user AS to_user, B.profile_img AS from_profile_img, C.profile_img AS to_profile_img,
 B.nick, ctnt
 FROM t_chat A
