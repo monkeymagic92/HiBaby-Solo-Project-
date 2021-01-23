@@ -51,20 +51,9 @@ public class ChatController {
 		return String.valueOf(result);
     }
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//////////////////
-	////////////////////////////////////
-	// 챗 체크 입력한후 뿌리기 (여기에러 다시 하기@@@@@@@@@@@@@@@@@@@@@)
+
 	/*
-	 * 	1.  로그인한 유저 pk갑싱랑 to_user pk값이랑 일치할때
+	 * 	1.  로그인한 유저 pk값이랑 to_user pk값이랑 일치할때
 	 *  2.  다시 if문을 줘서 selChatPk where = to_user 에서 to_chk 가 1일경우
 	 *  3.  메소드 실행 ( result 1로 줘서 jsp에서 처리를 하든 )
 	 */
@@ -80,7 +69,6 @@ public class ChatController {
 		int i_pk = userParam.getI_user();
 
 		chkParam.setTo_user(i_pk); // 로그인한 유저 pk값을 mapper 쿼리 돌리기위해 ChatChkPARAM 객체값에 넣음 
-		
 
 		dmi = service.selChatChk(chkParam);
 		
@@ -96,21 +84,7 @@ public class ChatController {
 		
 		return String.valueOf(result);
 		
-    }
-	/////////// 위에 작업하기
-	///////////////////////////////
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+    }	
 	
 	
 	// 챗 뿌리기

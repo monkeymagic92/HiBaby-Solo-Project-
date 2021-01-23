@@ -57,6 +57,14 @@ body {
     font-weight: bold;
 }
 
+#showAlertMs {
+    position: relative;
+    top: 3px;
+    left: 190px;
+    font-size: 2.2em;
+    color: red;
+}
+
 #li2 {
     position: relative;
     top: 32px;

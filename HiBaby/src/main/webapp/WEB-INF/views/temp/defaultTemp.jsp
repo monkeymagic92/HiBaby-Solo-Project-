@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>HiBaby</title>
 <link rel="stylesheet" href="/res/css/defaultTemp.css">
+<link rel="stylesheet" href="/res/css/animate.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <script type="text/javascript"
@@ -18,8 +19,14 @@
 		<header class="main-header">
 			<ul id="headerBox" class="header-ul">
 				<li><a class="li-a1" href="/index/select"><span id="li1">HiBaby</span></a></li>
-				<li><a class="li-a2" href="#"><span id="li2-1"
-						onclick="showFrList(${loginUser.i_user})">친구 목록</span></a></li>
+				<li>
+					<a class="li-a2" href="#">
+						<span id="li2-1" onclick="showFrList(${loginUser.i_user})">친구 목록</span>
+					</a>
+				</li>
+				
+                <!--  <span id="showAlertMs" class="animate__flash animate__animated material-icons">chat</span>-->
+                
 				<li><a class="li-a2" href="#"><span id="li2"
 						onclick="showUserList()">유저 목록</span></a></li>
 				<li><a class="li-a3" href="#"><span id="li3">쪽지함</span></a> <!-- span으로 쪽지함 ! 나타나게 하기 -->
@@ -565,12 +572,12 @@
 	}
 	
 	function showChatAlert() {
-		var showChatSpan = document.createElement('h1')
-		showChatSpan.setAttribute('class', 'abc')
-		showChatSpan.setAttribute('id', 'abc')
-		showChatSpan.innerText = '메세지 왔다!!!!!'
-
-		headerBox.append(showChatSpan)
+		var showAlertMs = document.createElement('span')
+		showAlertMs.setAttribute('id', 'showAlertMs')
+		showAlertMs.setAttribute('class', 'animate__flash animate__animated material-icons')
+		showAlertMs.innerText = 'chat'
+		
+		headerBox.append(showAlertMs)
 	}
 	
 	selChatChk();

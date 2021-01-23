@@ -48,6 +48,14 @@ body {
     font-weight: bold;
 }
 
+#showAlertMs {
+    position: relative;
+    top: 3px;
+    left: 430px;
+    font-size: 2.2em;
+    color: red;
+}
+
 .li-a2 {
     text-decoration: none;
     
