@@ -81,10 +81,20 @@ public class ChatController {
 			result = 1;
 		}
 		
+		return String.valueOf(result);
+    }	
+	
+	
+	// 채팅 알람 취소 (친구목록 눌렀을시 해당유저의 to_user 값을 삭제함)
+	@RequestMapping(value="/delChatChk", method=RequestMethod.POST) 
+    private @ResponseBody String delChatChk(@RequestBody ChatChkPARAM param, HttpSession hs){
+		
+		UserPARAM userParam = (UserPARAM)hs.getAttribute(Const.LOGIN_USER);	// 접속한 유저를 where to_user = #{to_user} 박기위한용
+		param.setTo_user(userParam.getI_user());
+		int result = service.delChatChk(param); 
 		
 		return String.valueOf(result);
-		
-    }	
+	}
 	
 	
 	// 챗 뿌리기

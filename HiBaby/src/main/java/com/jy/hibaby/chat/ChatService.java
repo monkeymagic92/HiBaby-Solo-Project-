@@ -34,6 +34,11 @@ public class ChatService {
 		return mapper.selChatChk(param);
 	}
 	
+	// 채팅 알림 취소( 친구목록 눌렀을시 )
+	public int delChatChk(ChatChkPARAM param) {
+		return mapper.delChatChk(param);
+	}
+	
 	// 상대방이 n번유저에게 대화를 했다면 to_chk값을 = 1로
 	public int updChatChk(ChatPARAM param) {
 		return mapper.updChatChk(param);

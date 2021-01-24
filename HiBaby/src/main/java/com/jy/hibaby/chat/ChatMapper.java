@@ -25,5 +25,7 @@ public interface ChatMapper {
 	
 	int updChatChk(ChatPARAM param);
 	
+	int delChatChk(ChatChkPARAM param);
+	
 	
 }

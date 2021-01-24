@@ -483,8 +483,6 @@
 				selChatTop(to_user);			// 상대방 챗 상단 부
 				selChat(from_user, to_user); 	// 챗 뿌리기
 				insChat(from_user, to_user);	// 챗 입력
-				
-				//selChatChk()	 @@@@@@
 		   		
 				ws = new WebSocket('ws://localhost:8080/echo')
 				// 1. 채팅창 들어오면 웹소켓 연결됨
@@ -585,12 +583,20 @@
 		var showAlertMs = document.createElement('span')
 		showAlertMs.setAttribute('id', 'showAlertMs')
 		showAlertMs.setAttribute('class', 'animate__flash animate__animated material-icons')
-		showAlertMs.innerText = 'chat'
+		showAlertMs.innerText = 'fiber_new'
 		
 		headerBox.append(showAlertMs)
 	}
 	
 	selChatChk();
+	
+	
+	function delChatChk() {	// 친구 알림 삭제( Header 에서 눌렀을때 삭제 되는거임 )\
+		
+		axios.post('/chat/delChatChk',{
+			
+		})	
+	}
 	
 	
 	// 상대방 채팅 상단 부
@@ -606,6 +612,7 @@
 			refreshChatTop(res.data)
 		})
 	}
+	
 	
 	// 챗 상단부 값 뿌리기
 	function refreshChatTop(res) {
@@ -640,9 +647,7 @@
 		     
 		}).then(function(res) {
 			//chatArea.innerHTML = ''		// 채팅창이 열릴때마다 새로운 n번 유저의 대화목록을 띄우기용
-			
 			refreshChatMenu(res.data)
-			
 		})
 	}
 	
@@ -841,7 +846,7 @@
     // frList show
     function showFrList(i_user) {
         frList.style.display = 'flex'
-        
+        delChatChk()	// 채팅 알람 삭제
         axios.get('/user/selFr',{
    			params: {
    		          i_user : i_user
@@ -941,15 +946,19 @@
     	
     	
     	/*
-    	
     		따로 밑에 ajax 함수 만들어서 매개변수값 arr.i_user 값을 보내어
-    		
-    		
+    		채팅 된 방에  알림 메세지 띄움
+    		t_chatChk 테이블에 from_user 값을 넣어서 사용해보기
     	*/
     	var test = document.createElement('span')
     	test.setAttribute('id', 'loginChkCir')
     	test.setAttribute('class', 'material-icons')
     	test.innerText = 'chat'
+    	
+    	if(true) { // 아작스 함수를 사용해서 조건문으로 줘서 처리하기
+    		frListTable.append(test)	
+    	}
+    	
     	
     	
     	if(arr.loginChk == 2) {	// 로그인이 되어있다면 child_care 아이콘 띄움

@@ -39,6 +39,12 @@
 		WHERE to_user = #{to_user}
 	</select>
 	
+	<!--  -->
+	<delete id="delChatChk" parameterType="ChatChkPARAM">
+		DELETE FROM t_chatChk
+		WHERE to_user = #{to_user}
+	</delete>
+	
 	
 	
 	
