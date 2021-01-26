@@ -85,23 +85,18 @@ CREATE TABLE t_fr(
 	FOREIGN KEY (i_user) REFERENCES t_user(i_user)  ON DELETE CASCADE,
 	FOREIGN KEY (to_user) REFERENCES t_user(i_user)  ON DELETE CASCADE
 );
+
 SELECT * FROM t_fr;
 DROP TABLE t_fr;
 
-UPDATE t_fr
-SET frChk = '1'
+
+
+SELECT B.nick, A.i_user, A.to_user, A.frChk FROM t_fr A
+		
+LEFT JOIN t_user B
+ON A.i_user = B.i_user
+
 WHERE to_user = 3;
-
-UPDATE t_fr
-SET frChk = '1'
-WHERE i_user = 1 AND i_user = 3;
-
-SELECT  * FROM t_fr;
-
-
-
-
-
 
 CREATE TABLE t_chat(
 	i_chat INT UNSIGNED AUTO_INCREMENT,

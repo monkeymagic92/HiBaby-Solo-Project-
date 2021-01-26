@@ -1032,8 +1032,14 @@
 						}
 					})
 					
-				} else {
-					// 삭제메소드
+				} else {	// 친추 거절 했을때 
+					axios.post('/user/delFr',{
+						i_user : arr.i_user,	
+						to_user : `${loginUser.i_user}`	
+						
+					}).then(function() {
+						
+					})
 				}	
     		}
     	}
