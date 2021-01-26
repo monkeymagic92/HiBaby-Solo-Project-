@@ -12,10 +12,23 @@ public class UserPARAM extends UserVO {
 	private String searchNick;	// 유저 검색
 	
 	private int to_user;	// 친구 추가 할시 상대방 pk 값
-	
+	private int frChk;
+	private int delFrChk;
 	
 	
 
+	public int getFrChk() {
+		return frChk;
+	}
+	public void setFrChk(int frChk) {
+		this.frChk = frChk;
+	}
+	public int getDelFrChk() {
+		return delFrChk;
+	}
+	public void setDelFrChk(int delFrChk) {
+		this.delFrChk = delFrChk;
+	}
 	public int getLoginChk() {
 		return loginChk;
 	}

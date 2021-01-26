@@ -95,14 +95,25 @@
 	
 	<!-- 친추 중복 방지 -->
 	<select id="frUniqueChk" parameterType="UserPARAM" resultType="UserDMI">
-		SELECT i_user, to_user FROM t_fr
+		SELECT i_user, to_user, frChk, frDelChk FROM t_fr
 		WHERE i_user = #{i_user}
 		AND to_user = #{to_user}
 	</select>
 	
+	<!-- 친추 요청 -->
+	<select id="reqFr" parameterType="UserPARAM" resultType="UserPARAM">
+		SELECT B.nick, A.i_user, A.to_user, A.frChk FROM t_fr A
+		
+		LEFT JOIN t_user B
+		ON A.i_user = B.i_user
+		
+		WHERE to_user = #{i_user} 
+	</select>
+	
 	<!-- 친구 목록 -->
 	<select id="selFr" parameterType="UserPARAM" resultType="UserPARAM">
-		SELECT B.to_user, A.i_user, A.nick, A.sm, A.profile_img, A.loginChk, C.totalPoint 
+		<!-- frChk 가 1인것들만 보여주도록 -->
+		SELECT B.frChk, B.frDelChk, B.to_user, A.i_user, A.nick, A.sm, A.profile_img, A.loginChk, C.totalPoint 
 		FROM t_user A
 		
 		LEFT JOIN t_fr B
@@ -111,7 +122,7 @@
 		LEFT JOIN t_myPoint C
 		ON A.i_user = C.i_user
 		
-		WHERE B.i_user = #{i_user}
+		WHERE B.i_user = #{i_user} 
 	</select>
 	
 	
@@ -143,12 +154,29 @@
 		(#{i_user}, #{totalPoint}, #{myPoint}, #{myCash})
 	</insert>	
 	
-	<!-- 친구 추가 -->
+	<!-- 친구 요청 -->
 	<insert id="insFr" parameterType="UserPARAM">
 		INSERT INTO t_fr
 		(i_user, to_user)
 		VALUES
 		(#{i_user}, #{to_user})
+	</insert>
+	
+	<!-- 친구 추가 -->
+	<update id="updInsFr" parameterType="UserPARAM">
+		UPDATE t_fr
+		SET frChk = '1'
+		WHERE i_user = #{i_user} AND to_user = #{to_user}
+		OR
+		i_user = #{to_user} AND to_user = #{i_user}
+	</update>
+	
+	<!-- 상대방이 수락했을시 친구목록에 띄우기 ( 추후 frChk 값이 1일때 진정한 친구 ) -->
+	<insert id="insReqFr" parameterType="UserPARAM">
+		INSERT INTO t_fr
+		(i_user, to_user)
+		VALUES
+		(#{to_user}, #{i_user})
 	</insert>
 	
 	

@@ -367,7 +367,11 @@
 		var frPlusBtn = document.createElement('button')
 		frPlusBtn.setAttribute('id', 'frPlusBtn')
 		frPlusBtn.innerText = '친구추가'
-		frPlusBtn.onclick = function() { // 친구 추가
+		frPlusBtn.onclick = function() { 
+			
+			/*
+				친구요청 함수 (from(i_user) 가 요청하고 to가 받으면 친추)
+			*/
 			
 			var loginNick = `${loginUser.nick}`
 			if(loginNick == '') {
@@ -380,18 +384,20 @@
 			
 			axios.post('/user/insFr',{
 				i_user : i_user,
-				to_user : to_user
+				to_user : to_user,
+				frChk : 0
 				
 			}).then(function(res) {
+				
 				if(res.data == 1) {
-					alert('친구가 되었습니다.')
+					alert('친구요청을 하였습니다.')
 					
 				} else if(res.data == 2) {
 					alert('나자신은 등록할수 없습니다.')
 					
 				}  else if(res.data == 10){
 					alert('이미 등록되어 있는 친구 입니다.')
-				} 
+				}
 			})
 		}
 		
@@ -867,109 +873,176 @@
     
     var lastText = '...'
     function makeFrList(arr) {	// 친구리스트 값 뿌리기
-    	
-    	var frListTable = document.createElement('div')
-    	frListTable.setAttribute('class', 'frListTable')
-    	
-    	frListTable.onclick = function() {
+    	if(arr.frChk == 1) {
     		
-    		frDetailChk = 1	//	친구 목록에서 상세 페이지 열때
-    		
-    		frList.style.display = 'none'
-    		var i_user = arr.to_user
-			showDetailModal(i_user)
+    	
+	    	var frListTable = document.createElement('div')
+	    	frListTable.setAttribute('class', 'frListTable')
+	    	
+	    	frListTable.onclick = function() {
+	    		
+	    		frDetailChk = 1	//	친구 목록에서 상세 페이지 열때
+	    		
+	    		frList.style.display = 'none'
+	    		var i_user = arr.to_user
+				showDetailModal(i_user)
+	    	}
+	    	
+	    	var userListDiv1 = document.createElement('div')
+	    	userListDiv1.setAttribute('class', 'userListDiv1')
+	    	
+	    	var userListImg1 = document.createElement('img')
+			userListImg1.setAttribute('class', 'userListImg')
+			if(arr.totalPoint < 150) {			
+				userListImg1.setAttribute('src',`/res/img/ion.png`)
+				
+			} else if(arr.totalPoint < 400) {
+				userListImg1.setAttribute('src',`/res/img/gold.png`)
+				
+			} else if(arr.totalPoint < 600) {
+				userListImg1.setAttribute('src',`/res/img/dia.png`)
+				
+			} else if(arr.totalPoint < 20000) {
+				userListImg1.setAttribute('src',`/res/img/master.png`)
+				
+			} else if(arr.totalPoint > 20000) {
+				userListImg1.setAttribute('src',`/res/img/chall.png`)
+			}
+	    	
+	    	userListDiv1.append(userListImg1)
+	    	frListTable.append(userListDiv1)
+	    	
+	    	var userListDiv2 = document.createElement('div')
+	    	userListDiv2.setAttribute('class', 'userListDiv2')
+	    	
+	    	var userListImg2 = document.createElement('img')
+			userListImg2.setAttribute('class', 'userListImg')
+			if(arr.profile_img != null) {
+				userListImg2.setAttribute('src',`/res/img/HiBaby/profile_img/user/\${arr.to_user}/\${arr.profile_img}`)
+				
+			} else {
+				userListImg2.setAttribute('src','/res/img/HiBaby.jpg')
+			}
+	    	
+	    	userListDiv2.append(userListImg2)
+	    	frListTable.append(userListDiv2)
+	    	
+	    	var userListDiv3 = document.createElement('div')
+	    	userListDiv3.setAttribute('class', 'userListDiv3')
+	    	userListDiv3.append(arr.nick)
+	    	
+	    	frListTable.append(userListDiv3)
+	    	
+	    	var userListDiv4 = document.createElement('div')
+	    	userListDiv4.setAttribute('class', 'userListDiv4')
+	    	if(arr.sm == null) {
+				userListDiv4.innerText = ' 상태메세지가 없습니다.'
+				
+			} else if(arr.sm.length < 16) {
+				userListDiv4.append(arr.sm)
+				
+			} else if (arr.sm.length > 16) {
+				userListDiv4.append(arr.sm.substring(0,15) + lastText)
+			} 
+	    	
+	    	frListTable.append(userListDiv4)
+	    	
+	    	var loginChkCir = document.createElement('span')
+	    	loginChkCir.setAttribute('id', 'loginChkCir')
+	    	loginChkCir.setAttribute('class', 'material-icons')
+	    	loginChkCir.innerText = 'child_care'
+	    	
+	    	
+	    	/*
+	    		따로 밑에 ajax 함수 만들어서 매개변수값 arr.i_user 값을 보내어
+	    		채팅 된 방에  알림 메세지 띄움
+	    		t_chatChk 테이블에 from_user 값을 넣어서 사용해보기
+	    	*/
+	    	
+	    	/*
+	    	var test = document.createElement('span')
+	    	test.setAttribute('id', 'loginChkCir')
+	    	test.setAttribute('class', 'material-icons')
+	    	test.innerText = 'chat'
+	    	
+	    	if(true) { // 아작스 함수를 사용해서 조건문으로 줘서 처리하기
+	    		frListTable.append(test)	
+	    	}
+	    	*/
+	    	
+	    	
+	    	if(arr.loginChk == 2) {	// 로그인이 되어있다면 child_care 아이콘 띄움
+	    		frListTable.append(loginChkCir)
+	    	}
+	    	
+	    	// 마지막 최종 셋트 한묶음 넣기
+	    	frListBoxMall.append(frListTable)
     	}
-    	
-    	var userListDiv1 = document.createElement('div')
-    	userListDiv1.setAttribute('class', 'userListDiv1')
-    	
-    	var userListImg1 = document.createElement('img')
-		userListImg1.setAttribute('class', 'userListImg')
-		if(arr.totalPoint < 150) {			
-			userListImg1.setAttribute('src',`/res/img/ion.png`)
-			
-		} else if(arr.totalPoint < 400) {
-			userListImg1.setAttribute('src',`/res/img/gold.png`)
-			
-		} else if(arr.totalPoint < 600) {
-			userListImg1.setAttribute('src',`/res/img/dia.png`)
-			
-		} else if(arr.totalPoint < 20000) {
-			userListImg1.setAttribute('src',`/res/img/master.png`)
-			
-		} else if(arr.totalPoint > 20000) {
-			userListImg1.setAttribute('src',`/res/img/chall.png`)
-		}
-    	
-    	userListDiv1.append(userListImg1)
-    	frListTable.append(userListDiv1)
-    	
-    	var userListDiv2 = document.createElement('div')
-    	userListDiv2.setAttribute('class', 'userListDiv2')
-    	
-    	var userListImg2 = document.createElement('img')
-		userListImg2.setAttribute('class', 'userListImg')
-		if(arr.profile_img != null) {
-			userListImg2.setAttribute('src',`/res/img/HiBaby/profile_img/user/\${arr.to_user}/\${arr.profile_img}`)
-			
-		} else {
-			userListImg2.setAttribute('src','/res/img/HiBaby.jpg')
-		}
-    	
-    	userListDiv2.append(userListImg2)
-    	frListTable.append(userListDiv2)
-    	
-    	var userListDiv3 = document.createElement('div')
-    	userListDiv3.setAttribute('class', 'userListDiv3')
-    	userListDiv3.append(arr.nick)
-    	
-    	frListTable.append(userListDiv3)
-    	
-    	var userListDiv4 = document.createElement('div')
-    	userListDiv4.setAttribute('class', 'userListDiv4')
-    	if(arr.sm == null) {
-			userListDiv4.innerText = ' 상태메세지가 없습니다.'
-			
-		} else if(arr.sm.length < 16) {
-			userListDiv4.append(arr.sm)
-			
-		} else if (arr.sm.length > 16) {
-			userListDiv4.append(arr.sm.substring(0,15) + lastText)
-		} 
-    	
-    	frListTable.append(userListDiv4)
-    	
-    	var loginChkCir = document.createElement('span')
-    	loginChkCir.setAttribute('id', 'loginChkCir')
-    	loginChkCir.setAttribute('class', 'material-icons')
-    	loginChkCir.innerText = 'child_care'
-    	
-    	
-    	/*
-    		따로 밑에 ajax 함수 만들어서 매개변수값 arr.i_user 값을 보내어
-    		채팅 된 방에  알림 메세지 띄움
-    		t_chatChk 테이블에 from_user 값을 넣어서 사용해보기
-    	*/
-    	var test = document.createElement('span')
-    	test.setAttribute('id', 'loginChkCir')
-    	test.setAttribute('class', 'material-icons')
-    	test.innerText = 'chat'
-    	
-    	if(true) { // 아작스 함수를 사용해서 조건문으로 줘서 처리하기
-    		frListTable.append(test)	
-    	}
-    	
-    	
-    	
-    	if(arr.loginChk == 2) {	// 로그인이 되어있다면 child_care 아이콘 띄움
-    		frListTable.append(loginChkCir)
-    	}
-    	
-    	// 마지막 최종 셋트 한묶음 넣기
-    	frListBoxMall.append(frListTable)
-    	
     }
     // frList End
+    
+    function reqFr() {
+    	
+    		axios.get('/user/reqFr',{
+       			params: {
+       		          i_user : `${loginUser.i_user}`
+       		    }
+       			
+       		}).then(function(res) {
+       			
+			if(res.data != null) {
+				refreshfrChkList(res.data)	
+			}
+			
+		})		
+    }
+    
+    function refreshfrChkList(arr) {
+    	for (let i = 0; i<arr.length; i++) {
+ 		   makeFrChkList(arr[i])
+ 		}
+    }    
+    
+    
+    function makeFrChkList(arr) {
+    	if(arr.to_user == `${loginUser.i_user}`) {	// 친구 요청 받은사람의 pk와 로그인한 pk 동일해야됨
+    		
+    		if(arr.frChk != 1) {
+    			
+    			if(confirm(arr.nick + ' 님과 친구 하시겠습니까 ?')) {
+    				
+    				axios.post('/user/insFr',{
+						i_user : arr.i_user,
+						to_user : `${loginUser.i_user}`,
+						frChk : 1
+						
+					}).then(function(res) {
+						
+						if(res.data == 1) {
+							alert('친구가 되었습니다.')
+							
+						} else if(res.data == 2) {
+							alert('나자신은 등록할수 없습니다.')
+							
+						}  else if(res.data == 10){
+							alert('이미 등록되어 있는 친구 입니다.')
+							
+						} else if(res.data == 100) {
+							alert('내가 원하는 결과')
+						}
+					})
+					
+				} else {
+					// 삭제메소드
+				}	
+    		}
+    	}
+    }
+    
+    
+    
+    
+    reqFr()
     
     
     //로그아웃

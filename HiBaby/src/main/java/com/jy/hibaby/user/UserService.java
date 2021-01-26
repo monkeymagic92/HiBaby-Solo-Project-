@@ -327,21 +327,43 @@ public class UserService {
 	public int frUniqueChk(UserPARAM param) {
 		int result = 0;
 		
-		UserDMI dmi = mapper.frUniqueChk(param);
-		
-		if(dmi == null) {	// 친구 추가
+		if(param.getFrChk() == 0) {
+			UserDMI dmi = mapper.frUniqueChk(param);
 			
-			result = mapper.insFr(param);
+			if(dmi == null) {	// 친구 추가
+				
+				result = mapper.insFr(param);	// 친구 추가 mapper
+				return result;
+			}
+			
+			if(param.getTo_user() == dmi.getTo_user()) {	// 중복된 친구 (친추 X)
+				
+				result = 10;
+				return result;
+			} 
+			
+			return result;
+			
+		} else {
+			
+			mapper.insReqFr(param);
+			mapper.updInsFr(param);
 			return result;
 		}
 		
-		if(param.getTo_user() == dmi.getTo_user()) {
-			
-			result = 10;
-			return result;
-		} 
 		
-		return result;
+	}
+	
+	// 친추 요청
+	public List<UserPARAM> reqFr(UserPARAM param) {
+		return mapper.reqFr(param);
+	}
+	
+	// 친구 수락 했을시 
+	public int insReqFr(UserPARAM param) {
+		// int result = mapper.insReqFr(param); 테스트 되면 이거 사용
+		// updFrChk(param);
+		return mapper.insReqFr(param);
 	}
 	
 	// 친구 목록 뿌리기

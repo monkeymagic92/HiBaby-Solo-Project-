@@ -32,6 +32,8 @@ public interface UserMapper {
 	
 	UserDMI frUniqueChk(UserPARAM param);	// 친구추가 중복 제거
 	
+	List<UserPARAM> reqFr(UserPARAM param); 	// 친추 요청
+	
 	List<UserPARAM> selFr(UserPARAM param);	// 친구목록 뿌리기
 	
 	
@@ -43,6 +45,10 @@ public interface UserMapper {
 	int insMyPointPage (PointVO vo);	// 포인트몰 내역 조회
 	
 	int joinPoint(PointVO vo);	// 회원가입시 기본포인트 100제공
+	
+	int insFr(UserPARAM param);	// 친구 요청
+	
+	int insReqFr(UserPARAM param);	// 상대방 수락하는 과정에서 t_fr 목록에 올림
 	
 	
 	
@@ -60,8 +66,9 @@ public interface UserMapper {
 	int loginChkPlus(UserPARAM param);	// 로그인 할경우 접속상태 chk = 2
 	
 	int loginChkMin(UserPARAM param);	// 로그아웃 할경우 비접속 상태 chk = 1
+	int updInsFr(UserPARAM param);
 	
-	int insFr(UserPARAM param);	// 친구 추가
+	
 	
 	
 	// delete 

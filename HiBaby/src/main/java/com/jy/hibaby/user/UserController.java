@@ -1,8 +1,8 @@
 package com.jy.hibaby.user;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -466,13 +466,50 @@ public class UserController {
 		return service.detailUser(param); 
 	}
 	
+	
+	
 	// 친구 추가
 	@RequestMapping(value="/insFr", method=RequestMethod.POST)
 	@ResponseBody	
 	public String insFr(@RequestBody UserPARAM param) {
+		
 		int result = 0;
-		result = service.frUniqueChk(param);
-		return String.valueOf(result);
+		if(param.getFrChk() == 0) {	// 내가 친구 요청 했을때
+//			System.out.println("frChk = 1");
+//			System.out.println("param i_user : " + param.getI_user());
+//			System.out.println("param to_user : " + param.getTo_user());
+			result = service.frUniqueChk(param);
+			return String.valueOf(result);
+			
+		} else {	// 상대방이 친구요청 받았을때
+//			System.out.println("frChk = 2");
+//			System.out.println("param i_user : " + param.getI_user());
+//			System.out.println("param to_user : " + param.getTo_user());
+			result = service.frUniqueChk(param);
+			result = 1;
+			return String.valueOf(result);
+		}
+		
+	}
+	
+	
+	// 상대방이 친추요청 했을시 yes / no  confirm 띄움
+	@RequestMapping(value="/reqFr", method=RequestMethod.GET)
+	public @ResponseBody List<UserPARAM> reqFr(UserPARAM param, HttpSession hs) {
+		
+		List<UserPARAM> param2 = new ArrayList<UserPARAM>();
+		
+		param2 = service.reqFr(param);
+		
+		if(param2 == null) {
+			System.out.println("param2 = null");
+			return null; 
+			
+		} else {
+			
+			System.out.println("사이즈" + param2.size());
+			return service.reqFr(param);
+		}
 	}
 	
 	

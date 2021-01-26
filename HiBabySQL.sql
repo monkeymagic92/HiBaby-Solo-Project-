@@ -21,24 +21,6 @@ DROP TABLE t_user;
 
 
 
-UPDATE t_user
-SET loginChk = '2'
-WHERE i_user = 2;
-
-SELECT B.to_user, B.i_user, A.nick, A.sm, A.profile_img, A.loginChk, C.totalPoint 
-FROM t_user A
-
-LEFT JOIN t_fr B
-ON A.i_user = B.to_user
-
-LEFT JOIN t_mypoint C
-ON A.i_user = C.i_user
-
-WHERE B.i_user = 1;
-
-
-
-
 
 
 CREATE TABLE t_board(
@@ -74,11 +56,6 @@ CREATE TABLE t_myPoint(
 SELECT * FROM t_myPoint;
 DROP TABLE t_myPoint;
 
-INSERT INTO t_myPoint
-(i_user,totalPoint)
-VALUES
-(1, 30000);
-
 
 
 CREATE TABLE t_cmt(
@@ -101,6 +78,8 @@ CREATE TABLE t_fr(
 	i_fr INT UNSIGNED AUTO_INCREMENT,
 	i_user INT,
 	to_user INT,
+	frChk INT DEFAULT (0),
+	frDelChk INT DEFAULT(0),
 	r_dt DATETIME DEFAULT NOW(),
 	PRIMARY KEY(i_fr, i_user, to_user),
 	FOREIGN KEY (i_user) REFERENCES t_user(i_user)  ON DELETE CASCADE,
@@ -109,17 +88,17 @@ CREATE TABLE t_fr(
 SELECT * FROM t_fr;
 DROP TABLE t_fr;
 
+UPDATE t_fr
+SET frChk = '1'
+WHERE to_user = 3;
 
-SELECT B.to_user, A.i_user, A.nick, A.sm, A.profile_img, A.loginChk, C.totalPoint 
-FROM t_user A
+UPDATE t_fr
+SET frChk = '1'
+WHERE i_user = 1 AND i_user = 3;
 
-LEFT JOIN t_fr B
-ON A.i_user = B.to_user
+SELECT  * FROM t_fr;
 
-LEFT JOIN t_myPoint C
-ON A.i_user = C.i_user
 
-WHERE B.i_user = 1;
 
 
 
