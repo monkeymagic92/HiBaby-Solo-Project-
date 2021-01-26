@@ -1026,19 +1026,13 @@
 							
 						}  else if(res.data == 10){
 							alert('이미 등록되어 있는 친구 입니다.')
-							
-						} else if(res.data == 100) {
-							alert('내가 원하는 결과')
 						}
 					})
 					
 				} else {	// 친추 거절 했을때 
 					axios.post('/user/delFr',{
 						i_user : arr.i_user,	
-						to_user : `${loginUser.i_user}`	
-						
-					}).then(function() {
-						
+						to_user : `${loginUser.i_user}`
 					})
 				}	
     		}
