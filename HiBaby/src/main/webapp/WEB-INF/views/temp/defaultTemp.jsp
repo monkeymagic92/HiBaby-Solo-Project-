@@ -254,6 +254,32 @@
 			</div>
 		</div>
 		<!-- 대화창 end -->
+		
+		
+		<!-- 친구요청 모달 start -->
+        <div id="frReqModal">
+            <!-- Modal content -->
+            <div id="frReq-content">
+                <div class="frReqMsg">
+                    친구 요청이 들어왔습니다.
+                </div>
+                <div id="frReqInfo">
+                    <!-- <img src="/img/chall.png" class="frReqImg">
+                    <span class="frReqSpan">Test321</span>
+                     -->
+                </div>
+
+                <!-- Modal bottom -->
+                <div id="btnBox">
+                	<!-- 
+                    <button type="button" id="frBtnCon1" class="frBtnCon" onclick="a()">수락</button>
+                    <button type="button" id="frBtnCon2" class="frBtnCon" onclick="b()">거절</button>
+                    <button type="button" id="frBtnCon3" class="frBtnCon" onclick="c()">창닫기</button>
+                     -->
+                </div>
+            </div>
+        </div>
+        <!-- 친구요청 end -->
 
 
 	</div>
@@ -396,9 +422,9 @@
 					alert('나자신은 등록할수 없습니다.')
 					
 				}  else if(res.data == 10){
-					alert('이미 등록되어 있는 친구 입니다.')
+					alert('이미 친구요청을 보낸 상태 입니다.')
 				}
-			})
+			});
 		}
 		
 		var messageBtn = document.createElement('button')
@@ -449,10 +475,10 @@
 							
 						}).then(function(res) {
 							if(res.data == 1) {
+								alert('친구와 절교 하였습니다')
 								location.reload();
-								
 							} else {
-								alert('절교가 안되었습니다 다시 시도해 주세요')
+								alert('서버 오류가발생하였습니다 새로고침후 다시 시도해 주세요')
 							}
 						})	
 				}
@@ -512,11 +538,7 @@
 				
 				// 2. 메세지 전송
 				ws.sendMessage = function() {
-					console.log('fromUser : ' + from_user)
-					console.log('to_user : ' + to_user)
-					console.log('222222')
 					ws.send($("#chatText").val());
-					
 				}
 				
 				
@@ -984,10 +1006,11 @@
     function reqFr() {
     	
     		axios.get('/user/reqFr',{
+    			
        			params: {
        		          i_user : `${loginUser.i_user}`
        		    }
-       			
+    		
        		}).then(function(res) {
        			
 			if(res.data != null) {
@@ -1005,44 +1028,95 @@
     
     
     function makeFrChkList(arr) {
+    	
     	if(arr.to_user == `${loginUser.i_user}`) {	// 친구 요청 받은사람의 pk와 로그인한 pk 동일해야됨
     		
     		if(arr.frChk != 1) {
     			
-    			if(confirm(arr.nick + ' 님과 친구 하시겠습니까 ?')) {
     				
-    				axios.post('/user/insFr',{
-						i_user : arr.i_user,
-						to_user : `${loginUser.i_user}`,
-						frChk : 1
-						
-					}).then(function(res) {
-						
-						if(res.data == 1) {
-							alert('친구가 되었습니다.')
-							
-						} else if(res.data == 2) {
-							alert('나자신은 등록할수 없습니다.')
-							
-						}  else if(res.data == 10){
-							alert('이미 등록되어 있는 친구 입니다.')
-						}
-					})
-					
-				} else {	// 친추 거절 했을때 
-					axios.post('/user/delFr',{
-						i_user : arr.i_user,	
-						to_user : `${loginUser.i_user}`
-					})
-				}	
-    		}
+   				frReqModal.style.display = 'flex'
+   	    			
+   	   				var frReqImg = document.createElement('img')
+   	       			frReqImg.setAttribute('class', 'frReqImg')
+   	       			if(arr.profile_img != null) {
+   	       				frReqImg.setAttribute('src',`/res/img/HiBaby/profile_img/user/\${arr.i_user}/\${arr.profile_img}`)
+   	   					
+   	   				} else {
+   	   					alert('i_user값 : ' + arr.i_user)
+   	   					frReqImg.setAttribute('src','/res/img/HiBaby.jpg')
+   	   				}
+   	       			frReqInfo.append(frReqImg)
+   	       			
+   	       			var frReqSpan = document.createElement('span')
+   	       			frReqSpan.setAttribute('class', 'frReqSpan')
+   	       			frReqSpan.append(arr.nick)
+   	       			frReqInfo.append(frReqSpan)
+   	       			
+   	       			frBtnCon1 = document.createElement('button')
+   	       			frBtnCon1.setAttribute('class', 'frBtnCon')
+   	       			frBtnCon1.setAttribute('id', 'frBtnCon1')
+   	       			frBtnCon1.setAttribute('type', 'button')
+   	       			frBtnCon1.innerText = '수락'
+   	       			
+   	       			frBtnCon1.onclick = function() {
+   	       				axios.post('/user/insFr',{
+   	   						i_user : arr.i_user,
+   	   						to_user : `${loginUser.i_user}`,
+   	   						frChk : 1
+   	   						
+   	   					}).then(function(res) {
+   	   						
+   	   						if(res.data == 1) {
+   	   							alert(arr.nick + ' 님과 친구가 되었습니다.')
+   	   							location.reload();
+   	   							
+   	   						} else if(res.data == 2) {
+   	   							alert('나자신은 등록할수 없습니다.')
+   	   							
+   	   						}  else if(res.data == 10){
+   	   							alert('이미 등록되어 있는 친구 입니다.')
+   	   						}
+   	   					});
+   	       			}
+   	       			
+   	       			frBtnCon2 = document.createElement('button')
+   	       			frBtnCon2.setAttribute('class', 'frBtnCon')
+   	       			frBtnCon2.setAttribute('id', 'frBtnCon2')
+   	       			frBtnCon2.setAttribute('type', 'button')
+   	       			frBtnCon2.innerText = '거절'
+   	       			
+   	       			frBtnCon2.onclick = function() {
+   	       				axios.post('/user/delFr',{
+   	   						i_user : arr.i_user,	
+   	   						to_user : `${loginUser.i_user}`
+   	   					}).then(function(res) {
+   	   						if(res.data == 1) {
+   	   							frReqModal.style.display = 'none';		
+   	   						}
+   	   					});
+   	       			}
+   	       			
+   	       			frBtnCon3 = document.createElement('button')
+   	       			frBtnCon3.setAttribute('class', 'frBtnCon')
+   	       			frBtnCon3.setAttribute('id', 'frBtnCon3')
+   	       			frBtnCon3.setAttribute('type', 'button')
+   	       			frBtnCon3.innerText = '닫기'
+   	       			
+   	       			frBtnCon3.onclick = function() {
+   	       				frReqModal.style.display = 'none';
+   	       			}
+   	       			
+   	       			btnBox.append(frBtnCon1);
+   	       			btnBox.append(frBtnCon2);
+   	       			btnBox.append(frBtnCon3);
+   				
+   			}
+    			
     	}
     }
     
-    
-    
-    
     reqFr()
+  
     
     
     //로그아웃

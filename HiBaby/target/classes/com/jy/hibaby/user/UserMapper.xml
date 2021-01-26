@@ -102,7 +102,7 @@
 	
 	<!-- 친추 요청 -->
 	<select id="reqFr" parameterType="UserPARAM" resultType="UserPARAM">
-		SELECT B.nick, A.i_user, A.to_user, A.frChk FROM t_fr A
+		SELECT B.nick, B.profile_img, A.i_user, A.to_user, A.frChk FROM t_fr A
 		
 		LEFT JOIN t_user B
 		ON A.i_user = B.i_user
@@ -250,10 +250,12 @@
 		WHERE profile_img = #{profile_img}
 	</delete>
 	
+	<!-- 친구삭제 (안될시 where 절에서 to, i_user 값 서로 바꿔서 작동해보기) -->
 	<delete id="delFr" parameterType="UserPARAM">
 		DELETE FROM t_fr
-		WHERE i_user = #{i_user}
-		AND to_user = #{to_user}
+		WHERE i_user = #{to_user} AND to_user = #{i_user}
+		OR
+		i_user = #{i_user} AND to_user = #{to_user}
 	</delete>
 		
 	

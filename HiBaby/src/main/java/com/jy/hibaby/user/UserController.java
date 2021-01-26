@@ -524,11 +524,10 @@ public class UserController {
 	@RequestMapping(value="/delFr", method=RequestMethod.POST)
 	@ResponseBody	
 	public String delFr(@RequestBody UserPARAM param) {
-		
-		int result = service.delFr(param);
+		int result = 1;
+		service.delFr(param);
 		return String.valueOf(result);
 	}
-	
 }
 
 
