@@ -27,8 +27,6 @@
                 <!--  <span id="showAlertMs" class="animate__flash animate__animated material-icons">chat</span>-->
 				<li><a class="li-a2" href="#"><span id="li2"
 						onclick="showUserList()">유저 목록</span></a></li>
-				<li><a class="li-a3" href="#"><span id="li3">쪽지함</span></a> <!-- span으로 쪽지함 ! 나타나게 하기 -->
-					<!-- 애니메이션 효과넣어서 !가 나타날때 깜빡임 표시 넣기 --></li>
 				<li>
 					<div class="dropdown">
 						<button class="dropbtn">
@@ -427,22 +425,11 @@
 			});
 		}
 		
-		var messageBtn = document.createElement('button')
-		messageBtn.setAttribute('id', 'messageBtn')
-		messageBtn.innerText = '쪽지'
-		messageBtn.onclick = function() {
-			
-			
-			alert('쪽지 기능 넣기');
-		}	
-	
-				/* 유저목록에서 상세페이지 띄울때 */
-				
+		
 		if(frDetailChk == 0) { 	
 			
 			if(loginI_user != res.i_user) { // 나자신은 쪽지, 친추 금지
-				detailBtnMall.append(frPlusBtn)
-				detailBtnMall.append(messageBtn)
+				detailBtnMall.append(frPlusBtn)				
 				detailUserBox.append(detailBtnMall)	
 			}
 		

@@ -51,7 +51,7 @@ body {
 #li2-1 {
     position: relative;
     top: 32px;
-    left: 440px;
+    left: 560px;
     color: white;
     font-size: 1.4em;
     font-weight: bold;
@@ -68,7 +68,7 @@ body {
 #li2 {
     position: relative;
     top: 32px;
-    left: 480px;
+    left: 610px;
     color: white;
     font-size: 1.4em;
     font-weight: bold;
@@ -76,20 +76,6 @@ body {
 
 .header-menu-tab {
     text-decoration: none;
-}
-
-.li-a3 {
-    text-decoration: none;
-    
-}
-
-#li3 {
-    position: relative;
-    top: 32px;
-    left: 520px;
-    color: white;
-    font-size: 1.4em;
-    font-weight: bold;
 }
 
 
@@ -102,7 +88,7 @@ padding: 8px;
 border: none;
 position: relative;
 top: 3px;
-left: 592px;
+left: 650px;
 }
 
 .dropbtn:hover {
@@ -130,7 +116,7 @@ display: inline-block;
 display: none;
 position: absolute;
 top: 0px;
-left: 670px;
+left: 725px;
 background-color: #f1f1f1;
 min-width: 160px;
 box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -386,7 +372,7 @@ display: block;
 #frPlusBtn {
     position: relative;
     top: 130px;
-    left: -20px;
+    left: 10px;
     width: 100px;
     height: 35px;
     border: 3px solid skyblue;
