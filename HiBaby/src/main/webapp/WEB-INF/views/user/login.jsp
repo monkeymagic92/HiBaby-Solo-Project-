@@ -15,7 +15,7 @@
             <img src="https://cdn4.iconfinder.com/data/icons/miu/22/circle_close_delete_-128.png"></img>
         </span>
         
-        <form id="frm" class="box" action="/user/login" method="post" onsubmit="return chk()">
+        <form id="frm" class="box" name="userinput" action="/user/login" method="post" onsubmit="return chk()">
             <h1>Login</h1>
              
 			<!--         
@@ -23,19 +23,31 @@
             <input type="password" name="user_pw" placeholder="비밀번호">
              -->
              
-            <input type="text" name="user_id" value="test321" placeholder="아이디">
-            <input type="password" name="user_pw" value="tkfkd121!@!" placeholder="비밀번호">
+            <input type="text" id="a" name="user_id" value="test321" placeholder="아이디">
+            <input type="password" id="b" name="user_pw" value="tkfkd121!@!" placeholder="비밀번호">
             
             
              
             <input type="submit" value="로그인">
+            <br>
+            <a id="masterLogin" href="#" onclick="javascript:page_move('http://localhost:8080/user/join/post', 'foobar');">마스터로 접속하기</a>
         </form>        
     </div> 
 </body>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+
+
 window.onload = function() {
 	frm.user_id.focus();
 }
+
+$('#masterLogin').click(function() {	// 마스터로 접근하기
+	var form = document.userinput;
+	frm.user_id.value = 'master'
+	frm.user_pw.value = 'tkfkd121!@!'
+	form.submit();
+})
 	
 if(${data != null}) {
 	alert('${data}');

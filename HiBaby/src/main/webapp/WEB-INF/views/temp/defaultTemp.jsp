@@ -1108,9 +1108,7 @@
     
     //로그아웃
 	function logOut() {
-		if(confirm('로그아웃 하시겠습니까?')) {
-			location.href="/user/logout"	
-		}
+		location.href="/user/logout"	
 	}
 	
 	
@@ -1191,15 +1189,11 @@
 		chatModalChk = 0
 		console.log('챗 모달 체크 값 : ' + chatModalChk)
 	    chatDiv.style.display = 'none'
-	    //ws.close()
-	    location.reload();
+	    ws.close()
+	    console.log('채팅창 닫기')
+	    //location.reload();
 	}
 	
-	
-	
-
-    
-    
 </script>
 </body>
 </html>

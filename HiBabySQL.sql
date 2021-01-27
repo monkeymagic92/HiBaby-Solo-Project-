@@ -21,6 +21,24 @@ DROP TABLE t_user;
 
 
 
+UPDATE t_user
+SET loginChk = '2'
+WHERE i_user = 2;
+
+SELECT B.to_user, B.i_user, A.nick, A.sm, A.profile_img, A.loginChk, C.totalPoint 
+FROM t_user A
+
+LEFT JOIN t_fr B
+ON A.i_user = B.to_user
+
+LEFT JOIN t_mypoint C
+ON A.i_user = C.i_user
+
+WHERE B.i_user = 1;
+
+
+
+
 
 
 CREATE TABLE t_board(
@@ -56,6 +74,11 @@ CREATE TABLE t_myPoint(
 SELECT * FROM t_myPoint;
 DROP TABLE t_myPoint;
 
+INSERT INTO t_myPoint
+(i_user,totalPoint)
+VALUES
+(1, 30000);
+
 
 
 CREATE TABLE t_cmt(
@@ -78,25 +101,28 @@ CREATE TABLE t_fr(
 	i_fr INT UNSIGNED AUTO_INCREMENT,
 	i_user INT,
 	to_user INT,
-	frChk INT DEFAULT (0),
-	frDelChk INT DEFAULT(0),
 	r_dt DATETIME DEFAULT NOW(),
 	PRIMARY KEY(i_fr, i_user, to_user),
 	FOREIGN KEY (i_user) REFERENCES t_user(i_user)  ON DELETE CASCADE,
 	FOREIGN KEY (to_user) REFERENCES t_user(i_user)  ON DELETE CASCADE
 );
-
 SELECT * FROM t_fr;
 DROP TABLE t_fr;
 
 
+SELECT B.to_user, A.i_user, A.nick, A.sm, A.profile_img, A.loginChk, C.totalPoint 
+FROM t_user A
 
-SELECT B.nick, A.i_user, A.to_user, A.frChk FROM t_fr A
-		
-LEFT JOIN t_user B
-ON A.i_user = B.i_user
+LEFT JOIN t_fr B
+ON A.i_user = B.to_user
 
-WHERE to_user = 3;
+LEFT JOIN t_myPoint C
+ON A.i_user = C.i_user
+
+WHERE B.i_user = 1;
+
+
+
 
 CREATE TABLE t_chat(
 	i_chat INT UNSIGNED AUTO_INCREMENT,
@@ -202,4 +228,17 @@ ON A.i_user = B.i_user
 
 ORDER BY A.totalPoint DESC
 LIMIT 4,100;
+
+
+SHOW VARIABLES LIKE 'max_connections';
+SHOW VARIABLES LIKE '%timeout%';
+set global max_connections=500;
+
+
+
+SET GLOBAL interactive_timeout = 180;
+SET GLOBAL wait_timeout = 180;
+
+
+
 
