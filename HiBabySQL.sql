@@ -21,26 +21,6 @@ DROP TABLE t_user;
 
 
 
-UPDATE t_user
-SET loginChk = '2'
-WHERE i_user = 2;
-
-SELECT B.to_user, B.i_user, A.nick, A.sm, A.profile_img, A.loginChk, C.totalPoint 
-FROM t_user A
-
-LEFT JOIN t_fr B
-ON A.i_user = B.to_user
-
-LEFT JOIN t_mypoint C
-ON A.i_user = C.i_user
-
-WHERE B.i_user = 1;
-
-
-
-
-
-
 CREATE TABLE t_board(
     i_board int primary KEY AUTO_INCREMENT,
     image_1 VARCHAR(200),
@@ -101,34 +81,35 @@ CREATE TABLE t_fr(
 	i_fr INT UNSIGNED AUTO_INCREMENT,
 	i_user INT,
 	to_user INT,
+	frChk INT DEFAULT (0),
+	frDelChk INT DEFAULT(0),
 	r_dt DATETIME DEFAULT NOW(),
 	PRIMARY KEY(i_fr, i_user, to_user),
 	FOREIGN KEY (i_user) REFERENCES t_user(i_user)  ON DELETE CASCADE,
 	FOREIGN KEY (to_user) REFERENCES t_user(i_user)  ON DELETE CASCADE
 );
 SELECT * FROM t_fr;
+
 DROP TABLE t_fr;
 
-
-SELECT B.to_user, A.i_user, A.nick, A.sm, A.profile_img, A.loginChk, C.totalPoint 
-FROM t_user A
-
-LEFT JOIN t_fr B
-ON A.i_user = B.to_user
-
-LEFT JOIN t_myPoint C
-ON A.i_user = C.i_user
-
-WHERE B.i_user = 1;
+SELECT * FROM t_fr
+WHERE i_user = 1;
 
 
 
+SELECT B.nick, A.i_user, A.to_user, A.frChk FROM t_fr A
+		
+LEFT JOIN t_user B
+ON A.i_user = B.i_user
+
+WHERE to_user = 3;
 
 CREATE TABLE t_chat(
 	i_chat INT UNSIGNED AUTO_INCREMENT,
 	from_user INT(6),	
 	to_user INT(6),
 	ctnt VARCHAR(100),
+	chk INT(2) DEFAULT(0),
 	r_dt DATETIME DEFAULT NOW(),
 	PRIMARY KEY(i_chat, to_user, from_user),
 	FOREIGN KEY(to_user) REFERENCES t_user(i_user) ON DELETE CASCADE,
@@ -136,6 +117,11 @@ CREATE TABLE t_chat(
 );
 DROP TABLE t_chat;
 SELECT * FROM t_chat;
+
+UPDATE t_chat
+SET chk = '1'
+WHERE from_user = 4 AND to_user = 1;
+
 
 
 
@@ -150,11 +136,6 @@ CREATE TABLE t_chatChk(
 );
 DROP TABLE t_chatChk;
 SELECT * FROM t_chatChk;
-
-
-
-
-
 
 
 

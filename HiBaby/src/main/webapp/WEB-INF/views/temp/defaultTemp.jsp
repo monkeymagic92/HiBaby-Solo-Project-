@@ -968,17 +968,15 @@
 	    		t_chatChk 테이블에 from_user 값을 넣어서 사용해보기
 	    	*/
 	    	
-	    	/*
-	    	var test = document.createElement('span')
-	    	test.setAttribute('id', 'loginChkCir')
-	    	test.setAttribute('class', 'material-icons')
-	    	test.innerText = 'chat'
-	    	
-	    	if(true) { // 아작스 함수를 사용해서 조건문으로 줘서 처리하기
-	    		frListTable.append(test)	
+	    	if(arr.chk == 1) {
+	    		var test = document.createElement('span')
+		    	test.setAttribute('id', 'loginChkCir')
+		    	test.setAttribute('class', 'material-icons')
+		    	test.innerText = 'chat'
+		    	
+		    	frListTable.append(test)	
 	    	}
-	    	*/
-	    	
+	    		
 	    	
 	    	if(arr.loginChk == 2) {	// 로그인이 되어있다면 child_care 아이콘 띄움
 	    		frListTable.append(loginChkCir)
@@ -1101,7 +1099,6 @@
     			
     	}
     }
-    
     reqFr()
   
     
@@ -1190,8 +1187,7 @@
 		console.log('챗 모달 체크 값 : ' + chatModalChk)
 	    chatDiv.style.display = 'none'
 	    ws.close()
-	    console.log('채팅창 닫기')
-	    //location.reload();
+	    location.reload();
 	}
 	
 </script>

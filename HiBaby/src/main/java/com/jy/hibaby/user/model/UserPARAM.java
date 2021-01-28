@@ -14,9 +14,18 @@ public class UserPARAM extends UserVO {
 	private int to_user;	// 친구 추가 할시 상대방 pk 값
 	private int frChk;
 	private int delFrChk;
+	private int chk;
+	
+	
 	
 	
 
+	public int getChk() {
+		return chk;
+	}
+	public void setChk(int chk) {
+		this.chk = chk;
+	}
 	public int getFrChk() {
 		return frChk;
 	}

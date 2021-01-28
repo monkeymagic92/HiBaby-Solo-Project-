@@ -280,3 +280,20 @@ body {
 {
     transform: none;
 }
+
+#masterLogin {
+	color: grey;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+#masterLogin:hover {
+	cursor: pointer;
+	color: white;
+}
+
+
+	
+
+
+

@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Hibaby 로그인</title>
+<link rel="stylesheet" type="text/css" href="/res/css/animate.css">
 </head>
 <body>
     <div id="login-button">
@@ -30,7 +31,7 @@
              
             <input type="submit" value="로그인">
             <br>
-            <a id="masterLogin" href="#" onclick="javascript:page_move('http://localhost:8080/user/join/post', 'foobar');">마스터로 접속하기</a>
+            <a id="masterLogin">마스터로 접속하기</a>
         </form>        
     </div> 
 </body>
