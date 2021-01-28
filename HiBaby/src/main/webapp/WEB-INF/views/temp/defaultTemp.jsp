@@ -584,8 +584,11 @@
 		axios.post('/chat/selChatChk',{
 			
 		}).then(function(res) {
-			console.log('res data 값 : ' + res.data)
-			if(res.data == 1) {
+			console.log('챗 알림 값1 : ' + res.data)
+			
+			if(res.data != '') {	// 받은쪽지가 있다면 메시지 알림을 실행
+				
+				refreshChatAlertList(res.data)
 				showChatAlert()
 				
 			} else {
@@ -593,6 +596,23 @@
 			}
 		})		
 	}
+	
+	
+	function refreshChatAlertList(arr) {
+		for (let i = 0; i<arr.length; i++) {
+			makeChatAlertList(arr[i])
+	    }
+	}
+	
+	function makeChatAlertList(arr) {
+		
+		var abb = document.createElement('div')
+		abb.append(arr.nick)
+		headerBox.append(abb)
+	}
+	
+	
+	
 	
 	function showChatAlert() {	// 채팅 알림창 띄우기용
 		var showAlertMs = document.createElement('span')
@@ -968,6 +988,7 @@
 	    		t_chatChk 테이블에 from_user 값을 넣어서 사용해보기
 	    	*/
 	    	
+	    	/*
 	    	if(arr.chk == 1) {
 	    		var test = document.createElement('span')
 		    	test.setAttribute('id', 'loginChkCir')
@@ -976,7 +997,19 @@
 		    	
 		    	frListTable.append(test)	
 	    	}
-	    		
+	    	*/
+	    	
+	    	/*
+	    	if(arr.to_chk == 1) {
+	    		var test = document.createElement('span')
+		    	test.setAttribute('id', 'loginChkCir')
+		    	test.setAttribute('class', 'material-icons')
+		    	test.innerText = 'chat'
+		    	
+		    	frListTable.append(test)	
+	    	}
+	    	*/
+	    	
 	    	
 	    	if(arr.loginChk == 2) {	// 로그인이 되어있다면 child_care 아이콘 띄움
 	    		frListTable.append(loginChkCir)
@@ -987,6 +1020,7 @@
     	}
     }
     // frList End
+    
     
     function reqFr() {
     	

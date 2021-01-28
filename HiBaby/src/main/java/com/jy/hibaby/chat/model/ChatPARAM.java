@@ -6,9 +6,22 @@ public class ChatPARAM extends ChatVO {
 	private String to_profile_img;		
 	private String to_nick;			    
 	private String from_nick;
+	private String nick;
+	private String profile_img;
 	
 	
-	
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
+	public String getProfile_img() {
+		return profile_img;
+	}
+	public void setProfile_img(String profile_img) {
+		this.profile_img = profile_img;
+	}
 	public String getFrom_nick() {
 		return from_nick;
 	}

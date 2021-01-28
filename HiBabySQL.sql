@@ -92,9 +92,6 @@ SELECT * FROM t_fr;
 
 DROP TABLE t_fr;
 
-SELECT * FROM t_fr
-WHERE i_user = 1;
-
 
 
 SELECT B.nick, A.i_user, A.to_user, A.frChk FROM t_fr A
@@ -128,16 +125,27 @@ WHERE from_user = 4 AND to_user = 1;
 
 CREATE TABLE t_chatChk(
 	i_chatChk INT UNSIGNED AUTO_INCREMENT,
+	from_user INT(6),
 	to_user INT(6),
 	to_chk INT DEFAULT(0),
 	r_dt DATETIME DEFAULT NOW(),
-	PRIMARY KEY(i_chatChk, to_user),
+	PRIMARY KEY(i_chatChk, to_user, from_user),
 	FOREIGN KEY(to_user) REFERENCES t_user(i_user) ON DELETE CASCADE
 );
 DROP TABLE t_chatChk;
-SELECT * FROM t_chatChk;
+SELECT * FROM t_chatchk;
 
 
+
+SELECT C.from_user, C.Ctnt, A.to_user, A.to_chk 
+FROM t_chatChk A
+
+LEFT JOIN t_chat C
+ON A.from_user = C.from_user
+
+WHERE A.to_user = 3;
+
+SELECT * FROM t_chat;
 
 
 

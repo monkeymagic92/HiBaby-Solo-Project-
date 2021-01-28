@@ -30,7 +30,7 @@ public class ChatService {
 		return mapper.selChatPk(param);
 	}
 	
-	public ChatChkDMI selChatChk(ChatChkPARAM param) {
+	public List<ChatChkDMI> selChatChk(ChatChkPARAM param) {
 		return mapper.selChatChk(param);
 	}
 	

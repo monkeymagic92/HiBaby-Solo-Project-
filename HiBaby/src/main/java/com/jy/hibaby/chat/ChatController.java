@@ -1,5 +1,6 @@
 package com.jy.hibaby.chat;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,6 +38,10 @@ public class ChatController {
 		
 		int result = service.insChat(param);    // 채팅 내용 입력
 		
+		service.insChatChk(param);
+		service.updChatChk(param);
+		
+		/*
 		chkParam = service.selChatPk(param);	// chkParam이 null 일때 insChatChk 한번만 실행
 		
 		if(chkParam == null) {	// t_chatChk에 pk값이 없을때 한번만 insert함
@@ -47,6 +52,7 @@ public class ChatController {
 		} else {
 			service.updChatChk(param);	// chkParam이 null 이 아니라면 to_user pk값은 계속 박혀있고 계속 to_chk 값을 1로 만듬
 		}
+		*/
 		
 		return String.valueOf(result);
     }
@@ -57,12 +63,12 @@ public class ChatController {
 	 *  2.  다시 if문을 줘서 selChatPk where = to_user 에서 to_chk 가 1일경우
 	 *  3.  메소드 실행 ( result 1로 줘서 jsp에서 처리를 하든 )
 	 */
-	// 챗 입력
+	// 챗 알림
 	@RequestMapping(value="/selChatChk", method=RequestMethod.POST) 
-    private @ResponseBody String selChatChk(@RequestBody ChatChkPARAM chkParam, HttpSession hs){
+    private @ResponseBody List<ChatChkDMI> selChatChk(@RequestBody ChatChkPARAM chkParam, HttpSession hs){
 		
 		//ChatChkPARAM param = new ChatChkPARAM();	// mapper 실행 시키기 위한 객체
-		ChatChkDMI dmi = new ChatChkDMI();		// mapper 의 return 값을 받기 위한 객체
+		List<ChatChkDMI> dmi = new ArrayList<ChatChkDMI>();		// mapper 의 return 값을 받기 위한 객체
 		UserPARAM userParam = (UserPARAM)hs.getAttribute(Const.LOGIN_USER);	// 접속한 유저를 where to_user = #{to_user} 박기위한용 
 
 		int result = 0;
@@ -72,16 +78,20 @@ public class ChatController {
 
 		dmi = service.selChatChk(chkParam);
 		
-		if(dmi == null) {	// 아무것도 쪽지온게 없다면 result = 0
-			result = 0;
-			return String.valueOf(result);
-		}
 		
+		if(dmi.size() != 0) {	// 아무것도 쪽지온게 없다면 result = 0
+			System.out.println("dmi size : " + dmi.size());
+			System.out.println("dmi : " + dmi);
+			result = 0;
+			return service.selChatChk(chkParam);
+		} 
+		
+		/*
 		if(dmi.getTo_chk() == 1) { // 쪽지가 왔다면 result = 1
 			result = 1;
 		}
-		
-		return String.valueOf(result);
+		*/
+		return null;
     }	
 	
 	

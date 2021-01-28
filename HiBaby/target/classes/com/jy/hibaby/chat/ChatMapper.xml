@@ -15,9 +15,9 @@
 	<!-- selChatPk가 실행되면 pk값을 t_chatChk에 한번만 추가함 -->
 	<insert id="insChatChk" parameterType="ChatPARAM">
 		INSERT INTO t_chatChk
-		(to_user)
+		(from_user, to_user)
 		VALUES
-		(#{to_user})
+		(#{from_user}, #{to_user})
 	</insert>
 	
 	
@@ -33,9 +33,13 @@
 	</select>
 	
 	
-	
 	<select id="selChatChk" parameterType="ChatChkPARAM" resultType="ChatChkDMI">
-		SELECT to_user, to_chk FROM t_chatChk
+		SELECT DISTINCT B.profile_img, B.nick, A.from_user, A.to_user, A.to_chk
+		FROM t_chatChk A
+		
+		LEFT JOIN t_user B
+		ON A.from_user = B.i_user
+		
 		WHERE to_user = #{to_user}
 	</select>
 	

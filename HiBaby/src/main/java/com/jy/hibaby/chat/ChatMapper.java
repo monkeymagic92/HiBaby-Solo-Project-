@@ -17,7 +17,7 @@ public interface ChatMapper {
 	
 	ChatChkPARAM selChatPk(ChatPARAM param);
 	
-	ChatChkDMI selChatChk(ChatChkPARAM param);
+	List<ChatChkDMI> selChatChk(ChatChkPARAM param);
 	
 	int insChat(ChatPARAM param);			// 채팅 등록
 	
