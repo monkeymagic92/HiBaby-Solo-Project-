@@ -63,9 +63,6 @@
 	
 	
 	
-	
-	
-	
 	<!-- 채팅 내용 뿌리기 -->
 	<select id="selChat" parameterType="ChatPARAM" resultType="ChatPARAM">
 		SELECT B.i_user AS from_user, C.i_user AS to_user,

@@ -597,13 +597,27 @@
 		})		
 	}
 	
-	
+	// 확인하지 않은 채팅자의 목록을 띄움
 	function refreshChatAlertList(arr) {
 		for (let i = 0; i<arr.length; i++) {
 			makeChatAlertList(arr[i])
 	    }
 	}
 	
+	
+	/* 1.28 여기 css 디자인 입히기 */	
+	/*
+	d
+	d
+	d
+	d
+	d
+	d
+	d
+	d
+	makeChatALertList(arr) 작업하기
+	*/
+	/* 미확인 채팅 목록 list 만듬 */
 	function makeChatAlertList(arr) {
 		
 		var abb = document.createElement('div')
@@ -612,13 +626,12 @@
 	}
 	
 	
-	
-	
 	function showChatAlert() {	// 채팅 알림창 띄우기용
+		
 		var showAlertMs = document.createElement('span')
 		showAlertMs.setAttribute('id', 'showAlertMs')
 		showAlertMs.setAttribute('class', 'animate__flash animate__animated material-icons')
-		showAlertMs.innerText = 'fiber_new'
+		showAlertMs.innerText = 'chat'
 		
 		headerBox.append(showAlertMs)
 	}

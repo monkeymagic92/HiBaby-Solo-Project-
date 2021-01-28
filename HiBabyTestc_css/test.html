@@ -8,7 +8,6 @@
 </head>
 <body>
     <div class="container">
-        <button id="btn" onclick="btnClick()">Click</button>
        <div id="count"></div>
     </div>
 
@@ -21,24 +20,34 @@
 
 <script>
 
-console.log(test())
-var time = 3
 
-function btnClick() {
+
+var time = 2
+window.onload = function() {
+
     setInterval(function(){
-       
-    if(time != 0) {
-        var time_text = '(' + time +'초 후 목록이 갱신됩니다.)';
+        if(time != 0) {
+            var time_text = '(' + time +'초 후 목록이 갱신됩니다.)';
 
-    $("#count").text(time_text);
-        
-    time--;
-    } else {
-        count.innerText = '끝'
-    }
+            $("#count").text(time_text);
 
-    },1000);    
+            time--;
+            
+        } else {
+            count.style.display = 'none'
+        }
+        console.log('time 값 : ' + time)
+
+    },1000);
+    
 }
+
+
+
+
+      
+
+
 
 
 
