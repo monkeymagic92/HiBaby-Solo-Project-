@@ -12,11 +12,12 @@
 	border-radius: 10px;
 	background-color: #fff7ed;
 	font-size: 1em;
+	font-weight: bold;
 }
 
 .selBtn:hover {
 	cursor: pointer;
-	background-image: linear-gradient(to right, #a1c4fd 10%, #8ae6d6 51%, #5bf5ad 100%);
+	background-color: #2196F3; 
 	box-shadow: 0 7px 14px -5px grey;
 }
 /* 전체글 Btn - end -*/
@@ -31,11 +32,12 @@
 	border-radius: 10px;
 	background-color: #fff7ed;
 	font-size: 1em;
+	font-weight: bold;
 }
 
 .writeBtn:hover {
 	cursor: pointer;
-	background-image: linear-gradient(to right, #a1c4fd 10%, #8ae6d6 51%, #5bf5ad 100%);
+	background-color: #2196F3;
 	box-shadow: 0 7px 14px -5px grey;
 }
 /* 글쓰기 Btn - end- */

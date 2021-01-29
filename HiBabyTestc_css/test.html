@@ -23,9 +23,14 @@
 
 
 var time = 2
+
+function tt() {
+    count.style.display = 'flex'
+}
 window.onload = function() {
 
     setInterval(function(){
+        tt()
         if(time != 0) {
             var time_text = '(' + time +'초 후 목록이 갱신됩니다.)';
 

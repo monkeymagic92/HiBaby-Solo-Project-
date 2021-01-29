@@ -895,3 +895,57 @@ display: block;
 
 
 /* 친구요청창 end */
+
+
+#showAlertMsBox {
+    display: flex;
+    position: relative;
+    top: 630px;
+    left: 1170px;
+    width: 340px;
+    background-color: white;
+    border: 4px solid grey;
+    border-radius: 8px;
+    overflow: auto;
+}
+
+
+.showMsImg {
+    margin-top: 15px;
+    margin-left: 15px;
+    width: 70px;
+    height: 70px;
+    border-radius: 45px;
+}
+
+.showMsNick {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 10px;
+    
+    font-size: 1.5em;
+    font-weight: bold;
+    color: grey;
+}
+
+.msms {
+    position: absolute;
+    margin-top: 50px;
+    margin-left: 10px;
+    font-size: 1.1em;
+    color: #111;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

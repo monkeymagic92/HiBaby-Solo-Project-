@@ -252,6 +252,17 @@
             </div>
         </div>
         <!-- 친구요청 end -->
+    
+        <div id="showAlertMsBox">
+            <div id="msBox">                
+                <div id="showMsUserInfo">
+                    <img src="img/chall.png" class="showMsImg">
+                    <span class="showMsNick">Test321</span>
+                    <span class="msms">메세지가 도착하였습니다.</span>
+                </div>
+            </div>
+        </div>
+    
 
 
 
@@ -259,6 +270,20 @@
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+
+var time = 3
+    /*
+    setInterval(function(){
+        showAlertMsBox.style.display = 'flex'
+        if(time != 0) {
+            time--;
+            
+        } else {
+            showAlertMsBox.style.display = 'none'
+        }
+
+    }, 1000);
+    */
 
     //로그아웃
     function logOut() {

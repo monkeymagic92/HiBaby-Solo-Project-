@@ -92,6 +92,9 @@ SELECT * FROM t_fr;
 
 DROP TABLE t_fr;
 
+SELECT * FROM t_fr
+WHERE i_user = 1;
+
 
 
 SELECT B.nick, A.i_user, A.to_user, A.frChk FROM t_fr A
@@ -135,17 +138,23 @@ CREATE TABLE t_chatChk(
 DROP TABLE t_chatChk;
 SELECT * FROM t_chatchk;
 
-
-
-SELECT C.from_user, C.Ctnt, A.to_user, A.to_chk 
+SELECT DISTINCT B.profile_img, B.nick, A.from_user, A.to_user, A.to_chk
 FROM t_chatChk A
 
-LEFT JOIN t_chat C
-ON A.from_user = C.from_user
+LEFT JOIN t_user B
+ON A.from_user = B.i_user
 
 WHERE A.to_user = 3;
 
-SELECT * FROM t_chat;
+
+
+
+
+
+
+
+
+
 
 
 

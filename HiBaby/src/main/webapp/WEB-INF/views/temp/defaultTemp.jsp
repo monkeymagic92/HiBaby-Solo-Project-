@@ -278,7 +278,19 @@
             </div>
         </div>
         <!-- 친구요청 end -->
-
+        
+        
+		<div id="showAlertMsBox">
+            <div id="msBox">
+            	<!--          
+                <div id="showMsUserInfo">
+                    <img src="img/chall.png" class="showMsImg">
+                    <span class="showMsNick">Test321</span>
+                    <span class="msms">메세지가 도착하였습니다.</span>
+                </div>
+                 -->
+            </div>
+        </div>
 
 	</div>
 	<script
@@ -590,7 +602,19 @@
 				
 				refreshChatAlertList(res.data)
 				showChatAlert()
-				
+				var time = 5
+			    
+			    setInterval(function(){
+			    	showAlertMsBox.style.display = 'flex'
+			        if(time != 0) {
+			            time--;
+			            
+			        } else {
+			        	showAlertMsBox.style.display = 'none'
+			        }
+
+			    }, 1000);
+			
 			} else {
 				return;
 			}
@@ -605,26 +629,35 @@
 	}
 	
 	
-	/* 1.28 여기 css 디자인 입히기 */	
-	/*
-	d
-	d
-	d
-	d
-	d
-	d
-	d
-	d
-	makeChatALertList(arr) 작업하기
-	*/
 	/* 미확인 채팅 목록 list 만듬 */
 	function makeChatAlertList(arr) {
+		console.log('makeChatALertList 실행!!')
+		var showMsUserInfo = document.createElement('div')
+		showMsUserInfo.setAttribute('id', 'showMsUserInfo')
 		
-		var abb = document.createElement('div')
-		abb.append(arr.nick)
-		headerBox.append(abb)
+		var showMsImg = document.createElement('img')
+		showMsImg.setAttribute('class', 'showMsImg')
+		if(arr.profile_img != null) {
+			showMsImg.setAttribute('src',`/res/img/HiBaby/profile_img/user/\${arr.from_user}/\${arr.profile_img}`)
+			
+        } else {
+        	showMsImg.setAttribute('src','/res/img/HiBaby.jpg')
+        }
+		
+		var showMsNick = document.createElement('span')
+		showMsNick.setAttribute('class', 'showMsNick')
+		showMsNick.append(arr.nick)
+		
+		var msms = document.createElement('span')
+		msms.setAttribute('class', 'msms')
+		msms.innerText = '메세지가 도착하였습니다.'
+		
+		showMsUserInfo.append(showMsImg)
+		showMsUserInfo.append(showMsNick)
+		showMsUserInfo.append(msms)
+		
+		msBox.append(showMsUserInfo)
 	}
-	
 	
 	function showChatAlert() {	// 채팅 알림창 띄우기용
 		
@@ -636,7 +669,7 @@
 		headerBox.append(showAlertMs)
 	}
 	
-	selChatChk();
+	selChatChk()
 	
 	
 	function delChatChk() {	// 친구 알림 삭제( Header 에서 눌렀을때 삭제 되는거임 )\
