@@ -16,7 +16,7 @@
 	
 	<!-- 2등 정보 -->
 	<select id="twoRank" resultType="PointVO">
-		SELECT B.nick, A.totalPoint FROM t_myPoint A
+		SELECT B.nick, B.i_user, B.profile_img, A.totalPoint FROM t_myPoint A
 
 		LEFT JOIN t_user B
 		ON A.i_user = B.i_user
@@ -27,7 +27,7 @@
 	
 	<!-- 3등 정보 -->
 	<select id="threeRank" resultType="PointVO">
-		SELECT B.nick, A.totalPoint FROM t_myPoint A
+		SELECT B.nick, B.i_user, B.profile_img, A.totalPoint FROM t_myPoint A
 
 		LEFT JOIN t_user B
 		ON A.i_user = B.i_user
@@ -38,7 +38,7 @@
 	
 	<!-- 4등 정보 -->
 	<select id="fourRank" resultType="PointVO">
-		SELECT B.nick, A.totalPoint FROM t_myPoint A
+		SELECT B.nick, B.i_user, B.profile_img, A.totalPoint FROM t_myPoint A
 
 		LEFT JOIN t_user B
 		ON A.i_user = B.i_user
@@ -49,7 +49,7 @@
 	
 	<!-- 5등 정보 -->
 	<select id="fiveRank" resultType="PointVO">
-		SELECT B.nick, A.totalPoint FROM t_myPoint A
+		SELECT B.nick, B.i_user, B.profile_img, A.totalPoint FROM t_myPoint A
 
 		LEFT JOIN t_user B
 		ON A.i_user = B.i_user
@@ -60,7 +60,7 @@
 	
 	<!-- other 정보 -->
 	<select id="otherRank" resultType="PointVO">
-		SELECT A.i_point, B.nick, B.sm, A.totalPoint FROM t_myPoint A
+		SELECT A.i_point, B.i_user, B.profile_img, B.nick, B.sm, A.totalPoint FROM t_myPoint A
 		
 		LEFT JOIN t_user B
 		ON A.i_user = B.i_user

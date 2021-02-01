@@ -266,8 +266,6 @@ public class BoardController {
 			
 			result = result.replace(filters[i], filterReplaces[i]);
 		}
-		
 		return result;
-		
 	}
 }
