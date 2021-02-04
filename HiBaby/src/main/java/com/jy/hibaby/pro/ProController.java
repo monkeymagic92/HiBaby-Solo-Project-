@@ -18,6 +18,8 @@ import com.jy.hibaby.pro.model.ProPARAM;
 public class ProController {
 
 	// pro_num.jsp(get,post) 에 사용될 static 값
+	// 멤버필드값은 public이 되면 추후 다른사람이 사용할경우 위험함
+	// 지금은 public으로 했지만 추후 이과정을통해서 private set,get을 활용하자
 	public static int level = 0;
 	public static int count = 21;
 	public static int gameResult = 0;
