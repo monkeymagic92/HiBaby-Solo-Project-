@@ -34,10 +34,10 @@ public class EchoHandler extends TextWebSocketHandler{
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
     	
-    	String filterCtnt = swearWordFilter(message.getPayload().toLowerCase());
+    	String filterCtnt = swearWordFilter(message.getPayload().toLowerCase()); // script 필터링 ( lucy 에서 1차적으로 막았지만 웹소켓에서 한번더 막아야 됬음 )
 		String filterCtnt2 = scriptFilter(filterCtnt);
 		
-        logger.info("{}로 부터 {} 받음", session.getId(), filterCtnt2);
+        logger.info("{}로 부터 {} 받음", session.getId(), filterCtnt2);	
         
         //모든 유저에게 메세지 출력
         for(WebSocketSession sess : sessionList){
@@ -53,6 +53,8 @@ public class EchoHandler extends TextWebSocketHandler{
         sessionList.remove(session);
         logger.info("{} 연결 끊김.", session.getId());
     }
+    
+    
     
     // 욕 필터
   	private String swearWordFilter(final String ctnt) {
