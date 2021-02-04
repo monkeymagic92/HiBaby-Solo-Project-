@@ -10,6 +10,8 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.jy.hibaby.CommonUtils;
+
 
 public class EchoHandler extends TextWebSocketHandler{
 	
@@ -32,12 +34,14 @@ public class EchoHandler extends TextWebSocketHandler{
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
     	
-    	
-        logger.info("{}로 부터 {} 받음", session.getId(), message.getPayload());
+    	String filterCtnt = swearWordFilter(message.getPayload().toLowerCase());
+		String filterCtnt2 = scriptFilter(filterCtnt);
+		
+        logger.info("{}로 부터 {} 받음", session.getId(), filterCtnt2);
         
         //모든 유저에게 메세지 출력
         for(WebSocketSession sess : sessionList){
-            sess.sendMessage(new TextMessage(message.getPayload()));
+            sess.sendMessage(new TextMessage(filterCtnt2));
         }
     }
     
@@ -49,6 +53,32 @@ public class EchoHandler extends TextWebSocketHandler{
         sessionList.remove(session);
         logger.info("{} 연결 끊김.", session.getId());
     }
+    
+    // 욕 필터
+  	private String swearWordFilter(final String ctnt) {
+  		String[] filters = CommonUtils.filter();
+  		String result = ctnt;
+  		for(int i=0; i<filters.length; i++) {
+  			result = result.replace(filters[i], "***");
+  		}
+  		return result;
+  	}
+  	
+  	//스크립트 필터
+  	private String scriptFilter(final String ctnt) {
+  		
+  		String[] filters = {"<script>", "</script>"};
+  		String[] filterReplaces = {"&lt;script&gt;", "&lt;/script&gt;"};
+  		
+  		String result = ctnt.toLowerCase();
+  		System.out.println("result 값 : " + result);
+  		
+  		for(int i=0; i<filters.length; i++) {
+  			
+  			result = result.replace(filters[i], filterReplaces[i]);
+  		}
+  		return result;
+  	}
 
 }
 
