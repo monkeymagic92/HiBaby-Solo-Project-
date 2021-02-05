@@ -28,14 +28,15 @@
                 <div class="proName">
                     2인용 숫자 스무고개
                 </div>
-
             </div>
 
-            <div class="boxListDiv">
+            <div class="boxListDiv" onclick="moveToLotto()">
                 <div>
                     <img class="listImg" src="/res/img/스무고개메인.png">
                 </div>
-
+                <div class="proName">
+                    	로또 추첨받기
+                </div>
             </div>
 
         </div>
@@ -119,6 +120,12 @@
 	
 	function peopleHide() {
 		$('#peopleGameModal').hide();
+	}
+	
+	
+	// 로또 페이지 가기
+	function moveToLotto() {
+		location.href="/pro/lotto"
 	}
 	
 </script>

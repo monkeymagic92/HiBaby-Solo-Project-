@@ -54,12 +54,6 @@ CREATE TABLE t_myPoint(
 SELECT * FROM t_myPoint;
 DROP TABLE t_myPoint;
 
-INSERT INTO t_myPoint
-(i_user,totalPoint)
-VALUES
-(1, 30000);
-
-
 
 CREATE TABLE t_cmt(
 	i_cmt INT UNSIGNED AUTO_INCREMENT,
@@ -138,13 +132,6 @@ CREATE TABLE t_chatChk(
 DROP TABLE t_chatChk;
 SELECT * FROM t_chatchk;
 
-SELECT DISTINCT B.profile_img, B.nick, A.from_user, A.to_user, A.to_chk
-FROM t_chatChk A
-
-LEFT JOIN t_user B
-ON A.from_user = B.i_user
-
-WHERE A.to_user = 3;
 
 
 

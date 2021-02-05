@@ -1,17 +1,25 @@
 package com.jy.hibaby.pro;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jy.hibaby.ViewRef;
+import com.jy.hibaby.chat.model.ChatChkPARAM;
+import com.jy.hibaby.chat.model.ChatPARAM;
 import com.jy.hibaby.pro.model.ProPARAM;
+import com.jy.hibaby.user.model.UserPARAM;
 
 @Controller
 @RequestMapping("/pro")
@@ -247,4 +255,46 @@ public class ProController {
 		}
 		return "redirect:/" + ViewRef.PEOPLEGAME;
 	}
+	
+	
+	// 로또 페이지 열기
+	@RequestMapping(value="/lotto", method=RequestMethod.GET)
+	public String lotto(Model model, HttpSession hs) {
+		
+		model.addAttribute("view", ViewRef.PRO_LOTTO);
+		return ViewRef.DEFAULT_TEMP;
+	}
+	
+	// 테스트용 ( 추후 아래코드 ajax post 밑에 startlotto로 옮기기 )
+	@RequestMapping(value="/lotto", method=RequestMethod.POST)
+	public String lotto(Model model, ProPARAM param, HttpServletRequest request) {
+		/*
+		System.out.println("param : " + param.getLotto1()[0]);
+		System.out.println("param : " + param.getLotto1()[1]);
+		System.out.println("param : " + param.getLotto1()[2]);
+		System.out.println("param : " + param.getLotto1()[3]);
+		*/
+		return "redirect:/"+ViewRef.PRO_LOTTO; 
+	}
+	
+	
+	// 로또 값 추출하는 ajax
+	@RequestMapping(value="/startLotto", method=RequestMethod.GET)
+	private @ResponseBody List<ProPARAM> selLotto(Model model, HttpServletRequest request,
+			HttpSession hs, UserPARAM userParam, ProPARAM param){
+		List<ProPARAM> list = service.lottoNumbers(); 
+		
+		return list;
+	}	
+	
+	// 
+	@RequestMapping(value="/selLotto", method=RequestMethod.POST) 
+    private @ResponseBody String startLotto(@RequestBody ChatPARAM param, ChatChkPARAM chkParam){
+		
+		int result = 0;
+		
+		return String.valueOf(result);
+    }
+	
+	
 }

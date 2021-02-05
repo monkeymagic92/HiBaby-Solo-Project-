@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+.lottoContainer {
+    position: relative;
+    margin-top: 80px;
+
+}
+
+
+.myRecord {
+    position: absolute;
+    left: 475px;
+    width: 220px;
+    height: 50px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: grey;
+    border-style: none;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.myRecord:hover {
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: 0.2s;
+
+}
+
+.startLottoBtn {
+    position: absolute;
+    top: 270px;
+    left: 515px;
+    width: 150px;
+    height: 150px;
+    background-color: #2196F3;
+    border-style: none;
+    border-radius: 14px;
+    transition: 0.2s;
+}
+
+.startLottoBtn:hover {
+    cursor: pointer;
+    position: absolute;
+    top: 270px;
+    left: 515px;
+    width: 150px;
+    height: 150px;
+    border-radius: 100px;
+    transition: 0.2s;
+}
+
+#startLotto {
+   font-size: 7.7em;
+   padding-left: 3px;
+   padding-top: 5px;
+   transition: 0.2s;
+}
+
+#startLotto:hover {
+    font-size: 6.9em;
+    padding-right: 3px;
+    padding-top: 8px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+    transition: 0.2s;
+ }
+
+
+/* 로또 관련 end */
