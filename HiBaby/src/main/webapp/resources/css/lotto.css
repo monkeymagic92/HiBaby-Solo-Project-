@@ -110,7 +110,7 @@
     height: 70px;
     margin-left: 15px;
     border-radius: 100px;
-    background-color: red;
+    background-color: #bbedfa;
 }
 
 #lottoBg2 {
@@ -118,7 +118,7 @@
     height: 70px;
     margin-left: 15px;
     border-radius: 100px;
-    background-color: blue;
+    background-color: #7682ad;
 }
 
 #lottoBg3 {
@@ -126,7 +126,7 @@
     height: 70px;
     margin-left: 15px;
     border-radius: 100px;
-    background-color: green;
+    background-color: #f7ebc3;
 }
 
 #lottoBg4 {
@@ -134,7 +134,7 @@
     height: 70px;
     margin-left: 15px;
     border-radius: 100px;
-    background-color: yellow;
+    background-color: #f7716d;
 }
 
 #lottoBg5 {
@@ -142,7 +142,7 @@
     height: 70px;
     margin-left: 15px;
     border-radius: 100px;
-    background-color: grey;
+    background-color: #f8bdff;
 }
 
 #lottoBg6 {
@@ -150,7 +150,7 @@
     height: 70px;
     margin-left: 15px;
     border-radius: 100px;
-    background-color: pink;
+    background-color: #819191;
 }
 
 #num {

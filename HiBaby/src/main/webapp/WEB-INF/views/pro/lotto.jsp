@@ -9,11 +9,7 @@
 </head>
 <body>
 	<div class="lottoContainer">
-        
-		<button type="button" class="myRecord" onclick="#">
-		    	나의 로또 내역보기
-		</button>
-		
+       		
 		<button type="button" class="startLottoBtn" onclick="startLotto()">
 		    <span id="startLotto" class="material-icons">
 		        play_circle
