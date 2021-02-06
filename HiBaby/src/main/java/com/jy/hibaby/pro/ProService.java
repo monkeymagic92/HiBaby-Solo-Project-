@@ -42,7 +42,6 @@ public class ProService {
 		int ran4[] = new int[6];
 		int ran5[] = new int[6];
 		
-		int a[] = new int[6];
 		for(int i=0; i<6; i++) {
 			
 			ran[i] = (int)(Math.random() * 45 + 1);
@@ -50,6 +49,11 @@ public class ProService {
 			ran3[i] = (int)(Math.random() * 45 + 1);
 			ran4[i] = (int)(Math.random() * 45 + 1);
 			ran5[i] = (int)(Math.random() * 45 + 1);
+			
+			/*
+			 *   난수값 중복 제거
+			 *   ( 지금코드는 값이 늘어날수록 계산에 불리함 ) 
+			 */
 			
 			for(int j=0; j<i; j++) {
 				if(ran[i] == ran[j]) {
@@ -70,18 +74,21 @@ public class ProService {
 			}
 		}
 		
+		// 오름차순 정렬
 		Arrays.sort(ran);
 		Arrays.sort(ran2);
 		Arrays.sort(ran3);
 		Arrays.sort(ran4);
 		Arrays.sort(ran5);
 		
+		// 추후 브라우저에 값 뿌리기 위한 set에 1번 ~ n번 배열에 6자리 난수값을 한줄 입력
 		param.setArr1(ran);
 		param.setArr2(ran2);
 		param.setArr3(ran3);
 		param.setArr4(ran4);
 		param.setArr5(ran5);
 		
+		// list 형식으로 param 값을 list에 박음
 		list.add(param);
 		
 		return list;

@@ -220,7 +220,6 @@ public class ProController {
 	@RequestMapping(value="/peopleGame", method=RequestMethod.POST)
 	public String peopleGame(Model model, HttpServletRequest request,
 			ProPARAM param, RedirectAttributes ra) {
-		
 				
 		// 1p 값 입력
 		if(param.getOneResult() != 0) {
@@ -265,18 +264,6 @@ public class ProController {
 		return ViewRef.DEFAULT_TEMP;
 	}
 	
-	// 테스트용 ( 추후 아래코드 ajax post 밑에 startlotto로 옮기기 )
-	@RequestMapping(value="/lotto", method=RequestMethod.POST)
-	public String lotto(Model model, ProPARAM param, HttpServletRequest request) {
-		/*
-		System.out.println("param : " + param.getLotto1()[0]);
-		System.out.println("param : " + param.getLotto1()[1]);
-		System.out.println("param : " + param.getLotto1()[2]);
-		System.out.println("param : " + param.getLotto1()[3]);
-		*/
-		return "redirect:/"+ViewRef.PRO_LOTTO; 
-	}
-	
 	
 	// 로또 값 추출하는 ajax
 	@RequestMapping(value="/startLotto", method=RequestMethod.GET)
@@ -285,9 +272,26 @@ public class ProController {
 		List<ProPARAM> list = service.lottoNumbers(); 
 		
 		return list;
-	}	
+	}
 	
-	// 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
+	// DB에 저장하는 ajax 
 	@RequestMapping(value="/selLotto", method=RequestMethod.POST) 
     private @ResponseBody String startLotto(@RequestBody ChatPARAM param, ChatChkPARAM chkParam){
 		
@@ -295,6 +299,6 @@ public class ProController {
 		
 		return String.valueOf(result);
     }
-	
+	*/
 	
 }

@@ -211,20 +211,124 @@ display: block;
     transition: 0.2s;
  }
 
-#num1 {
-    position: relative;
-    background-color: red;
-    width: 70px;
-    height: 70px;
-    border-radius: 100px;
+ /* 모달 start */
+.lottoModal {
+	display: flex;
+    position: fixed;
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.2); 
 }
 
-#num2 {
+/* Modal Content/Box */
+.lotto-content {
+    background-color: white;
+    overflow: auto;
+	margin: 10% auto; 
+	height: 57%;
+    padding: 20px;
+    padding-right: 57px;
+	border-radius: 20px;
+	width: 25%;                           
+	text-align: center;
+	
+}
+
+#lottoTitle {
+    margin-left: 57px;
+    color: blue;
+}
+
+#lottoBox {
+    display: flex;
+    margin-left: 40px;
+    margin-top: 20px;
+}
+
+#lottoBg1 {
+    width: 70px;
+    height: 70px;
+    margin-left: 15px;
+    border-radius: 100px;
+    background-color: red;
+}
+
+#lottoBg2 {
+    width: 70px;
+    height: 70px;
+    margin-left: 15px;
+    border-radius: 100px;
+    background-color: blue;
+}
+
+#lottoBg3 {
+    width: 70px;
+    height: 70px;
+    margin-left: 15px;
+    border-radius: 100px;
+    background-color: green;
+}
+
+#lottoBg4 {
+    width: 70px;
+    height: 70px;
+    margin-left: 15px;
+    border-radius: 100px;
+    background-color: yellow;
+}
+
+#lottoBg5 {
+    width: 70px;
+    height: 70px;
+    margin-left: 15px;
+    border-radius: 100px;
+    background-color: grey;
+}
+
+#lottoBg6 {
+    width: 70px;
+    height: 70px;
+    margin-left: 15px;
+    border-radius: 100px;
+    background-color: pink;
+}
+
+#num1 {
     position: absolute;
-    top: 14px;
-    left: 17px;
+    margin-left: -19px;
+    margin-top: 13px;
     font-size: 2em;
     font-weight: bold;
 }
+
+.lottoBtn {
+    display: flex;
+    margin-top: 40px;
+    justify-content: center;
+}
+
+.lb {
+    height: 40px;
+    width: 120px;
+    border-style: none;
+    border-radius: 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#reBtn {
+    margin-left: 50px;
+}
+
+#lottoClo {
+    margin-left: 50px;
+}
+
 
 /* 로또 관련 end */
