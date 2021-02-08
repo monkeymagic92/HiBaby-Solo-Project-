@@ -18,7 +18,7 @@
 ## 2. 개발 도구
 > | DB        | Back-end           |Library                | Server        |
 > | --------- | ------------------ |-----------------------|---------------|
-> | Maria DB  | Eclips IDE         | spring-websocket      | Apache Tomcat |
+> | MySQL     | Eclips IDE         | spring-websocket      | Apache Tomcat |
 > |           | Spring Framework(Legacy)  |lucy-xss-servlet|               |
 > |           | JDK 1.8            | mybatis               |               |
 > |           | MyBatis            | commons-fileupload    |               |
