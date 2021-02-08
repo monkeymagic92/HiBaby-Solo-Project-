@@ -10,17 +10,6 @@
 > (아래 링크로 접근시 기능영상과 설명을 보실수 있습니다.)
 > ### [기능영상 보기](http://118.67.132.252:8080/pj/hibabyTag)
 > 　   
-> **Sample Image**
-　   
-
-<img src="C:\Users\이재용\OneDrive\바탕 화면\blog in push picture\github\HiBaby\2.png", width="10px">
-<img src="65270811/107187881-0893b280-6a2a-11eb-9896-eea947f3779d.png", width="10px">
-
-
-![1](https://user-images.githubusercontent.com/65270811/107187881-0893b280-6a2a-11eb-9896-eea947f3779d.png){: width="100" height="100"}
-
-   
-   ![2](https://user-images.githubusercontent.com/65270811/107187931-1cd7af80-6a2a-11eb-8765-e651e8dd275a.png){: width="100" height="100"}
 
 
 
