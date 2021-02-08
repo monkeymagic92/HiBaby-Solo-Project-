@@ -13,15 +13,15 @@
 > 　   
 > (아래 링크로 접근시 기능영상과 설명을 보실수 있습니다.)
 > ### [기능영상 보기](http://118.67.132.252:8080/pj/hibabyTag)
-Library
+
 　   
 ### 2. 개발 도구
-| DB        | Back-end           | API          | Server        |
-| --------- | ------------------ | ------------ | ------------- |
-| Maria DB  | Eclips IDE         | kakao login  | Apache Tomcat |
-|           | Spring Framework Legacy  | NAVER login  |               |
-|           | JDK 1.8            | kakao maps   |               |
-|           | MyBatis            |              |               |
+| DB        | Back-end           |Library                | Server        |
+| --------- | ------------------ |-----------------------|---------------|
+| Maria DB  | Eclips IDE         | spring-websocket      | Apache Tomcat |
+|           | Spring Framework(Legacy)  |lucy-xss-servlet|               |
+|           | JDK 1.8            | mybatis               |               |
+|           | MyBatis            | commons-fileupload    |               |               
 
 
 
