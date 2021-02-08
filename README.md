@@ -26,5 +26,5 @@
 > |           | MyBatis            | commons-fileupload    |               |
 　   
     
-## DB ERD 넣기
+## 3. DB ERD 넣기
 
