@@ -15,7 +15,7 @@
 > ### [기능영상 보기](http://118.67.132.252:8080/pj/hibabyTag)
 
 　   
-### 2. 개발 도구
+## 2. 개발 도구
 > | DB        | Back-end           |Library                | Server        |
 > | --------- | ------------------ |-----------------------|---------------|
 > | Maria DB  | Eclips IDE         | spring-websocket      | Apache Tomcat |
