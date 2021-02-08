@@ -2,8 +2,6 @@
 
 ### URL : [http://118.67.130.227:8080/user/login](http://118.67.130.227:8080/user/login)
 
-<img width="350" src="![3](https://user-images.githubusercontent.com/65270811/107197076-c9b82980-6a36-11eb-937b-dea5912bb4d5.png)">
-![3](https://user-images.githubusercontent.com/65270811/107197229-f9673180-6a36-11eb-8557-0af62695e532.png)
 (마스터로 접속하기 클릭시 불편한 회원가입 없이 바로 접속 가능합니다.)
 
 - 담당분야 : **Font-End**, **Back-End**
@@ -31,5 +29,6 @@
 ## DB ERD 넣기
 
 
-
+<img width="350" src="![3](https://user-images.githubusercontent.com/65270811/107197076-c9b82980-6a36-11eb-937b-dea5912bb4d5.png)">
+![3](https://user-images.githubusercontent.com/65270811/107197229-f9673180-6a36-11eb-8557-0af62695e532.png)
 
