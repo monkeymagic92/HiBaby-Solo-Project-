@@ -1,4 +1,4 @@
-# HiBaby
+# HiBaby <img width="150" src="![3](https://user-images.githubusercontent.com/65270811/107197076-c9b82980-6a36-11eb-937b-dea5912bb4d5.png)">
 ### URL : [http://118.67.130.227:8080/user/login](http://118.67.130.227:8080/user/login)
 (마스터로 접속하기 클릭시 불편한 회원가입 없이 바로 접속 가능합니다.)
 
@@ -6,11 +6,8 @@
 - 작업인원 : **1인**
 - 개발기간 : **2020.11.21 ~ 2021.01.29**
 　   
-　   
-![재용링 제작과정HTML](https://user-images.githubusercontent.com/65270811/107196706-4c8cb480-6a36-11eb-9b4d-43d090b6ca16.png)
+   
 
-<img width="150" src="https://i.esdrop.com/d/pErplIZVks.jpeg">
-<img width="150" src="https://user-images.githubusercontent.com/65270811/107196706-4c8cb480-6a36-11eb-9b4d-43d090b6ca16.png">
 ## 1. 프로젝트 소개
 > 6~8세 아동을 대상으로 공부기능, 친구와 실시간 1:1채팅, 포인트환급, 간단한 게임등을 활용한 프로그램 입니다.   
 > 　   
