@@ -15,6 +15,12 @@
 > ### [기능영상 보기](http://118.67.132.252:8080/pj/hibabyTag)
 　   
 ### 2. 개발 도구
+| Planning | Date-base | Front-end  | Back-end           | API          | Server        |
+| -------- | --------- | ---------- | ------------------ | ------------ | ------------- |
+| figma    | Maria DB  | HTML+CSS   | Eclips IDE         | kakao login  | Apache Tomcat |
+|          |           | Javascript | Spring Tool Suite  | NAVER login  |               |
+|          |           | jQuery     | JDK                | kakao maps   |               |
+|          |           | Ajax       | Maven              |              |               |
 
 
 
