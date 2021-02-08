@@ -11,9 +11,12 @@
 > ### [기능영상 보기](http://118.67.132.252:8080/pj/hibabyTag)
 > 　   
 > **Sample Image**
-<img src="65270811/107187881-0893b280-6a2a-11eb-9896-eea947f3779d.png", width="1000">
-<img src="https://user-images.githubusercontent.com/65270811/107187881-0893b280-6a2a-11eb-9896-eea947f3779d.png", width="1000">
-<img src="https://user-images.githubusercontent.com/65270811/107187881-0893b280-6a2a-11eb-9896-eea947f3779d.png" width="50
+　   
+
+<img src="https://user-images.githubusercontent.com/65270811/107187881-0893b280-6a2a-11eb-9896-eea947f3779d.png", width="10px">
+<img src="65270811/107187881-0893b280-6a2a-11eb-9896-eea947f3779d.png", width="10px">
+
+
 ![1](https://user-images.githubusercontent.com/65270811/107187881-0893b280-6a2a-11eb-9896-eea947f3779d.png){: width="100" height="100"}
 
    
