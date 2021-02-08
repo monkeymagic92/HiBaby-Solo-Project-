@@ -9,6 +9,8 @@
 　   
 ![재용링 제작과정HTML](https://user-images.githubusercontent.com/65270811/107196706-4c8cb480-6a36-11eb-9b4d-43d090b6ca16.png)
 
+<img width="150" src="https://i.esdrop.com/d/pErplIZVks.jpeg">
+<img width="150" src="https://user-images.githubusercontent.com/65270811/107196706-4c8cb480-6a36-11eb-9b4d-43d090b6ca16.png">
 ## 1. 프로젝트 소개
 > 6~8세 아동을 대상으로 공부기능, 친구와 실시간 1:1채팅, 포인트환급, 간단한 게임등을 활용한 프로그램 입니다.   
 > 　   
