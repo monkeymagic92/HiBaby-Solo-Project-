@@ -30,5 +30,5 @@
 
 
 <img width="350" src="![3](https://user-images.githubusercontent.com/65270811/107197076-c9b82980-6a36-11eb-937b-dea5912bb4d5.png)">
-![3](https://user-images.githubusercontent.com/65270811/107197229-f9673180-6a36-11eb-8557-0af62695e532.png)
+
 
