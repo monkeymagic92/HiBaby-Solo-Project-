@@ -28,6 +28,7 @@
     
 ## 3. DB ERD
 <img src="https://user-images.githubusercontent.com/65270811/107304256-139b2100-6ac4-11eb-9908-b3e26a198671.png" width="1000" height="550">
+　   
 
 ## 4. HiBaby 프로젝트 하며 느낀점..   
 > naver blog나 tistory 처럼 깔끔한 ui로 많은 기능을 담고있는 좋은 서비스 프로그램도 많지만   
