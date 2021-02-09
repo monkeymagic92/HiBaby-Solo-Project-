@@ -28,8 +28,7 @@
     
 ## 3. DB ERD
 ![HiBaby_20210209_59_12](https://user-images.githubusercontent.com/65270811/107304256-139b2100-6ac4-11eb-9908-b3e26a198671.png)
-　   
-　   
+
 ## 4. HiBaby 프로젝트 하며 느낀점
 > ㅁㄴㅇㅇㅁㄴㅁㄴㅇ   
 > 
