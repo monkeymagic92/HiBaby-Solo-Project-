@@ -40,6 +40,7 @@
 		
 		
 		<!-- Spring 프로젝트 만들면 <artifactId>spring-jdbc</artifactId> 박아줘야됨-->
+		<!-- 항상 프로젝트 할때 spring-jdbc 디펜던시 주입하기 -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-jdbc</artifactId>

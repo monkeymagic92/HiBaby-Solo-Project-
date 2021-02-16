@@ -38,8 +38,20 @@
                     	로또 추첨받기
                 </div>
             </div>
-            
 
+        </div>
+        
+        <br><br>
+        
+        <div class="boxList">
+        	<div class="boxListDiv" onclick="moveToChoice()">
+                <div>
+                    <img class="listImg" src="/res/img/what.png">
+                </div>
+                <div class="proName">
+                    	무엇을 선택할지 고민
+                </div>
+            </div>
         </div>
     </div>
 
@@ -128,6 +140,12 @@
 	function moveToLotto() {
 		
 		location.href="/pro/lotto"
+	}
+	
+	// 무엇을 선택할지
+	function moveToChoice() {
+		
+		location.href="/pro/choice"
 	}
 	
 </script>

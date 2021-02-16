@@ -1,6 +1,5 @@
 package com.jy.hibaby.pro;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,15 +8,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jy.hibaby.ViewRef;
-import com.jy.hibaby.chat.model.ChatChkPARAM;
-import com.jy.hibaby.chat.model.ChatPARAM;
 import com.jy.hibaby.pro.model.ProPARAM;
 import com.jy.hibaby.user.model.UserPARAM;
 
@@ -264,7 +260,6 @@ public class ProController {
 		return ViewRef.DEFAULT_TEMP;
 	}
 	
-	
 	// 로또 값 추출하는 ajax
 	@RequestMapping(value="/startLotto", method=RequestMethod.GET)
 	private @ResponseBody List<ProPARAM> selLotto(Model model, HttpServletRequest request,
@@ -272,6 +267,15 @@ public class ProController {
 		List<ProPARAM> list = service.lottoNumbers(); 
 		
 		return list;
+	}
+	
+	
+	// choice 페이지 열기
+	@RequestMapping(value="/choice", method=RequestMethod.GET)
+	public String choice(Model model, HttpSession hs) {
+		
+		model.addAttribute("view", ViewRef.PRO_CHOICE);
+		return ViewRef.DEFAULT_TEMP;
 	}
 	
 	

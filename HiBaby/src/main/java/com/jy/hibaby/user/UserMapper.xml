@@ -257,9 +257,5 @@
 		OR
 		i_user = #{i_user} AND to_user = #{to_user}
 	</delete>
-		
-	
-	
-	
-	
+			
 </mapper>

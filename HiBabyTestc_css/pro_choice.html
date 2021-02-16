@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/pro_choice.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Chocie</title>
+</head>
+<body>
+    <div class="main-container">
+        <header class="main-header">
+			<ul id="headerBox" class="header-ul">
+				<li><a class="li-a1" href="/index/select"><span id="li1">HiBaby</span></a></li>
+				<li>
+					<a class="li-a2" href="#">
+						<span id="li2-1" onclick="showFrList(${loginUser.i_user})">친구 목록</span>
+					</a>
+				</li>
+                <!--  <span id="showAlertMs" class="animate__flash animate__animated material-icons">chat</span>-->
+				<li><a class="li-a2" href="#"><span id="li2"
+						onclick="showUserList()">유저 목록</span></a></li>
+				<li>
+					<div class="dropdown">
+						<button class="dropbtn">
+							<c:if test="${loginUser.profile_img != null}">
+								<img class="drop-img"
+									src="/res/img/HiBaby/profile_img/user/${loginUser.i_user }/${loginUser.profile_img}"
+									class="profileImg">
+							</c:if>
+							<c:if test="${loginUser.profile_img == null}">
+								<img class="drop-img" src="/res/img/HiBaby.jpg"
+									class="profileImg">
+							</c:if>
+						</button>
+						<div class="dropdown-content">
+							<a href="/user/myPage">마이페이지</a>
+							<div class="hrDiv">
+								<hr>
+							</div>
+							<a href="#" onclick="logOut()">로그아웃</a>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</header>
+       
+
+        <div class="choiceContainer">
+
+            <h1 id="choiceMsg">고민되는 항목을 입력해 주세요.</h1>
+
+            <div class="boxContainer">
+                <div id="choiceBox">
+                    <button type="button" id="categoryBox" onclick="categoryBox()">항목 추가</button>
+                </div>
+                <div id="insMoll">
+                    <div id="insDiv">
+                        <input id="ins" type="text">
+                    </div>
+                    <div id="insDiv">
+                        <input id="ins" type="text">
+                    </div>
+                    <div id="insDiv">
+                        <input id="ins" type="text">
+                    </div>
+                    <div id="insDiv">
+                        <input id="ins" type="text">
+                    </div>
+                    <div id="insDiv">
+                        <input id="ins" type="text">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+    
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+    function categoryBox() {
+
+    }    
+</script>
+</body>
+</html>

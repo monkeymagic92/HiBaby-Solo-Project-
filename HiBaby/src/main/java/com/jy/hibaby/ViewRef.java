@@ -39,5 +39,6 @@ public class ViewRef {
 	public static final String PRO_NUM = "pro/pro_num";			// 스무고개
 	public static final String PEOPLEGAME = "pro/peopleGame";   // 스무고개
 	public static final String PRO_LOTTO = "pro/lotto";			// 로또
+	public static final String PRO_CHOICE = "pro/choice";		// 초이스
 	
 }
