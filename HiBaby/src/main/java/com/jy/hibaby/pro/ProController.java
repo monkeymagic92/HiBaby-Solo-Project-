@@ -272,11 +272,29 @@ public class ProController {
 	
 	// choice 페이지 열기
 	@RequestMapping(value="/choice", method=RequestMethod.GET)
-	public String choice(Model model, HttpSession hs) {
+	public String choice(Model model, HttpSession hs, ProPARAM param) {
 		
 		model.addAttribute("view", ViewRef.PRO_CHOICE);
 		return ViewRef.DEFAULT_TEMP;
 	}
+	
+	// choice post
+	@RequestMapping(value="/choice", method=RequestMethod.POST)
+	public String choicePost(Model model, HttpSession hs, ProPARAM param,
+			RedirectAttributes ra) {
+		
+		for(int i=0; i<param.getChoiceArr().length; i++) {
+			System.out.println("param값 : " + param.getChoiceArr()[i]);
+		}
+		
+		int ranNum = (int)(Math.random() * param.getChoiceArr().length) + 0;
+		
+		String arrResult = param.getChoiceArr()[ranNum];
+		ra.addFlashAttribute("arrResult", arrResult);
+		
+		return "redirect:/"+ViewRef.PRO_CHOICE;
+	}
+	
 	
 	
 	

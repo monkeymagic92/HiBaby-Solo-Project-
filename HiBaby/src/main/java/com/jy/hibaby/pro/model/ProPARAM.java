@@ -25,9 +25,19 @@ public class ProPARAM extends ProVO{
 	private int lotto5;
 	private int lotto6;
 	
+	private String choiceArr[];
+	
+	
+	
 	
 	
 
+	public String[] getChoiceArr() {
+		return choiceArr;
+	}
+	public void setChoiceArr(String[] choiceArr) {
+		this.choiceArr = choiceArr;
+	}
 	public List<ProPARAM> getArr11() {
 		return arr11;
 	}
