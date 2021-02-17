@@ -295,32 +295,4 @@ public class ProController {
 		return "redirect:/"+ViewRef.PRO_CHOICE;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*
-	// DB에 저장하는 ajax 
-	@RequestMapping(value="/selLotto", method=RequestMethod.POST) 
-    private @ResponseBody String startLotto(@RequestBody ChatPARAM param, ChatChkPARAM chkParam){
-		
-		int result = 0;
-		
-		return String.valueOf(result);
-    }
-	*/
-	
 }

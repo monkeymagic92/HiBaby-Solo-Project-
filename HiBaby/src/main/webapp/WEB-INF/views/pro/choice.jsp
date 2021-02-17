@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>choice 화면</title>
 <link rel="stylesheet" href="/res/css/choice.css">
+<link rel="stylesheet" type="text/css" href="/res/css/animate.css">
 </head>
 <body>
 	<div class="choiceContainer">
@@ -31,18 +33,31 @@
 	        </div>
 	    </div>
 	</div>
+	
+	<c:if test="${arrResult != null}">
+		<div id="numModal" class="modal">
+	        <!-- Modal content -->
+	        <div class="modal-content animate__rubberBand animate__animated">
+	            
+	            <!-- Modal body -->
+	            <div class="modal-body">
+	               	<span id="modalDraw">${arrResult}</span>
+	            </div>
+	            
+	            <!-- Modal bottom -->
+	            <a id="exitBtn" class="pop_bt" onclick="backBtn()">뒤로가기</a>
+	        </div>
+	    </div>
+    </c:if>
 
 
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-// 모달창 띄우기
-if(${arrResult != null}) {
-	alert(${arrResult})
-}
 
 var count = 0;
 var arr = [];
+
 function categoryBox() {
     ++count
     var insDiv = document.createElement('div')
@@ -90,6 +105,11 @@ function allDelBtn() {
     for(var i=0; i<count; i++) {
         $('#insDiv').remove();
     }
+}
+
+//모달 뒤로가기
+function backBtn() {
+    location.href="/pro/choice"
 }
 </script>
 </body>
