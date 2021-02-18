@@ -37,7 +37,7 @@
 	<c:if test="${arrResult != null}">
 		<div id="numModal" class="modal">
 	        <!-- Modal content -->
-	        <div class="modal-content animate__rubberBand animate__animated">
+	        <div class="modal-content animate__bounce animate__animated">
 	            
 	            <!-- Modal body -->
 	            <div class="modal-body">
@@ -84,21 +84,12 @@ function categoryBox() {
     for(var i=0; i<count; i++) {
         arr[i-1] = $('#ins'+i).val();
     }
-    choiceSubmit()
 
     insDiv.append(ins)
     insDiv.append(choiceDel)
     choiceFrm.append(insDiv)
     
 }
-
-function choiceSubmit() {
-    console.log('arr ' + arr[0])
-    console.log('arr ' + arr[1])
-    console.log('arr ' + arr[2])
-    console.log('arr ' + arr[3])
-}
-
 
 // 전체 삭제
 function allDelBtn() {

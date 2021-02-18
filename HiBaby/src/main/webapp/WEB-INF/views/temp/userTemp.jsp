@@ -60,9 +60,11 @@
                 <li><a href="/user/findPw">비밀번호 찾기</a></li>
                 <li><hr></li>
                 <li class="introBtn"><a class="introBtn" onclick="showIntro()">HiBaby 프로젝트 소개</a></li>
-                <li><a href="https://github.com/monkeymagic92" target="_blank">제작자 Github 둘러보기</a></li>
-                <li><a href="https://blog.naver.com/ddw0099" target="_blank">제작자 blog 둘러보기</a></li>
+                <li><a href="https://github.com/monkeymagic92" target="_blank">Github 둘러보기</a></li>
+                <li><a href="https://blog.naver.com/ddw0099" target="_blank">blog 둘러보기</a></li>
+                <li><a href="https://monkeydvl.tistory.com/" target="_blank">tistory 둘러보기</a></li>
                 <li><a href="http://ddmarket.ga:8080/index/main" target="_blank">TeamProject 단디마켓</a></li>
+                <li><a href="http://118.67.132.252:8080/" target="_blank">aboutMe 프로젝트</a></li>
             </ul>
         </div>
     </nav>
@@ -90,8 +92,6 @@
 					그로인해 자연스럽게 공부와 경제관념을 학습하며<br><br>
 					세상 돈버는것이 쉽지않다란 개념을 심어주고<br><br>
 					굳이 비싼돈 들여가며 어릴때부터 학원, 과외를 안시켜도 되는 두마리 토끼를 잡는 시스템입니다.<br><br>
-					
-					아직 미완성단계지만 제인생에 첫 개인프로젝트로 애정이 듬뿍담긴 프로젝트입니다<br><br><br>
 					
 					- 12.2 10:30am 이재용 올림 -
 		    	</div>

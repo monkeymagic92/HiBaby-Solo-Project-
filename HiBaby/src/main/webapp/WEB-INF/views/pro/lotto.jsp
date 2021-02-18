@@ -10,6 +10,10 @@
 <body>
 	<div class="lottoContainer">
        		
+       	<div class="lottoTitleMsg">
+			<h1>좋은번호를 추첨받고 부모님께 효도하세요!</h1>       	
+       	</div>
+       		
 		<button type="button" class="startLottoBtn" onclick="startLotto()">
 		    <span id="startLotto" class="material-icons">
 		        play_circle

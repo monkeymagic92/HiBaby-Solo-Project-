@@ -506,7 +506,6 @@ public class UserController {
 			return null; 
 			
 		} else {
-			
 			System.out.println("사이즈" + param2.size());
 			return service.reqFr(param);
 		}
