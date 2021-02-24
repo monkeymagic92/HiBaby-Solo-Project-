@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>선택화면</title>
 <link rel="stylesheet" type="text/css" href="/res/css/select.css">
+<link rel="shortcut icon" type="image/x-icon" href="/res/img/HiBabyLogo.ico">
 </head>
 <body>
 	<div class="overlay-navigation">

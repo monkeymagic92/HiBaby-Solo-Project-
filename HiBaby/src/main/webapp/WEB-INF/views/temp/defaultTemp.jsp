@@ -9,6 +9,7 @@
 <title>HiBaby</title>
 <link rel="stylesheet" href="/res/css/defaultTemp.css">
 <link rel="stylesheet" href="/res/css/animate.css">
+<link rel="shortcut icon" type="image/x-icon" href="/res/img/HiBabyLogo.ico">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <script type="text/javascript"

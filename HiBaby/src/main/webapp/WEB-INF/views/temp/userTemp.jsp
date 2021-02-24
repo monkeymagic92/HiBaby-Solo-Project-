@@ -9,7 +9,8 @@
 <title>HiBaby</title>
 <link rel="stylesheet" type="text/css" href="/res/css/animate.css">
 <link rel="stylesheet" type="text/css" href="/res/css/userTemp.css">
-<link rel="icon" href="data:;base64,iVBORw0KGgo="> <!-- favico 에러 제거 -->
+<!-- <link rel="icon" href="data:;base64,iVBORw0KGgo=">  favico 에러 제거 -->
+<link rel="shortcut icon" type="image/x-icon" href="/res/img/HiBabyLogo.ico">
 </head>
 <style>
 	.modal {
@@ -46,7 +47,7 @@
 </style>
 <body>
 	<nav role="navigation">
-        <div id="menuToggle">  
+        <div id="menuToggle" class="animate__flash animate__animated">  
             <input type="checkbox" />
             	
                 <span></span>
