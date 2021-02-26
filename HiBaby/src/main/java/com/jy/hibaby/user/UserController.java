@@ -36,7 +36,7 @@ public class UserController {
 	private UserService service;	
 	
 	@Autowired
-	private MailSendService mss; 
+	private MailSendService mss; // 메일 발송
 
 	@RequestMapping(value="/intro", method=RequestMethod.GET)
 	public String intro(Model model) {
@@ -179,7 +179,7 @@ public class UserController {
 			i_user = (int)hs.getAttribute("i_user");
 			
 		} catch(Exception e) {
-			result = Const.FAIL;
+			result = Const.FAIL;  // 실패하였을 경우 result = 0
 		}
 		
 		if(result == Const.SUCCESS) { // 정보가 '일치한다면'

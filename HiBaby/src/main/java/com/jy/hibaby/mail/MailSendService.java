@@ -4,7 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.Random;
 
 import javax.mail.MessagingException;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -48,7 +47,7 @@ public class MailSendService {
             sendMail.setText(new StringBuffer().append("<h1>[ 인증번호를 확인해주세요 ]</h1><hr>")					
 					.append("<h2 style='width: 170px; background-color: green; color: black;'> 인증번호 : " + authKey + "</h2>")
 					.toString());
-            sendMail.setFrom("ddw0099@naver.com");
+            sendMail.setFrom("ddw0099@naver.com");	// 본인 이메일 작성
             sendMail.setTo(email);
             sendMail.send();
 	            
